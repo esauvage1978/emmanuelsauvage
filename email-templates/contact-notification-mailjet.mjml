@@ -1,0 +1,94 @@
+<!--
+  Template MJML — Notification formulaire contact (Emmanuel Sauvage)
+  À compiler avec https://mjml.io (CLI ou VS Code) puis coller le HTML dans Mailjet
+  (Transactional templates) ou utiliser l’API avec le HTML compilé.
+
+  Variables Mailjet (à déclarer dans le template Mailjet / passer via API ou Zapier) :
+    {{var:name}}        — Nom du contact (formulaire : champ "Nom")
+    {{var:company}}     — Entreprise (optionnel, formulaire : "Entreprise")
+    {{var:email}}       — Email du contact (formulaire : "Email")
+    {{var:message}}     — Corps du message (formulaire : "Message")
+    {{var:submitted_at}} — Optionnel : date/heure (remplie par Zapier, ex. {{zap_meta_human_now}})
+
+  Logo : remplacez l’URL ci-dessous par l’URL absolue de votre logo en production
+  (ex. https://votredomaine.fr/images/logo-256.png).
+-->
+<mjml>
+  <mj-head>
+    <mj-title>Nouveau message — Contact Emmanuel Sauvage</mj-title>
+    <mj-preview>Un visiteur a envoyé un message depuis le formulaire de contact du site.</mj-preview>
+    <mj-attributes>
+      <mj-all font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" />
+      <mj-text color="#2D2D2D" font-size="16px" line-height="24px" />
+      <mj-button background-color="#2F3A8F" color="#ffffff" font-size="16px" border-radius="10px" padding="14px 28px" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#F7F8FC" width="600px">
+    <!-- Bandeau -->
+    <mj-section background-color="#2F3A8F" padding="24px 40px">
+      <mj-column width="100%">
+        <mj-image
+          src="https://emmanuelsauvage.fr/images/logo-256.png"
+          alt="Emmanuel Sauvage"
+          width="120px"
+          href="https://emmanuelsauvage.fr"
+        />
+      </mj-column>
+    </mj-section>
+
+    <!-- Titre -->
+    <mj-section background-color="#ffffff" padding="32px 40px 16px">
+      <mj-column width="100%">
+        <mj-text font-size="20px" font-weight="700" color="#2F3A8F" padding-bottom="8px">
+          Nouveau message depuis le site
+        </mj-text>
+        <mj-text font-size="14px" color="#5b5b5b" padding-bottom="0">
+          Formulaire de contact — réponse attendue à l’adresse indiquée ci-dessous.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Données du formulaire (variables Zapier / Mailjet) -->
+    <mj-section background-color="#ffffff" padding="0 40px 24px">
+      <mj-column width="100%">
+        <mj-text padding-bottom="12px">
+          <strong>Nom</strong><br />
+          {{var:name}}
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong>Entreprise</strong><br />
+          {{var:company}}
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong>Email</strong><br />
+          <a href="mailto:{{var:email}}" style="color: #4F6EF7;">{{var:email}}</a>
+        </mj-text>
+        <mj-text padding-bottom="8px">
+          <strong>Message</strong>
+        </mj-text>
+        <mj-text padding="12px 16px" container-background-color="#f7f8fc" color="#2D2D2D">
+          {{var:message}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- CTA répondre -->
+    <mj-section background-color="#ffffff" padding="0 40px 32px">
+      <mj-column width="100%">
+        <mj-button href="mailto:{{var:email}}" align="left">
+          Répondre par email
+        </mj-button>
+      </mj-column>
+    </mj-section>
+
+    <!-- Pied -->
+    <mj-section background-color="#E8ECF8" padding="24px 40px">
+      <mj-column width="100%">
+        <mj-text font-size="12px" color="#5b5b5b" align="center" padding="0">
+          Email automatique — site vitrine Emmanuel Sauvage.<br />
+          <span style="color:#6b7280;">Reçu le : {{var:submitted_at}}</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

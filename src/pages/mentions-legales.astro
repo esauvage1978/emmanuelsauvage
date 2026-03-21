@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Mentions légales | Emmanuel Sauvage"
+	description="Mentions légales du site emmanuelsauvage.fr (éditeur, hébergeur, contact)."
+>
+	<main class="legal">
+		<div class="container">
+			<a class="backLink" href="/" aria-label="Retour à l’accueil">← Retour à l’accueil</a>
+			<h1>Mentions légales</h1>
+			<p class="muted">Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}</p>
+
+			<section class="block">
+				<h2>Éditeur du site</h2>
+				<ul>
+					<li><strong>Nom</strong> : Emmanuel Sauvage</li>
+					<li><strong>Statut</strong> : Consultant indépendant</li>
+					<li><strong>Adresse</strong> : Erquinghem-lys</li>
+					<li><strong>Email</strong> : <a href="mailto:contact@emmanuelsauvage.fr">contact@emmanuelsauvage.fr</a></li>
+					<li><strong>Téléphone</strong> : <a href="tel:+33609924945">06 09 92 49 45</a></li>
+					<li><strong>SIRET</strong> : 887 814 168 00019</li>
+				</ul>
+			</section>
+
+			<section class="block">
+				<h2>Directeur de la publication</h2>
+				<p>Emmanuel Sauvage.</p>
+			</section>
+
+			<section class="block">
+				<h2>Hébergement</h2>
+				<p>
+					Le site est hébergé par la société <strong>o2switch</strong>, dont le siège social est situé
+					222-224 Boulevard Gustave Flaubert, 63000 Clermont-Ferrand, France.
+				</p>
+				<ul>
+					<li><strong>Site web</strong> : <a href="https://www.o2switch.fr" target="_blank" rel="noopener noreferrer">www.o2switch.fr</a></li>
+					<li><strong>Téléphone</strong> : <a href="tel:+33444446040">04 44 44 60 40</a></li>
+				</ul>
+				<p class="muted">
+					Coordonnées données à titre indicatif — en cas de mise à jour par l’hébergeur, se référer aux
+					<a href="https://www.o2switch.fr/mentions-legales/" target="_blank" rel="noopener noreferrer">mentions légales o2switch</a>.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Propriété intellectuelle</h2>
+				<p>
+					Sauf mention contraire, l’ensemble des contenus (textes, éléments graphiques, logos) est la propriété de
+					son auteur. Toute reproduction ou représentation totale ou partielle sans autorisation est interdite.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Crédits</h2>
+				<p>
+					Photo de la page d’accueil : image libre d’utilisation via Unsplash (voir la
+					<a href="/politique-de-confidentialite">politique de confidentialité</a> pour plus d’informations).
+				</p>
+			</section>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.container {
+		width: min(980px, calc(100% - 48px));
+		margin: 0 auto;
+		padding: 56px 0 48px;
+	}
+
+	h1 {
+		margin: 0 0 8px;
+		font-size: clamp(28px, 4vw, 44px);
+		letter-spacing: -0.03em;
+	}
+
+	h2 {
+		margin: 0 0 10px;
+		font-size: 18px;
+		letter-spacing: -0.02em;
+	}
+
+	.block {
+		margin-top: 18px;
+		padding: 18px;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		background: rgba(255, 255, 255, 0.92);
+		box-shadow: var(--shadow-sm);
+	}
+
+	p,
+	li {
+		color: var(--color-text);
+		opacity: 0.92;
+	}
+
+	ul {
+		margin: 10px 0 0;
+		padding-left: 18px;
+	}
+
+	.muted {
+		color: var(--color-muted);
+		opacity: 1;
+	}
+
+	.backLink {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 14px;
+		text-decoration: none;
+		color: var(--color-primary);
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	.backLink:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(79, 110, 247, 0.45);
+	}
+
+	a {
+		color: var(--color-primary);
+	}
+
+	@media (max-width: 520px) {
+		.container {
+			width: min(980px, calc(100% - 32px));
+		}
+	}
+</style>

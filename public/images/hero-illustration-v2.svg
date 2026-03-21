@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="933" viewBox="0 0 1400 933" role="img" aria-label="Illustration graphique developpement web et data" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="g1" x1="120" y1="80" x2="1280" y2="920" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7F8FC"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <radialGradient id="bA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(360 220) rotate(35) scale(520 420)">
+      <stop stop-color="#4F6EF7" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#4F6EF7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1130 230) rotate(145) scale(520 440)">
+      <stop stop-color="#2F3A8F" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#2F3A8F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bC" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(760 830) rotate(-15) scale(600 420)">
+      <stop stop-color="#4F6EF7" stop-opacity="0.40"/>
+      <stop offset="1" stop-color="#4F6EF7" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="cardGrad" x1="360" y1="260" x2="1130" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F7F8FC"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="540" y1="390" x2="1050" y2="730" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F6EF7"/>
+      <stop offset="1" stop-color="#2F3A8F"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#0B1020" flood-opacity="0.18"/>
+    </filter>
+
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2.5" cy="2.5" r="1.8" fill="#2F3A8F" opacity="0.10"/>
+    </pattern>
+  </defs>
+
+  <!-- Backplate -->
+  <rect width="1400" height="933" fill="url(#g1)"/>
+  <rect width="1400" height="933" fill="url(#dots)"/>
+
+  <!-- Blobs -->
+  <g filter="url(#shadow)">
+    <ellipse cx="360" cy="220" rx="520" ry="420" fill="url(#bA)"/>
+    <ellipse cx="1130" cy="230" rx="520" ry="440" fill="url(#bB)"/>
+    <ellipse cx="760" cy="830" rx="600" ry="420" fill="url(#bC)"/>
+  </g>
+
+  <!-- Main card -->
+  <g filter="url(#shadow)">
+    <rect x="360" y="220" width="880" height="580" rx="38" fill="url(#cardGrad)" stroke="#2D2D2D" stroke-opacity="0.10"/>
+    <rect x="360" y="220" width="880" height="86" rx="38" fill="#FFFFFF"/>
+
+    <!-- Window dots -->
+    <circle cx="410" cy="263" r="10" fill="#FF6384"/>
+    <circle cx="440" cy="263" r="10" fill="#FFCE56"/>
+    <circle cx="470" cy="263" r="10" fill="#4BC0C0"/>
+    <rect x="510" y="244" width="200" height="16" rx="8" fill="#2D2D2D" opacity="0.10"/>
+
+    <!-- Sidebar -->
+    <rect x="390" y="322" width="240" height="442" rx="26" fill="#FFFFFF" stroke="#2D2D2D" stroke-opacity="0.08"/>
+    <rect x="420" y="358" width="180" height="18" rx="9" fill="#2D2D2D" opacity="0.12"/>
+    <rect x="420" y="392" width="150" height="18" rx="9" fill="#2D2D2D" opacity="0.10"/>
+    <rect x="420" y="426" width="210" height="54" rx="18" fill="#4F6EF7" opacity="0.15"/>
+    <rect x="420" y="496" width="170" height="18" rx="9" fill="#2D2D2D" opacity="0.10"/>
+    <rect x="420" y="530" width="190" height="18" rx="9" fill="#2D2D2D" opacity="0.10"/>
+    <rect x="420" y="564" width="140" height="18" rx="9" fill="#2D2D2D" opacity="0.10"/>
+
+    <!-- Content -->
+    <rect x="654" y="322" width="586" height="250" rx="26" fill="#FFFFFF" stroke="#2D2D2D" stroke-opacity="0.08"/>
+    <rect x="680" y="358" width="220" height="16" rx="8" fill="#2D2D2D" opacity="0.12"/>
+    <rect x="680" y="382" width="360" height="12" rx="6" fill="#2D2D2D" opacity="0.08"/>
+
+    <!-- Chart -->
+    <path d="M700 498C760 450 810 468 860 432C920 388 980 430 1040 396C1100 362 1150 372 1186 338"
+          fill="none" stroke="url(#accent)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M700 526C768 490 818 498 878 476C942 452 990 470 1048 452C1106 432 1150 428 1186 410"
+          fill="none" stroke="#2F3A8F" stroke-opacity="0.22" stroke-width="12" stroke-linecap="round"/>
+
+    <circle cx="860" cy="432" r="10" fill="#4F6EF7"/>
+    <circle cx="1040" cy="396" r="10" fill="#4F6EF7"/>
+    <circle cx="1186" cy="338" r="10" fill="#2F3A8F"/>
+
+    <!-- KPI cards -->
+    <g>
+      <rect x="680" y="604" width="190" height="120" rx="24" fill="#FFFFFF" stroke="#2D2D2D" stroke-opacity="0.08"/>
+      <rect x="705" y="635" width="140" height="14" rx="7" fill="#2D2D2D" opacity="0.12"/>
+      <rect x="705" y="660" width="120" height="24" rx="12" fill="#4F6EF7" opacity="0.18"/>
+
+      <rect x="890" y="604" width="190" height="120" rx="24" fill="#FFFFFF" stroke="#2D2D2D" stroke-opacity="0.08"/>
+      <rect x="915" y="635" width="150" height="14" rx="7" fill="#2D2D2D" opacity="0.12"/>
+      <rect x="915" y="660" width="128" height="24" rx="12" fill="#2F3A8F" opacity="0.14"/>
+
+      <rect x="1100" y="604" width="170" height="120" rx="24" fill="#FFFFFF" stroke="#2D2D2D" stroke-opacity="0.08"/>
+      <rect x="1125" y="635" width="120" height="14" rx="7" fill="#2D2D2D" opacity="0.12"/>
+      <rect x="1125" y="660" width="102" height="24" rx="12" fill="#4F6EF7" opacity="0.18"/>
+    </g>
+
+    <!-- Bottom base -->
+    <path d="M440 826h800c18 0 32 14 32 32H408c0-18 14-32 32-32Z" fill="#FFFFFF" stroke="#2D2D2D" stroke-opacity="0.10"/>
+  </g>
+</svg>
+

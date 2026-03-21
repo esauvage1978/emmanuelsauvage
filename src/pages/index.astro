@@ -1,11 +1,1207 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BrandLogo from '../components/BrandLogo.astro';
+import { GOOGLE_REVIEW_URL } from '../config/site';
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Optimisation et développement d’outils digitaux pour les entreprises | Emmanuel Sauvage"
+	description="Consultant indépendant : audit outils digitaux entreprise, optimisation processus entreprise, développement d’outils métier et automatisation workflows. Audit, développement, formation et dépannage."
+	preloadLcpHref="/images/hero-illustration-v2.svg"
+>
+	<header class="header">
+		<div class="container header__inner">
+			<a class="brand" href="/">
+				<span class="brand__logoWrap" aria-hidden="true">
+					<BrandLogo variant="header" class="brand__logo" />
+				</span>
+				<span class="brand__text">Emmanuel Sauvage</span>
+			</a>
+
+			<nav class="nav" aria-label="Navigation principale">
+				<a class="nav__link" href="/services">Services</a>
+				<a class="nav__link" href="/a-propos">À propos</a>
+				<a class="nav__link" href="/contact">Contact</a>
+				<a class="nav__cta" href="#contact">Discuter de votre projet</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero" aria-label="Introduction">
+			<div class="heroFx" aria-hidden="true">
+				<div class="blob blob--a"></div>
+				<div class="blob blob--b"></div>
+				<div class="blob blob--c"></div>
+				<svg class="grid" viewBox="0 0 1200 500" preserveAspectRatio="none">
+					<defs>
+						<linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+							<stop offset="0" stop-color="rgba(79,110,247,0.35)" />
+							<stop offset="1" stop-color="rgba(47,58,143,0.18)" />
+						</linearGradient>
+					</defs>
+					<path d="M0 420C220 320 360 360 540 260C720 160 880 240 1200 120V500H0Z" fill="url(#g)"></path>
+				</svg>
+			</div>
+			<div class="container hero__grid">
+				<div class="hero__content">
+					<p class="eyebrow">Développement web • Symfony • Vue.js • React</p>
+					<h1>Optimisation et développement d’outils digitaux pour les entreprises</h1>
+					<p class="hero__subtitle">
+						Développement d’applications et d’outils métier (PHP/Symfony, Vue.js, React), automatisation et
+						outillage data (Google Sheets, Power BI, Looker) pour des équipes plus efficaces.
+					</p>
+
+					<div class="hero__actions">
+						<a class="button button--primary" href="#contact">Discuter de votre projet</a>
+						<a class="button button--secondary" href="#services">Voir les services</a>
+					</div>
+
+					<ul class="trust">
+						<li class="trust__item"><strong>Fullstack</strong> : de l’API à l’interface</li>
+						<li class="trust__item"><strong>Stack</strong> : PHP, Symfony, JavaScript, MySQL</li>
+						<li class="trust__item"><strong>Data</strong> : Google Sheets, Power BI, Looker</li>
+					</ul>
+				</div>
+
+				<div class="hero__visual">
+					<figure class="heroMedia">
+						<img
+							class="heroMedia__img"
+							src="/images/hero-illustration-v2.svg"
+							width="1400"
+							height="933"
+							alt="Illustration graphique : développement web, data et automatisation."
+							loading="eager"
+							fetchpriority="high"
+						/>
+						<figcaption class="srOnly">
+							Illustration de hero pour le site.
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" aria-label="Présentation">
+			<div class="container grid2">
+				<div>
+					<h2>Un consultant indépendant orienté efficacité opérationnelle</h2>
+					<p class="lead">
+						J’accompagne les entreprises qui veulent fiabiliser, simplifier et accélérer leur quotidien grâce à
+						l’<strong>optimisation des outils digitaux</strong> et à l’<strong>optimisation des processus
+							entreprise</strong>.
+					</p>
+					<p>
+						De l’<strong>audit outils digitaux entreprise</strong> à la mise en œuvre, je combine analyse,
+						développement et conduite du changement : <strong>développement outils métier</strong>,
+						<em>automatisation workflows</em>, intégrations API, formation et amélioration continue.
+					</p>
+				</div>
+				<div class="callout">
+					<h3>Ce que vous obtenez</h3>
+					<ul class="checklist">
+						<li>Un diagnostic clair, priorisé, actionnable</li>
+						<li>Des solutions adaptées à votre organisation</li>
+						<li>Des équipes autonomes sur les nouveaux usages</li>
+						<li>Un accompagnement réactif, sans complexité inutile</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section id="services" class="section section--alt" aria-label="Services">
+			<div class="container">
+				<div class="section__head">
+					<h2>Services</h2>
+					<p>Développement, modernisation et mise en place d’outils réellement utilisés par vos équipes.</p>
+				</div>
+
+				<div class="cards">
+					<article class="card">
+						<div class="icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24">
+								<path
+									d="M4 4h16v14H4V4Zm3 17h10"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+								<path
+									d="M8 8h8M8 11h6M8 14h5"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+								/>
+							</svg>
+						</div>
+						<h3>Développement d’applications (Symfony)</h3>
+						<p>Back-end PHP/Symfony, API, bases MySQL, sécurité, performance et mise en production.</p>
+					</article>
+
+					<article class="card">
+						<div class="icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24">
+								<path
+									d="M8 7h8M8 12h8M8 17h5"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+								/>
+								<path
+									d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</div>
+						<h3>Interfaces modernes (Vue.js / React)</h3>
+						<p>Front-end clair et rapide : composants, formulaires, tableaux, UX et intégration HTML/CSS.</p>
+					</article>
+
+					<article class="card">
+						<div class="icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24">
+								<path
+									d="M4 19V5m16 14V5"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+								/>
+								<path
+									d="M7 7h10M7 11h10M7 15h6"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+								/>
+								<path
+									d="M9 21h6"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+								/>
+							</svg>
+						</div>
+						<h3>Data &amp; reporting (Sheets, Power BI, Looker)</h3>
+						<p>Tableaux de bord, indicateurs, automatisations Google Sheets, et reporting orienté décision.</p>
+					</article>
+
+					<article class="card">
+						<div class="icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24">
+								<path
+									d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7l3-7Z"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</div>
+						<h3>Maintenance, dépannage &amp; optimisation</h3>
+						<p>Corrections, refonte progressive, optimisation des performances, fiabilité et conformité (dont RGPD).</p>
+					</article>
+
+					<article class="card">
+						<div class="icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24">
+								<path
+									d="M4 6h16M7 10h10M7 14h7"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+								/>
+								<path
+									d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</div>
+						<h3>Formation &amp; accompagnement</h3>
+						<p>Montée en compétences (Symfony, bonnes pratiques web, outillage) et transfert pour rendre vos équipes autonomes.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" aria-label="Bénéfices">
+			<div class="container">
+				<div class="section__head section__head--split">
+					<div>
+						<h2>Des bénéfices concrets pour l’entreprise</h2>
+						<p>Moins de friction, plus d’exécution : la technologie au service du métier.</p>
+					</div>
+					<div class="kpis" aria-label="Indicateurs">
+						<div class="kpi"><strong>Temps</strong><span>réduit</span></div>
+						<div class="kpi"><strong>Qualité</strong><span>améliorée</span></div>
+						<div class="kpi"><strong>Workflows</strong><span>automatisés</span></div>
+					</div>
+				</div>
+
+				<div class="benefits">
+					<div class="benefit">
+						<h3>Gain de temps</h3>
+						<p>Réduction des tâches répétitives et des manipulations manuelles.</p>
+					</div>
+					<div class="benefit">
+						<h3>Automatisation</h3>
+						<p>Mise en place d’<strong>automatisation workflows</strong> fiables et documentés.</p>
+					</div>
+					<div class="benefit">
+						<h3>Processus plus fluides</h3>
+						<p>Moins d’allers-retours, meilleure traçabilité et décisions plus rapides.</p>
+					</div>
+					<div class="benefit">
+						<h3>Outils mieux adaptés</h3>
+						<p>Des outils métier construits pour vos usages et votre organisation.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--alt" aria-label="Comment je fonctionne">
+			<div class="container">
+				<div class="section__head">
+					<h2>Un accompagnement clair et structuré</h2>
+					<p>Inspiré des cabinets : méthode, transparence et livrables concrets.</p>
+				</div>
+
+				<div class="steps">
+					<article class="step">
+						<div class="step__num" aria-hidden="true">01</div>
+						<h3>Premier échange</h3>
+						<p>Nous clarifions le contexte, les outils, les objectifs et les contraintes.</p>
+					</article>
+					<article class="step">
+						<div class="step__num" aria-hidden="true">02</div>
+						<h3>Audit &amp; plan d’action</h3>
+						<p>Priorisation impact/effort, recommandations et feuille de route.</p>
+					</article>
+					<article class="step">
+						<div class="step__num" aria-hidden="true">03</div>
+						<h3>Mise en œuvre</h3>
+						<p>Développement, intégrations, automatisations, sécurisation et documentation.</p>
+					</article>
+					<article class="step">
+						<div class="step__num" aria-hidden="true">04</div>
+						<h3>Adoption &amp; autonomie</h3>
+						<p>Formation des équipes, transfert de compétences et amélioration continue.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" aria-label="Expertise">
+			<div class="container grid2">
+				<div>
+					<h2>Une expertise orientée transformation et exécution</h2>
+					<p class="lead">
+						Consultant transformation digitale, j’interviens sur l’<strong>audit outils digitaux entreprise</strong>,
+						l’<strong>optimisation processus entreprise</strong> et le <strong>développement outils métier</strong>.
+					</p>
+					<p>
+						Objectif : des outils plus simples, maintenables, sécurisés — et surtout adoptés par vos équipes.
+					</p>
+				</div>
+				<div class="pillars">
+					<div class="pillar">
+						<h3>Analyse &amp; priorisation</h3>
+						<p>Cartographie des flux, irritants, risques et opportunités.</p>
+					</div>
+					<div class="pillar">
+						<h3>Build &amp; intégrations</h3>
+						<p>Web apps, API, automatisations, outillage et documentation.</p>
+					</div>
+					<div class="pillar">
+						<h3>Accompagnement</h3>
+						<p>Formation, adoption, bonnes pratiques et autonomie durable.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--alt" aria-label="Avis">
+			<div class="container">
+				<div class="section__head">
+					<h2>La confiance se construit sur la clarté</h2>
+					<p>Témoignages issus de projets réalisés.</p>
+				</div>
+
+				<div class="quotes">
+					<figure class="quote">
+						<blockquote>
+							« Nous avons sollicité Monsieur SAUVAGE, dans le cadre de la création de notre site WEB. Nous sommes
+							extrêmement satisfaits de ses compétences, sa réactivité, sa patience et son analyse. Il est de très
+							bon conseil. Je recommande vivement Monsieur SAUVAGE, expert dans son domaine. »
+						</blockquote>
+						<figcaption>— Maître Iwona Parafiniuk</figcaption>
+					</figure>
+					<figure class="quote">
+						<blockquote>
+							« J’ai sollicité Monsieur SAUVAGE pour la création d’une plateforme de formation en ligne. Il est
+							pertinent, à l’écoute, patient et bienveillant. Je confirme qu’il est clairement dans son domaine. »
+						</blockquote>
+						<figcaption>— Laura Borges</figcaption>
+					</figure>
+					<figure class="quote">
+						<blockquote>
+							« Tout simplement remarquable ! Très compétent dans son domaine, avec une approche chaleureuse et
+							humaine. Sa méthode donne vraiment envie de travailler. C’est un vrai plaisir d’apprendre à ses côtés. »
+						</blockquote>
+						<figcaption>— Axel Croce</figcaption>
+					</figure>
+				</div>
+
+				<div class="googleReview">
+					<p class="googleReview__text">
+						Vous avez travaillé avec moi ? <strong>Un avis sur Google</strong> aide d’autres entreprises à mieux
+						cerner mon accompagnement — merci d’avance.
+					</p>
+					<a
+						class="button button--secondary googleReview__link"
+						href={GOOGLE_REVIEW_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Laisser un avis Google
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" aria-label="FAQ">
+			<div class="container">
+				<div class="section__head">
+					<h2>Questions fréquentes</h2>
+					<p>Quelques réponses rapides sur la collaboration.</p>
+				</div>
+
+				<div class="faq">
+					<details class="faq__item">
+						<summary>Intervenez-vous uniquement sur des outils existants ?</summary>
+						<p>Non. Je peux auditer et optimiser l’existant, ou développer un nouvel outil métier lorsque c’est la meilleure option.</p>
+					</details>
+					<details class="faq__item">
+						<summary>Quel est le livrable d’un audit ?</summary>
+						<p>Un diagnostic priorisé, des recommandations, une feuille de route, et si besoin des quick wins immédiatement activables.</p>
+					</details>
+					<details class="faq__item">
+						<summary>Comment traitez-vous la sécurité et les données ?</summary>
+						<p>Principe de minimisation, accès strictement nécessaires, traçabilité, et bonnes pratiques de développement et d’hébergement.</p>
+					</details>
+				</div>
+			</div>
+		</section>
+
+		<section id="contact" class="section cta" aria-label="Appel à action">
+			<div class="container cta__inner">
+				<div>
+					<h2>Parlons de vos outils et de vos processus</h2>
+					<p>
+						Vous cherchez à fiabiliser vos outils, accélérer vos opérations ou lancer un nouveau projet ?
+						Expliquez votre contexte : je vous réponds avec une première recommandation.
+					</p>
+				</div>
+				<div class="cta__actions">
+					<a class="button button--primary" href="/contact">Prendre contact</a>
+					<a class="button button--secondary" href="/services">Découvrir les services</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer" aria-label="Pied de page">
+		<div class="container footer__grid">
+			<div>
+				<div class="footer__brand">
+					<span class="footer__logoWrap" aria-hidden="true">
+						<BrandLogo variant="footer" class="footer__logo" />
+					</span>
+					<span>Emmanuel Sauvage</span>
+				</div>
+				<p class="footer__text">Consultant indépendant — optimisation des outils digitaux et des processus.</p>
+				<p class="footer__text">
+					<a href="mailto:contact@emmanuelsauvage.fr">contact@emmanuelsauvage.fr</a>
+				</p>
+				<p class="footer__text">
+					<a href="tel:+33609924945">06 09 92 49 45</a> · Erquinghem-lys
+				</p>
+			</div>
+
+			<div>
+				<div class="footer__title">Navigation</div>
+				<ul class="footer__links">
+					<li><a href="/services">Services</a></li>
+					<li><a href="/a-propos">À propos</a></li>
+					<li><a href="/contact">Contact</a></li>
+				</ul>
+			</div>
+
+			<div>
+				<div class="footer__title">Coordonnées</div>
+				<ul class="footer__links">
+					<li><a href="/contact">Formulaire de contact</a></li>
+					<li><a href="#contact">Discuter de votre projet</a></li>
+					<li>
+						<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<div class="footer__title">Légal</div>
+				<ul class="footer__links">
+					<li><a href="/mentions-legales">Mentions légales</a></li>
+					<li><a href="/politique-de-confidentialite">Politique de confidentialité</a></li>
+					<li><a href="/cgu">CGU</a></li>
+					<li><a href="/cgv">CGV</a></li>
+					<li><a href="/cookies">Cookies</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="container footer__bottom">
+			<p>© {new Date().getFullYear()} Emmanuel Sauvage — Tous droits réservés.</p>
+		</div>
+	</footer>
 </Layout>
+
+<style>
+	.container {
+		width: min(1120px, calc(100% - 48px));
+		margin: 0 auto;
+	}
+
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: rgba(247, 248, 251, 0.78);
+		backdrop-filter: blur(10px);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.header__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 14px 0;
+		gap: 20px;
+	}
+
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		text-decoration: none;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--color-primary);
+	}
+
+	.brand:hover {
+		color: var(--color-primary);
+		opacity: 0.88;
+	}
+
+	.brand__logoWrap {
+		display: inline-flex;
+		align-items: center;
+		line-height: 0;
+	}
+
+	.brand__logo {
+		display: block;
+		width: 32px;
+		height: 32px;
+		border-radius: 10px;
+		object-fit: cover;
+		box-shadow: 0 8px 18px rgba(47, 58, 143, 0.24);
+	}
+
+	.nav {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+	}
+
+	.nav__link {
+		text-decoration: none;
+		color: var(--color-text);
+		opacity: 0.9;
+		padding: 10px 10px;
+		border-radius: 10px;
+		transition: background 0.15s ease, opacity 0.15s ease;
+	}
+
+	.nav__link:hover {
+		opacity: 1;
+		background: rgba(47, 58, 143, 0.06);
+	}
+
+	.nav__cta {
+		text-decoration: none;
+		color: white;
+		background: var(--color-primary);
+		padding: 10px 14px;
+		border-radius: 12px;
+		box-shadow: var(--shadow-sm);
+		transition: transform 0.15s ease, box-shadow 0.15s ease;
+		white-space: nowrap;
+	}
+
+	.nav__cta:hover {
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-md);
+	}
+
+	main {
+		display: block;
+	}
+
+	.hero {
+		position: relative;
+		overflow: hidden;
+		padding: 72px 0 36px;
+		background: white;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.heroFx {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.blob {
+		position: absolute;
+		border-radius: 999px;
+		filter: blur(40px);
+		opacity: 0.95;
+		mix-blend-mode: multiply;
+	}
+
+	.blob--a {
+		width: 520px;
+		height: 520px;
+		top: -220px;
+		left: -180px;
+		background: radial-gradient(circle at 30% 30%, rgba(79, 110, 247, 0.55), rgba(79, 110, 247, 0) 60%),
+			radial-gradient(circle at 70% 60%, rgba(47, 58, 143, 0.35), rgba(47, 58, 143, 0) 65%);
+	}
+
+	.blob--b {
+		width: 560px;
+		height: 560px;
+		top: -260px;
+		right: -260px;
+		background: radial-gradient(circle at 40% 40%, rgba(47, 58, 143, 0.45), rgba(47, 58, 143, 0) 62%),
+			radial-gradient(circle at 70% 70%, rgba(79, 110, 247, 0.38), rgba(79, 110, 247, 0) 66%);
+	}
+
+	.blob--c {
+		width: 520px;
+		height: 520px;
+		bottom: -300px;
+		left: 36%;
+		background: radial-gradient(circle at 35% 35%, rgba(79, 110, 247, 0.35), rgba(79, 110, 247, 0) 62%),
+			radial-gradient(circle at 70% 40%, rgba(47, 58, 143, 0.20), rgba(47, 58, 143, 0) 70%);
+	}
+
+	.grid {
+		position: absolute;
+		inset: auto 0 0 0;
+		width: 100%;
+		height: 220px;
+		opacity: 0.9;
+	}
+
+	.hero__grid {
+		display: grid;
+		grid-template-columns: 1.05fr 0.95fr;
+		gap: 42px;
+		align-items: center;
+		position: relative;
+		z-index: 1;
+	}
+
+	.eyebrow {
+		margin: 0 0 10px;
+		color: var(--color-muted);
+		font-size: 14px;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	h1 {
+		margin: 0 0 14px;
+		font-size: clamp(34px, 4.2vw, 52px);
+		line-height: 1.05;
+		letter-spacing: -0.03em;
+	}
+
+	h2 {
+		margin: 0 0 12px;
+		font-size: clamp(26px, 3vw, 36px);
+		letter-spacing: -0.02em;
+		line-height: 1.15;
+	}
+
+	h3 {
+		margin: 0 0 10px;
+		font-size: 18px;
+		letter-spacing: -0.01em;
+	}
+
+	p {
+		margin: 0 0 12px;
+		color: var(--color-text);
+		opacity: 0.92;
+	}
+
+	.hero__subtitle {
+		font-size: 18px;
+		color: var(--color-muted);
+		opacity: 1;
+		max-width: 56ch;
+	}
+
+	.hero__actions {
+		display: flex;
+		gap: 12px;
+		margin-top: 18px;
+		flex-wrap: wrap;
+	}
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		text-decoration: none;
+		border-radius: 14px;
+		padding: 12px 16px;
+		font-weight: 600;
+		border: 1px solid transparent;
+		transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border 0.15s ease;
+	}
+
+	.button--primary {
+		color: white;
+		background: var(--color-primary);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.button--primary:hover {
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.button--secondary {
+		color: var(--color-text);
+		background: rgba(255, 255, 255, 0.8);
+		border-color: var(--color-border);
+	}
+
+	.button--secondary:hover {
+		background: rgba(255, 255, 255, 1);
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.trust {
+		list-style: none;
+		padding: 0;
+		margin: 22px 0 0;
+		display: grid;
+		gap: 8px;
+	}
+
+	.trust__item {
+		color: var(--color-muted);
+		background: rgba(255, 255, 255, 0.8);
+		border: 1px solid var(--color-border);
+		border-radius: 14px;
+		padding: 10px 12px;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.hero__visual {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.heroMedia {
+		margin: 0;
+		width: min(560px, 100%);
+		border-radius: 22px;
+		overflow: hidden;
+		border: 1px solid var(--color-border);
+		box-shadow: var(--shadow-md);
+		background: rgba(255, 255, 255, 0.85);
+		position: relative;
+	}
+
+	.heroMedia::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(180deg, rgba(47, 58, 143, 0) 40%, rgba(47, 58, 143, 0.12) 100%);
+		pointer-events: none;
+	}
+
+	.heroMedia__img {
+		display: block;
+		width: 100%;
+		height: auto;
+		transform: scale(1.02);
+	}
+
+	.srOnly {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	.section {
+		padding: 56px 0;
+	}
+
+	.section--alt {
+		background: rgba(255, 255, 255, 0.7);
+		border-top: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.section__head {
+		display: grid;
+		gap: 10px;
+		margin-bottom: 18px;
+	}
+
+	.section__head--split {
+		grid-template-columns: 1.2fr 0.8fr;
+		align-items: end;
+		gap: 18px;
+	}
+
+	.section__head p {
+		color: var(--color-muted);
+		opacity: 1;
+		margin: 0;
+	}
+
+	.kpis {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+	}
+
+	.kpi {
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid var(--color-border);
+		border-radius: 16px;
+		padding: 12px 12px;
+		box-shadow: var(--shadow-sm);
+		display: grid;
+		gap: 2px;
+	}
+
+	.kpi strong {
+		color: var(--color-primary);
+		letter-spacing: -0.02em;
+	}
+
+	.kpi span {
+		color: var(--color-muted);
+		font-size: 13px;
+	}
+
+	.grid2 {
+		display: grid;
+		grid-template-columns: 1.1fr 0.9fr;
+		gap: 28px;
+		align-items: start;
+	}
+
+	.lead {
+		font-size: 18px;
+		color: var(--color-muted);
+		opacity: 1;
+	}
+
+	.callout {
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 18px;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.checklist {
+		margin: 12px 0 0;
+		padding-left: 18px;
+		color: var(--color-muted);
+	}
+
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 14px;
+	}
+
+	.card {
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 18px;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.icon {
+		width: 42px;
+		height: 42px;
+		border-radius: 14px;
+		display: grid;
+		place-items: center;
+		color: var(--color-primary);
+		background: rgba(47, 58, 143, 0.10);
+		border: 1px solid rgba(47, 58, 143, 0.18);
+		margin-bottom: 12px;
+	}
+
+	.icon svg {
+		width: 22px;
+		height: 22px;
+	}
+
+	.benefits {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 14px;
+	}
+
+	.benefit {
+		border-radius: var(--radius);
+		padding: 18px;
+		border: 1px solid var(--color-border);
+		background: rgba(255, 255, 255, 0.85);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.steps {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 14px;
+	}
+
+	.step {
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 18px;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.step__num {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 34px;
+		min-width: 54px;
+		padding: 0 10px;
+		border-radius: 999px;
+		color: white;
+		background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+		font-weight: 800;
+		letter-spacing: 0.06em;
+		font-size: 12px;
+		margin-bottom: 12px;
+	}
+
+	.pillars {
+		display: grid;
+		gap: 12px;
+	}
+
+	.pillar {
+		border-radius: var(--radius);
+		padding: 16px 18px;
+		border: 1px solid var(--color-border);
+		background: rgba(255, 255, 255, 0.85);
+	}
+
+	.quotes {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 14px;
+	}
+
+	.quote {
+		margin: 0;
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 18px;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.quote blockquote {
+		margin: 0 0 12px;
+		color: var(--color-text);
+		opacity: 0.92;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+	}
+
+	.quote figcaption {
+		color: var(--color-muted);
+		font-size: 14px;
+	}
+
+	.googleReview {
+		margin-top: 22px;
+		padding: 20px 22px;
+		border-radius: var(--radius);
+		border: 1px solid rgba(47, 58, 143, 0.18);
+		background: linear-gradient(180deg, rgba(47, 58, 143, 0.06), rgba(255, 255, 255, 0.75));
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.googleReview__text {
+		margin: 0;
+		max-width: 52ch;
+		color: var(--color-muted);
+		font-size: 15px;
+		line-height: 1.45;
+	}
+
+	.googleReview__text strong {
+		color: var(--color-text);
+	}
+
+	.googleReview__link {
+		flex-shrink: 0;
+	}
+
+	.faq {
+		display: grid;
+		gap: 10px;
+	}
+
+	.faq__item {
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 14px 16px;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.faq__item summary {
+		cursor: pointer;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	.faq__item p {
+		margin: 10px 0 0;
+		color: var(--color-muted);
+		opacity: 1;
+	}
+
+	.cta__inner {
+		display: grid;
+		grid-template-columns: 1.2fr 0.8fr;
+		gap: 18px;
+		align-items: center;
+		padding: 22px;
+		border-radius: 24px;
+		border: 1px solid rgba(47, 58, 143, 0.20);
+		background: linear-gradient(180deg, rgba(47, 58, 143, 0.10), rgba(255, 255, 255, 0.65));
+		box-shadow: var(--shadow-md);
+	}
+
+	.cta__actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+
+	.footer {
+		padding: 32px 0 22px;
+		border-top: 1px solid var(--color-border);
+		background: rgba(247, 248, 251, 0.85);
+	}
+
+	.footer__grid {
+		display: grid;
+		grid-template-columns: 1.6fr 1fr 1fr 1fr;
+		gap: 18px;
+		align-items: start;
+	}
+
+	.footer__brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--color-primary);
+	}
+
+	.footer__logoWrap {
+		display: inline-flex;
+		align-items: center;
+		line-height: 0;
+	}
+
+	.footer__logo {
+		display: block;
+		width: 28px;
+		height: 28px;
+		border-radius: 8px;
+		object-fit: cover;
+	}
+
+	.footer__text {
+		color: var(--color-muted);
+		opacity: 1;
+		margin: 6px 0 0;
+	}
+
+	.footer__title {
+		font-weight: 700;
+		margin-bottom: 10px;
+	}
+
+	.footer__links {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 8px;
+	}
+
+	.footer__links a {
+		color: var(--color-muted);
+		text-decoration: none;
+	}
+
+	.footer__links a:hover {
+		color: var(--color-text);
+		text-decoration: underline;
+		text-decoration-color: rgba(47, 58, 143, 0.4);
+	}
+
+	.footer__bottom {
+		margin-top: 18px;
+		padding-top: 16px;
+		border-top: 1px solid var(--color-border);
+		color: var(--color-muted);
+		font-size: 14px;
+	}
+
+	.footer__bottom p {
+		margin: 0;
+	}
+
+	@media (max-width: 980px) {
+		.hero__grid {
+			grid-template-columns: 1fr;
+		}
+
+		.hero__visual {
+			justify-content: flex-start;
+		}
+
+		.cards,
+		.benefits {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.steps,
+		.quotes {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.section__head--split {
+			grid-template-columns: 1fr;
+			align-items: start;
+		}
+
+		.kpis {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.grid2 {
+			grid-template-columns: 1fr;
+		}
+
+		.cta__inner {
+			grid-template-columns: 1fr;
+		}
+
+		.cta__actions {
+			justify-content: flex-start;
+		}
+
+		.footer__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 520px) {
+		.container {
+			width: min(1120px, calc(100% - 32px));
+		}
+
+		.googleReview {
+			flex-direction: column;
+			align-items: stretch;
+			text-align: center;
+		}
+
+		.googleReview__link {
+			justify-content: center;
+		}
+
+		.cards,
+		.benefits {
+			grid-template-columns: 1fr;
+		}
+
+		.steps,
+		.quotes {
+			grid-template-columns: 1fr;
+		}
+
+		.kpis {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

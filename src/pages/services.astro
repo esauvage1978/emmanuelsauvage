@@ -1,0 +1,269 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { GOOGLE_REVIEW_URL } from '../config/site';
+---
+
+<Layout
+	title="Services | Emmanuel Sauvage"
+	description="Développement PHP Symfony, front Vue.js/React, HTML/CSS, outils métier, automatisations et reporting (Google Sheets, Power BI, Looker)."
+>
+	<main class="page">
+		<header class="page__head">
+			<div class="container">
+				<a class="backLink" href="/" aria-label="Retour à l’accueil">← Retour à l’accueil</a>
+				<p class="eyebrow">Services</p>
+				<h1>Développement d’outils métier et applications web</h1>
+				<p class="lead">
+					Je conçois et fais évoluer des applications de A à Z : back-end PHP/Symfony, interfaces Vue.js/React,
+					intégrations et outillage data (Google Sheets, Power BI, Looker).
+				</p>
+			</div>
+		</header>
+
+		<section class="section">
+			<div class="container cards">
+				<article class="card">
+					<h2>Développement back-end (PHP/Symfony)</h2>
+					<p>
+						Applications web, API, authentification, bases de données (MySQL), tests, performance et sécurité.
+						Objectif : des bases solides et maintenables.
+					</p>
+				</article>
+				<article class="card">
+					<h2>Développement front (Vue.js / React)</h2>
+					<p>
+						Interfaces modernes en JavaScript : composants, formulaires, tableaux, intégration HTML/CSS et UX.
+						Des écrans simples, rapides et efficaces.
+					</p>
+				</article>
+				<article class="card">
+					<h2>Outils métier &amp; automatisations</h2>
+					<p>
+						Automatisation des workflows, intégrations API, scripts, synchronisation d’outils et réduction des
+						tâches répétitives.
+					</p>
+				</article>
+				<article class="card">
+					<h2>Data &amp; reporting</h2>
+					<p>
+						Tableaux de bord et pilotage : Google Sheets avancé (modèles, automatisations), Power BI et Looker
+						pour des indicateurs fiables.
+					</p>
+				</article>
+				<article class="card">
+					<h2>Formation &amp; accompagnement</h2>
+					<p>
+						Formation des équipes (Symfony et bonnes pratiques web), revue de code, documentation et transfert de
+						compétences. Objectif : des équipes autonomes et des standards durables.
+					</p>
+				</article>
+				<article class="card">
+					<h2>Maintenance, dépannage &amp; optimisation</h2>
+					<p>
+						Résolution de problèmes techniques, optimisation des performances et amélioration continue des outils
+						existants (qualité, stabilité, UX).
+					</p>
+				</article>
+				<article class="card">
+					<h2>Cadrage (audit) — si nécessaire</h2>
+					<p>
+						Quand le besoin est flou : analyse rapide, priorisation impact/effort, feuille de route. L’audit sert
+						le développement, il ne le remplace pas.
+					</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="cta">
+			<div class="container cta__inner">
+				<div>
+					<h2>Vous voulez clarifier vos priorités ?</h2>
+					<p>Décrivez votre contexte et vos outils : je vous propose une première orientation.</p>
+					<p class="cta__extra">
+						Déjà client ?
+						<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
+					</p>
+				</div>
+				<div class="cta__actions">
+					<a class="button button--primary" href="/contact">Prendre contact</a>
+					<a class="button button--secondary" href="/">Retour à l’accueil</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.container {
+		width: min(1120px, calc(100% - 48px));
+		margin: 0 auto;
+	}
+
+	.page {
+		padding-bottom: 48px;
+	}
+
+	.page__head {
+		padding: 56px 0 14px;
+	}
+
+	.eyebrow {
+		margin: 0 0 10px;
+		color: var(--color-muted);
+		font-size: 14px;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.backLink {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 14px;
+		text-decoration: none;
+		color: var(--color-primary);
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	.backLink:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(79, 110, 247, 0.45);
+	}
+
+	h1 {
+		margin: 0 0 12px;
+		font-size: clamp(30px, 4vw, 46px);
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+	}
+
+	.lead {
+		margin: 0;
+		font-size: 18px;
+		color: var(--color-muted);
+		opacity: 1;
+		max-width: 70ch;
+	}
+
+	.section {
+		padding: 24px 0 40px;
+	}
+
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 14px;
+	}
+
+	.card {
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 18px;
+		box-shadow: var(--shadow-sm);
+	}
+
+	h2 {
+		margin: 0 0 10px;
+		font-size: 20px;
+		letter-spacing: -0.02em;
+	}
+
+	p {
+		margin: 0;
+		color: var(--color-text);
+		opacity: 0.92;
+	}
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		border-radius: 14px;
+		padding: 12px 16px;
+		font-weight: 600;
+		border: 1px solid transparent;
+		transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border 0.15s ease;
+	}
+
+	.button--primary {
+		color: white;
+		background: var(--color-primary);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.button--primary:hover {
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.button--secondary {
+		color: var(--color-text);
+		background: rgba(255, 255, 255, 0.8);
+		border-color: var(--color-border);
+	}
+
+	.button--secondary:hover {
+		background: rgba(255, 255, 255, 1);
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.cta {
+		padding: 10px 0;
+	}
+
+	.cta__inner {
+		display: grid;
+		grid-template-columns: 1.2fr 0.8fr;
+		gap: 18px;
+		align-items: center;
+		padding: 22px;
+		border-radius: 24px;
+		border: 1px solid rgba(47, 58, 143, 0.2);
+		background: linear-gradient(180deg, rgba(47, 58, 143, 0.1), rgba(255, 255, 255, 0.65));
+		box-shadow: var(--shadow-md);
+	}
+
+	.cta__extra {
+		margin: 14px 0 0;
+		font-size: 14px;
+		color: var(--color-muted);
+	}
+
+	.cta__extra a {
+		color: var(--color-primary);
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-color: rgba(79, 110, 247, 0.35);
+	}
+
+	.cta__actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+
+	@media (max-width: 980px) {
+		.cards {
+			grid-template-columns: 1fr;
+		}
+
+		.cta__inner {
+			grid-template-columns: 1fr;
+		}
+
+		.cta__actions {
+			justify-content: flex-start;
+		}
+	}
+
+	@media (max-width: 520px) {
+		.container {
+			width: min(1120px, calc(100% - 32px));
+		}
+	}
+</style>

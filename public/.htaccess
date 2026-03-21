@@ -1,0 +1,87 @@
+# =============================================================================
+# Apache — à placer à la RACINE du site (même niveau que index.html)
+# Astro : ce fichier est dans public/ et est copié dans dist/ au build (npm run build).
+# Hébergeur type o2switch : vérifier que AllowOverride autorise FileInfo / Indexes.
+# =============================================================================
+
+# Pages par défaut dans chaque dossier (ex. /contact/ → contact/index.html)
+DirectoryIndex index.html
+
+# Pas de listing des dossiers ; liens symboliques suivis si besoin du serveur
+Options -Indexes
+<IfModule mod_negotiation.c>
+	Options -MultiViews
+</IfModule>
+
+# Encodage par défaut
+AddDefaultCharset UTF-8
+
+# Types MIME utiles (si le serveur ne les connaît pas)
+<IfModule mod_mime.c>
+	AddType image/webp .webp
+	AddType font/woff2 .woff2
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# Compression (réduit le poids des textes : HTML, CSS, JS, SVG, JSON…)
+# -----------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+	AddOutputFilterByType DEFLATE application/javascript application/json application/xml
+	AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# Cache navigateur — HTML court ; assets statiques longs (images, /_astro/*.css|js)
+# -----------------------------------------------------------------------------
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresDefault "access plus 1 hour"
+	ExpiresByType text/html "access plus 0 seconds"
+	ExpiresByType image/png "access plus 1 year"
+	ExpiresByType image/jpeg "access plus 1 year"
+	ExpiresByType image/webp "access plus 1 year"
+	ExpiresByType image/svg+xml "access plus 1 year"
+	ExpiresByType image/x-icon "access plus 1 year"
+	ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
+	ExpiresByType font/woff2 "access plus 1 year"
+	ExpiresByType text/css "access plus 1 year"
+	ExpiresByType application/javascript "access plus 1 year"
+	ExpiresByType text/javascript "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+	# HTML : cache court + revalidation
+	<FilesMatch "\.(html)$">
+		Header set Cache-Control "public, max-age=3600, must-revalidate"
+	</FilesMatch>
+	# Sécurité de base (ajustez X-Frame-Options si vous devez embedder le site ailleurs)
+	Header set X-Content-Type-Options "nosniff"
+	Header set X-Frame-Options "SAMEORIGIN"
+	Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# Réécritures (HTTPS, www, etc.) — décommentez et adaptez si besoin
+# -----------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+
+	# Forcer HTTPS (recommandé en production) — décommentez les 3 lignes suivantes :
+	# RewriteCond %{HTTPS} !=on
+	# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+	# Redirection www ↔ sans www (exemple : tout vers sans www) — décommentez et adaptez :
+	# RewriteCond %{HTTP_HOST} ^www\.emmanuelsauvage\.fr$ [NC]
+	# RewriteRule ^ https://emmanuelsauvage.fr%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# Fichiers sensibles (si jamais présents sur le serveur)
+# -----------------------------------------------------------------------------
+<FilesMatch "^(\.htaccess|\.htpasswd|\.env|composer\.json|package\.json)$">
+	<IfModule mod_authz_core.c>
+		Require all denied
+	</IfModule>
+</FilesMatch>

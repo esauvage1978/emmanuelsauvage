@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="CGU | Emmanuel Sauvage" description="Conditions Générales d’Utilisation du site emmanuelsauvage.fr.">
+	<main class="legal">
+		<div class="container">
+			<a class="backLink" href="/" aria-label="Retour à l’accueil">← Retour à l’accueil</a>
+			<h1>Conditions Générales d’Utilisation (CGU)</h1>
+			<p class="muted">Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}</p>
+
+			<section class="block">
+				<h2>Objet</h2>
+				<p>
+					Les présentes CGU encadrent l’accès et l’utilisation du site. En naviguant sur le site, vous acceptez ces
+					conditions.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Accès au site</h2>
+				<p>
+					Le site est accessible gratuitement. Emmanuel Sauvage se réserve le droit d’interrompre l’accès pour
+					maintenance ou mise à jour.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Propriété intellectuelle</h2>
+				<p>
+					Les contenus du site sont protégés. Toute reproduction sans autorisation est interdite, sauf exceptions
+					prévues par la loi.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Responsabilité</h2>
+				<p>
+					Les informations présentées ont un caractère général. Malgré le soin apporté, Emmanuel Sauvage ne peut
+					garantir l’absence d’erreurs. L’utilisateur reste responsable de l’usage qu’il fait des informations.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Liens externes</h2>
+				<p>Le site peut contenir des liens vers des sites tiers. Emmanuel Sauvage n’en contrôle pas le contenu.</p>
+			</section>
+
+			<section class="block">
+				<h2>Données personnelles et cookies</h2>
+				<p>
+					Consultez la <a href="/politique-de-confidentialite">politique de confidentialité</a> et la page
+					<a href="/cookies">Cookies</a>.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Droit applicable</h2>
+				<p>Les présentes CGU sont soumises au droit français. Les litiges relèvent des juridictions compétentes.</p>
+			</section>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.container {
+		width: min(980px, calc(100% - 48px));
+		margin: 0 auto;
+		padding: 56px 0 48px;
+	}
+
+	h1 {
+		margin: 0 0 8px;
+		font-size: clamp(28px, 4vw, 44px);
+		letter-spacing: -0.03em;
+	}
+
+	h2 {
+		margin: 0 0 10px;
+		font-size: 18px;
+		letter-spacing: -0.02em;
+	}
+
+	.block {
+		margin-top: 18px;
+		padding: 18px;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		background: rgba(255, 255, 255, 0.92);
+		box-shadow: var(--shadow-sm);
+	}
+
+	p {
+		color: var(--color-text);
+		opacity: 0.92;
+	}
+
+	.muted {
+		color: var(--color-muted);
+		opacity: 1;
+	}
+
+	a {
+		color: var(--color-primary);
+	}
+
+	.backLink {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 14px;
+		text-decoration: none;
+		color: var(--color-primary);
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	.backLink:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(79, 110, 247, 0.45);
+	}
+
+	@media (max-width: 520px) {
+		.container {
+			width: min(980px, calc(100% - 32px));
+		}
+	}
+</style>

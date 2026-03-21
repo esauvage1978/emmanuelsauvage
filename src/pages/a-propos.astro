@@ -1,0 +1,995 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BrandLogo from '../components/BrandLogo.astro';
+import { GOOGLE_REVIEW_URL } from '../config/site';
+---
+
+<Layout
+	title="À propos | Emmanuel Sauvage"
+	description="Emmanuel Sauvage, développeur fullstack freelance : PHP Symfony, Vue.js, React, outils métier, automatisation et reporting. Basé près de Lille — également sur Malt."
+>
+	<header class="header">
+		<div class="container header__inner">
+			<a class="brand" href="/">
+				<span class="brand__logoWrap" aria-hidden="true">
+					<BrandLogo variant="header" class="brand__logo" />
+				</span>
+				<span class="brand__text">Emmanuel Sauvage</span>
+			</a>
+
+			<nav class="nav" aria-label="Navigation principale">
+				<a class="nav__link" href="/services">Services</a>
+				<a class="nav__link nav__link--current" href="/a-propos" aria-current="page">À propos</a>
+				<a class="nav__link" href="/contact">Contact</a>
+				<a class="nav__cta" href="/#contact">Discuter de votre projet</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero" aria-label="Présentation">
+			<div class="heroFx" aria-hidden="true">
+				<div class="blob blob--a"></div>
+				<div class="blob blob--b"></div>
+				<div class="blob blob--c"></div>
+				<svg class="heroWave" viewBox="0 0 1200 500" preserveAspectRatio="none">
+					<defs>
+						<linearGradient id="aproposGrad" x1="0" y1="0" x2="1" y2="1">
+							<stop offset="0" stop-color="rgba(79,110,247,0.35)" />
+							<stop offset="1" stop-color="rgba(47,58,143,0.18)" />
+						</linearGradient>
+					</defs>
+					<path
+						d="M0 420C220 320 360 360 540 260C720 160 880 240 1200 120V500H0Z"
+						fill="url(#aproposGrad)"></path>
+				</svg>
+			</div>
+
+			<div class="container profileTop">
+				<a class="backLink" href="/" aria-label="Retour à l’accueil">← Retour à l’accueil</a>
+
+				<div class="profileTop__grid">
+					<div class="profileCard">
+						<div class="profileCard__avatar" aria-hidden="true">
+							<BrandLogo variant="profile" class="profileCard__avatarImg" />
+						</div>
+						<div class="profileCard__main">
+							<p class="eyebrow">Freelance · Développement &amp; outils métier</p>
+							<h1>Emmanuel Sauvage</h1>
+							<p class="profileCard__title">
+								Développeur fullstack — <strong>Symfony</strong>, <strong>Vue.js</strong> / <strong>React</strong>,
+								automatisation &amp; reporting (Sheets, Power BI, Looker).
+							</p>
+							<ul class="profileMeta" aria-label="Informations pratiques">
+								<li><span class="profileMeta__k">Localisation</span> Erquinghem-lys · Hauts-de-France (près de Lille)</li>
+								<li><span class="profileMeta__k">Langues</span> Français · Anglais technique (lecture / échanges projet)</li>
+								<li><span class="profileMeta__k">Réactivité</span> Réponse en général sous 24 à 48 h ouvrées</li>
+								<li><span class="profileMeta__k">Modalités</span> Télétravail, hybride ou déplacements selon le besoin</li>
+							</ul>
+							<div class="profileCard__actions">
+								<a class="button button--primary" href="/contact">Me contacter</a>
+								<a class="button button--secondary" href="/services">Voir mes services</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="tags" aria-label="Expertises principales">
+					<span class="tag">PHP</span>
+					<span class="tag">Symfony</span>
+					<span class="tag">JavaScript</span>
+					<span class="tag">Vue.js</span>
+					<span class="tag">React</span>
+					<span class="tag">MySQL</span>
+					<span class="tag">API REST</span>
+					<span class="tag">HTML / CSS</span>
+					<span class="tag">Git</span>
+					<span class="tag">Google Sheets</span>
+					<span class="tag">Power BI</span>
+					<span class="tag">Looker</span>
+					<span class="tag">Automatisation</span>
+					<span class="tag">Formation</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--alt" aria-label="Présentation détaillée">
+			<div class="container grid2">
+				<div class="prose">
+					<h2>À propos de moi</h2>
+					<p>
+						Je suis <strong>consultant indépendant</strong> : je conçois, développe et fais évoluer des
+						<strong>applications web</strong> et des <strong>outils métier</strong> vraiment utilisés au quotidien. Mon
+						angle, c’est l’<strong>efficacité opérationnelle</strong> : moins de friction, plus de fiabilité, des
+						processus qui tiennent dans la durée.
+					</p>
+					<p>
+						Côté technique, je travaille en <strong>fullstack</strong> : back-end <strong>PHP / Symfony</strong>,
+						bases <strong>MySQL</strong>, APIs, sécurité et performance ; front <strong>Vue.js</strong> ou
+						<strong>React</strong> pour des interfaces claires et rapides. J’interviens aussi sur la
+						<strong>data</strong> et le pilotage — tableaux de bord, <strong>Google Sheets</strong> avancé,
+						<strong>Power BI</strong>, <strong>Looker</strong> — et sur l’<strong>automatisation</strong> des flux
+						(répétitions, intégrations, synchronisations).
+					</p>
+					<p>
+						Comme sur un profil <a href="https://www.malt.fr/" target="_blank" rel="noopener noreferrer">Malt</a>, je
+						privilégie un <strong>cadrage honnête</strong> : comprendre votre contexte, vos contraintes et vos priorités
+						avant de proposer une solution. Je peux accompagner tout le cycle — analyse, développement, mise en
+						production, <strong>formation</strong> et transfert pour des équipes plus autonomes.
+					</p>
+					<p class="prose__note">
+						<strong>Également présent sur Malt</strong> (plateforme de mise en relation entreprises · freelances IT) si
+						vous préférez ce cadre pour la mission. Vous pouvez rechercher mon nom sur le site ou me demander le lien
+						direct vers mon profil lors d’un premier échange.
+					</p>
+				</div>
+
+				<aside class="side">
+					<div class="card card--sticky">
+						<h3>Ce que je fais concrètement</h3>
+						<ul class="checklist">
+							<li>Applications métier et évolutions Symfony</li>
+							<li>Interfaces web (Vue.js / React) et intégration</li>
+							<li>APIs, intégrations et automatisation de workflows</li>
+							<li>Reporting, indicateurs et outillage data</li>
+							<li>Maintenance, optimisation et dépannage</li>
+							<li>Formation et documentation pour vos équipes</li>
+						</ul>
+					</div>
+					<div class="callout">
+						<h3>Comment je travaille</h3>
+						<ol class="stepsList">
+							<li><strong>Écoute</strong> — besoin, irritants, outils existants, délais.</li>
+							<li><strong>Cadrage</strong> — périmètre réaliste, risques, plan d’attaque.</li>
+							<li><strong>Réalisation</strong> — itérations courtes, visibilité sur l’avancement.</li>
+							<li><strong>Transmission</strong> — pour que vous restiez autonomes.</li>
+						</ol>
+					</div>
+				</aside>
+			</div>
+		</section>
+
+		<section class="section" aria-label="Contextes d’intervention">
+			<div class="container">
+				<div class="section__head">
+					<h2>Contextes d’intervention</h2>
+					<p>Des situations fréquentes — comme sur une fiche « expériences » sur Malt, mais côté besoins métier.</p>
+				</div>
+				<div class="cards3">
+					<article class="miniCard">
+						<h3>Outils internes</h3>
+						<p>
+							Applications devenues fragiles, trop « artisanales » ou difficiles à faire évoluer : refonte progressive,
+							tests, documentation.
+						</p>
+					</article>
+					<article class="miniCard">
+						<h3>Process manuels</h3>
+						<p>
+							Copier-coller, double saisie, relances : automatisation raisonnée, sans usine à gaz — avec des garde-fous
+							métier.
+						</p>
+					</article>
+					<article class="miniCard">
+						<h3>Données &amp; décision</h3>
+						<p>
+							Données éparpillées (CRM, ERP, fichiers, SaaS) : consolidation, tableaux de bord et indicateurs fiables
+							pour piloter.
+						</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--alt" aria-label="Recommandations">
+			<div class="container">
+				<div class="section__head">
+					<h2>Recommandations</h2>
+					<p>Retours de clients — même esprit que les avis visibles sur une plateforme comme Malt.</p>
+				</div>
+				<div class="quotes">
+					<figure class="quote">
+						<blockquote>
+							« Nous avons sollicité Monsieur SAUVAGE, dans le cadre de la création de notre site WEB. Nous sommes
+							extrêmement satisfaits de ses compétences, sa réactivité, sa patience et son analyse. Il est de très
+							bon conseil. Je recommande vivement Monsieur SAUVAGE, expert dans son domaine. »
+						</blockquote>
+						<figcaption>— Maître Iwona Parafiniuk</figcaption>
+					</figure>
+					<figure class="quote">
+						<blockquote>
+							« J’ai sollicité Monsieur SAUVAGE pour la création d’une plateforme de formation en ligne. Il est
+							pertinent, à l’écoute, patient et bienveillant. Je confirme qu’il est clairement dans son domaine. »
+						</blockquote>
+						<figcaption>— Laura Borges</figcaption>
+					</figure>
+					<figure class="quote">
+						<blockquote>
+							« Tout simplement remarquable ! Très compétent dans son domaine, avec une approche chaleureuse et
+							humaine. Sa méthode donne vraiment envie de travailler. C’est un vrai plaisir d’apprendre à ses côtés. »
+						</blockquote>
+						<figcaption>— Axel Croce</figcaption>
+					</figure>
+				</div>
+
+				<div class="googleReview">
+					<p class="googleReview__text">
+						Vous souhaitez partager votre expérience publiquement ? Laissez un avis sur Google — cela m’aide et éclaire
+						les entreprises qui cherchent un profil comme le mien.
+					</p>
+					<a
+						class="button button--secondary googleReview__link"
+						href={GOOGLE_REVIEW_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Laisser un avis Google
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="section cta" aria-label="Appel à action">
+			<div class="container cta__inner">
+				<div>
+					<h2>Un projet, une question, un cadrage ?</h2>
+					<p>
+						Expliquez votre contexte en quelques lignes : je vous réponds avec une première orientation. Pas d’engagement
+						sur ce premier échange.
+					</p>
+				</div>
+				<div class="cta__actions">
+					<a class="button button--primary" href="/contact">Prendre contact</a>
+					<a class="button button--secondary" href="/services">Voir les services</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer" aria-label="Pied de page">
+		<div class="container footer__grid">
+			<div>
+				<div class="footer__brand">
+					<span class="footer__logoWrap" aria-hidden="true">
+						<BrandLogo variant="footer" class="footer__logo" />
+					</span>
+					<span>Emmanuel Sauvage</span>
+				</div>
+				<p class="footer__text">Consultant indépendant — optimisation des outils digitaux et des processus.</p>
+				<p class="footer__text">
+					<a href="mailto:contact@emmanuelsauvage.fr">contact@emmanuelsauvage.fr</a>
+				</p>
+				<p class="footer__text">
+					<a href="tel:+33609924945">06 09 92 49 45</a> · Erquinghem-lys
+				</p>
+			</div>
+
+			<div>
+				<div class="footer__title">Navigation</div>
+				<ul class="footer__links">
+					<li><a href="/services">Services</a></li>
+					<li><a href="/a-propos">À propos</a></li>
+					<li><a href="/contact">Contact</a></li>
+				</ul>
+			</div>
+
+			<div>
+				<div class="footer__title">Coordonnées</div>
+				<ul class="footer__links">
+					<li><a href="/contact">Formulaire de contact</a></li>
+					<li><a href="/#contact">Discuter de votre projet</a></li>
+					<li>
+						<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<div class="footer__title">Légal</div>
+				<ul class="footer__links">
+					<li><a href="/mentions-legales">Mentions légales</a></li>
+					<li><a href="/politique-de-confidentialite">Politique de confidentialité</a></li>
+					<li><a href="/cgu">CGU</a></li>
+					<li><a href="/cgv">CGV</a></li>
+					<li><a href="/cookies">Cookies</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="container footer__bottom">
+			<p>© {new Date().getFullYear()} Emmanuel Sauvage — Tous droits réservés.</p>
+		</div>
+	</footer>
+</Layout>
+
+<style>
+	.container {
+		width: min(1120px, calc(100% - 48px));
+		margin: 0 auto;
+	}
+
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: rgba(247, 248, 251, 0.78);
+		backdrop-filter: blur(10px);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.header__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 14px 0;
+		gap: 20px;
+	}
+
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		text-decoration: none;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--color-primary);
+	}
+
+	.brand:hover {
+		color: var(--color-primary);
+		opacity: 0.88;
+	}
+
+	.brand__logoWrap {
+		display: inline-flex;
+		align-items: center;
+		line-height: 0;
+	}
+
+	.brand__logo {
+		display: block;
+		width: 32px;
+		height: 32px;
+		border-radius: 10px;
+		object-fit: cover;
+		box-shadow: 0 8px 18px rgba(47, 58, 143, 0.24);
+	}
+
+	.nav {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+	}
+
+	.nav__link {
+		text-decoration: none;
+		color: var(--color-text);
+		opacity: 0.9;
+		padding: 10px 10px;
+		border-radius: 10px;
+		transition: background 0.15s ease, opacity 0.15s ease;
+	}
+
+	.nav__link:hover {
+		opacity: 1;
+		background: rgba(47, 58, 143, 0.06);
+	}
+
+	.nav__link--current {
+		font-weight: 700;
+		color: var(--color-primary);
+		background: rgba(47, 58, 143, 0.08);
+	}
+
+	.nav__cta {
+		text-decoration: none;
+		color: white;
+		background: var(--color-primary);
+		padding: 10px 14px;
+		border-radius: 12px;
+		box-shadow: var(--shadow-sm);
+		transition: transform 0.15s ease, box-shadow 0.15s ease;
+		white-space: nowrap;
+	}
+
+	.nav__cta:hover {
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-md);
+	}
+
+	main {
+		display: block;
+	}
+
+	.hero {
+		position: relative;
+		overflow: hidden;
+		padding: 40px 0 32px;
+		background: white;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.heroFx {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.blob {
+		position: absolute;
+		border-radius: 999px;
+		filter: blur(40px);
+		opacity: 0.95;
+		mix-blend-mode: multiply;
+	}
+
+	.blob--a {
+		width: 520px;
+		height: 520px;
+		top: -220px;
+		left: -180px;
+		background: radial-gradient(circle at 30% 30%, rgba(79, 110, 247, 0.55), rgba(79, 110, 247, 0) 60%),
+			radial-gradient(circle at 70% 60%, rgba(47, 58, 143, 0.35), rgba(47, 58, 143, 0) 65%);
+	}
+
+	.blob--b {
+		width: 560px;
+		height: 560px;
+		top: -260px;
+		right: -260px;
+		background: radial-gradient(circle at 40% 40%, rgba(47, 58, 143, 0.45), rgba(47, 58, 143, 0) 62%),
+			radial-gradient(circle at 70% 70%, rgba(79, 110, 247, 0.38), rgba(79, 110, 247, 0) 66%);
+	}
+
+	.blob--c {
+		width: 520px;
+		height: 520px;
+		bottom: -300px;
+		left: 36%;
+		background: radial-gradient(circle at 35% 35%, rgba(79, 110, 247, 0.35), rgba(79, 110, 247, 0) 62%),
+			radial-gradient(circle at 70% 40%, rgba(47, 58, 143, 0.2), rgba(47, 58, 143, 0) 70%);
+	}
+
+	.heroWave {
+		position: absolute;
+		inset: auto 0 0 0;
+		width: 100%;
+		height: 220px;
+		opacity: 0.9;
+	}
+
+	.profileTop {
+		position: relative;
+		z-index: 1;
+	}
+
+	.backLink {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 20px;
+		text-decoration: none;
+		color: var(--color-primary);
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		font-size: 14px;
+	}
+
+	.backLink:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(79, 110, 247, 0.45);
+	}
+
+	.profileTop__grid {
+		margin-bottom: 22px;
+	}
+
+	.profileCard {
+		display: flex;
+		gap: 22px;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		background: rgba(255, 255, 255, 0.88);
+		border: 1px solid var(--color-border);
+		border-radius: 22px;
+		padding: 22px 24px;
+		box-shadow: var(--shadow-md);
+		backdrop-filter: blur(8px);
+	}
+
+	.profileCard__avatar {
+		flex-shrink: 0;
+		width: 96px;
+		height: 96px;
+		border-radius: 20px;
+		background: linear-gradient(145deg, rgba(47, 58, 143, 0.12), rgba(79, 110, 247, 0.08));
+		border: 1px solid rgba(47, 58, 143, 0.2);
+		display: grid;
+		place-items: center;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.profileCard__avatar img {
+		width: 72px;
+		height: 72px;
+		border-radius: 14px;
+		object-fit: cover;
+	}
+
+	.profileCard__main {
+		min-width: min(100%, 280px);
+		flex: 1;
+	}
+
+	.eyebrow {
+		margin: 0 0 8px;
+		color: var(--color-muted);
+		font-size: 13px;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	h1 {
+		margin: 0 0 10px;
+		font-size: clamp(28px, 3.5vw, 40px);
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+	}
+
+	.profileCard__title {
+		margin: 0 0 16px;
+		font-size: 17px;
+		color: var(--color-muted);
+		line-height: 1.5;
+		max-width: 62ch;
+	}
+
+	.profileMeta {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 18px;
+		display: grid;
+		gap: 8px;
+		font-size: 14px;
+		color: var(--color-text);
+		opacity: 0.92;
+	}
+
+	.profileMeta__k {
+		display: inline-block;
+		min-width: 7.5rem;
+		font-weight: 700;
+		color: var(--color-primary);
+	}
+
+	.profileCard__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	.tag {
+		display: inline-flex;
+		align-items: center;
+		padding: 6px 12px;
+		border-radius: 999px;
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--color-primary);
+		background: rgba(47, 58, 143, 0.08);
+		border: 1px solid rgba(47, 58, 143, 0.15);
+	}
+
+	.section {
+		padding: 56px 0;
+	}
+
+	.section--alt {
+		background: rgba(255, 255, 255, 0.7);
+		border-top: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.section__head {
+		display: grid;
+		gap: 10px;
+		margin-bottom: 22px;
+		max-width: 65ch;
+	}
+
+	.section__head p {
+		margin: 0;
+		color: var(--color-muted);
+		opacity: 1;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: clamp(24px, 2.8vw, 32px);
+		letter-spacing: -0.02em;
+		line-height: 1.15;
+	}
+
+	h3 {
+		margin: 0 0 10px;
+		font-size: 17px;
+		letter-spacing: -0.01em;
+	}
+
+	.grid2 {
+		display: grid;
+		grid-template-columns: 1.15fr 0.85fr;
+		gap: 28px;
+		align-items: start;
+	}
+
+	.prose h2 {
+		margin-bottom: 14px;
+	}
+
+	.prose p {
+		margin: 0 0 14px;
+		color: var(--color-text);
+		opacity: 0.92;
+		line-height: 1.6;
+	}
+
+	.prose a {
+		color: var(--color-primary);
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-color: rgba(79, 110, 247, 0.35);
+	}
+
+	.prose__note {
+		padding: 14px 16px;
+		border-radius: 14px;
+		background: rgba(47, 58, 143, 0.06);
+		border: 1px solid rgba(47, 58, 143, 0.12);
+		font-size: 15px;
+	}
+
+	.side {
+		display: grid;
+		gap: 14px;
+	}
+
+	.card {
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 18px;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.card--sticky {
+		position: sticky;
+		top: 88px;
+	}
+
+	.callout {
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 18px;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.checklist {
+		margin: 0;
+		padding-left: 18px;
+		color: var(--color-muted);
+	}
+
+	.checklist li + li {
+		margin-top: 8px;
+	}
+
+	.stepsList {
+		margin: 0;
+		padding-left: 18px;
+		color: var(--color-muted);
+		line-height: 1.5;
+	}
+
+	.stepsList li + li {
+		margin-top: 10px;
+	}
+
+	.cards3 {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 14px;
+	}
+
+	.miniCard {
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 18px;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.miniCard h3 {
+		margin-bottom: 8px;
+	}
+
+	.miniCard p {
+		margin: 0;
+		font-size: 15px;
+		color: var(--color-muted);
+		line-height: 1.5;
+	}
+
+	.quotes {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 14px;
+	}
+
+	.quote {
+		margin: 0;
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 18px;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.quote blockquote {
+		margin: 0 0 12px;
+		color: var(--color-text);
+		opacity: 0.92;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		font-size: 15px;
+		line-height: 1.45;
+	}
+
+	.quote figcaption {
+		color: var(--color-muted);
+		font-size: 14px;
+	}
+
+	.googleReview {
+		margin-top: 22px;
+		padding: 20px 22px;
+		border-radius: var(--radius);
+		border: 1px solid rgba(47, 58, 143, 0.18);
+		background: linear-gradient(180deg, rgba(47, 58, 143, 0.06), rgba(255, 255, 255, 0.75));
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.googleReview__text {
+		margin: 0;
+		max-width: 52ch;
+		color: var(--color-muted);
+		font-size: 15px;
+		line-height: 1.45;
+	}
+
+	.googleReview__text strong {
+		color: var(--color-text);
+	}
+
+	.googleReview__link {
+		flex-shrink: 0;
+	}
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		text-decoration: none;
+		border-radius: 14px;
+		padding: 12px 18px;
+		font-weight: 600;
+		border: 1px solid transparent;
+		transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border 0.15s ease;
+		cursor: pointer;
+		font-family: inherit;
+	}
+
+	.button--primary {
+		color: white;
+		background: var(--color-primary);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.button--primary:hover {
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.button--secondary {
+		color: var(--color-text);
+		background: rgba(255, 255, 255, 0.85);
+		border-color: var(--color-border);
+	}
+
+	.button--secondary:hover {
+		background: rgba(255, 255, 255, 1);
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.cta__inner {
+		display: grid;
+		grid-template-columns: 1.2fr 0.8fr;
+		gap: 18px;
+		align-items: center;
+		padding: 22px;
+		border-radius: 24px;
+		border: 1px solid rgba(47, 58, 143, 0.2);
+		background: linear-gradient(180deg, rgba(47, 58, 143, 0.1), rgba(255, 255, 255, 0.65));
+		box-shadow: var(--shadow-md);
+	}
+
+	.cta__inner p {
+		margin: 0;
+		color: var(--color-muted);
+		opacity: 1;
+		max-width: 56ch;
+	}
+
+	.cta__actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+
+	.footer {
+		padding: 32px 0 22px;
+		border-top: 1px solid var(--color-border);
+		background: rgba(247, 248, 251, 0.85);
+	}
+
+	.footer__grid {
+		display: grid;
+		grid-template-columns: 1.6fr 1fr 1fr 1fr;
+		gap: 18px;
+		align-items: start;
+	}
+
+	.footer__brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--color-primary);
+	}
+
+	.footer__logoWrap {
+		display: inline-flex;
+		align-items: center;
+		line-height: 0;
+	}
+
+	.footer__logo {
+		display: block;
+		width: 28px;
+		height: 28px;
+		border-radius: 8px;
+		object-fit: cover;
+	}
+
+	.footer__text {
+		color: var(--color-muted);
+		opacity: 1;
+		margin: 6px 0 0;
+	}
+
+	.footer__text a {
+		color: inherit;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.footer__text a:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(47, 58, 143, 0.4);
+	}
+
+	.footer__title {
+		font-weight: 700;
+		margin-bottom: 10px;
+	}
+
+	.footer__links {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 8px;
+	}
+
+	.footer__links a {
+		color: var(--color-muted);
+		text-decoration: none;
+	}
+
+	.footer__links a:hover {
+		color: var(--color-text);
+		text-decoration: underline;
+		text-decoration-color: rgba(47, 58, 143, 0.4);
+	}
+
+	.footer__bottom {
+		margin-top: 18px;
+		padding-top: 16px;
+		border-top: 1px solid var(--color-border);
+		color: var(--color-muted);
+		font-size: 14px;
+	}
+
+	.footer__bottom p {
+		margin: 0;
+	}
+
+	@media (max-width: 980px) {
+		.grid2 {
+			grid-template-columns: 1fr;
+		}
+
+		.card--sticky {
+			position: static;
+		}
+
+		.cards3,
+		.quotes {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.cta__inner {
+			grid-template-columns: 1fr;
+		}
+
+		.cta__actions {
+			justify-content: flex-start;
+		}
+
+		.footer__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 520px) {
+		.container {
+			width: min(1120px, calc(100% - 32px));
+		}
+
+		.googleReview {
+			flex-direction: column;
+			align-items: stretch;
+			text-align: center;
+		}
+
+		.googleReview__link {
+			justify-content: center;
+		}
+
+		.cards3,
+		.quotes {
+			grid-template-columns: 1fr;
+		}
+
+		.profileMeta__k {
+			display: block;
+			margin-bottom: 2px;
+		}
+	}
+</style>

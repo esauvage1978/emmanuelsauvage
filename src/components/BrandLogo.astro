@@ -1,0 +1,55 @@
+---
+/**
+ * Logo marque optimisé : WebP + PNG, srcset 2x pour header/footer.
+ * Variante « profile » : visuel ~72 CSS px → sources 128.
+ */
+type Props = {
+	variant?: 'header' | 'footer' | 'profile';
+	class?: string;
+};
+
+const { variant = 'header', class: className = '' } = Astro.props;
+
+const display =
+	variant === 'footer'
+		? { w: 28, h: 28 }
+		: variant === 'profile'
+			? { w: 72, h: 72 }
+			: { w: 32, h: 32 };
+
+const useLarge = variant === 'profile';
+---
+
+{
+	useLarge ? (
+		<picture>
+			<source type="image/webp" srcset="/images/logo-128.webp" />
+			<img
+				class={className}
+				src="/images/logo-128.png"
+				width={display.w}
+				height={display.h}
+				alt=""
+				aria-hidden="true"
+				decoding="async"
+			/>
+		</picture>
+	) : (
+		<picture>
+			<source
+				type="image/webp"
+				srcset="/images/logo-32.webp 1x, /images/logo-64.webp 2x"
+			/>
+			<img
+				class={className}
+				src="/images/logo-32.png"
+				srcset="/images/logo-32.png 1x, /images/logo-64.png 2x"
+				width={display.w}
+				height={display.h}
+				alt=""
+				aria-hidden="true"
+				decoding="async"
+			/>
+		</picture>
+	)
+}

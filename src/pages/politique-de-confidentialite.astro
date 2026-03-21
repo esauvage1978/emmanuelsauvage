@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Politique de confidentialité | Emmanuel Sauvage"
+	description="Politique de confidentialité et informations RGPD : données traitées, finalités, bases légales, durées de conservation, droits."
+>
+	<main class="legal">
+		<div class="container">
+			<a class="backLink" href="/" aria-label="Retour à l’accueil">← Retour à l’accueil</a>
+			<h1>Politique de confidentialité</h1>
+			<p class="muted">Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}</p>
+
+			<section class="block">
+				<h2>Responsable de traitement</h2>
+				<p>
+					Le responsable de traitement est <strong>Emmanuel Sauvage</strong>. Pour toute question liée à la
+					confidentialité : <a href="mailto:contact@emmanuelsauvage.fr">contact@emmanuelsauvage.fr</a>.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Données collectées</h2>
+				<ul>
+					<li><strong>Données de contact</strong> : nom, entreprise (optionnel), email, message.</li>
+					<li><strong>Données techniques</strong> : informations strictement nécessaires au fonctionnement (ex : préférence cookies).</li>
+				</ul>
+				<p class="muted">
+					Le site n’utilise pas de cookies publicitaires. La mesure d’audience repose sur <strong>Google Tag Manager</strong>
+					(et, selon la configuration du conteneur, des services associés tels que <strong>Google Analytics</strong>) :
+					le chargement de ces outils n’a lieu qu’après votre <strong>consentement</strong> à la catégorie « mesure
+					d’audience » (sauf limitations techniques sans JavaScript).
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Finalités et bases légales</h2>
+				<ul>
+					<li><strong>Répondre aux demandes</strong> : intérêt légitime / mesures précontractuelles.</li>
+					<li><strong>Gestion de la relation commerciale</strong> : exécution d’un contrat ou mesures précontractuelles.</li>
+					<li><strong>Mesure d’audience (optionnelle)</strong> : consentement.</li>
+				</ul>
+			</section>
+
+			<section class="block">
+				<h2>Durées de conservation</h2>
+				<ul>
+					<li><strong>Demandes de contact</strong> : durée nécessaire au traitement + archivage raisonnable (à adapter selon votre organisation).</li>
+					<li><strong>Cookies / préférences</strong> : jusqu’au retrait du consentement ou suppression du stockage navigateur.</li>
+				</ul>
+			</section>
+
+			<section class="block">
+				<h2>Destinataires</h2>
+				<p>
+					Les données sont destinées uniquement à Emmanuel Sauvage et, le cas échéant, à des prestataires techniques
+					(hébergement, messagerie) agissant en tant que sous-traitants.
+				</p>
+				<p>
+					Lorsque vous acceptez la mesure d’audience, des données de navigation peuvent être traitées par
+					<strong>Google Ireland Limited</strong> (et le cas échéant d’autres entités du groupe Google) dans le cadre de
+					Google Tag Manager / Google Analytics, selon leurs conditions et politique de confidentialité.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Transferts hors UE</h2>
+				<p>
+					Le site n’organise pas volontairement de transferts hors UE pour les traitements directs du responsable. En
+					revanche, si vous acceptez la mesure d’audience, les services Google peuvent impliquer des transferts de données
+					vers des pays tiers : Google communique sur les garanties applicables (ex. clauses contractuelles types,
+					mécanismes de conformité). Consultez la documentation Google à jour.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Vos droits</h2>
+				<ul>
+					<li>Droit d’accès, de rectification, d’effacement</li>
+					<li>Droit à la limitation et à l’opposition (selon le cas)</li>
+					<li>Droit à la portabilité (selon le cas)</li>
+					<li>Droit de retirer votre consentement à tout moment (cookies de mesure d’audience)</li>
+				</ul>
+				<p>
+					Pour exercer vos droits : <a href="mailto:contact@emmanuelsauvage.fr">contact@emmanuelsauvage.fr</a>.
+					Vous disposez également du droit d’introduire une réclamation auprès de la CNIL.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Cookies</h2>
+				<p>
+					Pour plus d’informations, consultez la page <a href="/cookies">Cookies</a>. Vous pouvez à tout moment
+					modifier vos préférences via le bandeau cookies.
+				</p>
+			</section>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.container {
+		width: min(980px, calc(100% - 48px));
+		margin: 0 auto;
+		padding: 56px 0 48px;
+	}
+
+	h1 {
+		margin: 0 0 8px;
+		font-size: clamp(28px, 4vw, 44px);
+		letter-spacing: -0.03em;
+	}
+
+	h2 {
+		margin: 0 0 10px;
+		font-size: 18px;
+		letter-spacing: -0.02em;
+	}
+
+	.block {
+		margin-top: 18px;
+		padding: 18px;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		background: rgba(255, 255, 255, 0.92);
+		box-shadow: var(--shadow-sm);
+	}
+
+	p,
+	li {
+		color: var(--color-text);
+		opacity: 0.92;
+	}
+
+	ul {
+		margin: 10px 0 0;
+		padding-left: 18px;
+	}
+
+	.muted {
+		color: var(--color-muted);
+		opacity: 1;
+	}
+
+	.backLink {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 14px;
+		text-decoration: none;
+		color: var(--color-primary);
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	.backLink:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(79, 110, 247, 0.45);
+	}
+
+	a {
+		color: var(--color-primary);
+	}
+
+	@media (max-width: 520px) {
+		.container {
+			width: min(980px, calc(100% - 32px));
+		}
+	}
+</style>

@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Cookies | Emmanuel Sauvage" description="Informations sur l’utilisation des cookies et gestion du consentement.">
+	<main class="legal">
+		<div class="container">
+			<a class="backLink" href="/" aria-label="Retour à l’accueil">← Retour à l’accueil</a>
+			<h1>Cookies</h1>
+			<p class="muted">Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}</p>
+
+			<section class="block">
+				<h2>Qu’est-ce qu’un cookie ?</h2>
+				<p>
+					Un cookie est un petit fichier stocké sur votre appareil. Il peut être nécessaire au fonctionnement du
+					site, ou servir à des finalités facultatives (ex : mesure d’audience) avec votre consentement.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Cookies utilisés sur ce site</h2>
+				<ul>
+					<li>
+						<strong>Préférence de consentement</strong> (stockage local du navigateur, clé technique) : mémorise vos
+						choix (nécessaire au fonctionnement du bandeau). Aucun cookie publicitaire n’est utilisé.
+					</li>
+					<li>
+						<strong>Mesure d’audience (optionnelle)</strong> : désactivée par défaut. Si vous acceptez la catégorie
+						« mesure d’audience » dans les préférences, le site charge <strong>Google Tag Manager</strong>
+						(conteneur <code>GTM-56RLPDSX</code>) et le script <strong>Google tag (gtag.js)</strong> pour
+						<strong>Google Analytics 4</strong> (ID de mesure <code>G-JV833GXDJL</code>). Ces services peuvent déposer des
+						cookies ou utiliser des identifiants équivalents et collecter des données de navigation (pages vues,
+						appareil, localisation approximative, etc.). Pour en savoir plus :
+						<a href="https://policies.google.com/privacy?hl=fr" target="_blank" rel="noopener noreferrer"
+							>Politique de confidentialité Google</a>
+						·
+						<a href="https://policies.google.com/technologies/cookies?hl=fr" target="_blank" rel="noopener noreferrer"
+							>Cookies Google</a>.
+					</li>
+				</ul>
+				<p class="muted">
+					Tant que vous n’avez pas accepté la mesure d’audience, les scripts GTM et gtag.js ne sont pas chargés (sauf cas
+					navigateur sans JavaScript : iframe GTM dans le code source de la page).
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Gérer vos préférences</h2>
+				<p>
+					Vous pouvez modifier vos préférences à tout moment en réouvrant la fenêtre de personnalisation :
+				</p>
+				<button class="button" type="button" data-open-cookie-prefs>Ouvrir les préférences cookies</button>
+				<p class="muted">
+					Si le bouton ne fonctionne pas (navigateur ancien), vous pouvez supprimer le stockage du site dans les
+					paramètres de votre navigateur.
+				</p>
+			</section>
+		</div>
+	</main>
+
+	<script is:inline>
+		(() => {
+			const btn = document.querySelector('[data-open-cookie-prefs]');
+			if (!btn) return;
+			btn.addEventListener('click', () => {
+				const settingsBtn = document.querySelector('[data-cookie-settings]');
+				settingsBtn && settingsBtn.click();
+			});
+		})();
+	</script>
+</Layout>
+
+<style>
+	.container {
+		width: min(980px, calc(100% - 48px));
+		margin: 0 auto;
+		padding: 56px 0 48px;
+	}
+
+	h1 {
+		margin: 0 0 8px;
+		font-size: clamp(28px, 4vw, 44px);
+		letter-spacing: -0.03em;
+	}
+
+	h2 {
+		margin: 0 0 10px;
+		font-size: 18px;
+		letter-spacing: -0.02em;
+	}
+
+	.block {
+		margin-top: 18px;
+		padding: 18px;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		background: rgba(255, 255, 255, 0.92);
+		box-shadow: var(--shadow-sm);
+	}
+
+	p,
+	li {
+		color: var(--color-text);
+		opacity: 0.92;
+	}
+
+	ul {
+		margin: 10px 0 0;
+		padding-left: 18px;
+	}
+
+	.muted {
+		color: var(--color-muted);
+		opacity: 1;
+	}
+
+	.button {
+		font: inherit;
+		border-radius: 12px;
+		padding: 10px 12px;
+		border: 1px solid rgba(79, 110, 247, 0.45);
+		background: rgba(79, 110, 247, 0.08);
+		color: var(--color-text);
+		cursor: pointer;
+		font-weight: 700;
+	}
+
+	.button:hover {
+		background: rgba(79, 110, 247, 0.12);
+	}
+
+	.backLink {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 14px;
+		text-decoration: none;
+		color: var(--color-primary);
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	.backLink:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(79, 110, 247, 0.45);
+	}
+
+	@media (max-width: 520px) {
+		.container {
+			width: min(980px, calc(100% - 32px));
+		}
+	}
+</style>
