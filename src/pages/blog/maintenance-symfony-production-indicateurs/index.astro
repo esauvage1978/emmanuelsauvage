@@ -1,0 +1,73 @@
+---
+import BlogArticleLayout from '../../../layouts/BlogArticleLayout.astro';
+import BlogIllustration from '../../../components/blog/BlogIllustration.astro';
+import { getPostBySlug } from '../../../data/blog';
+
+const meta = getPostBySlug('maintenance-symfony-production-indicateurs')!;
+---
+
+<BlogArticleLayout
+	title={meta.title}
+	description={meta.description}
+	slug={meta.slug}
+	pubDate={meta.pubDate}
+	readingTimeMinutes={meta.readingTimeMinutes}
+	tags={meta.tags}
+>
+	<BlogIllustration slot="illustration" variant="ops" />
+
+	<aside class="tldr">
+		<strong>En bref</strong>
+		Un monitoring « page d’accueil 200 » ne suffit pas. La maintenance Symfony utile combine
+		<strong>dépendances</strong>, <strong>schéma BDD</strong>, <strong>erreurs applicatives</strong> et
+		<strong>performance</strong> — avec une fréquence adaptée au risque métier.
+	</aside>
+
+	<h2>Dépendances et sécurité</h2>
+	<ul>
+		<li><code>composer audit</code> (et correctifs mineurs réguliers, pas une fois par an).</li>
+		<li>PHP : suivre les fin de support ; planifier les montées de version Symfony.</li>
+		<li>Vérifier les paquets abandonnés ou peu maintenus lors des choix d’intégration.</li>
+	</ul>
+
+	<h2>Base de données</h2>
+	<ul>
+		<li>
+			<code>doctrine:migrations:status</code> : migrations en attente = risque au prochain déploiement.
+		</li>
+		<li>Slow query log ou APM : requêtes N+1 et index manquants avant qu’ils bloquent la prod.</li>
+		<li>Sauvegardes testées (restauration documentée, pas seulement l’export).</li>
+	</ul>
+
+	<h2>Application</h2>
+	<ul>
+		<li>Taux d’erreurs 5xx et exceptions métier non gérées (Sentry, logs structurés).</li>
+		<li>Files d’attente : profondeur, échecs, DLQ si vous en utilisez une.</li>
+		<li>Cron / workers : dernière exécution réussie, alerte si silence anormal.</li>
+	</ul>
+
+	<h2>Checklist trimestrielle (exemple)</h2>
+	<ol>
+		<li>Revue des dépendances + correctifs sécurité.</li>
+		<li>Échantillon de requêtes lentes et plan d’index.</li>
+		<li>Mise à jour de la doc runbook (déploiement, rollback, contacts).</li>
+	</ol>
+
+	<section class="faq" aria-label="Questions fréquentes">
+		<h2>FAQ</h2>
+		<details>
+			<summary>À quelle fréquence lancer composer update ?</summary>
+			<p>
+				Patchs sécurité dès que possible ; mineurs planifiés (sprint dédié ou fenêtre mensuelle) pour limiter l’effet
+				d’avalanche. Toujours avec tests automatisés.
+			</p>
+		</details>
+		<details>
+			<summary>Que surveiller en premier avec peu de budget ?</summary>
+			<p>
+				Disponibilité réelle des parcours critiques, erreurs 5xx, espace disque / logs, et une alerte si les migrations
+				ne sont plus alignées avec la prod.
+			</p>
+		</details>
+	</section>
+</BlogArticleLayout>

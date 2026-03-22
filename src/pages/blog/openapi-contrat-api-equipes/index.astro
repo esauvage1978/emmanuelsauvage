@@ -1,0 +1,72 @@
+---
+import BlogArticleLayout from '../../../layouts/BlogArticleLayout.astro';
+import BlogIllustration from '../../../components/blog/BlogIllustration.astro';
+import { getPostBySlug } from '../../../data/blog';
+
+const meta = getPostBySlug('openapi-contrat-api-equipes')!;
+---
+
+<BlogArticleLayout
+	title={meta.title}
+	description={meta.description}
+	slug={meta.slug}
+	pubDate={meta.pubDate}
+	readingTimeMinutes={meta.readingTimeMinutes}
+	tags={meta.tags}
+>
+	<BlogIllustration slot="illustration" variant="openapi" />
+
+	<aside class="tldr">
+		<strong>En bref</strong>
+		OpenAPI n’est pas qu’une doc : c’est le <strong>contrat</strong> entre back-end, front-end, partenaires et tests. Une
+		spec à jour (même partielle mais versionnée) réduit les allers-retours et les régressions silencieuses.
+	</aside>
+
+	<h2>Ce que le contrat doit figer</h2>
+	<ul>
+		<li>Chemins, méthodes, codes de réponse et schémas JSON (requête / réponse).</li>
+		<li>Authentification (Bearer, clé API, cookies) et en-têtes obligatoires.</li>
+		<li>Règles de pagination, filtres et formats d’erreur (ex. Problem Details).</li>
+	</ul>
+
+	<h2>Workflow réaliste</h2>
+	<p>
+		<strong>Design first</strong> : on écrit ou met à jour la spec avant d’implémenter le endpoint critique.
+		<strong>Code first</strong> : on génère la spec depuis les attributs PHP — utile si l’équipe tient la discipline des
+		annotations. L’essentiel est une <strong>source de vérité unique</strong> référencée en revue de code.
+	</p>
+
+	<h2>Clients et mocks</h2>
+	<p>
+		À partir d’OpenAPI 3, on peut générer des clients TypeScript ou des stubs serveur pour les tests d’intégration. Les
+		mocks permettent au front d’avancer pendant que le back finalise — à condition que le contrat soit validé (PR sur le
+		YAML/YML ou JSON).
+	</p>
+
+	<h2>Casser le contrat sans surprise</h2>
+	<ul>
+		<li>Versionner l’API (URL <code>/v2</code> ou négociation documentée).</li>
+		<li>Marquer les champs dépréciés dans la spec avant retrait.</li>
+		<li>
+			Ajouter des tests de <strong>non-régression</strong> sur le schéma (diff OpenAPI en CI ou contrats consumer-driven).
+		</li>
+	</ul>
+
+	<section class="faq" aria-label="Questions fréquentes">
+		<h2>FAQ</h2>
+		<details>
+			<summary>OpenAPI remplace-t-il les tests fonctionnels ?</summary>
+			<p>
+				Non : il garantit la forme des échanges, pas la logique métier. Il complète les tests E2E et les scénarios
+				métier.
+			</p>
+		</details>
+		<details>
+			<summary>Spec trop grosse à maintenir ?</summary>
+			<p>
+				Découpez par domaine (<code>paths/orders.yaml</code> + <code>components/schemas</code>) et assemblez avec des
+				outils de merge ; ou limitez la spec publique aux surfaces externes et gardez l’interne documentée autrement.
+			</p>
+		</details>
+	</section>
+</BlogArticleLayout>

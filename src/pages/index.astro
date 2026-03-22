@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import BrandLogo from '../components/BrandLogo.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import { GOOGLE_REVIEW_URL } from '../config/site';
 ---
 
@@ -9,63 +10,42 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 	description="Consultant indépendant : audit outils digitaux entreprise, optimisation processus entreprise, développement d’outils métier et automatisation workflows. Audit, développement, formation et dépannage."
 	preloadLcpHref="/images/hero-illustration-v2.svg"
 >
-	<header class="header">
-		<div class="container header__inner">
-			<a class="brand" href="/">
-				<span class="brand__logoWrap" aria-hidden="true">
-					<BrandLogo variant="header" class="brand__logo" />
-				</span>
-				<span class="brand__text">Emmanuel Sauvage</span>
-			</a>
+	<SiteHeader current="home" />
 
-			<nav class="nav" aria-label="Navigation principale">
-				<a class="nav__link" href="/services">Services</a>
-				<a class="nav__link" href="/a-propos">À propos</a>
-				<a class="nav__link" href="/contact">Contact</a>
-				<a class="nav__cta" href="#contact">Discuter de votre projet</a>
-			</nav>
-		</div>
-	</header>
-
-	<main>
-		<section class="hero" aria-label="Introduction">
+	<main class="home">
+		<section class="hero hero--impact" aria-label="Accroche">
 			<div class="heroFx" aria-hidden="true">
 				<div class="blob blob--a"></div>
 				<div class="blob blob--b"></div>
 				<div class="blob blob--c"></div>
+				<div class="blob blob--spot" aria-hidden="true"></div>
 				<svg class="grid" viewBox="0 0 1200 500" preserveAspectRatio="none">
 					<defs>
 						<linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
 							<stop offset="0" stop-color="rgba(79,110,247,0.35)" />
+							<stop offset="0.5" stop-color="rgba(196,92,46,0.14)" />
 							<stop offset="1" stop-color="rgba(47,58,143,0.18)" />
 						</linearGradient>
 					</defs>
 					<path d="M0 420C220 320 360 360 540 260C720 160 880 240 1200 120V500H0Z" fill="url(#g)"></path>
 				</svg>
 			</div>
-			<div class="container hero__grid">
+			<div class="container hero__grid hero__grid--impact">
 				<div class="hero__content">
-					<p class="eyebrow">Développement web • Symfony • Vue.js • React</p>
-					<h1>Optimisation et développement d’outils digitaux pour les entreprises</h1>
-					<p class="hero__subtitle">
-						Développement d’applications et d’outils métier (PHP/Symfony, Vue.js, React), automatisation et
-						outillage data (Google Sheets, Power BI, Looker) pour des équipes plus efficaces.
+					<p class="eyebrow">Consultant indépendant — outils digitaux &amp; processus</p>
+					<h1>Vos outils digitaux, <span class="h1Accent">plus simples et plus efficaces</span></h1>
+					<p class="hero__subtitle hero__subtitle--short">
+						L’idée, c’est que vos outils vous fassent gagner du temps — pas l’inverse.
 					</p>
 
 					<div class="hero__actions">
 						<a class="button button--primary" href="#contact">Discuter de votre projet</a>
-						<a class="button button--secondary" href="#services">Voir les services</a>
+						<a class="button button--secondary" href="#services">Voir l’offre</a>
 					</div>
-
-					<ul class="trust">
-						<li class="trust__item"><strong>Fullstack</strong> : de l’API à l’interface</li>
-						<li class="trust__item"><strong>Stack</strong> : PHP, Symfony, JavaScript, MySQL</li>
-						<li class="trust__item"><strong>Data</strong> : Google Sheets, Power BI, Looker</li>
-					</ul>
 				</div>
 
-				<div class="hero__visual">
-					<figure class="heroMedia">
+				<div class="hero__visual hero__visual--impact">
+					<figure class="heroMedia heroMedia--impact">
 						<img
 							class="heroMedia__img"
 							src="/images/hero-illustration-v2.svg"
@@ -75,52 +55,33 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 							loading="eager"
 							fetchpriority="high"
 						/>
-						<figcaption class="srOnly">
-							Illustration de hero pour le site.
-						</figcaption>
+						<figcaption class="srOnly">Illustration d’accueil.</figcaption>
 					</figure>
 				</div>
 			</div>
 		</section>
 
-		<section class="section" aria-label="Présentation">
-			<div class="container grid2">
-				<div>
-					<h2>Un consultant indépendant orienté efficacité opérationnelle</h2>
-					<p class="lead">
-						J’accompagne les entreprises qui veulent fiabiliser, simplifier et accélérer leur quotidien grâce à
-						l’<strong>optimisation des outils digitaux</strong> et à l’<strong>optimisation des processus
-							entreprise</strong>.
-					</p>
-					<p>
-						De l’<strong>audit outils digitaux entreprise</strong> à la mise en œuvre, je combine analyse,
-						développement et conduite du changement : <strong>développement outils métier</strong>,
-						<em>automatisation workflows</em>, intégrations API, formation et amélioration continue.
-					</p>
-				</div>
-				<div class="callout">
-					<h3>Ce que vous obtenez</h3>
-					<ul class="checklist">
-						<li>Un diagnostic clair, priorisé, actionnable</li>
-						<li>Des solutions adaptées à votre organisation</li>
-						<li>Des équipes autonomes sur les nouveaux usages</li>
-						<li>Un accompagnement réactif, sans complexité inutile</li>
-					</ul>
-				</div>
-			</div>
-		</section>
-
-		<section id="services" class="section section--alt" aria-label="Services">
+		<section id="services" class="homeSection homeSection--surface section section--alt" aria-labelledby="home-services-heading">
 			<div class="container">
-				<div class="section__head">
-					<h2>Services</h2>
-					<p>Développement, modernisation et mise en place d’outils réellement utilisés par vos équipes.</p>
-				</div>
+				<header class="homeSection__header">
+					<p class="homeSection__rail" aria-hidden="true">
+						<span class="homeSection__num">01</span>
+						<span class="homeSection__label">Offre</span>
+					</p>
+					<div class="homeSection__intro">
+						<h2 id="home-services-heading">Ce que je propose</h2>
+						<p class="homeSection__lede">
+							Applications Symfony, interfaces (Vue ou React), reporting, maintenance, formation… Les cartes
+							donnent le fil. Pour les exemples et le déroulé concret, j’ai tout regroupé sur la page
+							<a href="/services">Services</a>.
+						</p>
+					</div>
+				</header>
 
-				<div class="cards">
-					<article class="card">
-						<div class="icon" aria-hidden="true">
-							<svg viewBox="0 0 24 24">
+				<div class="bento">
+					<article class="bento__card bento__card--wide">
+						<div class="bento__icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" width="28" height="28">
 								<path
 									d="M4 4h16v14H4V4Zm3 17h10"
 									fill="none"
@@ -138,13 +99,13 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 								/>
 							</svg>
 						</div>
-						<h3>Développement d’applications (Symfony)</h3>
-						<p>Back-end PHP/Symfony, API, bases MySQL, sécurité, performance et mise en production.</p>
+						<h3>Applications Symfony</h3>
+						<p>API, MySQL, sécurité, performance, mise en production.</p>
 					</article>
 
-					<article class="card">
-						<div class="icon" aria-hidden="true">
-							<svg viewBox="0 0 24 24">
+					<article class="bento__card bento__card--wide">
+						<div class="bento__icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" width="28" height="28">
 								<path
 									d="M8 7h8M8 12h8M8 17h5"
 									fill="none"
@@ -161,43 +122,25 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 								/>
 							</svg>
 						</div>
-						<h3>Interfaces modernes (Vue.js / React)</h3>
-						<p>Front-end clair et rapide : composants, formulaires, tableaux, UX et intégration HTML/CSS.</p>
+						<h3>Interfaces Vue.js / React</h3>
+						<p>Composants, formulaires, tableaux, UX soignée.</p>
 					</article>
 
-					<article class="card">
-						<div class="icon" aria-hidden="true">
-							<svg viewBox="0 0 24 24">
-								<path
-									d="M4 19V5m16 14V5"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-								/>
-								<path
-									d="M7 7h10M7 11h10M7 15h6"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-								/>
-								<path
-									d="M9 21h6"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-								/>
+					<article class="bento__card">
+						<div class="bento__icon bento__icon--sm" aria-hidden="true">
+							<svg viewBox="0 0 24 24" width="24" height="24">
+								<path d="M4 19V5m16 14V5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+								<path d="M7 7h10M7 11h10M7 15h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+								<path d="M9 21h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
 							</svg>
 						</div>
-						<h3>Data &amp; reporting (Sheets, Power BI, Looker)</h3>
-						<p>Tableaux de bord, indicateurs, automatisations Google Sheets, et reporting orienté décision.</p>
+						<h3>Data &amp; reporting</h3>
+						<p>Sheets, Power BI, Looker, indicateurs actionnables.</p>
 					</article>
 
-					<article class="card">
-						<div class="icon" aria-hidden="true">
-							<svg viewBox="0 0 24 24">
+					<article class="bento__card">
+						<div class="bento__icon bento__icon--sm" aria-hidden="true">
+							<svg viewBox="0 0 24 24" width="24" height="24">
 								<path
 									d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7l3-7Z"
 									fill="none"
@@ -207,20 +150,14 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 								/>
 							</svg>
 						</div>
-						<h3>Maintenance, dépannage &amp; optimisation</h3>
-						<p>Corrections, refonte progressive, optimisation des performances, fiabilité et conformité (dont RGPD).</p>
+						<h3>Maintenance &amp; optimisation</h3>
+						<p>Fiabilité, perf, RGPD, évolutions progressives.</p>
 					</article>
 
-					<article class="card">
-						<div class="icon" aria-hidden="true">
-							<svg viewBox="0 0 24 24">
-								<path
-									d="M4 6h16M7 10h10M7 14h7"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-								/>
+					<article class="bento__card">
+						<div class="bento__icon bento__icon--sm" aria-hidden="true">
+							<svg viewBox="0 0 24 24" width="24" height="24">
+								<path d="M4 6h16M7 10h10M7 14h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
 								<path
 									d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
 									fill="none"
@@ -230,54 +167,33 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 								/>
 							</svg>
 						</div>
-						<h3>Formation &amp; accompagnement</h3>
-						<p>Montée en compétences (Symfony, bonnes pratiques web, outillage) et transfert pour rendre vos équipes autonomes.</p>
+						<h3>Formation</h3>
+						<p>Autonomie sur Symfony et bonnes pratiques web.</p>
 					</article>
 				</div>
+
+				<p class="section__more">
+					<a href="/services">Tout le détail des prestations →</a>
+				</p>
 			</div>
 		</section>
 
-		<section class="section" aria-label="Bénéfices">
+		<section class="homeSection section" aria-labelledby="home-method-heading">
 			<div class="container">
-				<div class="section__head section__head--split">
-					<div>
-						<h2>Des bénéfices concrets pour l’entreprise</h2>
-						<p>Moins de friction, plus d’exécution : la technologie au service du métier.</p>
+				<header class="homeSection__header">
+					<p class="homeSection__rail" aria-hidden="true">
+						<span class="homeSection__num">02</span>
+						<span class="homeSection__label">Démarche</span>
+					</p>
+					<div class="homeSection__intro">
+						<h2 id="home-method-heading">Comment on avance ensemble</h2>
+						<p class="homeSection__lede">
+							On commence par cadrer, on priorise, on met en œuvre, puis on veille à ce que vos équipes
+							soient à l’aise avec le résultat. Envie d’en savoir plus sur mon parcours ou des références ?
+							C’est par ici : <a href="/a-propos">À propos</a>.
+						</p>
 					</div>
-					<div class="kpis" aria-label="Indicateurs">
-						<div class="kpi"><strong>Temps</strong><span>réduit</span></div>
-						<div class="kpi"><strong>Qualité</strong><span>améliorée</span></div>
-						<div class="kpi"><strong>Workflows</strong><span>automatisés</span></div>
-					</div>
-				</div>
-
-				<div class="benefits">
-					<div class="benefit">
-						<h3>Gain de temps</h3>
-						<p>Réduction des tâches répétitives et des manipulations manuelles.</p>
-					</div>
-					<div class="benefit">
-						<h3>Automatisation</h3>
-						<p>Mise en place d’<strong>automatisation workflows</strong> fiables et documentés.</p>
-					</div>
-					<div class="benefit">
-						<h3>Processus plus fluides</h3>
-						<p>Moins d’allers-retours, meilleure traçabilité et décisions plus rapides.</p>
-					</div>
-					<div class="benefit">
-						<h3>Outils mieux adaptés</h3>
-						<p>Des outils métier construits pour vos usages et votre organisation.</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="section section--alt" aria-label="Comment je fonctionne">
-			<div class="container">
-				<div class="section__head">
-					<h2>Un accompagnement clair et structuré</h2>
-					<p>Inspiré des cabinets : méthode, transparence et livrables concrets.</p>
-				</div>
+				</header>
 
 				<div class="steps">
 					<article class="step">
@@ -301,46 +217,29 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 						<p>Formation des équipes, transfert de compétences et amélioration continue.</p>
 					</article>
 				</div>
+
+				<p class="homeSection__footerLink">
+					<a href="/a-propos">Parcours, valeurs et références — page À propos →</a>
+				</p>
 			</div>
 		</section>
 
-		<section class="section" aria-label="Expertise">
-			<div class="container grid2">
-				<div>
-					<h2>Une expertise orientée transformation et exécution</h2>
-					<p class="lead">
-						Consultant transformation digitale, j’interviens sur l’<strong>audit outils digitaux entreprise</strong>,
-						l’<strong>optimisation processus entreprise</strong> et le <strong>développement outils métier</strong>.
-					</p>
-					<p>
-						Objectif : des outils plus simples, maintenables, sécurisés — et surtout adoptés par vos équipes.
-					</p>
-				</div>
-				<div class="pillars">
-					<div class="pillar">
-						<h3>Analyse &amp; priorisation</h3>
-						<p>Cartographie des flux, irritants, risques et opportunités.</p>
-					</div>
-					<div class="pillar">
-						<h3>Build &amp; intégrations</h3>
-						<p>Web apps, API, automatisations, outillage et documentation.</p>
-					</div>
-					<div class="pillar">
-						<h3>Accompagnement</h3>
-						<p>Formation, adoption, bonnes pratiques et autonomie durable.</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="section section--alt" aria-label="Avis">
+		<section class="homeSection homeSection--surface section section--alt" aria-labelledby="home-proof-heading">
 			<div class="container">
-				<div class="section__head">
-					<h2>La confiance se construit sur la clarté</h2>
-					<p>Témoignages issus de projets réalisés.</p>
-				</div>
+				<header class="homeSection__header">
+					<p class="homeSection__rail" aria-hidden="true">
+						<span class="homeSection__num">03</span>
+						<span class="homeSection__label">Confiance</span>
+					</p>
+					<div class="homeSection__intro">
+						<h2 id="home-proof-heading">Ce que disent les clients</h2>
+						<p class="homeSection__lede">
+							Des personnes avec qui j’ai travaillé ont pris le temps d’écrire ces quelques lignes. 
+						</p>
+					</div>
+				</header>
 
-				<div class="quotes">
+				<div class="quotes quotes--full">
 					<figure class="quote">
 						<blockquote>
 							« Nous avons sollicité Monsieur SAUVAGE, dans le cadre de la création de notre site WEB. Nous sommes
@@ -365,207 +264,82 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 					</figure>
 				</div>
 
-				<div class="googleReview">
-					<p class="googleReview__text">
-						Vous avez travaillé avec moi ? <strong>Un avis sur Google</strong> aide d’autres entreprises à mieux
-						cerner mon accompagnement — merci d’avance.
-					</p>
-					<a
-						class="button button--secondary googleReview__link"
-						href={GOOGLE_REVIEW_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Laisser un avis Google
-					</a>
-				</div>
+				<aside class="homeGoogleCta" aria-label="Invitation à laisser un avis sur Google">
+					<p class="homeGoogleCta__eyebrow">En dehors de ces témoignages</p>
+					<div class="googleReview googleReview--home">
+						<p class="googleReview__text">
+							Vous avez travaillé avec moi ? <strong>Un avis sur Google</strong> aide d’autres entreprises à
+							mieux cerner mon accompagnement — merci d’avance.
+						</p>
+						<a
+							class="button button--secondary googleReview__link"
+							href={GOOGLE_REVIEW_URL}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Laisser un avis Google
+						</a>
+					</div>
+				</aside>
 			</div>
 		</section>
 
-		<section class="section" aria-label="FAQ">
+		<section class="homeSeo" aria-label="Pour aller plus loin">
 			<div class="container">
-				<div class="section__head">
-					<h2>Questions fréquentes</h2>
-					<p>Quelques réponses rapides sur la collaboration.</p>
-				</div>
-
-				<div class="faq">
-					<details class="faq__item">
-						<summary>Intervenez-vous uniquement sur des outils existants ?</summary>
-						<p>Non. Je peux auditer et optimiser l’existant, ou développer un nouvel outil métier lorsque c’est la meilleure option.</p>
-					</details>
-					<details class="faq__item">
-						<summary>Quel est le livrable d’un audit ?</summary>
-						<p>Un diagnostic priorisé, des recommandations, une feuille de route, et si besoin des quick wins immédiatement activables.</p>
-					</details>
-					<details class="faq__item">
-						<summary>Comment traitez-vous la sécurité et les données ?</summary>
-						<p>Principe de minimisation, accès strictement nécessaires, traçabilité, et bonnes pratiques de développement et d’hébergement.</p>
-					</details>
-				</div>
+				<p class="homeSeo__text">
+					<strong class="homeSeo__title">En savoir plus :</strong>
+					<a href="/services">audit outils digitaux</a>, optimisation des processus et
+					<a href="/services">développement Symfony, Vue.js et React</a> — détails sur la page
+					<a href="/services">Services</a>, parcours sur <a href="/a-propos">À propos</a> et articles techniques sur le{' '}
+					<a href="/blog">blog</a> (Symfony, API, outils métier).
+				</p>
 			</div>
 		</section>
 
-		<section id="contact" class="section cta" aria-label="Appel à action">
-			<div class="container cta__inner">
-				<div>
-					<h2>Parlons de vos outils et de vos processus</h2>
-					<p>
-						Vous cherchez à fiabiliser vos outils, accélérer vos opérations ou lancer un nouveau projet ?
-						Expliquez votre contexte : je vous réponds avec une première recommandation.
+		<section id="contact" class="homeSection homeSection--ctaLast section cta" aria-labelledby="home-contact-heading">
+			<div class="container">
+				<header class="homeSection__header homeSection__header--cta">
+					<p class="homeSection__rail" aria-hidden="true">
+						<span class="homeSection__num">04</span>
+						<span class="homeSection__label">Contact</span>
 					</p>
-				</div>
-				<div class="cta__actions">
-					<a class="button button--primary" href="/contact">Prendre contact</a>
-					<a class="button button--secondary" href="/services">Découvrir les services</a>
+					<div class="homeSection__intro">
+						<h2 id="home-contact-heading">Parlons de votre contexte</h2>
+						<p class="homeSection__lede">
+							Un projet en tête, un outil qui coince, ou juste envie de voir si je peux aider ? Écrivez-moi
+							— je réponds avec une première piste concrète.
+						</p>
+					</div>
+				</header>
+
+				<div class="cta__inner cta__inner--bold">
+					<div>
+						<p class="cta__lede cta__lede--strong">
+							C’est sans engagement : formulaire sur la page contact, ou un simple message — vous choisissez.
+						</p>
+					</div>
+					<div class="cta__actions">
+						<a class="button button--primary" href="/contact">Prendre contact</a>
+						<a class="button button--secondary" href="/services">Relire l’offre</a>
+					</div>
 				</div>
 			</div>
 		</section>
 	</main>
 
-	<footer class="footer" aria-label="Pied de page">
-		<div class="container footer__grid">
-			<div>
-				<div class="footer__brand">
-					<span class="footer__logoWrap" aria-hidden="true">
-						<BrandLogo variant="footer" class="footer__logo" />
-					</span>
-					<span>Emmanuel Sauvage</span>
-				</div>
-				<p class="footer__text">Consultant indépendant — optimisation des outils digitaux et des processus.</p>
-				<p class="footer__text">
-					<a href="mailto:contact@emmanuelsauvage.fr">contact@emmanuelsauvage.fr</a>
-				</p>
-				<p class="footer__text">
-					<a href="tel:+33609924945">06 09 92 49 45</a> · Erquinghem-lys
-				</p>
-			</div>
-
-			<div>
-				<div class="footer__title">Navigation</div>
-				<ul class="footer__links">
-					<li><a href="/services">Services</a></li>
-					<li><a href="/a-propos">À propos</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</div>
-
-			<div>
-				<div class="footer__title">Coordonnées</div>
-				<ul class="footer__links">
-					<li><a href="/contact">Formulaire de contact</a></li>
-					<li><a href="#contact">Discuter de votre projet</a></li>
-					<li>
-						<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
-					</li>
-				</ul>
-			</div>
-			<div>
-				<div class="footer__title">Légal</div>
-				<ul class="footer__links">
-					<li><a href="/mentions-legales">Mentions légales</a></li>
-					<li><a href="/politique-de-confidentialite">Politique de confidentialité</a></li>
-					<li><a href="/cgu">CGU</a></li>
-					<li><a href="/cgv">CGV</a></li>
-					<li><a href="/cookies">Cookies</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="container footer__bottom">
-			<p>© {new Date().getFullYear()} Emmanuel Sauvage — Tous droits réservés.</p>
-		</div>
-	</footer>
+	<SiteFooter discussHref="#contact" />
 </Layout>
 
 <style>
 	.container {
-		width: min(1120px, calc(100% - 48px));
+		width: min(1120px, calc(100% - 32px));
 		margin: 0 auto;
 	}
 
-	.header {
-		position: sticky;
-		top: 0;
-		z-index: 50;
-		background: rgba(247, 248, 251, 0.78);
-		backdrop-filter: blur(10px);
-		border-bottom: 1px solid var(--color-border);
-	}
-
-	.header__inner {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 14px 0;
-		gap: 20px;
-	}
-
-	.brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 10px;
-		text-decoration: none;
-		font-weight: 700;
-		letter-spacing: -0.02em;
-		color: var(--color-primary);
-	}
-
-	.brand:hover {
-		color: var(--color-primary);
-		opacity: 0.88;
-	}
-
-	.brand__logoWrap {
-		display: inline-flex;
-		align-items: center;
-		line-height: 0;
-	}
-
-	.brand__logo {
-		display: block;
-		width: 32px;
-		height: 32px;
-		border-radius: 10px;
-		object-fit: cover;
-		box-shadow: 0 8px 18px rgba(47, 58, 143, 0.24);
-	}
-
-	.nav {
-		display: flex;
-		align-items: center;
-		gap: 14px;
-		flex-wrap: wrap;
-		justify-content: flex-end;
-	}
-
-	.nav__link {
-		text-decoration: none;
-		color: var(--color-text);
-		opacity: 0.9;
-		padding: 10px 10px;
-		border-radius: 10px;
-		transition: background 0.15s ease, opacity 0.15s ease;
-	}
-
-	.nav__link:hover {
-		opacity: 1;
-		background: rgba(47, 58, 143, 0.06);
-	}
-
-	.nav__cta {
-		text-decoration: none;
-		color: white;
-		background: var(--color-primary);
-		padding: 10px 14px;
-		border-radius: 12px;
-		box-shadow: var(--shadow-sm);
-		transition: transform 0.15s ease, box-shadow 0.15s ease;
-		white-space: nowrap;
-	}
-
-	.nav__cta:hover {
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-md);
+	@media (min-width: 521px) {
+		.container {
+			width: min(1120px, calc(100% - 48px));
+		}
 	}
 
 	main {
@@ -575,9 +349,23 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 	.hero {
 		position: relative;
 		overflow: hidden;
-		padding: 72px 0 36px;
+		padding: 48px 0 28px;
 		background: white;
 		border-bottom: 1px solid var(--color-border);
+	}
+
+	.hero--impact {
+		padding: 56px 0 32px;
+	}
+
+	@media (min-width: 980px) {
+		.hero {
+			padding: 72px 0 36px;
+		}
+
+		.hero--impact {
+			padding: 80px 0 48px;
+		}
 	}
 
 	.heroFx {
@@ -619,7 +407,18 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		bottom: -300px;
 		left: 36%;
 		background: radial-gradient(circle at 35% 35%, rgba(79, 110, 247, 0.35), rgba(79, 110, 247, 0) 62%),
-			radial-gradient(circle at 70% 40%, rgba(47, 58, 143, 0.20), rgba(47, 58, 143, 0) 70%);
+			radial-gradient(circle at 70% 40%, rgba(47, 58, 143, 0.2), rgba(47, 58, 143, 0) 70%);
+	}
+
+	.home .blob--spot {
+		width: 420px;
+		height: 420px;
+		bottom: -80px;
+		right: -100px;
+		opacity: 0.75;
+		filter: blur(48px);
+		mix-blend-mode: multiply;
+		background: radial-gradient(circle at 40% 40%, rgba(196, 92, 46, 0.42), rgba(196, 92, 46, 0) 62%);
 	}
 
 	.grid {
@@ -632,26 +431,96 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 
 	.hero__grid {
 		display: grid;
-		grid-template-columns: 1.05fr 0.95fr;
-		gap: 42px;
+		grid-template-columns: 1fr;
+		gap: 28px;
 		align-items: center;
 		position: relative;
 		z-index: 1;
+		/* Permet aux colonnes de rétrécir sous la largeur du contenu (texte long, boutons) */
+		min-width: 0;
+	}
+
+	.hero__grid--impact {
+		align-items: center;
+	}
+
+	@media (min-width: 980px) {
+		.hero__grid {
+			grid-template-columns: 1.05fr 0.95fr;
+			gap: 42px;
+		}
+
+		.hero__grid--impact {
+			align-items: stretch;
+		}
+	}
+
+	.hero__content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		min-width: 0;
+		width: 100%;
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+
+	@media (min-width: 980px) {
+		.hero__content {
+			align-items: stretch;
+			text-align: left;
+		}
 	}
 
 	.eyebrow {
 		margin: 0 0 10px;
 		color: var(--color-muted);
-		font-size: 14px;
-		letter-spacing: 0.06em;
+		font-size: 13px;
+		letter-spacing: 0.08em;
 		text-transform: uppercase;
+	}
+
+	.home .eyebrow {
+		position: relative;
+		padding-left: 0;
+		color: color-mix(in srgb, var(--color-text) 72%, var(--color-spot));
+	}
+
+	.home .eyebrow::before {
+		display: none;
+	}
+
+	@media (min-width: 980px) {
+		.home .eyebrow {
+			padding-left: 14px;
+		}
+
+		.home .eyebrow::before {
+			display: block;
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0.15em;
+			bottom: 0.15em;
+			width: 3px;
+			border-radius: 2px;
+			background: linear-gradient(180deg, var(--color-spot), var(--color-primary));
+		}
 	}
 
 	h1 {
 		margin: 0 0 14px;
-		font-size: clamp(34px, 4.2vw, 52px);
-		line-height: 1.05;
-		letter-spacing: -0.03em;
+		font-size: clamp(36px, 4.8vw, 56px);
+		line-height: 1.04;
+		letter-spacing: -0.035em;
+	}
+
+	.h1Accent {
+		background: linear-gradient(105deg, var(--color-primary) 0%, var(--color-spot) 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
 	}
 
 	h2 {
@@ -680,11 +549,61 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		max-width: 56ch;
 	}
 
+	.hero__subtitle--short {
+		font-size: clamp(17px, 2vw, 20px);
+		max-width: 42ch;
+		line-height: 1.45;
+		margin-inline: auto;
+	}
+
+	@media (min-width: 980px) {
+		.hero__subtitle--short {
+			margin-inline: 0;
+		}
+	}
+
 	.hero__actions {
 		display: flex;
+		flex-direction: column;
+		align-items: stretch;
 		gap: 12px;
-		margin-top: 18px;
-		flex-wrap: wrap;
+		margin-top: 22px;
+		width: 100%;
+		max-width: min(22rem, 100%);
+		align-self: stretch;
+		box-sizing: border-box;
+		padding-inline: 0;
+	}
+
+	.hero__actions .button {
+		width: 100%;
+		max-width: 100%;
+		justify-content: center;
+		box-sizing: border-box;
+		white-space: normal;
+		text-align: center;
+		line-height: 1.35;
+		padding-inline: 14px;
+		overflow-wrap: break-word;
+		hyphens: auto;
+	}
+
+	@media (min-width: 980px) {
+		.hero__actions {
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: flex-start;
+			width: auto;
+			max-width: none;
+			align-self: stretch;
+		}
+
+		.hero__actions .button {
+			width: auto;
+			max-width: none;
+			white-space: nowrap;
+			padding-inline: 16px;
+		}
 	}
 
 	.button {
@@ -723,26 +642,26 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		box-shadow: var(--shadow-sm);
 	}
 
-	.trust {
-		list-style: none;
-		padding: 0;
-		margin: 22px 0 0;
-		display: grid;
-		gap: 8px;
-	}
-
-	.trust__item {
-		color: var(--color-muted);
-		background: rgba(255, 255, 255, 0.8);
-		border: 1px solid var(--color-border);
-		border-radius: 14px;
-		padding: 10px 12px;
-		box-shadow: var(--shadow-sm);
+	.home .button--secondary:hover {
+		border-color: color-mix(in srgb, var(--color-spot) 45%, var(--color-border));
+		box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 0 0 1px rgba(196, 92, 46, 0.12);
 	}
 
 	.hero__visual {
 		display: flex;
-		justify-content: flex-end;
+		justify-content: center;
+		min-width: 0;
+		max-width: 100%;
+	}
+
+	@media (min-width: 980px) {
+		.hero__visual {
+			justify-content: flex-end;
+		}
+	}
+
+	.hero__visual--impact {
+		align-items: center;
 	}
 
 	.heroMedia {
@@ -754,6 +673,15 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		box-shadow: var(--shadow-md);
 		background: rgba(255, 255, 255, 0.85);
 		position: relative;
+	}
+
+	.heroMedia--impact {
+		width: min(620px, 100%);
+		border-radius: 28px;
+		box-shadow:
+			0 24px 60px rgba(47, 58, 143, 0.16),
+			0 0 0 1px rgba(196, 92, 46, 0.22),
+			0 0 40px rgba(196, 92, 46, 0.08);
 	}
 
 	.heroMedia::after {
@@ -783,6 +711,149 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		border: 0;
 	}
 
+	.homeSection__header {
+		display: grid;
+		grid-template-columns: minmax(72px, auto) 1fr;
+		gap: 20px 28px;
+		align-items: start;
+		margin-bottom: 28px;
+		padding-bottom: 22px;
+		border-bottom: 1px solid rgba(47, 58, 143, 0.12);
+		min-width: 0;
+	}
+
+	.home .homeSection__header {
+		border-bottom-color: color-mix(in srgb, var(--color-spot) 22%, rgba(47, 58, 143, 0.12));
+	}
+
+	.homeSection__rail {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 4px;
+		padding-top: 4px;
+		border-left: 3px solid var(--color-spot);
+		padding-left: 16px;
+		min-height: 100%;
+	}
+
+	.homeSection__num {
+		font-size: clamp(28px, 3.5vw, 40px);
+		font-weight: 800;
+		line-height: 1;
+		letter-spacing: -0.04em;
+		color: var(--color-spot);
+	}
+
+	.homeSection__label {
+		font-size: 11px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: var(--color-muted);
+	}
+
+	.home .homeSection__label {
+		color: color-mix(in srgb, var(--color-spot) 55%, var(--color-muted));
+	}
+
+	.homeSection__intro h2 {
+		margin: 0 0 10px;
+	}
+
+	.home .homeSection__intro h2::after {
+		content: '';
+		display: block;
+		width: 52px;
+		height: 3px;
+		margin-top: 14px;
+		border-radius: 2px;
+		background: linear-gradient(90deg, var(--color-spot) 0%, var(--color-accent) 100%);
+	}
+
+	.homeSection__lede {
+		margin: 0;
+		max-width: 62ch;
+		color: var(--color-muted);
+		font-size: 16px;
+		line-height: 1.55;
+		opacity: 1;
+	}
+
+	.homeSection__lede a {
+		color: var(--color-primary);
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-color: rgba(47, 58, 143, 0.3);
+		text-underline-offset: 3px;
+	}
+
+	.homeSection__lede a:hover {
+		text-decoration-color: var(--color-primary);
+	}
+
+	.home .homeSection__lede a {
+		color: var(--color-spot-hover);
+		text-decoration-color: rgba(196, 92, 46, 0.4);
+	}
+
+	.home .homeSection__lede a:hover {
+		color: var(--color-spot);
+		text-decoration-color: var(--color-spot);
+	}
+
+	.homeSection__footerLink {
+		margin: 26px 0 0;
+		text-align: center;
+	}
+
+	.homeSection__footerLink a {
+		font-weight: 700;
+		color: var(--color-primary);
+		text-decoration: none;
+	}
+
+	.homeSection__footerLink a:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(47, 58, 143, 0.35);
+	}
+
+	.home .homeSection__footerLink a {
+		color: var(--color-spot-hover);
+		text-decoration: underline;
+		text-decoration-color: rgba(196, 92, 46, 0.35);
+		text-underline-offset: 3px;
+	}
+
+	.home .homeSection__footerLink a:hover {
+		color: var(--color-spot);
+		text-decoration-color: var(--color-spot);
+	}
+
+	.homeSection__header--cta {
+		margin-bottom: 20px;
+		padding-bottom: 18px;
+	}
+
+	.cta__lede--strong {
+		margin: 0;
+		font-size: 18px;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		line-height: 1.45;
+		color: var(--color-text);
+		opacity: 0.95;
+	}
+
+	.step p {
+		margin: 0;
+		color: var(--color-muted);
+		font-size: 15px;
+		line-height: 1.45;
+		opacity: 1;
+	}
+
 	.section {
 		padding: 56px 0;
 	}
@@ -799,114 +870,124 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		margin-bottom: 18px;
 	}
 
-	.section__head--split {
-		grid-template-columns: 1.2fr 0.8fr;
-		align-items: end;
-		gap: 18px;
+	.section__head--tight {
+		margin-bottom: 22px;
 	}
 
-	.section__head p {
+	.section__head p,
+	.section__kicker {
 		color: var(--color-muted);
 		opacity: 1;
 		margin: 0;
+		font-size: 16px;
 	}
 
-	.kpis {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 10px;
+	.section__more {
+		margin: 22px 0 0;
+		text-align: center;
 	}
 
-	.kpi {
-		background: rgba(255, 255, 255, 0.92);
-		border: 1px solid var(--color-border);
-		border-radius: 16px;
-		padding: 12px 12px;
-		box-shadow: var(--shadow-sm);
-		display: grid;
-		gap: 2px;
-	}
-
-	.kpi strong {
+	.section__more a {
+		font-weight: 700;
 		color: var(--color-primary);
-		letter-spacing: -0.02em;
+		text-decoration: none;
 	}
 
-	.kpi span {
-		color: var(--color-muted);
-		font-size: 13px;
+	.section__more a:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(47, 58, 143, 0.35);
 	}
 
-	.grid2 {
+	.home .section__more a {
+		color: var(--color-spot-hover);
+		text-decoration: underline;
+		text-decoration-color: rgba(196, 92, 46, 0.4);
+		text-underline-offset: 3px;
+	}
+
+	.home .section__more a:hover {
+		color: var(--color-spot);
+		text-decoration-color: var(--color-spot);
+	}
+
+	.bento {
 		display: grid;
-		grid-template-columns: 1.1fr 0.9fr;
-		gap: 28px;
-		align-items: start;
-	}
-
-	.lead {
-		font-size: 18px;
-		color: var(--color-muted);
-		opacity: 1;
-	}
-
-	.callout {
-		background: rgba(255, 255, 255, 0.92);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		padding: 18px;
-		box-shadow: var(--shadow-sm);
-	}
-
-	.checklist {
-		margin: 12px 0 0;
-		padding-left: 18px;
-		color: var(--color-muted);
-	}
-
-	.cards {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(6, 1fr);
 		gap: 14px;
 	}
 
-	.card {
-		background: rgba(255, 255, 255, 0.92);
+	.bento__card {
+		grid-column: span 2;
+		border-radius: 20px;
+		padding: 22px 20px;
+		background: rgba(255, 255, 255, 0.95);
 		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		padding: 18px;
 		box-shadow: var(--shadow-sm);
+		transition: transform 0.18s ease, box-shadow 0.18s ease;
 	}
 
-	.icon {
-		width: 42px;
-		height: 42px;
-		border-radius: 14px;
+	.home .bento__card {
+		box-shadow:
+			inset 0 3px 0 0 rgba(196, 92, 46, 0.28),
+			var(--shadow-sm);
+	}
+
+	.bento__card:hover {
+		transform: translateY(-3px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.home .bento__card:hover {
+		box-shadow:
+			inset 0 3px 0 0 rgba(196, 92, 46, 0.45),
+			var(--shadow-md);
+	}
+
+	.bento__card--wide {
+		grid-column: span 3;
+		min-height: 160px;
+		background: linear-gradient(160deg, rgba(47, 58, 143, 0.06), rgba(255, 255, 255, 0.96));
+	}
+
+	.home .bento__card--wide {
+		background: linear-gradient(
+			160deg,
+			rgba(47, 58, 143, 0.06),
+			var(--color-spot-soft),
+			rgba(255, 255, 255, 0.96)
+		);
+	}
+
+	.bento__card p {
+		margin: 0;
+		color: var(--color-muted);
+		font-size: 15px;
+		line-height: 1.45;
+	}
+
+	.bento__icon {
+		width: 52px;
+		height: 52px;
+		border-radius: 16px;
 		display: grid;
 		place-items: center;
 		color: var(--color-primary);
-		background: rgba(47, 58, 143, 0.10);
-		border: 1px solid rgba(47, 58, 143, 0.18);
+		background: rgba(47, 58, 143, 0.1);
+		border: 1px solid rgba(47, 58, 143, 0.16);
+		margin-bottom: 14px;
+	}
+
+	.bento__icon--sm {
+		width: 44px;
+		height: 44px;
+		border-radius: 14px;
 		margin-bottom: 12px;
 	}
 
-	.icon svg {
-		width: 22px;
-		height: 22px;
-	}
-
-	.benefits {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 14px;
-	}
-
-	.benefit {
-		border-radius: var(--radius);
-		padding: 18px;
-		border: 1px solid var(--color-border);
-		background: rgba(255, 255, 255, 0.85);
-		box-shadow: var(--shadow-sm);
+	.home .bento__card--wide .bento__icon {
+		color: var(--color-spot-hover);
+		background: color-mix(in srgb, var(--color-spot-soft) 85%, white);
+		border-color: color-mix(in srgb, var(--color-spot) 22%, transparent);
 	}
 
 	.steps {
@@ -923,6 +1004,12 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		box-shadow: var(--shadow-sm);
 	}
 
+	.home .step {
+		box-shadow:
+			inset 3px 0 0 0 rgba(196, 92, 46, 0.35),
+			var(--shadow-sm);
+	}
+
 	.step__num {
 		display: inline-flex;
 		align-items: center;
@@ -932,23 +1019,11 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		padding: 0 10px;
 		border-radius: 999px;
 		color: white;
-		background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+		background: linear-gradient(90deg, var(--color-primary), var(--color-spot));
 		font-weight: 800;
 		letter-spacing: 0.06em;
 		font-size: 12px;
 		margin-bottom: 12px;
-	}
-
-	.pillars {
-		display: grid;
-		gap: 12px;
-	}
-
-	.pillar {
-		border-radius: var(--radius);
-		padding: 16px 18px;
-		border: 1px solid var(--color-border);
-		background: rgba(255, 255, 255, 0.85);
 	}
 
 	.quotes {
@@ -957,12 +1032,38 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		gap: 14px;
 	}
 
+	.quotes--full {
+		gap: 18px;
+	}
+
+	.quotes--full .quote {
+		padding: 24px 22px;
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+		height: auto;
+	}
+
+	.quotes--full .quote blockquote {
+		font-size: 15px;
+		line-height: 1.6;
+		font-weight: 500;
+		letter-spacing: 0;
+		flex: 1;
+	}
+
+	@media (min-width: 981px) {
+		.quotes--full .quote {
+			height: 100%;
+		}
+	}
+
 	.quote {
 		margin: 0;
 		background: rgba(255, 255, 255, 0.92);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius);
-		padding: 18px;
+		padding: 22px 20px;
 		box-shadow: var(--shadow-sm);
 	}
 
@@ -979,6 +1080,33 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		font-size: 14px;
 	}
 
+	.home .quotes--full .quote {
+		border-left: 4px solid var(--color-spot);
+		padding: 24px 22px 24px 18px;
+		background: linear-gradient(90deg, var(--color-spot-soft), rgba(255, 255, 255, 0.92) 42%);
+	}
+
+	.home .quote figcaption {
+		color: color-mix(in srgb, var(--color-spot-hover) 35%, var(--color-muted));
+		font-weight: 600;
+	}
+
+	.homeGoogleCta {
+		margin-top: 36px;
+		padding-top: 28px;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.homeGoogleCta__eyebrow {
+		margin: 0 0 14px;
+		font-size: 12px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--color-muted);
+		text-align: center;
+	}
+
 	.googleReview {
 		margin-top: 22px;
 		padding: 20px 22px;
@@ -990,6 +1118,14 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		align-items: center;
 		justify-content: space-between;
 		gap: 16px;
+	}
+
+	.home .googleReview--home {
+		margin-top: 0;
+		border-radius: 12px;
+		border: 1px dashed color-mix(in srgb, var(--color-muted) 28%, var(--color-border));
+		background: #fff;
+		box-shadow: none;
 	}
 
 	.googleReview__text {
@@ -1008,29 +1144,60 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		flex-shrink: 0;
 	}
 
-	.faq {
-		display: grid;
-		gap: 10px;
+	.homeSeo {
+		padding: 28px 0 8px;
+		background: rgba(247, 248, 251, 0.6);
+		border-top: 1px solid var(--color-border);
 	}
 
-	.faq__item {
-		background: rgba(255, 255, 255, 0.92);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		padding: 14px 16px;
-		box-shadow: var(--shadow-sm);
-	}
-
-	.faq__item summary {
-		cursor: pointer;
-		font-weight: 700;
-		letter-spacing: -0.01em;
-	}
-
-	.faq__item p {
-		margin: 10px 0 0;
+	.homeSeo__text {
+		margin: 0;
+		font-size: 14px;
+		line-height: 1.55;
 		color: var(--color-muted);
-		opacity: 1;
+		text-align: center;
+		max-width: 70ch;
+		margin-inline: auto;
+	}
+
+	.homeSeo__title {
+		display: block;
+		margin-bottom: 6px;
+		color: var(--color-text);
+		font-size: 13px;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.homeSeo__text a {
+		color: var(--color-primary);
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-color: rgba(47, 58, 143, 0.3);
+		text-underline-offset: 3px;
+	}
+
+	.homeSeo__text a:hover {
+		text-decoration-color: var(--color-primary);
+	}
+
+	.home .homeSeo {
+		background: linear-gradient(180deg, color-mix(in srgb, var(--color-spot-soft) 40%, rgba(247, 248, 251, 0.85)), rgba(247, 248, 251, 0.55));
+		border-top-color: color-mix(in srgb, var(--color-spot) 18%, var(--color-border));
+	}
+
+	.home .homeSeo__title {
+		color: color-mix(in srgb, var(--color-spot-hover) 40%, var(--color-text));
+	}
+
+	.home .homeSeo__text a {
+		color: var(--color-spot-hover);
+		text-decoration-color: rgba(196, 92, 46, 0.35);
+	}
+
+	.home .homeSeo__text a:hover {
+		color: var(--color-spot);
+		text-decoration-color: var(--color-spot);
 	}
 
 	.cta__inner {
@@ -1040,137 +1207,116 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		align-items: center;
 		padding: 22px;
 		border-radius: 24px;
-		border: 1px solid rgba(47, 58, 143, 0.20);
-		background: linear-gradient(180deg, rgba(47, 58, 143, 0.10), rgba(255, 255, 255, 0.65));
+		border: 1px solid rgba(47, 58, 143, 0.2);
+		background: linear-gradient(180deg, rgba(47, 58, 143, 0.1), rgba(255, 255, 255, 0.65));
 		box-shadow: var(--shadow-md);
+	}
+
+	.cta__inner--bold {
+		padding: 28px 26px;
+		border-radius: 28px;
+		background: linear-gradient(135deg, rgba(47, 58, 143, 0.14), rgba(79, 110, 247, 0.08));
+	}
+
+	.home .cta__inner--bold {
+		border-color: color-mix(in srgb, var(--color-spot) 32%, rgba(47, 58, 143, 0.2));
+		background: linear-gradient(
+			135deg,
+			rgba(47, 58, 143, 0.12),
+			var(--color-spot-soft),
+			rgba(79, 110, 247, 0.06)
+		);
+		box-shadow: 0 12px 40px rgba(47, 58, 143, 0.08), 0 0 0 1px rgba(196, 92, 46, 0.1);
+	}
+
+	/* Dernière section : socle clair + air avant le pied de page (comme la zone pre-footer services) */
+	.homeSection--ctaLast {
+		padding-bottom: 80px;
+		background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.65) 35%, #ffffff 100%);
+		border-bottom: 1px solid rgba(47, 58, 143, 0.1);
+		margin-bottom: 0;
+	}
+
+	@media (min-width: 980px) {
+		.homeSection--ctaLast {
+			padding-bottom: 88px;
+		}
+	}
+
+	.cta__lede {
+		margin: 0;
+		font-size: 17px;
+		color: var(--color-muted);
 	}
 
 	.cta__actions {
 		display: flex;
-		justify-content: flex-end;
+		justify-content: center;
 		gap: 12px;
 		flex-wrap: wrap;
 	}
 
-	.footer {
-		padding: 32px 0 22px;
-		border-top: 1px solid var(--color-border);
-		background: rgba(247, 248, 251, 0.85);
-	}
-
-	.footer__grid {
-		display: grid;
-		grid-template-columns: 1.6fr 1fr 1fr 1fr;
-		gap: 18px;
-		align-items: start;
-	}
-
-	.footer__brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		font-weight: 800;
-		letter-spacing: -0.02em;
-		color: var(--color-primary);
-	}
-
-	.footer__logoWrap {
-		display: inline-flex;
-		align-items: center;
-		line-height: 0;
-	}
-
-	.footer__logo {
-		display: block;
-		width: 28px;
-		height: 28px;
-		border-radius: 8px;
-		object-fit: cover;
-	}
-
-	.footer__text {
-		color: var(--color-muted);
-		opacity: 1;
-		margin: 6px 0 0;
-	}
-
-	.footer__title {
-		font-weight: 700;
-		margin-bottom: 10px;
-	}
-
-	.footer__links {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: grid;
-		gap: 8px;
-	}
-
-	.footer__links a {
-		color: var(--color-muted);
-		text-decoration: none;
-	}
-
-	.footer__links a:hover {
-		color: var(--color-text);
-		text-decoration: underline;
-		text-decoration-color: rgba(47, 58, 143, 0.4);
-	}
-
-	.footer__bottom {
-		margin-top: 18px;
-		padding-top: 16px;
-		border-top: 1px solid var(--color-border);
-		color: var(--color-muted);
-		font-size: 14px;
-	}
-
-	.footer__bottom p {
-		margin: 0;
+	@media (min-width: 980px) {
+		.home .cta__actions,
+		section.cta .cta__actions {
+			justify-content: flex-end;
+		}
 	}
 
 	@media (max-width: 980px) {
-		.hero__grid {
+		.homeSection__header {
+			grid-template-columns: 1fr;
+			gap: 20px;
+		}
+
+		.homeSection__rail {
+			flex-direction: row;
+			align-items: baseline;
+			gap: 10px;
+			border-left: none;
+			padding-left: 0;
+			border-bottom: 3px solid var(--color-spot);
+			padding-bottom: 14px;
+			margin-bottom: 2px;
+		}
+
+		.homeSection__intro {
+			padding-top: 4px;
+		}
+
+		.home .homeSection__intro h2::after {
+			margin-top: 18px;
+		}
+
+		.bento {
 			grid-template-columns: 1fr;
 		}
 
-		.hero__visual {
-			justify-content: flex-start;
+		.bento__card,
+		.bento__card--wide {
+			grid-column: span 1;
 		}
 
-		.cards,
-		.benefits {
+		.steps {
 			grid-template-columns: repeat(2, 1fr);
 		}
 
-		.steps,
-		.quotes {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
-		.section__head--split {
+		/* Une colonne + pas de chevauchement (grille 3 col trop étroite sur tablette) */
+		.home .quotes.quotes--full,
+		.quotes,
+		.quotes--full {
+			display: grid;
 			grid-template-columns: 1fr;
-			align-items: start;
+			gap: 20px;
 		}
 
-		.kpis {
-			grid-template-columns: repeat(3, 1fr);
-		}
-
-		.grid2 {
-			grid-template-columns: 1fr;
+		.home .quotes.quotes--full .quote {
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
 		}
 
 		.cta__inner {
-			grid-template-columns: 1fr;
-		}
-
-		.cta__actions {
-			justify-content: flex-start;
-		}
-
-		.footer__grid {
 			grid-template-columns: 1fr;
 		}
 	}
@@ -1190,17 +1336,9 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 			justify-content: center;
 		}
 
-		.cards,
-		.benefits {
-			grid-template-columns: 1fr;
-		}
-
 		.steps,
-		.quotes {
-			grid-template-columns: 1fr;
-		}
-
-		.kpis {
+		.quotes,
+		.quotes--full {
 			grid-template-columns: 1fr;
 		}
 	}

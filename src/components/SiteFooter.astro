@@ -1,0 +1,78 @@
+---
+import BrandLogo from './BrandLogo.astro';
+import { GOOGLE_REVIEW_URL, MALT_PROFILE_URL, LINKEDIN_URL } from '../config/site';
+
+interface Props {
+	/** Sur l’accueil : `#contact`. Sur les autres pages : `/#contact`. */
+	discussHref?: string;
+}
+
+const { discussHref = '/#contact' } = Astro.props;
+---
+
+<footer class="footer footer--brand" aria-label="Pied de page">
+	<div class="container footer__grid">
+		<div>
+			<div class="footer__brand">
+				<span class="footer__logoWrap" aria-hidden="true">
+					<BrandLogo variant="footer" class="footer__logo" />
+				</span>
+				<span>Emmanuel Sauvage</span>
+			</div>
+			<p class="footer__text">Consultant indépendant — optimisation des outils digitaux et des processus.</p>
+			<p class="footer__text">
+				<a href="mailto:contact@emmanuelsauvage.fr">contact@emmanuelsauvage.fr</a>
+			</p>
+			<p class="footer__text">
+				<a href="tel:+33609924945">06 09 92 49 45</a> · Erquinghem-lys
+			</p>
+		</div>
+
+		<div>
+			<div class="footer__title">Navigation</div>
+			<ul class="footer__links">
+				<li><a href="/services">Services</a></li>
+				<li><a href="/blog">Blog</a></li>
+				<li><a href="/a-propos">À propos</a></li>
+				<li><a href="/contact">Contact</a></li>
+			</ul>
+		</div>
+
+		<div>
+			<div class="footer__title">Coordonnées</div>
+			<ul class="footer__links">
+				<li><a href="/contact">Formulaire de contact</a></li>
+				<li><a href={discussHref}>Discuter de votre projet</a></li>
+				<li>
+					<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
+				</li>
+			</ul>
+		</div>
+
+		<div>
+			<div class="footer__title">Réseaux pro</div>
+			<ul class="footer__links">
+				<li>
+					<a href={MALT_PROFILE_URL} target="_blank" rel="noopener noreferrer">Profil Malt</a>
+				</li>
+				<li>
+					<a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+				</li>
+			</ul>
+		</div>
+
+		<div>
+			<div class="footer__title">Légal</div>
+			<ul class="footer__links">
+				<li><a href="/mentions-legales">Mentions légales</a></li>
+				<li><a href="/politique-de-confidentialite">Politique de confidentialité</a></li>
+				<li><a href="/cgu">CGU</a></li>
+				<li><a href="/cgv">CGV</a></li>
+				<li><a href="/cookies">Cookies</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container footer__bottom">
+		<p>© {new Date().getFullYear()} Emmanuel Sauvage — Tous droits réservés.</p>
+	</div>
+</footer>

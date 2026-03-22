@@ -1,0 +1,394 @@
+---
+import Layout from './Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { SITE_ORIGIN } from '../config/site';
+
+type Props = {
+	title: string;
+	description: string;
+	slug: string;
+	pubDate: string;
+	updatedDate?: string;
+	readingTimeMinutes: number;
+	tags: string[];
+};
+
+const { title, description, slug, pubDate, updatedDate, readingTimeMinutes, tags } = Astro.props;
+
+const pageTitle = `${title} | Blog | Emmanuel Sauvage`;
+const canonicalPath = `/blog/${slug}/`;
+const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
+const published = new Date(pubDate).toISOString();
+const modified = (updatedDate ? new Date(updatedDate) : new Date(pubDate)).toISOString();
+
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'TechArticle',
+	headline: title,
+	description,
+	image: `${SITE_ORIGIN}/images/favicon-32x32.png`,
+	datePublished: published,
+	dateModified: modified,
+	author: {
+		'@type': 'Person',
+		name: 'Emmanuel Sauvage',
+		url: SITE_ORIGIN,
+	},
+	publisher: {
+		'@type': 'Person',
+		name: 'Emmanuel Sauvage',
+	},
+	mainEntityOfPage: {
+		'@type': 'WebPage',
+		'@id': canonicalUrl,
+	},
+	keywords: tags.join(', '),
+	proficiencyLevel: 'Expert',
+	inLanguage: 'fr-FR',
+};
+
+const breadcrumbLd = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Accueil', item: `${SITE_ORIGIN}/` },
+		{ '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_ORIGIN}/blog` },
+		{ '@type': 'ListItem', position: 3, name: title, item: canonicalUrl },
+	],
+};
+---
+
+<Layout title={pageTitle} description={description}>
+	<link rel="canonical" href={canonicalUrl} slot="head" />
+	<meta property="og:type" content="article" slot="head" />
+	<meta property="og:title" content={title} slot="head" />
+	<meta property="og:description" content={description} slot="head" />
+	<meta property="og:url" content={canonicalUrl} slot="head" />
+	<meta name="twitter:card" content="summary_large_image" slot="head" />
+
+	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+
+	<SiteHeader current="blog" />
+
+	<main class="blogMain">
+		<article
+			class="blogArticle"
+			itemscope
+			itemtype="https://schema.org/TechArticle"
+			aria-labelledby="blog-article-title"
+		>
+			<div class="blogArticle__container">
+				<nav class="blogBreadcrumb" aria-label="Fil d’Ariane">
+					<ol>
+						<li><a href="/">Accueil</a></li>
+						<li><a href="/blog">Blog</a></li>
+						<li aria-current="page">{title}</li>
+					</ol>
+				</nav>
+
+				<header class="blogArticle__header">
+					<p class="blogArticle__meta">
+						<time datetime={pubDate} itemprop="datePublished">{new Date(pubDate).toLocaleDateString('fr-FR', { dateStyle: 'long' })}</time>
+						{updatedDate && (
+							<>
+								<span aria-hidden="true"> · </span>
+								<span>
+									Mis à jour le{' '}
+									<time datetime={updatedDate} itemprop="dateModified">
+										{new Date(updatedDate).toLocaleDateString('fr-FR', { dateStyle: 'long' })}
+									</time>
+								</span>
+							</>
+						)}
+						<span aria-hidden="true"> · </span>
+						<span>{readingTimeMinutes} min de lecture</span>
+					</p>
+					<h1 id="blog-article-title" itemprop="headline">{title}</h1>
+					<p class="blogArticle__lede" itemprop="description">{description}</p>
+					<ul class="blogArticle__tags" aria-label="Thématiques">
+						{tags.map((t) => (
+							<li>
+								<span class="blogArticle__tag">{t}</span>
+							</li>
+						))}
+					</ul>
+				</header>
+
+				{
+					Astro.slots.has('illustration') && (
+						<div class="blogArticle__illuWrap">
+							<slot name="illustration" />
+						</div>
+					)
+				}
+
+				<div class="blogArticle__body" itemprop="articleBody">
+					<slot />
+				</div>
+
+				<footer class="blogArticle__footer">
+					<p>
+						<strong>À propos de l’auteur :</strong> Emmanuel Sauvage, développeur fullstack et consultant indépendant
+						(Symfony, Vue.js, React, outils métier, data et automatisation).{' '}
+						<a href="/contact">Contact</a> · <a href="/services">Services</a>
+					</p>
+				</footer>
+			</div>
+		</article>
+	</main>
+
+	<SiteFooter />
+</Layout>
+
+<style>
+	.blogMain {
+		background: var(--color-bg);
+		min-width: 0;
+		overflow-x: clip;
+	}
+
+	.blogArticle__container {
+		width: min(760px, calc(100% - 32px));
+		margin: 0 auto;
+		padding: 28px 0 64px;
+	}
+
+	@media (min-width: 521px) {
+		.blogArticle__container {
+			width: min(760px, calc(100% - 48px));
+			padding-top: 36px;
+		}
+	}
+
+	.blogBreadcrumb {
+		margin-bottom: 20px;
+		font-size: 14px;
+		color: var(--color-muted);
+	}
+
+	.blogBreadcrumb ol {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px 10px;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		align-items: center;
+	}
+
+	.blogBreadcrumb li:not(:last-child)::after {
+		content: '/';
+		margin-left: 10px;
+		opacity: 0.45;
+		pointer-events: none;
+	}
+
+	.blogBreadcrumb a {
+		color: var(--color-spot-hover);
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.blogBreadcrumb a:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(196, 92, 46, 0.4);
+	}
+
+	.blogArticle__header {
+		margin-bottom: 28px;
+		padding-bottom: 22px;
+		border-bottom: 1px solid color-mix(in srgb, var(--color-border) 80%, rgba(196, 92, 46, 0.12));
+	}
+
+	.blogArticle__meta {
+		margin: 0 0 12px;
+		font-size: 14px;
+		color: var(--color-muted);
+	}
+
+	.blogArticle h1 {
+		margin: 0 0 14px;
+		font-size: clamp(1.55rem, 4.2vw, 2.15rem);
+		line-height: 1.12;
+		letter-spacing: -0.03em;
+		color: var(--color-primary);
+	}
+
+	.blogArticle__lede {
+		margin: 0 0 16px;
+		font-size: 1.08rem;
+		line-height: 1.55;
+		color: var(--color-muted);
+	}
+
+	.blogArticle__tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.blogArticle__tag {
+		display: inline-flex;
+		padding: 5px 11px;
+		border-radius: 999px;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		background: var(--color-spot-soft);
+		color: var(--color-spot-hover);
+		border: 1px solid rgba(196, 92, 46, 0.2);
+	}
+
+	.blogArticle__illuWrap {
+		margin-bottom: 28px;
+	}
+
+	.blogArticle__body :global(h2) {
+		margin: 2.2rem 0 0.75rem;
+		font-size: 1.35rem;
+		letter-spacing: -0.02em;
+		color: var(--color-primary);
+		line-height: 1.2;
+	}
+
+	.blogArticle__body :global(h2:first-child) {
+		margin-top: 0;
+	}
+
+	.blogArticle__body :global(h3) {
+		margin: 1.5rem 0 0.5rem;
+		font-size: 1.12rem;
+		color: var(--color-text);
+	}
+
+	.blogArticle__body :global(p) {
+		margin: 0 0 1rem;
+		line-height: 1.65;
+		color: var(--color-text);
+		opacity: 0.95;
+	}
+
+	.blogArticle__body :global(ul),
+	.blogArticle__body :global(ol) {
+		margin: 0 0 1rem;
+		padding-left: 1.35rem;
+		line-height: 1.6;
+		color: var(--color-text);
+		opacity: 0.95;
+	}
+
+	.blogArticle__body :global(li + li) {
+		margin-top: 0.35rem;
+	}
+
+	.blogArticle__body :global(a) {
+		color: var(--color-spot-hover);
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-color: rgba(196, 92, 46, 0.35);
+		text-underline-offset: 2px;
+	}
+
+	.blogArticle__body :global(a:hover) {
+		color: var(--color-spot);
+	}
+
+	.blogArticle__body :global(pre) {
+		margin: 1rem 0 1.25rem;
+		padding: 1rem 1.1rem;
+		border-radius: 14px;
+		overflow-x: auto;
+		background: #1a1b26;
+		color: #e4e4e7;
+		font-size: 0.82rem;
+		line-height: 1.5;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.blogArticle__body :global(code) {
+		font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+	}
+
+	.blogArticle__body :global(p code),
+	.blogArticle__body :global(li code) {
+		background: rgba(47, 58, 143, 0.08);
+		padding: 0.12em 0.35em;
+		border-radius: 6px;
+		font-size: 0.88em;
+		color: var(--color-primary);
+	}
+
+	.blogArticle__body :global(table) {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 1rem 0 1.25rem;
+		font-size: 0.95rem;
+	}
+
+	.blogArticle__body :global(th),
+	.blogArticle__body :global(td) {
+		border: 1px solid var(--color-border);
+		padding: 10px 12px;
+		text-align: left;
+		vertical-align: top;
+	}
+
+	.blogArticle__body :global(th) {
+		background: rgba(47, 58, 143, 0.06);
+		font-weight: 700;
+		color: var(--color-primary);
+	}
+
+	.blogArticle__body :global(aside.tldr) {
+		margin: 1.5rem 0;
+		padding: 16px 18px;
+		border-radius: 14px;
+		border: 1px solid color-mix(in srgb, var(--color-border) 75%, rgba(196, 92, 46, 0.2));
+		background: linear-gradient(135deg, var(--color-spot-soft), rgba(47, 58, 143, 0.05));
+	}
+
+	.blogArticle__body :global(aside.tldr strong) {
+		display: block;
+		margin-bottom: 8px;
+		color: var(--color-primary);
+	}
+
+	.blogArticle__body :global(.faq details) {
+		margin: 0.75rem 0;
+		padding: 12px 14px;
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.85);
+	}
+
+	.blogArticle__body :global(.faq summary) {
+		font-weight: 700;
+		cursor: pointer;
+		color: var(--color-primary);
+	}
+
+	.blogArticle__body :global(.faq p) {
+		margin-top: 10px;
+		margin-bottom: 0;
+	}
+
+	.blogArticle__footer {
+		margin-top: 3rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--color-border);
+		font-size: 0.95rem;
+		color: var(--color-muted);
+	}
+
+	.blogArticle__footer a {
+		color: var(--color-spot-hover);
+		font-weight: 600;
+	}
+</style>

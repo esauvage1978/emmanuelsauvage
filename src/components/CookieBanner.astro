@@ -317,8 +317,8 @@
 	}
 
 	.switch input:checked + .switch__ui {
-		background: rgba(79, 110, 247, 0.35);
-		border-color: rgba(79, 110, 247, 0.6);
+		background: var(--color-spot-soft);
+		border-color: color-mix(in srgb, var(--color-spot) 45%, transparent);
 	}
 
 	.switch input:checked + .switch__ui::after {

@@ -1,14 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 ---
 
 <Layout
 	title="Politique de confidentialité | Emmanuel Sauvage"
 	description="Politique de confidentialité et informations RGPD : données traitées, finalités, bases légales, durées de conservation, droits."
 >
+	<SiteHeader />
 	<main class="legal">
 		<div class="container">
-			<a class="backLink" href="/" aria-label="Retour à l’accueil">← Retour à l’accueil</a>
 			<h1>Politique de confidentialité</h1>
 			<p class="muted">Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}</p>
 
@@ -97,6 +99,7 @@ import Layout from '../layouts/Layout.astro';
 			</section>
 		</div>
 	</main>
+	<SiteFooter />
 </Layout>
 
 <style>
@@ -141,22 +144,6 @@ import Layout from '../layouts/Layout.astro';
 	.muted {
 		color: var(--color-muted);
 		opacity: 1;
-	}
-
-	.backLink {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		margin-bottom: 14px;
-		text-decoration: none;
-		color: var(--color-primary);
-		font-weight: 700;
-		letter-spacing: -0.01em;
-	}
-
-	.backLink:hover {
-		text-decoration: underline;
-		text-decoration-color: rgba(79, 110, 247, 0.45);
 	}
 
 	a {

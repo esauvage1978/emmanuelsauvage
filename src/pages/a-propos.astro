@@ -1,30 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import BrandLogo from '../components/BrandLogo.astro';
-import { GOOGLE_REVIEW_URL } from '../config/site';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { GOOGLE_REVIEW_URL, MALT_PROFILE_URL, LINKEDIN_URL } from '../config/site';
 ---
 
 <Layout
 	title="À propos | Emmanuel Sauvage"
 	description="Emmanuel Sauvage, développeur fullstack freelance : PHP Symfony, Vue.js, React, outils métier, automatisation et reporting. Basé près de Lille — également sur Malt."
 >
-	<header class="header">
-		<div class="container header__inner">
-			<a class="brand" href="/">
-				<span class="brand__logoWrap" aria-hidden="true">
-					<BrandLogo variant="header" class="brand__logo" />
-				</span>
-				<span class="brand__text">Emmanuel Sauvage</span>
-			</a>
-
-			<nav class="nav" aria-label="Navigation principale">
-				<a class="nav__link" href="/services">Services</a>
-				<a class="nav__link nav__link--current" href="/a-propos" aria-current="page">À propos</a>
-				<a class="nav__link" href="/contact">Contact</a>
-				<a class="nav__cta" href="/#contact">Discuter de votre projet</a>
-			</nav>
-		</div>
-	</header>
+	<SiteHeader current="a-propos" />
 
 	<main>
 		<section class="hero" aria-label="Présentation">
@@ -32,11 +18,13 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 				<div class="blob blob--a"></div>
 				<div class="blob blob--b"></div>
 				<div class="blob blob--c"></div>
+				<div class="blob blob--spot"></div>
 				<svg class="heroWave" viewBox="0 0 1200 500" preserveAspectRatio="none">
 					<defs>
 						<linearGradient id="aproposGrad" x1="0" y1="0" x2="1" y2="1">
-							<stop offset="0" stop-color="rgba(79,110,247,0.35)" />
-							<stop offset="1" stop-color="rgba(47,58,143,0.18)" />
+							<stop offset="0" stop-color="rgba(79,110,247,0.38)" />
+							<stop offset="0.55" stop-color="rgba(196,92,46,0.22)" />
+							<stop offset="1" stop-color="rgba(47,58,143,0.2)" />
 						</linearGradient>
 					</defs>
 					<path
@@ -46,16 +34,14 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 			</div>
 
 			<div class="container profileTop">
-				<a class="backLink" href="/" aria-label="Retour à l’accueil">← Retour à l’accueil</a>
-
 				<div class="profileTop__grid">
 					<div class="profileCard">
 						<div class="profileCard__avatar" aria-hidden="true">
 							<BrandLogo variant="profile" class="profileCard__avatarImg" />
 						</div>
 						<div class="profileCard__main">
-							<p class="eyebrow">Freelance · Développement &amp; outils métier</p>
-							<h1>Emmanuel Sauvage</h1>
+							<p class="eyebrow profileEyebrow">Freelance · Développement &amp; outils métier</p>
+							<h1>Emmanuel <span class="profileH1Accent">Sauvage</span></h1>
 							<p class="profileCard__title">
 								Développeur fullstack — <strong>Symfony</strong>, <strong>Vue.js</strong> / <strong>React</strong>,
 								automatisation &amp; reporting (Sheets, Power BI, Looker).
@@ -112,15 +98,17 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 						(répétitions, intégrations, synchronisations).
 					</p>
 					<p>
-						Comme sur un profil <a href="https://www.malt.fr/" target="_blank" rel="noopener noreferrer">Malt</a>, je
-						privilégie un <strong>cadrage honnête</strong> : comprendre votre contexte, vos contraintes et vos priorités
-						avant de proposer une solution. Je peux accompagner tout le cycle — analyse, développement, mise en
-						production, <strong>formation</strong> et transfert pour des équipes plus autonomes.
+						Comme sur un
+						<a href={MALT_PROFILE_URL} target="_blank" rel="noopener noreferrer">profil Malt</a>, je privilégie un
+						<strong>cadrage honnête</strong> : comprendre votre contexte, vos contraintes et vos priorités avant de
+						proposer une solution. Je peux accompagner tout le cycle — analyse, développement, mise en production,
+						<strong>formation</strong> et transfert pour des équipes plus autonomes.
 					</p>
 					<p class="prose__note">
-						<strong>Également présent sur Malt</strong> (plateforme de mise en relation entreprises · freelances IT) si
-						vous préférez ce cadre pour la mission. Vous pouvez rechercher mon nom sur le site ou me demander le lien
-						direct vers mon profil lors d’un premier échange.
+						<strong>Réseaux pro :</strong>
+						<a href={MALT_PROFILE_URL} target="_blank" rel="noopener noreferrer">profil Malt</a>
+						(Malt, mise en relation entreprises · freelances IT) ·
+						<a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>.
 					</p>
 				</div>
 
@@ -230,7 +218,7 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		</section>
 
 		<section class="section cta" aria-label="Appel à action">
-			<div class="container cta__inner">
+			<div class="container cta__inner cta__inner--accent">
 				<div>
 					<h2>Un projet, une question, un cadrage ?</h2>
 					<p>
@@ -246,167 +234,38 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		</section>
 	</main>
 
-	<footer class="footer" aria-label="Pied de page">
-		<div class="container footer__grid">
-			<div>
-				<div class="footer__brand">
-					<span class="footer__logoWrap" aria-hidden="true">
-						<BrandLogo variant="footer" class="footer__logo" />
-					</span>
-					<span>Emmanuel Sauvage</span>
-				</div>
-				<p class="footer__text">Consultant indépendant — optimisation des outils digitaux et des processus.</p>
-				<p class="footer__text">
-					<a href="mailto:contact@emmanuelsauvage.fr">contact@emmanuelsauvage.fr</a>
-				</p>
-				<p class="footer__text">
-					<a href="tel:+33609924945">06 09 92 49 45</a> · Erquinghem-lys
-				</p>
-			</div>
-
-			<div>
-				<div class="footer__title">Navigation</div>
-				<ul class="footer__links">
-					<li><a href="/services">Services</a></li>
-					<li><a href="/a-propos">À propos</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</div>
-
-			<div>
-				<div class="footer__title">Coordonnées</div>
-				<ul class="footer__links">
-					<li><a href="/contact">Formulaire de contact</a></li>
-					<li><a href="/#contact">Discuter de votre projet</a></li>
-					<li>
-						<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
-					</li>
-				</ul>
-			</div>
-			<div>
-				<div class="footer__title">Légal</div>
-				<ul class="footer__links">
-					<li><a href="/mentions-legales">Mentions légales</a></li>
-					<li><a href="/politique-de-confidentialite">Politique de confidentialité</a></li>
-					<li><a href="/cgu">CGU</a></li>
-					<li><a href="/cgv">CGV</a></li>
-					<li><a href="/cookies">Cookies</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="container footer__bottom">
-			<p>© {new Date().getFullYear()} Emmanuel Sauvage — Tous droits réservés.</p>
-		</div>
-	</footer>
+	<SiteFooter />
 </Layout>
 
 <style>
 	.container {
-		width: min(1120px, calc(100% - 48px));
+		width: min(1120px, calc(100% - 32px));
 		margin: 0 auto;
 	}
 
-	.header {
-		position: sticky;
-		top: 0;
-		z-index: 50;
-		background: rgba(247, 248, 251, 0.78);
-		backdrop-filter: blur(10px);
-		border-bottom: 1px solid var(--color-border);
-	}
-
-	.header__inner {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 14px 0;
-		gap: 20px;
-	}
-
-	.brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 10px;
-		text-decoration: none;
-		font-weight: 700;
-		letter-spacing: -0.02em;
-		color: var(--color-primary);
-	}
-
-	.brand:hover {
-		color: var(--color-primary);
-		opacity: 0.88;
-	}
-
-	.brand__logoWrap {
-		display: inline-flex;
-		align-items: center;
-		line-height: 0;
-	}
-
-	.brand__logo {
-		display: block;
-		width: 32px;
-		height: 32px;
-		border-radius: 10px;
-		object-fit: cover;
-		box-shadow: 0 8px 18px rgba(47, 58, 143, 0.24);
-	}
-
-	.nav {
-		display: flex;
-		align-items: center;
-		gap: 14px;
-		flex-wrap: wrap;
-		justify-content: flex-end;
-	}
-
-	.nav__link {
-		text-decoration: none;
-		color: var(--color-text);
-		opacity: 0.9;
-		padding: 10px 10px;
-		border-radius: 10px;
-		transition: background 0.15s ease, opacity 0.15s ease;
-	}
-
-	.nav__link:hover {
-		opacity: 1;
-		background: rgba(47, 58, 143, 0.06);
-	}
-
-	.nav__link--current {
-		font-weight: 700;
-		color: var(--color-primary);
-		background: rgba(47, 58, 143, 0.08);
-	}
-
-	.nav__cta {
-		text-decoration: none;
-		color: white;
-		background: var(--color-primary);
-		padding: 10px 14px;
-		border-radius: 12px;
-		box-shadow: var(--shadow-sm);
-		transition: transform 0.15s ease, box-shadow 0.15s ease;
-		white-space: nowrap;
-	}
-
-	.nav__cta:hover {
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-md);
+	@media (min-width: 521px) {
+		.container {
+			width: min(1120px, calc(100% - 48px));
+		}
 	}
 
 	main {
 		display: block;
+		min-width: 0;
+		overflow-x: clip;
 	}
 
 	.hero {
 		position: relative;
 		overflow: hidden;
 		padding: 40px 0 32px;
-		background: white;
-		border-bottom: 1px solid var(--color-border);
+		background: linear-gradient(
+			165deg,
+			#ffffff 0%,
+			rgba(247, 248, 252, 0.98) 42%,
+			color-mix(in srgb, var(--color-spot-soft) 55%, #ffffff) 100%
+		);
+		border-bottom: 1px solid color-mix(in srgb, var(--color-border) 70%, rgba(196, 92, 46, 0.12));
 	}
 
 	.heroFx {
@@ -447,8 +306,17 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		height: 520px;
 		bottom: -300px;
 		left: 36%;
-		background: radial-gradient(circle at 35% 35%, rgba(79, 110, 247, 0.35), rgba(79, 110, 247, 0) 62%),
-			radial-gradient(circle at 70% 40%, rgba(47, 58, 143, 0.2), rgba(47, 58, 143, 0) 70%);
+		background: radial-gradient(circle at 35% 35%, rgba(79, 110, 247, 0.32), rgba(79, 110, 247, 0) 62%),
+			radial-gradient(circle at 70% 40%, rgba(196, 92, 46, 0.18), rgba(47, 58, 143, 0) 70%);
+	}
+
+	.blob--spot {
+		width: 380px;
+		height: 380px;
+		bottom: -140px;
+		right: 8%;
+		background: radial-gradient(circle at 45% 45%, rgba(196, 92, 46, 0.42), rgba(196, 92, 46, 0) 62%);
+		mix-blend-mode: multiply;
 	}
 
 	.heroWave {
@@ -464,23 +332,6 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		z-index: 1;
 	}
 
-	.backLink {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		margin-bottom: 20px;
-		text-decoration: none;
-		color: var(--color-primary);
-		font-weight: 700;
-		letter-spacing: -0.01em;
-		font-size: 14px;
-	}
-
-	.backLink:hover {
-		text-decoration: underline;
-		text-decoration-color: rgba(79, 110, 247, 0.45);
-	}
-
 	.profileTop__grid {
 		margin-bottom: 22px;
 	}
@@ -490,11 +341,14 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		gap: 22px;
 		align-items: flex-start;
 		flex-wrap: wrap;
-		background: rgba(255, 255, 255, 0.88);
-		border: 1px solid var(--color-border);
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid color-mix(in srgb, var(--color-border) 82%, rgba(196, 92, 46, 0.15));
+		border-left: 4px solid var(--color-spot);
 		border-radius: 22px;
 		padding: 22px 24px;
-		box-shadow: var(--shadow-md);
+		box-shadow:
+			0 0 0 1px rgba(196, 92, 46, 0.06),
+			var(--shadow-md);
 		backdrop-filter: blur(8px);
 	}
 
@@ -503,8 +357,13 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		width: 96px;
 		height: 96px;
 		border-radius: 20px;
-		background: linear-gradient(145deg, rgba(47, 58, 143, 0.12), rgba(79, 110, 247, 0.08));
-		border: 1px solid rgba(47, 58, 143, 0.2);
+		background: linear-gradient(
+			145deg,
+			rgba(47, 58, 143, 0.14),
+			rgba(79, 110, 247, 0.1),
+			var(--color-spot-soft)
+		);
+		border: 1px solid color-mix(in srgb, rgba(47, 58, 143, 0.25) 70%, rgba(196, 92, 46, 0.2));
 		display: grid;
 		place-items: center;
 		box-shadow: var(--shadow-sm);
@@ -530,11 +389,35 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		text-transform: uppercase;
 	}
 
+	.profileEyebrow {
+		position: relative;
+		padding-left: 14px;
+		color: color-mix(in srgb, var(--color-text) 70%, var(--color-spot));
+	}
+
+	.profileEyebrow::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.15em;
+		bottom: 0.15em;
+		width: 3px;
+		border-radius: 2px;
+		background: linear-gradient(180deg, var(--color-spot), var(--color-primary));
+	}
+
 	h1 {
 		margin: 0 0 10px;
 		font-size: clamp(28px, 3.5vw, 40px);
 		line-height: 1.1;
 		letter-spacing: -0.03em;
+	}
+
+	.profileH1Accent {
+		background: linear-gradient(105deg, var(--color-primary) 0%, var(--color-spot) 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
 	}
 
 	.profileCard__title {
@@ -560,7 +443,7 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		display: inline-block;
 		min-width: 7.5rem;
 		font-weight: 700;
-		color: var(--color-primary);
+		color: color-mix(in srgb, var(--color-primary) 55%, var(--color-spot-hover));
 	}
 
 	.profileCard__actions {
@@ -587,14 +470,31 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		border: 1px solid rgba(47, 58, 143, 0.15);
 	}
 
+	.tag:nth-child(3n + 2) {
+		color: var(--color-spot-hover);
+		background: var(--color-spot-soft);
+		border-color: rgba(196, 92, 46, 0.22);
+	}
+
+	.tag:nth-child(3n) {
+		color: var(--color-primary);
+		background: linear-gradient(135deg, rgba(47, 58, 143, 0.07), rgba(79, 110, 247, 0.1));
+		border-color: rgba(79, 110, 247, 0.2);
+	}
+
 	.section {
 		padding: 56px 0;
 	}
 
 	.section--alt {
-		background: rgba(255, 255, 255, 0.7);
-		border-top: 1px solid var(--color-border);
-		border-bottom: 1px solid var(--color-border);
+		background: linear-gradient(
+			180deg,
+			rgba(255, 255, 255, 0.92) 0%,
+			color-mix(in srgb, var(--color-bg) 92%, var(--color-spot-soft)) 50%,
+			rgba(255, 255, 255, 0.88) 100%
+		);
+		border-top: 1px solid color-mix(in srgb, var(--color-border) 75%, rgba(196, 92, 46, 0.1));
+		border-bottom: 1px solid color-mix(in srgb, var(--color-border) 75%, rgba(79, 110, 247, 0.08));
 	}
 
 	.section__head {
@@ -615,19 +515,38 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		font-size: clamp(24px, 2.8vw, 32px);
 		letter-spacing: -0.02em;
 		line-height: 1.15;
+		color: var(--color-primary);
+	}
+
+	.section__head h2 {
+		position: relative;
+		padding-bottom: 10px;
+	}
+
+	.section__head h2::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 48px;
+		height: 3px;
+		border-radius: 2px;
+		background: linear-gradient(90deg, var(--color-spot), var(--color-accent));
 	}
 
 	h3 {
 		margin: 0 0 10px;
 		font-size: 17px;
 		letter-spacing: -0.01em;
+		color: var(--color-primary);
 	}
 
 	.grid2 {
 		display: grid;
-		grid-template-columns: 1.15fr 0.85fr;
+		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
 		gap: 28px;
 		align-items: start;
+		min-width: 0;
 	}
 
 	.prose h2 {
@@ -642,17 +561,22 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 	}
 
 	.prose a {
-		color: var(--color-primary);
+		color: var(--color-spot-hover);
 		font-weight: 600;
 		text-decoration: underline;
-		text-decoration-color: rgba(79, 110, 247, 0.35);
+		text-decoration-color: rgba(196, 92, 46, 0.38);
+	}
+
+	.prose a:hover {
+		color: var(--color-spot);
+		text-decoration-color: rgba(196, 92, 46, 0.55);
 	}
 
 	.prose__note {
 		padding: 14px 16px;
 		border-radius: 14px;
-		background: rgba(47, 58, 143, 0.06);
-		border: 1px solid rgba(47, 58, 143, 0.12);
+		background: linear-gradient(135deg, var(--color-spot-soft), rgba(47, 58, 143, 0.06));
+		border: 1px solid color-mix(in srgb, rgba(47, 58, 143, 0.14) 60%, rgba(196, 92, 46, 0.18));
 		font-size: 15px;
 	}
 
@@ -666,7 +590,9 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius);
 		padding: 18px;
-		box-shadow: var(--shadow-sm);
+		box-shadow:
+			inset 0 3px 0 0 rgba(196, 92, 46, 0.26),
+			var(--shadow-sm);
 	}
 
 	.card--sticky {
@@ -675,12 +601,14 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 	}
 
 	.callout {
-		background: rgba(255, 255, 255, 0.92);
-		border: 1px solid var(--color-border);
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), var(--color-spot-soft));
+		border: 1px solid color-mix(in srgb, var(--color-border) 80%, rgba(196, 92, 46, 0.15));
+		border-left: 3px solid var(--color-spot);
 		border-radius: var(--radius);
 		padding: 18px;
 		box-shadow: var(--shadow-sm);
 	}
+
 
 	.checklist {
 		margin: 0;
@@ -705,8 +633,9 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 
 	.cards3 {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 14px;
+		min-width: 0;
 	}
 
 	.miniCard {
@@ -714,7 +643,29 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius);
 		padding: 18px;
-		box-shadow: var(--shadow-sm);
+		box-shadow:
+			inset 0 3px 0 0 rgba(79, 110, 247, 0.22),
+			var(--shadow-sm);
+		transition: box-shadow 0.18s ease, transform 0.18s ease;
+	}
+
+	.miniCard:nth-child(2) {
+		box-shadow:
+			inset 0 3px 0 0 rgba(196, 92, 46, 0.32),
+			var(--shadow-sm);
+	}
+
+	.miniCard:nth-child(3) {
+		box-shadow:
+			inset 0 3px 0 0 color-mix(in srgb, var(--color-accent) 45%, var(--color-spot) 55%),
+			var(--shadow-sm);
+	}
+
+	.miniCard:hover {
+		transform: translateY(-2px);
+		box-shadow:
+			inset 0 3px 0 0 rgba(196, 92, 46, 0.38),
+			var(--shadow-md);
 	}
 
 	.miniCard h3 {
@@ -730,8 +681,9 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 
 	.quotes {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 14px;
+		min-width: 0;
 	}
 
 	.quote {
@@ -741,6 +693,15 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		border-radius: var(--radius);
 		padding: 18px;
 		box-shadow: var(--shadow-sm);
+		border-left: 4px solid var(--color-accent);
+	}
+
+	.quote:nth-child(2) {
+		border-left-color: var(--color-spot);
+	}
+
+	.quote:nth-child(3) {
+		border-left-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-spot) 60%);
 	}
 
 	.quote blockquote {
@@ -762,8 +723,13 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		margin-top: 22px;
 		padding: 20px 22px;
 		border-radius: var(--radius);
-		border: 1px solid rgba(47, 58, 143, 0.18);
-		background: linear-gradient(180deg, rgba(47, 58, 143, 0.06), rgba(255, 255, 255, 0.75));
+		border: 1px dashed color-mix(in srgb, rgba(47, 58, 143, 0.28) 65%, rgba(196, 92, 46, 0.35));
+		background: linear-gradient(
+			125deg,
+			rgba(47, 58, 143, 0.07),
+			var(--color-spot-soft),
+			rgba(255, 255, 255, 0.88)
+		);
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
@@ -837,6 +803,21 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		box-shadow: var(--shadow-md);
 	}
 
+	.cta__inner--accent {
+		border-color: color-mix(in srgb, var(--color-spot) 32%, rgba(47, 58, 143, 0.2));
+		background: linear-gradient(
+			135deg,
+			rgba(47, 58, 143, 0.12),
+			var(--color-spot-soft),
+			rgba(79, 110, 247, 0.06)
+		);
+		box-shadow: 0 12px 40px rgba(47, 58, 143, 0.08), 0 0 0 1px rgba(196, 92, 46, 0.1);
+	}
+
+	.cta__inner--accent h2 {
+		color: var(--color-primary);
+	}
+
 	.cta__inner p {
 		margin: 0;
 		color: var(--color-muted);
@@ -849,95 +830,6 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		justify-content: flex-end;
 		gap: 12px;
 		flex-wrap: wrap;
-	}
-
-	.footer {
-		padding: 32px 0 22px;
-		border-top: 1px solid var(--color-border);
-		background: rgba(247, 248, 251, 0.85);
-	}
-
-	.footer__grid {
-		display: grid;
-		grid-template-columns: 1.6fr 1fr 1fr 1fr;
-		gap: 18px;
-		align-items: start;
-	}
-
-	.footer__brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		font-weight: 800;
-		letter-spacing: -0.02em;
-		color: var(--color-primary);
-	}
-
-	.footer__logoWrap {
-		display: inline-flex;
-		align-items: center;
-		line-height: 0;
-	}
-
-	.footer__logo {
-		display: block;
-		width: 28px;
-		height: 28px;
-		border-radius: 8px;
-		object-fit: cover;
-	}
-
-	.footer__text {
-		color: var(--color-muted);
-		opacity: 1;
-		margin: 6px 0 0;
-	}
-
-	.footer__text a {
-		color: inherit;
-		text-decoration: none;
-		font-weight: 600;
-	}
-
-	.footer__text a:hover {
-		text-decoration: underline;
-		text-decoration-color: rgba(47, 58, 143, 0.4);
-	}
-
-	.footer__title {
-		font-weight: 700;
-		margin-bottom: 10px;
-	}
-
-	.footer__links {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: grid;
-		gap: 8px;
-	}
-
-	.footer__links a {
-		color: var(--color-muted);
-		text-decoration: none;
-	}
-
-	.footer__links a:hover {
-		color: var(--color-text);
-		text-decoration: underline;
-		text-decoration-color: rgba(47, 58, 143, 0.4);
-	}
-
-	.footer__bottom {
-		margin-top: 18px;
-		padding-top: 16px;
-		border-top: 1px solid var(--color-border);
-		color: var(--color-muted);
-		font-size: 14px;
-	}
-
-	.footer__bottom p {
-		margin: 0;
 	}
 
 	@media (max-width: 980px) {
@@ -960,10 +852,6 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 
 		.cta__actions {
 			justify-content: flex-start;
-		}
-
-		.footer__grid {
-			grid-template-columns: 1fr;
 		}
 	}
 

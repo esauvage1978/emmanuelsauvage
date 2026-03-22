@@ -35,6 +35,7 @@ const {
 		}
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<slot name="head" />
 
 		<!--
 			Mesure d’audience : GTM + gtag.js — chargés uniquement après consentement « mesure d’audience » (RGPD).
@@ -118,6 +119,10 @@ const {
 	:root {
 		--color-primary: #2f3a8f;
 		--color-accent: #4f6ef7;
+		/* Accent chaud : contraste avec le bleu, pour attirer l’œil (CTA, repères) */
+		--color-spot: #c45c2e;
+		--color-spot-hover: #a64d27;
+		--color-spot-soft: rgba(196, 92, 46, 0.14);
 		--color-text: #2d2d2d;
 		--color-muted: #5b5b5b;
 		--color-border: rgba(45, 45, 45, 0.12);
@@ -126,6 +131,11 @@ const {
 		--shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
 		--shadow-md: 0 10px 30px rgba(16, 24, 40, 0.10);
 		--radius: 16px;
+	}
+
+	html {
+		/* Évite le débordement horizontal (blobs, grilles) → double barre / layout qui bouge */
+		overflow-x: clip;
 	}
 
 	html,
@@ -148,11 +158,188 @@ const {
 	}
 
 	:focus-visible {
-		outline: 3px solid rgba(79, 110, 247, 0.55);
+		outline: 3px solid rgba(196, 92, 46, 0.55);
+		outline: 3px solid color-mix(in srgb, var(--color-spot) 55%, var(--color-accent));
 		outline-offset: 2px;
 	}
 
 	::selection {
-		background: rgba(47, 58, 143, 0.18);
+		background: rgba(196, 92, 46, 0.2);
+	}
+</style>
+
+<!-- CTA cohérents sur tout le site (les styles par page sont scoped, d’où !important ciblé) -->
+<style is:global>
+	a.nav__cta,
+	.siteHeader__cta.nav__cta {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		padding: 10px 14px;
+		border-radius: 12px;
+		box-shadow: var(--shadow-sm);
+		transition: transform 0.15s ease, box-shadow 0.15s ease;
+		white-space: nowrap;
+	}
+
+	a.nav__cta:hover,
+	.siteHeader__cta.nav__cta:hover {
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-md);
+	}
+
+	a.button.button--primary,
+	button.button.button--primary,
+	a.nav__cta,
+	.siteHeader__cta.nav__cta,
+	.cookie .btn--primary,
+	.prefs .btn--primary {
+		background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-spot) 100%) !important;
+		color: #fff !important;
+		border-color: transparent !important;
+	}
+
+	a.button.button--primary:hover,
+	button.button.button--primary:hover,
+	a.nav__cta:hover,
+	.siteHeader__cta.nav__cta:hover,
+	.cookie .btn--primary:hover,
+	.prefs .btn--primary:hover {
+		background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-spot-hover) 100%) !important;
+	}
+
+	/* Pied de page (accueil, services, à propos, contact — même rendu « marque ») */
+	.footer .container {
+		width: min(1120px, calc(100% - 32px));
+		margin: 0 auto;
+	}
+
+	@media (min-width: 521px) {
+		.footer .container {
+			width: min(1120px, calc(100% - 48px));
+		}
+	}
+
+	.footer {
+		padding: 32px 0 22px;
+		border-top: 1px solid var(--color-border);
+		background: rgba(247, 248, 251, 0.85);
+	}
+
+	.footer--brand {
+		position: relative;
+		margin-top: 0;
+		padding-top: 40px;
+		padding-bottom: 28px;
+		border-top: none;
+		background: linear-gradient(180deg, #e4e8f2 0%, #d8dce8 48%, #d2d7e5 100%);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.65),
+			0 -12px 32px rgba(47, 58, 143, 0.07);
+	}
+
+	.footer--brand::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		height: 4px;
+		background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-spot) 55%, var(--color-accent) 100%);
+		pointer-events: none;
+	}
+
+	.footer--brand .footer__bottom {
+		border-top-color: rgba(45, 45, 45, 0.14);
+	}
+
+	.footer__grid {
+		display: grid;
+		grid-template-columns: 1.45fr repeat(4, minmax(0, 1fr));
+		gap: 18px;
+		align-items: start;
+	}
+
+	.footer__brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--color-primary);
+	}
+
+	.footer__logoWrap {
+		display: inline-flex;
+		align-items: center;
+		line-height: 0;
+	}
+
+	.footer__logo {
+		display: block;
+		width: 28px;
+		height: 28px;
+		border-radius: 8px;
+		object-fit: cover;
+	}
+
+	.footer__text {
+		color: var(--color-muted);
+		opacity: 1;
+		margin: 6px 0 0;
+	}
+
+	.footer__text a {
+		color: inherit;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.footer__text a:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(47, 58, 143, 0.4);
+	}
+
+	.footer__title {
+		font-weight: 700;
+		margin-bottom: 10px;
+	}
+
+	.footer__links {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 8px;
+	}
+
+	.footer__links a {
+		color: var(--color-muted);
+		text-decoration: none;
+	}
+
+	.footer__links a:hover {
+		color: var(--color-text);
+		text-decoration: underline;
+		text-decoration-color: rgba(47, 58, 143, 0.4);
+	}
+
+	.footer__bottom {
+		margin-top: 18px;
+		padding-top: 16px;
+		border-top: 1px solid var(--color-border);
+		color: var(--color-muted);
+		font-size: 14px;
+	}
+
+	.footer__bottom p {
+		margin: 0;
+	}
+
+	@media (max-width: 980px) {
+		.footer__grid {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

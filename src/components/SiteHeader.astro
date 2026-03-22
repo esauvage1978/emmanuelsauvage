@@ -1,0 +1,302 @@
+---
+import BrandLogo from './BrandLogo.astro';
+
+export type SiteNavCurrent = 'home' | 'services' | 'blog' | 'a-propos' | 'contact';
+
+type Props = {
+	current?: SiteNavCurrent;
+};
+
+/** Si omis (ex. pages légales), aucun lien n’est marqué « page courante ». */
+const { current } = Astro.props;
+
+const discussHref = current === 'home' ? '#contact' : '/#contact';
+---
+
+<header class="siteHeader" data-site-header>
+	<div class="siteHeader__wrap">
+		<div class="siteHeader__inner">
+		<a class="siteHeader__brand" href="/">
+			<span class="siteHeader__logoWrap" aria-hidden="true">
+				<BrandLogo variant="header" class="siteHeader__logo" />
+			</span>
+			<span class="siteHeader__brandText">Emmanuel Sauvage</span>
+		</a>
+
+		<button
+			type="button"
+			class="siteHeader__toggle"
+			data-menu-toggle
+			aria-expanded="false"
+			aria-controls="site-header-nav"
+			aria-label="Ouvrir le menu"
+		>
+			<span class="siteHeader__toggleBar" aria-hidden="true"></span>
+			<span class="siteHeader__toggleBar" aria-hidden="true"></span>
+			<span class="siteHeader__toggleBar" aria-hidden="true"></span>
+		</button>
+
+		<nav id="site-header-nav" class="siteHeader__nav" data-nav-panel aria-label="Navigation principale">
+			<a class:list={['siteHeader__link', { 'siteHeader__link--current': current === 'services' }]} href="/services" {...(current === 'services' ? { 'aria-current': 'page' } : {})}>Services</a>
+			<a class:list={['siteHeader__link', { 'siteHeader__link--current': current === 'blog' }]} href="/blog" {...(current === 'blog' ? { 'aria-current': 'page' } : {})}>Blog</a>
+			<a
+				class:list={['siteHeader__link', { 'siteHeader__link--current': current === 'a-propos' }]}
+				href="/a-propos"
+				{...(current === 'a-propos' ? { 'aria-current': 'page' } : {})}>À propos</a>
+			<a class:list={['siteHeader__link', { 'siteHeader__link--current': current === 'contact' }]} href="/contact" {...(current === 'contact' ? { 'aria-current': 'page' } : {})}>Contact</a>
+			<a class="siteHeader__cta nav__cta" href={discussHref}>Discuter de votre projet</a>
+		</nav>
+		</div>
+	</div>
+</header>
+
+<script is:inline>
+	(function () {
+		function init() {
+			var root = document.querySelector('[data-site-header]');
+			if (!root) return;
+			var btn = root.querySelector('[data-menu-toggle]');
+			var nav = root.querySelector('[data-nav-panel]');
+			if (!btn || !nav) return;
+
+			function setOpen(open) {
+				nav.classList.toggle('is-open', open);
+				root.classList.toggle('siteHeader--open', open);
+				btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+				btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+				document.body.classList.toggle('siteHeader-nav-open', open);
+			}
+
+			btn.addEventListener('click', function () {
+				setOpen(!nav.classList.contains('is-open'));
+			});
+
+			nav.querySelectorAll('a').forEach(function (a) {
+				a.addEventListener('click', function () {
+					setOpen(false);
+				});
+			});
+
+			document.addEventListener('keydown', function (e) {
+				if (e.key === 'Escape') setOpen(false);
+			});
+		}
+		if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+		else init();
+	})();
+</script>
+
+<style>
+	/* Mobile first */
+	.siteHeader {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: rgba(247, 248, 251, 0.92);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.siteHeader--open {
+		box-shadow: 0 8px 24px rgba(47, 58, 143, 0.08);
+	}
+
+	.siteHeader__wrap {
+		width: min(1120px, calc(100% - 32px));
+		margin: 0 auto;
+	}
+
+	@media (min-width: 521px) {
+		.siteHeader__wrap {
+			width: min(1120px, calc(100% - 48px));
+		}
+	}
+
+	.siteHeader__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 12px 0;
+		position: relative;
+	}
+
+	.siteHeader__logoWrap {
+		display: inline-flex;
+		align-items: center;
+		line-height: 0;
+	}
+
+	.siteHeader__logo {
+		display: block;
+		width: 32px;
+		height: 32px;
+		border-radius: 10px;
+		object-fit: cover;
+		box-shadow: 0 8px 18px rgba(47, 58, 143, 0.24);
+	}
+
+	.siteHeader__brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		text-decoration: none;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--color-primary);
+		min-width: 0;
+		flex-shrink: 0;
+	}
+
+	.siteHeader__brand:hover {
+		opacity: 0.88;
+	}
+
+	.siteHeader__brandText {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: min(52vw, 200px);
+	}
+
+	.siteHeader__toggle {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		width: 44px;
+		height: 44px;
+		padding: 0;
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.9);
+		cursor: pointer;
+		flex-shrink: 0;
+		transition: background 0.15s ease, border-color 0.15s ease;
+	}
+
+	.siteHeader__toggle:hover {
+		background: #fff;
+		border-color: color-mix(in srgb, var(--color-primary) 22%, var(--color-border));
+	}
+
+	.siteHeader__toggleBar {
+		display: block;
+		width: 20px;
+		height: 2px;
+		margin: 0 auto;
+		border-radius: 1px;
+		background: var(--color-primary);
+		transition: transform 0.2s ease, opacity 0.2s ease;
+	}
+
+	.siteHeader--open .siteHeader__toggleBar:nth-child(1) {
+		transform: translateY(7px) rotate(45deg);
+	}
+
+	.siteHeader--open .siteHeader__toggleBar:nth-child(2) {
+		opacity: 0;
+	}
+
+	.siteHeader--open .siteHeader__toggleBar:nth-child(3) {
+		transform: translateY(-7px) rotate(-45deg);
+	}
+
+	.siteHeader__nav {
+		display: none;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 4px;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: calc(100% + 0px);
+		padding: 12px 0 16px;
+		margin: 0;
+		background: rgba(255, 255, 255, 0.98);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-bottom: 1px solid var(--color-border);
+		box-shadow: 0 16px 40px rgba(47, 58, 143, 0.1);
+	}
+
+	.siteHeader__nav.is-open {
+		display: flex;
+	}
+
+	.siteHeader__link {
+		text-decoration: none;
+		color: var(--color-text);
+		font-weight: 600;
+		padding: 14px 16px;
+		border-radius: 12px;
+		transition: background 0.15s ease;
+	}
+
+	.siteHeader__link:hover {
+		background: rgba(47, 58, 143, 0.06);
+	}
+
+	.siteHeader__link--current {
+		color: var(--color-primary);
+		background: rgba(47, 58, 143, 0.08);
+	}
+
+	.siteHeader__nav .siteHeader__cta {
+		margin-top: 8px;
+		text-align: center;
+		justify-content: center;
+	}
+
+	@media (min-width: 768px) {
+		.siteHeader__brandText {
+			max-width: none;
+		}
+
+		.siteHeader__toggle {
+			display: none;
+		}
+
+		.siteHeader__nav {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			gap: 6px 10px;
+			position: static;
+			padding: 0;
+			background: transparent;
+			border: none;
+			box-shadow: none;
+		}
+
+		.siteHeader__nav.is-open {
+			display: flex;
+		}
+
+		.siteHeader__link {
+			padding: 10px 12px;
+			font-weight: 500;
+		}
+
+		.siteHeader__nav .siteHeader__cta {
+			margin-top: 0;
+			white-space: nowrap;
+		}
+	}
+</style>
+
+<style is:global>
+	body.siteHeader-nav-open {
+		overflow: hidden;
+	}
+
+	@media (min-width: 768px) {
+		/* Pas de overflow:auto : peut forcer une 2e zone de défilement si la classe reste active */
+		body.siteHeader-nav-open {
+			overflow: visible;
+		}
+	}
+</style>

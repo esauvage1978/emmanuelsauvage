@@ -6,6 +6,8 @@ const ZAPIER_CATCH_PATH = '/hooks/catch/26903545/upkex8r/';
 
 // https://astro.build/config
 export default defineConfig({
+	/** `/blog` et `/blog/` + articles `/blog/slug/` ; combiné à `blog/index.astro` (pas `blog.astro` + dossier `blog/`). */
+	trailingSlash: 'ignore',
 	vite: {
 		server: {
 			proxy: {

@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 ---
 
 <Layout title="CGV | Emmanuel Sauvage" description="Conditions Générales de Vente des prestations de conseil et développement.">
+	<SiteHeader />
 	<main class="legal">
 		<div class="container">
-			<a class="backLink" href="/" aria-label="Retour à l’accueil">← Retour à l’accueil</a>
 			<h1>Conditions Générales de Vente (CGV)</h1>
 			<p class="muted">Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}</p>
 
@@ -135,6 +137,7 @@ import Layout from '../layouts/Layout.astro';
 			</section>
 		</div>
 	</main>
+	<SiteFooter />
 </Layout>
 
 <style>
@@ -183,22 +186,6 @@ import Layout from '../layouts/Layout.astro';
 
 	a {
 		color: var(--color-primary);
-	}
-
-	.backLink {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		margin-bottom: 14px;
-		text-decoration: none;
-		color: var(--color-primary);
-		font-weight: 700;
-		letter-spacing: -0.01em;
-	}
-
-	.backLink:hover {
-		text-decoration: underline;
-		text-decoration-color: rgba(79, 110, 247, 0.45);
 	}
 
 	@media (max-width: 520px) {

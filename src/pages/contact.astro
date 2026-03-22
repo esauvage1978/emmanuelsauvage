@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import BrandLogo from '../components/BrandLogo.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import { GOOGLE_REVIEW_URL } from '../config/site';
 
 /** En dev : proxy Vite (astro.config). En prod (WAMP) : PHP dans public/. */
@@ -11,35 +13,21 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 	title="Contact | Emmanuel Sauvage"
 	description="Contactez Emmanuel Sauvage : développement Symfony, Vue.js, React, automatisation et reporting (Sheets, Power BI, Looker) pour votre entreprise."
 >
-	<header class="header">
-		<div class="container header__inner">
-			<a class="brand" href="/">
-				<span class="brand__logoWrap" aria-hidden="true">
-					<BrandLogo variant="header" class="brand__logo" />
-				</span>
-				<span class="brand__text">Emmanuel Sauvage</span>
-			</a>
+	<SiteHeader current="contact" />
 
-			<nav class="nav" aria-label="Navigation principale">
-				<a class="nav__link" href="/services">Services</a>
-				<a class="nav__link" href="/a-propos">À propos</a>
-				<a class="nav__link nav__link--current" href="/contact" aria-current="page">Contact</a>
-				<a class="nav__cta" href="/#contact">Discuter de votre projet</a>
-			</nav>
-		</div>
-	</header>
-
-	<main>
+	<main class="contactPage">
 		<section class="hero" aria-label="Contact">
 			<div class="heroFx" aria-hidden="true">
 				<div class="blob blob--a"></div>
 				<div class="blob blob--b"></div>
 				<div class="blob blob--c"></div>
+				<div class="blob blob--spot"></div>
 				<svg class="heroWave" viewBox="0 0 1200 500" preserveAspectRatio="none">
 					<defs>
 						<linearGradient id="contactGrad" x1="0" y1="0" x2="1" y2="1">
-							<stop offset="0" stop-color="rgba(79,110,247,0.35)" />
-							<stop offset="1" stop-color="rgba(47,58,143,0.18)" />
+							<stop offset="0" stop-color="rgba(79,110,247,0.38)" />
+							<stop offset="0.55" stop-color="rgba(196,92,46,0.22)" />
+							<stop offset="1" stop-color="rgba(47,58,143,0.2)" />
 						</linearGradient>
 					</defs>
 					<path
@@ -49,9 +37,8 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 			</div>
 			<div class="container hero__grid">
 				<div class="hero__content">
-					<a class="backLink" href="/" aria-label="Retour à l’accueil">← Retour à l’accueil</a>
-					<p class="eyebrow">Développement web • Symfony • Vue.js • React</p>
-					<h1>Parlons de vos outils et de vos processus</h1>
+					<p class="eyebrow contactEyebrow">Développement web • Symfony • Vue.js • React</p>
+					<h1>Parlons de <span class="contactH1Accent">vos outils</span> et de vos processus</h1>
 					<p class="hero__subtitle">
 						Expliquez votre contexte : applications métier, interfaces, automatisation ou reporting — je vous réponds
 						avec une première piste concrète.
@@ -174,7 +161,7 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 		</section>
 
 		<section class="section cta" aria-label="Poursuivre">
-			<div class="container cta__inner">
+			<div class="container cta__inner cta__inner--accent">
 				<div>
 					<h2>Envie d’explorer avant d’écrire ?</h2>
 					<p>
@@ -190,58 +177,7 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 		</section>
 	</main>
 
-	<footer class="footer" aria-label="Pied de page">
-		<div class="container footer__grid">
-			<div>
-				<div class="footer__brand">
-					<span class="footer__logoWrap" aria-hidden="true">
-						<BrandLogo variant="footer" class="footer__logo" />
-					</span>
-					<span>Emmanuel Sauvage</span>
-				</div>
-				<p class="footer__text">Consultant indépendant — optimisation des outils digitaux et des processus.</p>
-				<p class="footer__text">
-					<a href="mailto:contact@emmanuelsauvage.fr">contact@emmanuelsauvage.fr</a>
-				</p>
-				<p class="footer__text">
-					<a href="tel:+33609924945">06 09 92 49 45</a> · Erquinghem-lys
-				</p>
-			</div>
-
-			<div>
-				<div class="footer__title">Navigation</div>
-				<ul class="footer__links">
-					<li><a href="/services">Services</a></li>
-					<li><a href="/a-propos">À propos</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</div>
-
-			<div>
-				<div class="footer__title">Coordonnées</div>
-				<ul class="footer__links">
-					<li><a href="/contact">Formulaire de contact</a></li>
-					<li><a href="/#contact">Discuter de votre projet</a></li>
-					<li>
-						<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
-					</li>
-				</ul>
-			</div>
-			<div>
-				<div class="footer__title">Légal</div>
-				<ul class="footer__links">
-					<li><a href="/mentions-legales">Mentions légales</a></li>
-					<li><a href="/politique-de-confidentialite">Politique de confidentialité</a></li>
-					<li><a href="/cgu">CGU</a></li>
-					<li><a href="/cgv">CGV</a></li>
-					<li><a href="/cookies">Cookies</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="container footer__bottom">
-			<p>© {new Date().getFullYear()} Emmanuel Sauvage — Tous droits réservés.</p>
-		</div>
-	</footer>
+	<SiteFooter />
 
 	<script define:vars={{ contactSubmitUrl }}>
 		(() => {
@@ -330,111 +266,33 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 
 <style>
 	.container {
-		width: min(1120px, calc(100% - 48px));
+		width: min(1120px, calc(100% - 32px));
 		margin: 0 auto;
 	}
 
-	.header {
-		position: sticky;
-		top: 0;
-		z-index: 50;
-		background: rgba(247, 248, 251, 0.78);
-		backdrop-filter: blur(10px);
-		border-bottom: 1px solid var(--color-border);
+	@media (min-width: 521px) {
+		.container {
+			width: min(1120px, calc(100% - 48px));
+		}
 	}
 
-	.header__inner {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 14px 0;
-		gap: 20px;
-	}
-
-	.brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 10px;
-		text-decoration: none;
-		font-weight: 700;
-		letter-spacing: -0.02em;
-		color: var(--color-primary);
-	}
-
-	.brand:hover {
-		color: var(--color-primary);
-		opacity: 0.88;
-	}
-
-	.brand__logoWrap {
-		display: inline-flex;
-		align-items: center;
-		line-height: 0;
-	}
-
-	.brand__logo {
+	main.contactPage {
 		display: block;
-		width: 32px;
-		height: 32px;
-		border-radius: 10px;
-		object-fit: cover;
-		box-shadow: 0 8px 18px rgba(47, 58, 143, 0.24);
-	}
-
-	.nav {
-		display: flex;
-		align-items: center;
-		gap: 14px;
-		flex-wrap: wrap;
-		justify-content: flex-end;
-	}
-
-	.nav__link {
-		text-decoration: none;
-		color: var(--color-text);
-		opacity: 0.9;
-		padding: 10px 10px;
-		border-radius: 10px;
-		transition: background 0.15s ease, opacity 0.15s ease;
-	}
-
-	.nav__link:hover {
-		opacity: 1;
-		background: rgba(47, 58, 143, 0.06);
-	}
-
-	.nav__link--current {
-		font-weight: 700;
-		color: var(--color-primary);
-		background: rgba(47, 58, 143, 0.08);
-	}
-
-	.nav__cta {
-		text-decoration: none;
-		color: white;
-		background: var(--color-primary);
-		padding: 10px 14px;
-		border-radius: 12px;
-		box-shadow: var(--shadow-sm);
-		transition: transform 0.15s ease, box-shadow 0.15s ease;
-		white-space: nowrap;
-	}
-
-	.nav__cta:hover {
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-md);
-	}
-
-	main {
-		display: block;
+		min-width: 0;
+		overflow-x: clip;
 	}
 
 	.hero {
 		position: relative;
 		overflow: hidden;
 		padding: 56px 0 40px;
-		background: white;
-		border-bottom: 1px solid var(--color-border);
+		background: linear-gradient(
+			165deg,
+			#ffffff 0%,
+			rgba(247, 248, 252, 0.98) 42%,
+			color-mix(in srgb, var(--color-spot-soft) 55%, #ffffff) 100%
+		);
+		border-bottom: 1px solid color-mix(in srgb, var(--color-border) 70%, rgba(196, 92, 46, 0.12));
 	}
 
 	.heroFx {
@@ -475,8 +333,17 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 		height: 520px;
 		bottom: -300px;
 		left: 36%;
-		background: radial-gradient(circle at 35% 35%, rgba(79, 110, 247, 0.35), rgba(79, 110, 247, 0) 62%),
-			radial-gradient(circle at 70% 40%, rgba(47, 58, 143, 0.2), rgba(47, 58, 143, 0) 70%);
+		background: radial-gradient(circle at 35% 35%, rgba(79, 110, 247, 0.32), rgba(79, 110, 247, 0) 62%),
+			radial-gradient(circle at 70% 40%, rgba(196, 92, 46, 0.16), rgba(47, 58, 143, 0) 70%);
+	}
+
+	.blob--spot {
+		width: 360px;
+		height: 360px;
+		bottom: -120px;
+		right: 6%;
+		background: radial-gradient(circle at 45% 45%, rgba(196, 92, 46, 0.4), rgba(196, 92, 46, 0) 62%);
+		mix-blend-mode: multiply;
 	}
 
 	.heroWave {
@@ -489,28 +356,19 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 
 	.hero__grid {
 		display: grid;
-		grid-template-columns: 1.05fr 0.95fr;
-		gap: 42px;
+		grid-template-columns: 1fr;
+		gap: 28px;
 		align-items: center;
 		position: relative;
 		z-index: 1;
+		min-width: 0;
 	}
 
-	.backLink {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		margin-bottom: 16px;
-		text-decoration: none;
-		color: var(--color-primary);
-		font-weight: 700;
-		letter-spacing: -0.01em;
-		font-size: 14px;
-	}
-
-	.backLink:hover {
-		text-decoration: underline;
-		text-decoration-color: rgba(79, 110, 247, 0.45);
+	@media (min-width: 981px) {
+		.hero__grid {
+			grid-template-columns: 1.05fr 0.95fr;
+			gap: 42px;
+		}
 	}
 
 	.eyebrow {
@@ -521,6 +379,23 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 		text-transform: uppercase;
 	}
 
+	.contactEyebrow {
+		position: relative;
+		padding-left: 14px;
+		color: color-mix(in srgb, var(--color-text) 70%, var(--color-spot));
+	}
+
+	.contactEyebrow::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.15em;
+		bottom: 0.15em;
+		width: 3px;
+		border-radius: 2px;
+		background: linear-gradient(180deg, var(--color-spot), var(--color-primary));
+	}
+
 	h1 {
 		margin: 0 0 14px;
 		font-size: clamp(30px, 4vw, 48px);
@@ -528,17 +403,26 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 		letter-spacing: -0.03em;
 	}
 
+	.contactH1Accent {
+		background: linear-gradient(105deg, var(--color-primary) 0%, var(--color-spot) 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
 	h2 {
 		margin: 0 0 12px;
 		font-size: clamp(26px, 3vw, 36px);
 		letter-spacing: -0.02em;
 		line-height: 1.15;
+		color: var(--color-primary);
 	}
 
 	h3 {
 		margin: 0 0 10px;
 		font-size: 18px;
 		letter-spacing: -0.01em;
+		color: var(--color-primary);
 	}
 
 	.hero__subtitle {
@@ -559,16 +443,41 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 
 	.trust__item {
 		color: var(--color-muted);
-		background: rgba(255, 255, 255, 0.8);
-		border: 1px solid var(--color-border);
+		background: rgba(255, 255, 255, 0.88);
+		border: 1px solid color-mix(in srgb, var(--color-border) 82%, rgba(47, 58, 143, 0.1));
 		border-radius: 14px;
 		padding: 10px 12px;
 		box-shadow: var(--shadow-sm);
 	}
 
+	.trust__item:nth-child(2) {
+		border-color: color-mix(in srgb, var(--color-border) 70%, rgba(196, 92, 46, 0.22));
+		box-shadow:
+			inset 3px 0 0 0 rgba(196, 92, 46, 0.35),
+			var(--shadow-sm);
+	}
+
+	.trust__item:nth-child(3) {
+		border-color: color-mix(in srgb, var(--color-border) 75%, rgba(79, 110, 247, 0.2));
+		box-shadow:
+			inset 3px 0 0 0 rgba(79, 110, 247, 0.35),
+			var(--shadow-sm);
+	}
+
+	.trust__item strong {
+		color: color-mix(in srgb, var(--color-primary) 50%, var(--color-spot-hover));
+	}
+
 	.hero__visual {
 		display: flex;
-		justify-content: flex-end;
+		justify-content: center;
+		min-width: 0;
+	}
+
+	@media (min-width: 981px) {
+		.hero__visual {
+			justify-content: flex-end;
+		}
 	}
 
 	.heroMedia {
@@ -576,9 +485,11 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 		width: min(520px, 100%);
 		border-radius: 22px;
 		overflow: hidden;
-		border: 1px solid var(--color-border);
-		box-shadow: var(--shadow-md);
-		background: rgba(255, 255, 255, 0.85);
+		border: 1px solid color-mix(in srgb, var(--color-border) 75%, rgba(196, 92, 46, 0.18));
+		box-shadow:
+			0 12px 40px rgba(47, 58, 143, 0.1),
+			0 0 0 1px rgba(196, 92, 46, 0.12);
+		background: rgba(255, 255, 255, 0.9);
 		position: relative;
 	}
 
@@ -602,9 +513,14 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 	}
 
 	.section--alt {
-		background: rgba(255, 255, 255, 0.7);
-		border-top: 1px solid var(--color-border);
-		border-bottom: 1px solid var(--color-border);
+		background: linear-gradient(
+			180deg,
+			rgba(255, 255, 255, 0.92) 0%,
+			color-mix(in srgb, var(--color-bg) 92%, var(--color-spot-soft)) 48%,
+			rgba(255, 255, 255, 0.88) 100%
+		);
+		border-top: 1px solid color-mix(in srgb, var(--color-border) 75%, rgba(196, 92, 46, 0.1));
+		border-bottom: 1px solid color-mix(in srgb, var(--color-border) 75%, rgba(79, 110, 247, 0.08));
 	}
 
 	.section__head {
@@ -612,6 +528,22 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 		gap: 10px;
 		margin-bottom: 22px;
 		max-width: 62ch;
+	}
+
+	.section__head h2 {
+		position: relative;
+		padding-bottom: 12px;
+	}
+
+	.section__head h2::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 52px;
+		height: 3px;
+		border-radius: 2px;
+		background: linear-gradient(90deg, var(--color-spot), var(--color-accent));
 	}
 
 	.section__head p {
@@ -623,13 +555,20 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 
 	.grid2 {
 		display: grid;
-		grid-template-columns: 1.1fr 0.9fr;
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 		gap: 28px;
 		align-items: start;
+		min-width: 0;
 	}
 
 	.form.card {
 		padding: 22px;
+		border: 1px solid color-mix(in srgb, var(--color-border) 82%, rgba(196, 92, 46, 0.14));
+		border-left: 4px solid var(--color-spot);
+		box-shadow:
+			inset 0 3px 0 0 rgba(79, 110, 247, 0.12),
+			var(--shadow-md);
+		background: rgba(255, 255, 255, 0.96);
 	}
 
 	.form {
@@ -641,12 +580,24 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius);
 		padding: 18px;
-		box-shadow: var(--shadow-sm);
+		box-shadow:
+			inset 0 3px 0 0 rgba(196, 92, 46, 0.22),
+			var(--shadow-sm);
 	}
 
 	.card--accent {
-		background: linear-gradient(180deg, rgba(47, 58, 143, 0.06), rgba(255, 255, 255, 0.95));
-		border-color: rgba(47, 58, 143, 0.18);
+		background: linear-gradient(135deg, var(--color-spot-soft), rgba(47, 58, 143, 0.08), rgba(255, 255, 255, 0.96));
+		border-color: color-mix(in srgb, rgba(47, 58, 143, 0.2) 55%, rgba(196, 92, 46, 0.22));
+		box-shadow:
+			inset 0 3px 0 0 rgba(196, 92, 46, 0.32),
+			var(--shadow-sm);
+	}
+
+	.googleReviewCard {
+		border-style: dashed;
+		border-color: color-mix(in srgb, var(--color-muted) 22%, rgba(196, 92, 46, 0.28));
+		background: linear-gradient(125deg, rgba(255, 255, 255, 0.98), var(--color-spot-soft));
+		box-shadow: var(--shadow-sm);
 	}
 
 	.card__text {
@@ -657,19 +608,21 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 	}
 
 	.card__text a {
-		color: var(--color-primary);
+		color: var(--color-spot-hover);
 		font-weight: 600;
 		text-decoration: none;
 	}
 
 	.card__text a:hover {
+		color: var(--color-spot);
 		text-decoration: underline;
-		text-decoration-color: rgba(79, 110, 247, 0.45);
+		text-decoration-color: rgba(196, 92, 46, 0.45);
 	}
 
 	.callout {
-		background: rgba(255, 255, 255, 0.92);
-		border: 1px solid var(--color-border);
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), var(--color-spot-soft));
+		border: 1px solid color-mix(in srgb, var(--color-border) 80%, rgba(196, 92, 46, 0.15));
+		border-left: 3px solid var(--color-spot);
 		border-radius: var(--radius);
 		padding: 18px;
 		box-shadow: var(--shadow-sm);
@@ -699,8 +652,8 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 	}
 
 	.formStatus--ok {
-		background: rgba(47, 58, 143, 0.08);
-		border: 1px solid rgba(47, 58, 143, 0.2);
+		background: linear-gradient(135deg, rgba(47, 58, 143, 0.08), var(--color-spot-soft));
+		border: 1px solid color-mix(in srgb, rgba(47, 58, 143, 0.22) 60%, rgba(196, 92, 46, 0.2));
 		color: var(--color-primary);
 	}
 
@@ -719,6 +672,7 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 	label {
 		font-weight: 700;
 		letter-spacing: -0.01em;
+		color: color-mix(in srgb, var(--color-text) 88%, var(--color-primary));
 	}
 
 	input,
@@ -733,8 +687,10 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 
 	input:focus,
 	textarea:focus {
-		border-color: rgba(47, 58, 143, 0.45);
-		box-shadow: 0 0 0 4px rgba(47, 58, 143, 0.12);
+		border-color: color-mix(in srgb, rgba(47, 58, 143, 0.5) 55%, rgba(196, 92, 46, 0.35));
+		box-shadow:
+			0 0 0 4px rgba(47, 58, 143, 0.1),
+			0 0 0 4px color-mix(in srgb, transparent 70%, var(--color-spot-soft));
 		background: rgba(255, 255, 255, 1);
 	}
 
@@ -768,9 +724,13 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 	}
 
 	.consent a {
-		color: var(--color-primary);
+		color: var(--color-spot-hover);
 		text-decoration: underline;
-		text-decoration-color: rgba(79, 110, 247, 0.35);
+		text-decoration-color: rgba(196, 92, 46, 0.38);
+	}
+
+	.consent a:hover {
+		color: var(--color-spot);
 	}
 
 	.button {
@@ -809,6 +769,11 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 		background: rgba(255, 255, 255, 1);
 		transform: translateY(-1px);
 		box-shadow: var(--shadow-sm);
+		border-color: color-mix(in srgb, var(--color-spot) 35%, var(--color-border));
+	}
+
+	.contactPage .button--secondary:hover {
+		box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 0 0 1px rgba(196, 92, 46, 0.12);
 	}
 
 	.button:disabled {
@@ -829,6 +794,21 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 		box-shadow: var(--shadow-md);
 	}
 
+	.cta__inner--accent {
+		border-color: color-mix(in srgb, var(--color-spot) 32%, rgba(47, 58, 143, 0.2));
+		background: linear-gradient(
+			135deg,
+			rgba(47, 58, 143, 0.12),
+			var(--color-spot-soft),
+			rgba(79, 110, 247, 0.06)
+		);
+		box-shadow: 0 12px 40px rgba(47, 58, 143, 0.08), 0 0 0 1px rgba(196, 92, 46, 0.1);
+	}
+
+	.cta__inner--accent h2 {
+		color: var(--color-primary);
+	}
+
 	.cta__inner p {
 		margin: 0;
 		color: var(--color-muted);
@@ -843,104 +823,7 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 		flex-wrap: wrap;
 	}
 
-	.footer {
-		padding: 32px 0 22px;
-		border-top: 1px solid var(--color-border);
-		background: rgba(247, 248, 251, 0.85);
-	}
-
-	.footer__grid {
-		display: grid;
-		grid-template-columns: 1.6fr 1fr 1fr 1fr;
-		gap: 18px;
-		align-items: start;
-	}
-
-	.footer__brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		font-weight: 800;
-		letter-spacing: -0.02em;
-		color: var(--color-primary);
-	}
-
-	.footer__logoWrap {
-		display: inline-flex;
-		align-items: center;
-		line-height: 0;
-	}
-
-	.footer__logo {
-		display: block;
-		width: 28px;
-		height: 28px;
-		border-radius: 8px;
-		object-fit: cover;
-	}
-
-	.footer__text {
-		color: var(--color-muted);
-		opacity: 1;
-		margin: 6px 0 0;
-	}
-
-	.footer__text a {
-		color: inherit;
-		text-decoration: none;
-		font-weight: 600;
-	}
-
-	.footer__text a:hover {
-		text-decoration: underline;
-		text-decoration-color: rgba(47, 58, 143, 0.4);
-	}
-
-	.footer__title {
-		font-weight: 700;
-		margin-bottom: 10px;
-	}
-
-	.footer__links {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: grid;
-		gap: 8px;
-	}
-
-	.footer__links a {
-		color: var(--color-muted);
-		text-decoration: none;
-	}
-
-	.footer__links a:hover {
-		color: var(--color-text);
-		text-decoration: underline;
-		text-decoration-color: rgba(47, 58, 143, 0.4);
-	}
-
-	.footer__bottom {
-		margin-top: 18px;
-		padding-top: 16px;
-		border-top: 1px solid var(--color-border);
-		color: var(--color-muted);
-		font-size: 14px;
-	}
-
-	.footer__bottom p {
-		margin: 0;
-	}
-
 	@media (max-width: 980px) {
-		.hero__grid {
-			grid-template-columns: 1fr;
-		}
-
-		.hero__visual {
-			justify-content: flex-start;
-		}
-
 		.grid2 {
 			grid-template-columns: 1fr;
 		}
@@ -951,10 +834,6 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 
 		.cta__actions {
 			justify-content: flex-start;
-		}
-
-		.footer__grid {
-			grid-template-columns: 1fr;
 		}
 	}
 
