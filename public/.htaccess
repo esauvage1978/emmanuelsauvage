@@ -68,13 +68,12 @@ AddDefaultCharset UTF-8
 	RewriteEngine On
 	RewriteBase /
 
-	# Forcer HTTPS (recommandé en production) — décommentez les 3 lignes suivantes :
-	# RewriteCond %{HTTPS} !=on
-	# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-	# Redirection www ↔ sans www (exemple : tout vers sans www) — décommentez et adaptez :
-	# RewriteCond %{HTTP_HOST} ^www\.emmanuelsauvage\.fr$ [NC]
-	# RewriteRule ^ https://emmanuelsauvage.fr%{REQUEST_URI} [L,R=301]
+	# Canonicalisation domaine + protocole (évite les chaînes de redirections).
+	# - force HTTPS
+	# - force sans www
+	RewriteCond %{HTTPS} !=on [OR]
+	RewriteCond %{HTTP_HOST} ^www\.emmanuelsauvage\.fr$ [NC]
+	RewriteRule ^ https://emmanuelsauvage.fr%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # -----------------------------------------------------------------------------

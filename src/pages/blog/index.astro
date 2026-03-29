@@ -1,16 +1,28 @@
 ---
 /**
  * Liste du blog : `/blog` et `/blog/` (trailingSlash: 'ignore').
- * Ne pas utiliser `pages/blog.astro` en parallèle du dossier `pages/blog/` — collision de routes en dev (404 sur les articles).
+ * Articles : collection `blog` (`src/content/blog/*.md`) + `src/content.config.ts`.
  */
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import { BLOG_POSTS } from '../../data/blog';
+
+const rawPosts = await getCollection('blog');
+const posts = rawPosts
+	.map((p) => ({
+		slug: p.id,
+		title: p.data.title,
+		description: p.data.description,
+		pubDate: p.data.pubDate,
+		readingTimeMinutes: p.data.readingTimeMinutes,
+		tags: p.data.tags,
+	}))
+	.sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf());
 ---
 
 <Layout
-	title="Blog | Symfony, API, outils métier | Emmanuel Sauvage"
+	title="Blog | Symfony, API, outils métier | Emmanuel SAUVAGE"
 	description="Articles techniques : Symfony, API REST, validation, webhooks, Google Sheets et cadrage d’outils métier — contenu orienté praticiens et décideurs."
 >
 	<SiteHeader current="blog" />
@@ -21,18 +33,17 @@ import { BLOG_POSTS } from '../../data/blog';
 				<h1>Blog</h1>
 				<p>
 					Notes de cadrage et d’implémentation : ce que je vérifie en mission sur Symfony, les API, la donnée et les
-					outils internes. Objectif — à la fois utile en revue humaine et exploitable par les moteurs (SEO) et les
-					assistants (réponses factuelles structurées).
+					outils internes.
 				</p>
 			</header>
 
 			<ul class="blogIndex__list">
 				{
-					BLOG_POSTS.map((post) => (
+					posts.map((post) => (
 						<li>
 							<article class="blogCard">
 								<p class="blogCard__meta">
-									<time datetime={post.pubDate}>{new Date(post.pubDate).toLocaleDateString('fr-FR', { dateStyle: 'long' })}</time>
+									<time datetime={post.pubDate.toISOString().slice(0, 10)}>{post.pubDate.toLocaleDateString('fr-FR', { dateStyle: 'long' })}</time>
 									<span aria-hidden="true"> · </span>
 									<span>{post.readingTimeMinutes} min</span>
 								</p>

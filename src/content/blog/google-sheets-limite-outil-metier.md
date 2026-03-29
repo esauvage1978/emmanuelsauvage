@@ -1,0 +1,90 @@
+---
+title: "Google Sheets comme outil métier : seuils de rupture avant un back-office"
+description: "Volume, droits, audit trail, concurrence et risques — quand un tableur suffit et quand un outil web devient moins cher que l’informel."
+pubDate: 2026-03-17
+readingTimeMinutes: 9
+tags:
+  - "Outils métier"
+  - "Sheets"
+  - "Décision"
+illustration: sheets
+---
+<aside class="tldr">
+<strong>En bref</strong>
+Google Sheets excelle pour prototyper et collaborer sur des jeux de données de taille modeste. Il devient un risque
+quand vous mélangez <strong>rôles flous</strong>, <strong>historique inexploitable</strong> et
+<strong>concurrence d’écriture</strong> sur des règles métier critiques.
+</aside>
+
+<h2>Quand Sheets reste un très bon outil</h2>
+<ul>
+<li>Volume stable et maîtrisé (&laquo; quelques milliers &raquo; de lignes, pas de croissance exponentielle non planifiée).</li>
+<li>Peu de rôles : qui peut voir / modifier quoi est évident et accepté.</li>
+<li>Les erreurs humaines ont un coût réparable rapidement (pas de conformité réglementaire lourde).</li>
+<li>Vous avez besoin de itérer vite sur un modèle de données avant d’investir dans un back-office.</li>
+</ul>
+
+<h2>Signaux de passage vers un outil web (Symfony, API, etc.)</h2>
+<table>
+<thead>
+<tr>
+<th>Symptôme</th>
+<th>Risque</th>
+<th>Piste technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copies du fichier « prod » éparpillées</td>
+<td>vérité métier multiple</td>
+<td>base unique + rôles + audit log</td>
+</tr>
+<tr>
+<td>Formules qui encodent des règles réglementaires</td>
+<td>erreur silencieuse, non traçable</td>
+<td>règles serveur testées + journalisation</td>
+</tr>
+<tr>
+<td>Macros / scripts personnels par utilisateur</td>
+<td>dépendance aux postes</td>
+<td>automations centralisées (cron, files)</td>
+</tr>
+<tr>
+<td>Besoin d’API vers ERP / CRM</td>
+<td>fragilité des connecteurs maison</td>
+<td>API REST interne + files idempotentes</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Coût « caché » à chiffrer en cadrage</h2>
+<p>
+Le tableur est souvent « gratuit » tant qu’on ne compte pas le <strong>temps de conciliation</strong> après une erreur
+de saisie, une version erronée ou une formule modifiée sans contrôle. Comparez ce temps à un back-office minimal avec
+validation serveur : l’outil web gagne souvent sur 12–24 mois, même pour une PME.
+</p>
+
+<h2>Transition sans big bang</h2>
+<p>
+Un schéma réaliste : <strong>export contrôlé</strong> (CSV / API Sheets) vers une base applicative, reprise en
+lecture seule dans un premier temps, puis bascule progressive des saisies. Les deux mondes coexistent le temps de
+valider les règles métier codées.
+</p>
+
+<section class="faq" aria-label="Questions fréquentes">
+<h2>FAQ</h2>
+<details>
+<summary>Power BI / Looker changent-ils la donne ?</summary>
+<p>
+Ils excellent pour la lecture et l’agrégation ; ils ne remplacent pas un modèle d’écriture sûr. La source de
+vérité transactionnelle reste pertinente côté outil métier.
+</p>
+</details>
+<details>
+<summary>Faut-il tout migrer d’un coup ?</summary>
+<p>
+Rarement. Identifiez <strong>un flux critique</strong> (ex. commandes fournisseur) et isolez-le — victoire
+mesurable, moins de friction organisationnelle.
+</p>
+</details>
+</section>

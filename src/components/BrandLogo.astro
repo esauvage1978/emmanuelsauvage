@@ -16,40 +16,42 @@ const display =
 		: variant === 'profile'
 			? { w: 72, h: 72 }
 			: { w: 32, h: 32 };
-
-const useLarge = variant === 'profile';
 ---
 
-{
-	useLarge ? (
-		<picture>
-			<source type="image/webp" srcset="/images/logo-128.webp" />
-			<img
-				class={className}
-				src="/images/logo-128.png"
-				width={display.w}
-				height={display.h}
-				alt=""
-				aria-hidden="true"
-				decoding="async"
-			/>
-		</picture>
-	) : (
-		<picture>
-			<source
-				type="image/webp"
-				srcset="/images/logo-32.webp 1x, /images/logo-64.webp 2x"
-			/>
-			<img
-				class={className}
-				src="/images/logo-32.png"
-				srcset="/images/logo-32.png 1x, /images/logo-64.png 2x"
-				width={display.w}
-				height={display.h}
-				alt=""
-				aria-hidden="true"
-				decoding="async"
-			/>
-		</picture>
-	)
-}
+<!-- Marque en SVG (simple, impactante, couleurs du site via variables CSS). -->
+
+<svg
+	class={className}
+	width={display.w}
+	height={display.h}
+	viewBox="0 0 64 64"
+	aria-hidden="true"
+	focusable="false"
+	role="img"
+>
+	<!-- Augmente la taille du contenu dans le viewBox (évite le "logo trop petit") -->
+	<g transform="translate(32 32) scale(1.6) translate(-32 -32)">
+		<!-- Crochets “code” -->
+		<path
+			d="M22 18 L16 32 L22 46"
+			fill="none"
+			stroke="var(--color-primary)"
+			stroke-width="4.2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		/>
+		<path
+			d="M42 18 L48 32 L42 46"
+			fill="none"
+			stroke="var(--color-primary)"
+			stroke-width="4.2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		/>
+
+		<!-- “Data” : barres (opaques) -->
+	<rect x="24" y="25" width="5" height="14" rx="2.0" fill="#dc9d81" />
+	<rect x="29.5" y="23" width="5" height="18" rx="2.0" fill="var(--color-spot)" />
+	<rect x="35" y="25" width="5" height="14" rx="2.0" fill="#dc9d81" />
+	</g>
+</svg>

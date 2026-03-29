@@ -4,27 +4,57 @@
  */
 import sharp from 'sharp';
 import { readFile, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
-const src = join(root, 'public', 'images', 'logo.jpeg');
+const srcJpg = join(root, 'public', 'images', 'logo.jpeg');
+const srcSvg = join(root, 'public', 'images', 'logo-source.svg');
+const src = existsSync(srcSvg) ? srcSvg : srcJpg;
 const imagesDir = join(root, 'public', 'images');
 const publicDir = join(root, 'public');
 
 /** Carré centré — adapté aux favicons et vignettes */
 async function squarePng(size, outName) {
-	await sharp(src)
-		.resize(size, size, { fit: 'cover', position: 'centre' })
+	const scale = 4; // Suréchantillonne pour limiter le flou/aliasing après rasterisation SVG
+	let img = sharp(src);
+	// Le "trim" aide à remplir les petits visuels (favicon). Sur les grosses tailles, ça peut au contraire donner un rendu moins net.
+	if (size <= 32) img = img.trim();
+	await img
+		.resize(size * scale, size * scale, {
+			fit: 'contain',
+			position: 'centre',
+			background: { r: 0, g: 0, b: 0, alpha: 0 },
+		})
+		.resize(size, size, {
+			fit: 'contain',
+			position: 'centre',
+			background: { r: 0, g: 0, b: 0, alpha: 0 },
+			kernel: 'lanczos3',
+		})
 		.png({ compressionLevel: 9 })
 		.toFile(join(imagesDir, outName));
 	console.log('OK', outName);
 }
 
 async function webp(size, outName) {
-	await sharp(src)
-		.resize(size, size, { fit: 'cover', position: 'centre' })
+	const scale = 4;
+	let img = sharp(src);
+	if (size <= 32) img = img.trim();
+	await img
+		.resize(size * scale, size * scale, {
+			fit: 'contain',
+			position: 'centre',
+			background: { r: 0, g: 0, b: 0, alpha: 0 },
+		})
+		.resize(size, size, {
+			fit: 'contain',
+			position: 'centre',
+			background: { r: 0, g: 0, b: 0, alpha: 0 },
+			kernel: 'lanczos3',
+		})
 		.webp({ quality: 88 })
 		.toFile(join(imagesDir, outName));
 	console.log('OK', outName);
@@ -58,10 +88,24 @@ async function main() {
 	await squarePng(180, 'apple-touch-icon.png');
 
 	// favicon racine (référencé par Layout)
-	await sharp(src)
-		.resize(32, 32, { fit: 'cover', position: 'centre' })
-		.png({ compressionLevel: 9 })
-		.toFile(join(publicDir, 'favicon.png'));
+	{
+		const scale = 4;
+		await sharp(src)
+			.trim()
+			.resize(32 * scale, 32 * scale, {
+				fit: 'contain',
+				position: 'centre',
+				background: { r: 0, g: 0, b: 0, alpha: 0 },
+			})
+			.resize(32, 32, {
+				fit: 'contain',
+				position: 'centre',
+				background: { r: 0, g: 0, b: 0, alpha: 0 },
+				kernel: 'lanczos3',
+			})
+			.png({ compressionLevel: 9 })
+			.toFile(join(publicDir, 'favicon.png'));
+	}
 	console.log('OK public/favicon.png');
 
 	// .ico : PNG 16×16 puis 32×32 embarqués (format ICO « PNG » supporté par les navigateurs modernes)

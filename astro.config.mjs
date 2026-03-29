@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 /** Même URL que dans public/contact-zapier.php — évite le CORS navigateur → Zapier en dev */
 const ZAPIER_CATCH_PATH = '/hooks/catch/26903545/upkex8r/';
@@ -8,6 +9,8 @@ const ZAPIER_CATCH_PATH = '/hooks/catch/26903545/upkex8r/';
 export default defineConfig({
 	/** `/blog` et `/blog/` + articles `/blog/slug/` ; combiné à `blog/index.astro` (pas `blog.astro` + dossier `blog/`). */
 	trailingSlash: 'ignore',
+	site: 'https://emmanuelsauvage.fr',
+	integrations: [sitemap()],
 	vite: {
 		server: {
 			proxy: {

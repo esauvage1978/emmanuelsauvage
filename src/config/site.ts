@@ -1,5 +1,5 @@
 /** Lien court Google pour laisser un avis (Business Profile / partage Google). */
-export const GOOGLE_REVIEW_URL = 'https://share.google/isc4img2AgmTqfoln';
+export const GOOGLE_REVIEW_URL = 'https://g.page/r/CawB00LcHY7jEAE/review';
 
 /** Profil public Malt (freelance). */
 export const MALT_PROFILE_URL = 'https://www.malt.fr/profile/emmanuelsauvage1';

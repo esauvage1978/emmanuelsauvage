@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" role="img" aria-labelledby="t">
+  <title id="t">Mon Coach Jardin</title>
+  <g transform="translate(8 8)" fill="none" stroke="#43A047" stroke-width="2" stroke-linecap="round">
+    <path d="M18 32c-4-8-2-18 0-22 2 6 4 14 0 22z"/>
+    <path d="M18 32c6-6 14-8 22-6-6 4-14 6-22 6z"/>
+  </g>
+  <text x="128" y="34" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-size="13" font-weight="700" fill="#2E7D32">Mon Coach Jardin</text>
+</svg>

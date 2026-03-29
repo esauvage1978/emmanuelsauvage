@@ -6,8 +6,8 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 ---
 
 <Layout
-	title="Services | Emmanuel Sauvage"
-	description="Développement PHP Symfony, front Vue.js/React, HTML/CSS, outils métier, automatisations et reporting (Google Sheets, Power BI, Looker)."
+	title="Services | Emmanuel SAUVAGE"
+	description="Développement PHP Symfony, front Vue.js/React, HTML/CSS, outils métier, automatisations, reporting (Google Sheets, Power BI, Looker) et formations sur mesure (Sheets, Excel)."
 >
 	<SiteHeader current="services" />
 
@@ -62,8 +62,14 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 				<article class="card">
 					<h2>Formation &amp; accompagnement</h2>
 					<p>
-						Formation des équipes (Symfony et bonnes pratiques web), revue de code, documentation et transfert de
-						compétences. Objectif : des équipes autonomes et des standards durables.
+						Les formations que je dispense portent pour l’essentiel sur <strong>Google Sheets</strong> et{' '}
+						<strong>Excel</strong> : tableaux, formules, fiabilisation des données, automatisation simple quand c’est
+						pertinent. Chaque session est <strong>sur mesure</strong> : je pars de la personne, de son contexte et de
+						son besoin réel — idéalement de ses <strong>problématiques</strong> et de ses <strong>objectifs</strong> —
+						pour construire un parcours adapté. Je préfère travailler sur des <strong>données ou fichiers de
+						l’entreprise</strong> (anonymisés si besoin) : on progresse sur du concret, avec un impact direct sur le
+						quotidien. En complément : accompagnement Symfony, bonnes pratiques web, documentation et transfert de
+						compétences selon vos projets.
 					</p>
 				</article>
 				<article class="card">
@@ -82,6 +88,17 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 				</article>
 			</div>
 		</section>
+
+		<!-- SEO uniquement : présent dans le HTML mais masqué visuellement -->
+		<div class="queries__seo" aria-hidden="false">
+			<h2>Requêtes courantes sur cette page</h2>
+			<p>
+				Les internautes recherchent notamment <strong>emmanuel sauvage</strong>, <strong>informaticien expert en
+				dépannage</strong> et <strong>refonte Symfony</strong>. Ces demandes correspondent aux prestations
+				résumées ci-dessus : développement back-end/front, outillage &amp; automatisations, data &amp;
+				reporting, et maintenance/dépannage.
+			</p>
+		</div>
 
 		<section class="cta page__preFooter" aria-label="Contact">
 			<div class="container cta__inner cta__inner--accent">
@@ -218,6 +235,18 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 
 	.section {
 		padding: 20px 0 32px;
+	}
+
+	.queries__seo {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
 	}
 
 	.cards {

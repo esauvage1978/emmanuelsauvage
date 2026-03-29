@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 56" role="img" aria-labelledby="t">
+  <title id="t">Cabinet Parafiniuk-Leroy Avocats</title>
+  <g transform="translate(8 8)" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round">
+    <path d="M18 4v32M10 12h16M10 28h16"/>
+    <circle cx="18" cy="36" r="3"/>
+  </g>
+  <text x="148" y="22" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-size="11" font-weight="700" fill="#1e293b">Parafiniuk-Leroy</text>
+  <text x="148" y="38" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-size="10" font-weight="600" fill="#64748b">Avocats</text>
+</svg>

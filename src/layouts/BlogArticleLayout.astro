@@ -16,7 +16,7 @@ type Props = {
 
 const { title, description, slug, pubDate, updatedDate, readingTimeMinutes, tags } = Astro.props;
 
-const pageTitle = `${title} | Blog | Emmanuel Sauvage`;
+const pageTitle = `${title} | Blog | Emmanuel SAUVAGE`;
 const canonicalPath = `/blog/${slug}/`;
 const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
 const published = new Date(pubDate).toISOString();
@@ -32,12 +32,12 @@ const jsonLd = {
 	dateModified: modified,
 	author: {
 		'@type': 'Person',
-		name: 'Emmanuel Sauvage',
+		name: 'Emmanuel SAUVAGE',
 		url: SITE_ORIGIN,
 	},
 	publisher: {
 		'@type': 'Person',
-		name: 'Emmanuel Sauvage',
+		name: 'Emmanuel SAUVAGE',
 	},
 	mainEntityOfPage: {
 		'@type': 'WebPage',
@@ -130,7 +130,7 @@ const breadcrumbLd = {
 
 				<footer class="blogArticle__footer">
 					<p>
-						<strong>À propos de l’auteur :</strong> Emmanuel Sauvage, développeur fullstack et consultant indépendant
+						<strong>À propos de l’auteur :</strong> Emmanuel SAUVAGE, développeur fullstack et consultant indépendant
 						(Symfony, Vue.js, React, outils métier, data et automatisation).{' '}
 						<a href="/contact">Contact</a> · <a href="/services">Services</a>
 					</p>
@@ -346,6 +346,22 @@ const breadcrumbLd = {
 		color: var(--color-primary);
 	}
 
+	.blogArticle__body :global(.table-wrap) {
+		overflow-x: auto;
+		margin: 1.25rem 0 1.5rem;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.blogArticle__body :global(.compareTable) {
+		min-width: 520px;
+		font-size: 0.92rem;
+		line-height: 1.45;
+	}
+
+	.blogArticle__body :global(.compareTable thead th) {
+		background: color-mix(in srgb, var(--color-primary, #2f3a8f) 8%, transparent);
+	}
+
 	.blogArticle__body :global(aside.tldr) {
 		margin: 1.5rem 0;
 		padding: 16px 18px;
@@ -354,7 +370,8 @@ const breadcrumbLd = {
 		background: linear-gradient(135deg, var(--color-spot-soft), rgba(47, 58, 143, 0.05));
 	}
 
-	.blogArticle__body :global(aside.tldr strong) {
+	/* Uniquement le premier <strong> du résumé (ex. « En bref ») — pas les autres emphases dans le texte */
+	.blogArticle__body :global(aside.tldr > strong:first-of-type) {
 		display: block;
 		margin-bottom: 8px;
 		color: var(--color-primary);

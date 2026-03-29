@@ -9,13 +9,26 @@ type Props = {
 
 import CookieBanner from '../components/CookieBanner.astro';
 import '@fontsource-variable/inter/wght.css';
+import { SITE_ORIGIN } from '../config/site';
 
 const {
-	title = 'Emmanuel Sauvage — Consultant en optimisation d’outils digitaux',
+	title = 'Emmanuel SAUVAGE — Consultant en optimisation d’outils digitaux',
 	description = 'Audit, optimisation des processus, développement d’outils métier et automatisation des workflows pour améliorer l’efficacité opérationnelle des entreprises.',
 	preloadLcpHref,
 	preloadLcpType = 'image/svg+xml',
 } = Astro.props;
+
+function canonicalizePathname(pathname: string) {
+	// Normalise les URL SEO : trailing slash sur les “pages” (sauf fichiers type .xml/.pdf)
+	if (!pathname) return '/';
+	if (pathname === '/') return '/';
+	if (pathname.endsWith('/')) return pathname;
+	if (/\.[a-z0-9]+$/i.test(pathname)) return pathname;
+	return `${pathname}/`;
+}
+
+const canonicalPath = canonicalizePathname(Astro.url.pathname);
+const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
 ---
 
 <!doctype html>
@@ -35,6 +48,8 @@ const {
 		}
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:url" content={canonicalUrl} />
 		<slot name="head" />
 
 		<!--
@@ -117,6 +132,7 @@ const {
 
 <style>
 	:root {
+		/* Duo de couleurs : proposition 1 (bleu + orange) */
 		--color-primary: #2f3a8f;
 		--color-accent: #4f6ef7;
 		/* Accent chaud : contraste avec le bleu, pour attirer l’œil (CTA, repères) */
@@ -158,13 +174,12 @@ const {
 	}
 
 	:focus-visible {
-		outline: 3px solid rgba(196, 92, 46, 0.55);
 		outline: 3px solid color-mix(in srgb, var(--color-spot) 55%, var(--color-accent));
 		outline-offset: 2px;
 	}
 
 	::selection {
-		background: rgba(196, 92, 46, 0.2);
+		background: color-mix(in srgb, var(--color-spot) 20%, transparent);
 	}
 </style>
 
@@ -195,7 +210,15 @@ const {
 	.siteHeader__cta.nav__cta,
 	.cookie .btn--primary,
 	.prefs .btn--primary {
-		background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-spot) 100%) !important;
+		overflow: hidden;
+		background-clip: padding-box;
+		border: 0 !important;
+		background: linear-gradient(
+			135deg,
+			var(--color-primary) 0%,
+			var(--color-spot) 70%,
+			color-mix(in srgb, var(--color-spot) 85%, #ffffff) 100%
+		) !important;
 		color: #fff !important;
 		border-color: transparent !important;
 	}
@@ -206,7 +229,34 @@ const {
 	.siteHeader__cta.nav__cta:hover,
 	.cookie .btn--primary:hover,
 	.prefs .btn--primary:hover {
-		background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-spot-hover) 100%) !important;
+		background: linear-gradient(
+			135deg,
+			var(--color-primary) 0%,
+			var(--color-spot-hover) 70%,
+			color-mix(in srgb, var(--color-spot-hover) 85%, #ffffff) 100%
+		) !important;
+	}
+
+	/* CTA header : éviter une “marque” sombre sur le bord droit */
+	.siteHeader__cta.nav__cta {
+		overflow: hidden;
+		background-clip: padding-box;
+		border: 0 !important;
+		background: linear-gradient(
+			135deg,
+			var(--color-primary) 0%,
+			var(--color-spot) 70%,
+			color-mix(in srgb, var(--color-spot) 85%, #ffffff) 100%
+		) !important;
+	}
+
+	.siteHeader__cta.nav__cta:hover {
+		background: linear-gradient(
+			135deg,
+			var(--color-primary) 0%,
+			var(--color-spot-hover) 70%,
+			color-mix(in srgb, var(--color-spot-hover) 85%, #ffffff) 100%
+		) !important;
 	}
 
 	/* Pied de page (accueil, services, à propos, contact — même rendu « marque ») */

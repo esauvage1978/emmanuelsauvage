@@ -1,5 +1,5 @@
 <!--
-  Template MJML — Notification formulaire contact (Emmanuel Sauvage)
+  Template MJML — Notification formulaire contact (Emmanuel SAUVAGE)
   À compiler avec https://mjml.io (CLI ou VS Code) puis coller le HTML dans Mailjet
   (Transactional templates) ou utiliser l’API avec le HTML compilé.
 
@@ -15,7 +15,7 @@
 -->
 <mjml>
   <mj-head>
-    <mj-title>Nouveau message — Contact Emmanuel Sauvage</mj-title>
+    <mj-title>Nouveau message — Contact Emmanuel SAUVAGE</mj-title>
     <mj-preview>Un visiteur a envoyé un message depuis le formulaire de contact du site.</mj-preview>
     <mj-attributes>
       <mj-all font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" />
@@ -29,7 +29,7 @@
       <mj-column width="100%">
         <mj-image
           src="https://emmanuelsauvage.fr/images/logo-256.png"
-          alt="Emmanuel Sauvage"
+          alt="Emmanuel SAUVAGE"
           width="120px"
           href="https://emmanuelsauvage.fr"
         />
@@ -85,7 +85,7 @@
     <mj-section background-color="#E8ECF8" padding="24px 40px">
       <mj-column width="100%">
         <mj-text font-size="12px" color="#5b5b5b" align="center" padding="0">
-          Email automatique — site vitrine Emmanuel Sauvage.<br />
+          Email automatique — site vitrine Emmanuel SAUVAGE.<br />
           <span style="color:#6b7280;">Reçu le : {{var:submitted_at}}</span>
         </mj-text>
       </mj-column>

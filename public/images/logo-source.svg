@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Logo marque">
+  <!-- Fond (accent) -->
+  <!-- (volontairement retiré : la proposition 17 n'a pas de fond/border) -->
+
+  <!-- Crochets code -->
+  <!-- Augmente la taille du contenu dans le viewBox (évite le "logo trop petit") -->
+  <g transform="translate(32 32) scale(1.6) translate(-32 -32)">
+    <path d="M22 18 L16 32 L22 46" fill="none" stroke="#2f3a8f" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M42 18 L48 32 L42 46" fill="none" stroke="#2f3a8f" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Data barres (opaques) -->
+    <rect x="24" y="25" width="5" height="14" rx="2" fill="#dc9d81" />
+    <rect x="29.5" y="23" width="5" height="18" rx="2" fill="#c45c2e" />
+    <rect x="35" y="25" width="5" height="14" rx="2" fill="#dc9d81" />
+  </g>
+</svg>
+

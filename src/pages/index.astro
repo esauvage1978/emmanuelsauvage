@@ -2,13 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import PartnersLogos from '../components/PartnersLogos.astro';
 import { GOOGLE_REVIEW_URL } from '../config/site';
 ---
 
 <Layout
-	title="Optimisation et développement d’outils digitaux pour les entreprises | Emmanuel Sauvage"
+	title="Optimisation et développement d’outils digitaux pour les entreprises | Emmanuel SAUVAGE"
 	description="Consultant indépendant : audit outils digitaux entreprise, optimisation processus entreprise, développement d’outils métier et automatisation workflows. Audit, développement, formation et dépannage."
-	preloadLcpHref="/images/hero-illustration-v2.svg"
+	preloadLcpHref="/images/hero-illustration-unsplash-2-662.jpg"
+	preloadLcpType="image/jpeg"
 >
 	<SiteHeader current="home" />
 
@@ -22,9 +24,9 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 				<svg class="grid" viewBox="0 0 1200 500" preserveAspectRatio="none">
 					<defs>
 						<linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-							<stop offset="0" stop-color="rgba(79,110,247,0.35)" />
-							<stop offset="0.5" stop-color="rgba(196,92,46,0.14)" />
-							<stop offset="1" stop-color="rgba(47,58,143,0.18)" />
+							<stop offset="0" stop-color="var(--color-accent)" stop-opacity="0.35" />
+							<stop offset="0.5" stop-color="var(--color-spot)" stop-opacity="0.14" />
+							<stop offset="1" stop-color="var(--color-primary)" stop-opacity="0.18" />
 						</linearGradient>
 					</defs>
 					<path d="M0 420C220 320 360 360 540 260C720 160 880 240 1200 120V500H0Z" fill="url(#g)"></path>
@@ -48,10 +50,13 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 					<figure class="heroMedia heroMedia--impact">
 						<img
 							class="heroMedia__img"
-							src="/images/hero-illustration-v2.svg"
+							/* Valeur de secours volontairement basse : évite que le navigateur tombe sur la version 1400w. */
+							src="/images/hero-illustration-unsplash-2-662.jpg"
+							srcset="/images/hero-illustration-unsplash-2-662.jpg 662w, /images/hero-illustration-unsplash-2-1000.jpg 1000w, /images/hero-illustration-unsplash-2-1400.jpg 1400w"
+							sizes="(max-width: 720px) 662px, (max-width: 980px) 1000px, 1400px"
 							width="1400"
 							height="933"
-							alt="Illustration graphique : développement web, data et automatisation."
+							alt="Photo : analyse de données et décisions à partir de graphes sur ordinateur."
 							loading="eager"
 							fetchpriority="high"
 						/>
@@ -250,17 +255,22 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 					</figure>
 					<figure class="quote">
 						<blockquote>
-							« J’ai sollicité Monsieur SAUVAGE pour la création d’une plateforme de formation en ligne. Il est
-							pertinent, à l’écoute, patient et bienveillant. Je confirme qu’il est clairement dans son domaine. »
+							« Je collabore avec ma société Mon Coach Brico depuis 3 ans avec Emmanuel. Il a su s’intéresser au
+							projet et dépasser son rôle initial de développeur. Il construit de son côté ou avec mes collaborateurs
+							les interfaces qu’on lui donne ou qu’il nous propose. Il ne fait pas que développer : il propose des
+							interfaces visuelles et anticipe systématiquement les futurs besoins à venir. Au-delà du côté excellent
+							professionnel, c’est également une belle personne avec qui je prends plaisir à avancer. »
 						</blockquote>
-						<figcaption>— Laura Borges</figcaption>
+						<figcaption>— Dimitri De Cruz (Mon Coach Brico)</figcaption>
 					</figure>
 					<figure class="quote">
 						<blockquote>
-							« Tout simplement remarquable ! Très compétent dans son domaine, avec une approche chaleureuse et
-							humaine. Sa méthode donne vraiment envie de travailler. C’est un vrai plaisir d’apprendre à ses côtés. »
+							« Emmanuel a créé de toute pièce un outil qui sert maintenant aux 300 magasins Français. Il a
+							parfaitement su retranscrire notre besoin et s'est encore une fois montré force de proposition. Ses
+							qualités de compréhension et d'adaptation sont impressionnantes. Le projet lancé en France s'exporte
+							maintenant à l'international. »
 						</blockquote>
-						<figcaption>— Axel Croce</figcaption>
+						<figcaption>— Yann Philippe (DECATHLON SAS — FRANCE)</figcaption>
 					</figure>
 				</div>
 
@@ -284,6 +294,8 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 			</div>
 		</section>
 
+		<PartnersLogos />
+
 		<section class="homeSeo" aria-label="Pour aller plus loin">
 			<div class="container">
 				<p class="homeSeo__text">
@@ -300,7 +312,7 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 			<div class="container">
 				<header class="homeSection__header homeSection__header--cta">
 					<p class="homeSection__rail" aria-hidden="true">
-						<span class="homeSection__num">04</span>
+						<span class="homeSection__num">05</span>
 						<span class="homeSection__label">Contact</span>
 					</p>
 					<div class="homeSection__intro">
@@ -331,13 +343,13 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 </Layout>
 
 <style>
-	.container {
+	:global(.home .container) {
 		width: min(1120px, calc(100% - 32px));
 		margin: 0 auto;
 	}
 
 	@media (min-width: 521px) {
-		.container {
+		:global(.home .container) {
 			width: min(1120px, calc(100% - 48px));
 		}
 	}
@@ -388,8 +400,16 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		height: 520px;
 		top: -220px;
 		left: -180px;
-		background: radial-gradient(circle at 30% 30%, rgba(79, 110, 247, 0.55), rgba(79, 110, 247, 0) 60%),
-			radial-gradient(circle at 70% 60%, rgba(47, 58, 143, 0.35), rgba(47, 58, 143, 0) 65%);
+		background: radial-gradient(
+				circle at 30% 30%,
+				color-mix(in srgb, var(--color-accent) 55%, transparent),
+				transparent 60%
+			),
+			radial-gradient(
+				circle at 70% 60%,
+				color-mix(in srgb, var(--color-primary) 35%, transparent),
+				transparent 65%
+			);
 	}
 
 	.blob--b {
@@ -397,8 +417,16 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		height: 560px;
 		top: -260px;
 		right: -260px;
-		background: radial-gradient(circle at 40% 40%, rgba(47, 58, 143, 0.45), rgba(47, 58, 143, 0) 62%),
-			radial-gradient(circle at 70% 70%, rgba(79, 110, 247, 0.38), rgba(79, 110, 247, 0) 66%);
+		background: radial-gradient(
+				circle at 40% 40%,
+				color-mix(in srgb, var(--color-primary) 45%, transparent),
+				transparent 62%
+			),
+			radial-gradient(
+				circle at 70% 70%,
+				color-mix(in srgb, var(--color-accent) 38%, transparent),
+				transparent 66%
+			);
 	}
 
 	.blob--c {
@@ -406,8 +434,16 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		height: 520px;
 		bottom: -300px;
 		left: 36%;
-		background: radial-gradient(circle at 35% 35%, rgba(79, 110, 247, 0.35), rgba(79, 110, 247, 0) 62%),
-			radial-gradient(circle at 70% 40%, rgba(47, 58, 143, 0.2), rgba(47, 58, 143, 0) 70%);
+		background: radial-gradient(
+				circle at 35% 35%,
+				color-mix(in srgb, var(--color-accent) 35%, transparent),
+				transparent 62%
+			),
+			radial-gradient(
+				circle at 70% 40%,
+				color-mix(in srgb, var(--color-primary) 20%, transparent),
+				transparent 70%
+			);
 	}
 
 	.home .blob--spot {
@@ -418,7 +454,11 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		opacity: 0.75;
 		filter: blur(48px);
 		mix-blend-mode: multiply;
-		background: radial-gradient(circle at 40% 40%, rgba(196, 92, 46, 0.42), rgba(196, 92, 46, 0) 62%);
+		background: radial-gradient(
+			circle at 40% 40%,
+			color-mix(in srgb, var(--color-spot) 42%, transparent),
+			transparent 62%
+		);
 	}
 
 	.grid {
@@ -679,9 +719,24 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		width: min(620px, 100%);
 		border-radius: 28px;
 		box-shadow:
-			0 24px 60px rgba(47, 58, 143, 0.16),
-			0 0 0 1px rgba(196, 92, 46, 0.22),
-			0 0 40px rgba(196, 92, 46, 0.08);
+			0 34px 90px color-mix(in srgb, var(--color-primary) 18%, transparent),
+			0 0 0 1px color-mix(in srgb, var(--color-spot) 30%, rgba(255, 255, 255, 0.7)),
+			0 0 56px color-mix(in srgb, var(--color-spot) 16%, transparent);
+	}
+
+	.heroMedia--impact::before {
+		content: '';
+		position: absolute;
+		inset: -22px;
+		border-radius: inherit;
+		background: radial-gradient(
+			circle at 50% 50%,
+			color-mix(in srgb, var(--color-spot) 18%, transparent) 0%,
+			transparent 60%
+		);
+		filter: blur(18px);
+		opacity: 0.95;
+		pointer-events: none;
 	}
 
 	.heroMedia::after {
@@ -696,7 +751,9 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		display: block;
 		width: 100%;
 		height: auto;
-		transform: scale(1.02);
+		transform: scale(1.05) translateY(-2px);
+		position: relative;
+		z-index: 1;
 	}
 
 	.srOnly {
@@ -711,7 +768,8 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		border: 0;
 	}
 
-	.homeSection__header {
+	/* :global — même styles pour les sections importées (ex. partenaires) */
+	:global(.homeSection__header) {
 		display: grid;
 		grid-template-columns: minmax(72px, auto) 1fr;
 		gap: 20px 28px;
@@ -722,11 +780,11 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		min-width: 0;
 	}
 
-	.home .homeSection__header {
+	:global(.home .homeSection__header) {
 		border-bottom-color: color-mix(in srgb, var(--color-spot) 22%, rgba(47, 58, 143, 0.12));
 	}
 
-	.homeSection__rail {
+	:global(.homeSection__rail) {
 		margin: 0;
 		display: flex;
 		flex-direction: column;
@@ -738,7 +796,7 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		min-height: 100%;
 	}
 
-	.homeSection__num {
+	:global(.homeSection__num) {
 		font-size: clamp(28px, 3.5vw, 40px);
 		font-weight: 800;
 		line-height: 1;
@@ -746,7 +804,7 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		color: var(--color-spot);
 	}
 
-	.homeSection__label {
+	:global(.homeSection__label) {
 		font-size: 11px;
 		font-weight: 700;
 		text-transform: uppercase;
@@ -754,15 +812,16 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		color: var(--color-muted);
 	}
 
-	.home .homeSection__label {
-		color: color-mix(in srgb, var(--color-spot) 55%, var(--color-muted));
+	:global(.home .homeSection__label) {
+		/* Contraste renforcé (Lighthouse accessibilité) */
+		color: var(--color-primary);
 	}
 
-	.homeSection__intro h2 {
+	:global(.homeSection__intro h2) {
 		margin: 0 0 10px;
 	}
 
-	.home .homeSection__intro h2::after {
+	:global(.home .homeSection__intro h2::after) {
 		content: '';
 		display: block;
 		width: 52px;
@@ -772,7 +831,7 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		background: linear-gradient(90deg, var(--color-spot) 0%, var(--color-accent) 100%);
 	}
 
-	.homeSection__lede {
+	:global(.homeSection__lede) {
 		margin: 0;
 		max-width: 62ch;
 		color: var(--color-muted);
@@ -781,7 +840,7 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		opacity: 1;
 	}
 
-	.homeSection__lede a {
+	:global(.homeSection__lede a) {
 		color: var(--color-primary);
 		font-weight: 600;
 		text-decoration: underline;
@@ -789,49 +848,49 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		text-underline-offset: 3px;
 	}
 
-	.homeSection__lede a:hover {
+	:global(.homeSection__lede a:hover) {
 		text-decoration-color: var(--color-primary);
 	}
 
-	.home .homeSection__lede a {
+	:global(.home .homeSection__lede a) {
 		color: var(--color-spot-hover);
 		text-decoration-color: rgba(196, 92, 46, 0.4);
 	}
 
-	.home .homeSection__lede a:hover {
+	:global(.home .homeSection__lede a:hover) {
 		color: var(--color-spot);
 		text-decoration-color: var(--color-spot);
 	}
 
-	.homeSection__footerLink {
+	:global(.homeSection__footerLink) {
 		margin: 26px 0 0;
 		text-align: center;
 	}
 
-	.homeSection__footerLink a {
+	:global(.homeSection__footerLink a) {
 		font-weight: 700;
 		color: var(--color-primary);
 		text-decoration: none;
 	}
 
-	.homeSection__footerLink a:hover {
+	:global(.homeSection__footerLink a:hover) {
 		text-decoration: underline;
 		text-decoration-color: rgba(47, 58, 143, 0.35);
 	}
 
-	.home .homeSection__footerLink a {
+	:global(.home .homeSection__footerLink a) {
 		color: var(--color-spot-hover);
 		text-decoration: underline;
 		text-decoration-color: rgba(196, 92, 46, 0.35);
 		text-underline-offset: 3px;
 	}
 
-	.home .homeSection__footerLink a:hover {
+	:global(.home .homeSection__footerLink a:hover) {
 		color: var(--color-spot);
 		text-decoration-color: var(--color-spot);
 	}
 
-	.homeSection__header--cta {
+	:global(.homeSection__header--cta) {
 		margin-bottom: 20px;
 		padding-bottom: 18px;
 	}
@@ -854,11 +913,11 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		opacity: 1;
 	}
 
-	.section {
+	:global(.home .section) {
 		padding: 56px 0;
 	}
 
-	.section--alt {
+	:global(.home .section--alt) {
 		background: rgba(255, 255, 255, 0.7);
 		border-top: 1px solid var(--color-border);
 		border-bottom: 1px solid var(--color-border);
@@ -1230,7 +1289,7 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 	}
 
 	/* Dernière section : socle clair + air avant le pied de page (comme la zone pre-footer services) */
-	.homeSection--ctaLast {
+	:global(.homeSection--ctaLast) {
 		padding-bottom: 80px;
 		background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.65) 35%, #ffffff 100%);
 		border-bottom: 1px solid rgba(47, 58, 143, 0.1);
@@ -1238,7 +1297,7 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 	}
 
 	@media (min-width: 980px) {
-		.homeSection--ctaLast {
+		:global(.homeSection--ctaLast) {
 			padding-bottom: 88px;
 		}
 	}
@@ -1264,12 +1323,12 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 	}
 
 	@media (max-width: 980px) {
-		.homeSection__header {
+		:global(.homeSection__header) {
 			grid-template-columns: 1fr;
 			gap: 20px;
 		}
 
-		.homeSection__rail {
+		:global(.homeSection__rail) {
 			flex-direction: row;
 			align-items: baseline;
 			gap: 10px;
@@ -1280,11 +1339,11 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 			margin-bottom: 2px;
 		}
 
-		.homeSection__intro {
+		:global(.homeSection__intro) {
 			padding-top: 4px;
 		}
 
-		.home .homeSection__intro h2::after {
+		:global(.home .homeSection__intro h2::after) {
 			margin-top: 18px;
 		}
 

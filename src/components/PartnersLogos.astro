@@ -1,0 +1,199 @@
+---
+/** Logos : fichiers dans public/images/partners/ */
+const partners: { name: string; href: string; logo: string }[] = [
+	{ name: 'Mon Coach Brico', href: 'https://www.moncoachbrico.com/', logo: '/images/partners/mcb.png' },
+	{ name: 'Mon Coach Jardin', href: 'https://www.moncoachjardin.com/', logo: '/images/partners/mcj.png' },
+	{ name: 'Decathlon', href: 'https://www.decathlon.fr/', logo: '/images/partners/decathlon.svg' },
+	{ name: 'YEED Group', href: 'https://yeedgroup.com/', logo: '/images/partners/yeed-group.svg' },
+	{
+		name: 'Cabinet Parafiniuk-Leroy Avocats',
+		href: 'https://www.cabinet-avocat-parafiniuk.com/',
+		logo: '/images/partners/PL-avocat-1.png',
+	},
+	{ name: 'OpenClassrooms', href: 'https://openclassrooms.com/', logo: '/images/partners/openclassroom-1024x385.webp' },
+];
+---
+
+<section
+	class="homeSection section partnersLogos"
+	aria-labelledby="partners-heading"
+>
+	<div class="container">
+		<header class="homeSection__header">
+			<p class="homeSection__rail" aria-hidden="true">
+				<span class="homeSection__num">04</span>
+				<span class="homeSection__label">Références</span>
+			</p>
+			<div class="homeSection__intro">
+				<h2 id="partners-heading">Entreprises &amp; organisations</h2>
+				<p class="homeSection__lede">
+					Quelques structures avec lesquelles j’ai collaboré ou collabore — formations, outils métier, accompagnement
+					technique.
+				</p>
+			</div>
+		</header>
+
+		<ul class="partnersLogos__grid">
+			{
+				partners.map((p) => (
+					<li class="partnersLogos__cell">
+						<a
+							class="partnersLogos__link"
+							href={p.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							title={`${p.name} — ouvrir dans un nouvel onglet`}
+						>
+							<span class="partnersLogos__logoWrap">
+								<img
+									class="partnersLogos__logo"
+									src={p.logo}
+									alt=""
+									width="200"
+									height="48"
+									loading="lazy"
+									decoding="async"
+								/>
+							</span>
+							<span class="partnersLogos__name">{p.name}</span>
+							<span class="partnersLogos__ext" aria-hidden="true">
+								<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+									<polyline points="15 3 21 3 21 9" />
+									<line x1="10" y1="14" x2="21" y2="3" />
+								</svg>
+							</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.partnersLogos__grid {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+		gap: clamp(14px, 2vw, 20px);
+		align-items: start;
+	}
+
+	.partnersLogos__cell {
+		margin: 0;
+		min-width: 0;
+		width: 100%;
+	}
+
+	.partnersLogos__link {
+		position: relative;
+		z-index: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 8px;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 12px 32px 12px 12px;
+		border-radius: var(--radius, 16px);
+		border: 1px solid var(--color-border);
+		background: rgba(255, 255, 255, 0.95);
+		box-shadow: var(--shadow-sm, 0 1px 2px rgba(16, 24, 40, 0.06));
+		text-decoration: none;
+		color: var(--color-text);
+		text-align: center;
+		overflow: hidden;
+		transition:
+			box-shadow 0.18s ease,
+			border-color 0.18s ease,
+			background 0.18s ease;
+	}
+
+	.partnersLogos__link:hover {
+		z-index: 1;
+		border-color: color-mix(in srgb, var(--color-spot-hover, #c45c2e) 38%, var(--color-border));
+		box-shadow: 0 4px 16px rgba(16, 24, 40, 0.08);
+		background: #fff;
+	}
+
+	.partnersLogos__link:focus-visible {
+		outline: 2px solid var(--color-spot-hover, #c45c2e);
+		outline-offset: 2px;
+	}
+
+	.partnersLogos__logoWrap {
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 48px;
+	}
+
+	.partnersLogos__logo {
+		display: block;
+		width: 100%;
+		max-width: 200px;
+		height: 48px;
+		object-fit: contain;
+		object-position: center;
+		filter: grayscale(0.06);
+		transition: filter 0.18s ease;
+	}
+
+	.partnersLogos__link:hover .partnersLogos__logo {
+		filter: grayscale(0);
+	}
+
+	.partnersLogos__name {
+		width: 100%;
+		max-width: 100%;
+		margin: 0;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1.35;
+		letter-spacing: -0.01em;
+		color: var(--color-muted);
+		text-align: center;
+		/* Hauteur homogène sans étirer toute la carte */
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		overflow: hidden;
+		word-break: break-word;
+	}
+
+	.partnersLogos__link:hover .partnersLogos__name {
+		color: var(--color-primary);
+	}
+
+	.partnersLogos__ext {
+		position: absolute;
+		top: 12px;
+		right: 10px;
+		color: var(--color-muted);
+		opacity: 0.6;
+		transition: opacity 0.18s ease, color 0.18s ease;
+	}
+
+	.partnersLogos__link:hover .partnersLogos__ext {
+		opacity: 1;
+		color: var(--color-spot-hover, #c45c2e);
+	}
+
+	@media (min-width: 720px) {
+		.partnersLogos__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.partnersLogos__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+</style>
