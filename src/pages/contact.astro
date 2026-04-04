@@ -77,6 +77,7 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 				<div class="grid2">
 					<form id="contact-form" class="form card" method="post" action="#" novalidate>
 						<p id="form-status" class="formStatus" role="status" aria-live="polite" hidden></p>
+						<input type="hidden" name="source" value="emmanuelsauvage" />
 						<div class="field">
 							<label for="name">Nom</label>
 							<input id="name" name="name" autocomplete="name" required />
@@ -88,6 +89,27 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 						<div class="field">
 							<label for="email">Email</label>
 							<input id="email" name="email" type="email" autocomplete="email" required />
+						</div>
+						<div class="field">
+							<label for="objet">Objet de la sollicitation</label>
+							<select id="objet" name="objet" required>
+								<option value="" disabled selected>— Choisir un thème —</option>
+								<option value="Développement applicatif (Symfony, API)">
+									Développement applicatif (Symfony, API)
+								</option>
+								<option value="Interfaces web (Vue.js, React)">Interfaces web (Vue.js, React)</option>
+								<option value="Data, reporting &amp; BI (Sheets, Power BI, Looker…)">
+									Data, reporting &amp; BI (Sheets, Power BI, Looker…)
+								</option>
+								<option value="Automatisation &amp; intégrations (API, outils métier…)">
+									Automatisation &amp; intégrations (API, outils métier…)
+								</option>
+								<option value="Maintenance, audit ou refonte technique">
+									Maintenance, audit ou refonte technique
+								</option>
+								<option value="Formation ou accompagnement">Formation ou accompagnement</option>
+								<option value="Autre">Autre</option>
+							</select>
 						</div>
 						<div class="field">
 							<label for="message">Message</label>
@@ -207,10 +229,16 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 				const name = document.getElementById('name')?.value?.trim() ?? '';
 				const company = document.getElementById('company')?.value?.trim() ?? '';
 				const email = document.getElementById('email')?.value?.trim() ?? '';
+				const objet = document.getElementById('objet')?.value?.trim() ?? '';
 				const message = document.getElementById('message')?.value?.trim() ?? '';
+				const source =
+					form.querySelector('input[name="source"]')?.value?.trim() || 'emmanuelsauvage';
 
-				if (!name || !email || !message) {
-					setStatus('err', 'Merci de remplir les champs obligatoires (nom, email, message).');
+				if (!name || !email || !objet || !message) {
+					setStatus(
+						'err',
+						'Merci de remplir les champs obligatoires (nom, email, objet de la sollicitation, message).',
+					);
 					return;
 				}
 
@@ -222,7 +250,9 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 					name,
 					company: company || '—',
 					email,
+					objet,
 					message,
+					source,
 					submitted_at: new Date().toISOString(),
 				};
 
@@ -676,7 +706,8 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 	}
 
 	input,
-	textarea {
+	textarea,
+	select {
 		font: inherit;
 		padding: 12px 14px;
 		border-radius: 14px;
@@ -685,8 +716,18 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 		outline: none;
 	}
 
+	select {
+		cursor: pointer;
+		appearance: none;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234758a1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: right 12px center;
+		padding-right: 40px;
+	}
+
 	input:focus,
-	textarea:focus {
+	textarea:focus,
+	select:focus {
 		border-color: color-mix(in srgb, rgba(47, 58, 143, 0.5) 55%, rgba(196, 92, 46, 0.35));
 		box-shadow:
 			0 0 0 4px rgba(47, 58, 143, 0.1),

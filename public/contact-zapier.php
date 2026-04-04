@@ -30,10 +30,15 @@ if (!is_array($data)) {
 $name = isset($data['name']) ? trim((string) $data['name']) : '';
 $email = isset($data['email']) ? trim((string) $data['email']) : '';
 $message = isset($data['message']) ? trim((string) $data['message']) : '';
+$objet = isset($data['objet']) ? trim((string) $data['objet']) : '';
 $company = isset($data['company']) ? trim((string) $data['company']) : '—';
+$source = isset($data['source']) ? trim((string) $data['source']) : '';
+if ($source === '') {
+	$source = 'emmanuelsauvage';
+}
 $submittedAt = isset($data['submitted_at']) ? trim((string) $data['submitted_at']) : gmdate('c');
 
-if ($name === '' || $email === '' || $message === '') {
+if ($name === '' || $email === '' || $objet === '' || $message === '') {
 	http_response_code(400);
 	echo json_encode(['ok' => false, 'error' => 'Missing required fields']);
 	exit;
@@ -44,7 +49,9 @@ $payload = json_encode(
 		'name' => $name,
 		'company' => $company !== '' ? $company : '—',
 		'email' => $email,
+		'objet' => $objet,
 		'message' => $message,
+		'source' => $source,
 		'submitted_at' => $submittedAt,
 	],
 	JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
