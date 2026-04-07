@@ -1,6 +1,6 @@
 <?php
 /**
- * Proxy formulaire → Zapier Catch Hook (évite le blocage CORS du navigateur).
+ * Proxy formulaire → webhook Zapier (évite le blocage CORS du navigateur).
  * Requis : hébergement PHP (ex. WAMP). Ne pas exposer ce fichier sans HTTPS en production.
  */
 declare(strict_types=1);
@@ -57,7 +57,7 @@ $payload = json_encode(
 	JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
 );
 
-$hook = 'https://hooks.zapier.com/hooks/catch/26903545/upkex8r/';
+$hook = 'https://zapier.emmanuelsauvage.fr/webhook/form/1264ea10-cc2c-49d4-9614-c22647fa1f88';
 
 $ch = curl_init($hook);
 curl_setopt_array($ch, [

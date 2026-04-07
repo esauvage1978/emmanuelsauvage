@@ -3,7 +3,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 /** Même URL que dans public/contact-zapier.php — évite le CORS navigateur → Zapier en dev */
-const ZAPIER_CATCH_PATH = '/hooks/catch/26903545/upkex8r/';
+const ZAPIER_WEBHOOK_ORIGIN = 'https://zapier.emmanuelsauvage.fr';
+const ZAPIER_WEBHOOK_PATH = '/webhook/form/1264ea10-cc2c-49d4-9614-c22647fa1f88';
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,10 +16,10 @@ export default defineConfig({
 		server: {
 			proxy: {
 				'/api/zapier-contact': {
-					target: 'https://hooks.zapier.com',
+					target: ZAPIER_WEBHOOK_ORIGIN,
 					changeOrigin: true,
 					secure: true,
-					rewrite: () => ZAPIER_CATCH_PATH,
+					rewrite: () => ZAPIER_WEBHOOK_PATH,
 				},
 			},
 		},
