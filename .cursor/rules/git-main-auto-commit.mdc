@@ -1,0 +1,17 @@
+---
+description: Commit et push sur origin main après modifications
+alwaysApply: true
+---
+
+# Git — branche main
+
+Remote : `https://github.com/esauvage1978/emmanuelsauvage.git`.
+
+Après toute modification de fichiers du projet (hors `node_modules/`, `dist/`, etc. ignorés) :
+
+1. `git status`.
+2. `git add` uniquement les fichiers pertinents.
+3. `git commit -m "..."` — message clair sur les changements.
+4. `git push origin main`.
+
+Ne pas terminer une tâche de code avec le dépôt sale (changements non commités).
