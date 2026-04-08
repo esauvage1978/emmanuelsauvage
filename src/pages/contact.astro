@@ -94,21 +94,13 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 							<label for="objet">Objet de la sollicitation</label>
 							<select id="objet" name="objet" required>
 								<option value="" disabled selected>— Choisir un thème —</option>
-								<option value="Développement applicatif (Symfony, API)">
-									Développement applicatif (Symfony, API)
-								</option>
-								<option value="Interfaces web (Vue.js, React)">Interfaces web (Vue.js, React)</option>
-								<option value="Data, reporting &amp; BI (Sheets, Power BI, Looker…)">
-									Data, reporting &amp; BI (Sheets, Power BI, Looker…)
-								</option>
-								<option value="Automatisation &amp; intégrations (API, outils métier…)">
-									Automatisation &amp; intégrations (API, outils métier…)
-								</option>
-								<option value="Maintenance, audit ou refonte technique">
-									Maintenance, audit ou refonte technique
-								</option>
-								<option value="Formation ou accompagnement">Formation ou accompagnement</option>
-								<option value="Autre">Autre</option>
+								<option value="dev-symfony">Développement applicatif (Symfony, API)</option>
+								<option value="front-vue-react">Interfaces web (Vue.js, React)</option>
+								<option value="data-bi">Data, reporting &amp; BI (Sheets, Power BI, Looker…)</option>
+								<option value="automation">Automatisation &amp; intégrations (API, outils métier…)</option>
+								<option value="maintenance">Maintenance, audit ou refonte technique</option>
+								<option value="formation">Formation ou accompagnement</option>
+								<option value="autre">Autre</option>
 							</select>
 						</div>
 						<div class="field">
@@ -124,7 +116,14 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 						<button class="button button--primary" id="contact-submit" type="submit">Envoyer le message</button>
 						<div class="consent">
 							<label class="consent__label">
-								<input class="consent__checkbox" type="checkbox" required />
+								<input
+									class="consent__checkbox"
+									id="privacy-policy"
+									name="privacy_policy_accepted"
+									type="checkbox"
+									value="true"
+									required
+								/>
 								<span>
 									J’ai lu la <a href="/politique-de-confidentialite">politique de confidentialité</a> et j’accepte que
 									mes données soient utilisées pour répondre à ma demande.
@@ -226,13 +225,17 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 					return;
 				}
 
+				const nowIso = new Date().toISOString();
 				const name = document.getElementById('name')?.value?.trim() ?? '';
 				const company = document.getElementById('company')?.value?.trim() ?? '';
 				const email = document.getElementById('email')?.value?.trim() ?? '';
-				const objet = document.getElementById('objet')?.value?.trim() ?? '';
+				const objetSelect = document.getElementById('objet');
+				const objet = objetSelect?.value?.trim() ?? '';
+				const objetLabel = objetSelect?.selectedOptions?.[0]?.textContent?.trim() ?? '';
 				const message = document.getElementById('message')?.value?.trim() ?? '';
 				const source =
 					form.querySelector('input[name="source"]')?.value?.trim() || 'emmanuelsauvage';
+				const page = typeof window !== 'undefined' ? window.location.href : '';
 
 				if (!name || !email || !objet || !message) {
 					setStatus(
@@ -251,9 +254,13 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 					company: company || '—',
 					email,
 					objet,
+					objet_label: objetLabel || objet,
 					message,
 					source,
-					submitted_at: new Date().toISOString(),
+					page,
+					privacy_policy_accepted: true,
+					privacy_policy_accepted_at: nowIso,
+					submitted_at: nowIso,
 				};
 
 				try {

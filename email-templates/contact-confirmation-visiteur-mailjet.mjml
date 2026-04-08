@@ -6,21 +6,14 @@
 
   Compiler : npx mjml contact-confirmation-visiteur-mailjet.mjml -o contact-confirmation-visiteur-mailjet.html
 
-  Champs effectivement envoyés par public/contact-zapier.php (JSON) :
-    name, company, email, objet, message, source, submitted_at
+  Champs envoyés par public/contact-zapier.php (JSON) :
+    name, company, email, objet, objet_label, message, source, page,
+    privacy_policy_accepted, privacy_policy_accepted_at, submitted_at
 
-  Variables utiles dans le template / Zapier :
-    {{var:name}}                      — Nom (formulaire : champ "name")
-    {{var:email}}                     — Email ("email")
-    {{var:company}}                   — Entreprise (peut être vide ou "—")
-    {{var:objet}}                     — Valeur du select (sur le site : libellé complet, ex. thème choisi)
-    {{var:objet_label}}               — Optionnel : libellé affiché (si vous normalisez le flux ; sinon = {{var:objet}})
-    {{var:message}}                   — Corps du message
-    {{var:source}}                    — ex. emmanuelsauvage
-    {{var:page}}                      — Optionnel : URL de la page au moment de l’envoi
-    {{var:privacy_policy_accepted}}   — Optionnel (non POSTé par le PHP actuel)
-    {{var:privacy_policy_accepted_at}}— Optionnel (non POSTé par le PHP actuel)
-    {{var:submitted_at}}              — Horodatage ISO (envoi)
+  Variables dans le template / Zapier :
+    {{var:name}}, {{var:email}}, {{var:company}}, {{var:objet}}, {{var:objet_label}},
+    {{var:message}}, {{var:source}}, {{var:page}},
+    {{var:privacy_policy_accepted}}, {{var:privacy_policy_accepted_at}}, {{var:submitted_at}}
 -->
 <mjml>
   <mj-head>

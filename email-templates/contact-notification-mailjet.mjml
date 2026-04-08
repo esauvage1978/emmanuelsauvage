@@ -3,12 +3,18 @@
   À compiler avec https://mjml.io (CLI ou VS Code) puis coller le HTML dans Mailjet
   (Transactional templates) ou utiliser l’API avec le HTML compilé.
 
-  Variables Mailjet (à déclarer dans le template Mailjet / passer via API ou Zapier) :
-    {{var:name}}        — Nom du contact (formulaire : champ "Nom")
-    {{var:company}}     — Entreprise (optionnel, formulaire : "Entreprise")
-    {{var:email}}       — Email du contact (formulaire : "Email")
-    {{var:message}}     — Corps du message (formulaire : "Message")
-    {{var:submitted_at}} — Optionnel : date/heure (remplie par Zapier, ex. {{zap_meta_human_now}})
+  Variables Mailjet (alignées sur le JSON du formulaire / contact-zapier.php) :
+    {{var:name}}        — Nom
+    {{var:company}}     — Entreprise (ou « — »)
+    {{var:email}}       — Email
+    {{var:objet}}       — Code thème (ex. dev-symfony)
+    {{var:objet_label}} — Libellé lisible du thème
+    {{var:message}}     — Message
+    {{var:source}}      — ex. emmanuelsauvage
+    {{var:page}}        — URL de la page au moment de l’envoi
+    {{var:privacy_policy_accepted}}    — true
+    {{var:privacy_policy_accepted_at}} — ISO 8601
+    {{var:submitted_at}} — ISO 8601 (envoi)
 
   Logo : remplacez l’URL ci-dessous par l’URL absolue de votre logo en production
   (ex. https://votredomaine.fr/images/logo-256.png).
@@ -60,6 +66,10 @@
           {{var:company}}
         </mj-text>
         <mj-text padding-bottom="12px">
+          <strong>Objet</strong><br />
+          {{var:objet_label}} <span style="color:#6b7280;font-size:14px;">({{var:objet}})</span>
+        </mj-text>
+        <mj-text padding-bottom="12px">
           <strong>Email</strong><br />
           <a href="mailto:{{var:email}}" style="color: #4F6EF7;">{{var:email}}</a>
         </mj-text>
@@ -86,7 +96,9 @@
       <mj-column width="100%">
         <mj-text font-size="12px" color="#5b5b5b" align="center" padding="0">
           Email automatique — site vitrine Emmanuel SAUVAGE.<br />
-          <span style="color:#6b7280;">Reçu le : {{var:submitted_at}}</span>
+          <span style="color:#6b7280;">Source : {{var:source}} — Page : {{var:page}}<br />
+          Consentement : {{var:privacy_policy_accepted_at}}<br />
+          Reçu le : {{var:submitted_at}}</span>
         </mj-text>
       </mj-column>
     </mj-section>

@@ -31,17 +31,35 @@ $name = isset($data['name']) ? trim((string) $data['name']) : '';
 $email = isset($data['email']) ? trim((string) $data['email']) : '';
 $message = isset($data['message']) ? trim((string) $data['message']) : '';
 $objet = isset($data['objet']) ? trim((string) $data['objet']) : '';
+$objetLabel = isset($data['objet_label']) ? trim((string) $data['objet_label']) : '';
+if ($objetLabel === '') {
+	$objetLabel = $objet;
+}
 $company = isset($data['company']) ? trim((string) $data['company']) : '—';
 $source = isset($data['source']) ? trim((string) $data['source']) : '';
 if ($source === '') {
 	$source = 'emmanuelsauvage';
 }
+$page = isset($data['page']) ? trim((string) $data['page']) : '';
 $submittedAt = isset($data['submitted_at']) ? trim((string) $data['submitted_at']) : gmdate('c');
+$privacyAt = isset($data['privacy_policy_accepted_at']) ? trim((string) $data['privacy_policy_accepted_at']) : '';
+$privacyRaw = $data['privacy_policy_accepted'] ?? false;
+$privacyAccepted = $privacyRaw === true || $privacyRaw === 1 || $privacyRaw === '1' || $privacyRaw === 'true';
 
 if ($name === '' || $email === '' || $objet === '' || $message === '') {
 	http_response_code(400);
 	echo json_encode(['ok' => false, 'error' => 'Missing required fields']);
 	exit;
+}
+
+if (!$privacyAccepted) {
+	http_response_code(400);
+	echo json_encode(['ok' => false, 'error' => 'Privacy policy must be accepted']);
+	exit;
+}
+
+if ($privacyAt === '') {
+	$privacyAt = $submittedAt;
 }
 
 $payload = json_encode(
@@ -50,8 +68,12 @@ $payload = json_encode(
 		'company' => $company !== '' ? $company : '—',
 		'email' => $email,
 		'objet' => $objet,
+		'objet_label' => $objetLabel,
 		'message' => $message,
 		'source' => $source,
+		'page' => $page,
+		'privacy_policy_accepted' => true,
+		'privacy_policy_accepted_at' => $privacyAt,
 		'submitted_at' => $submittedAt,
 	],
 	JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
