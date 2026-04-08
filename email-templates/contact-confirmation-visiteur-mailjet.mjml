@@ -1,0 +1,141 @@
+<!--
+  Template MJML — Confirmation d’envoi au visiteur (Emmanuel SAUVAGE)
+  Même charte que contact-notification-mailjet.mjml (couleurs Layout.astro).
+
+  À envoyer au même {{var:email}} que celui saisi dans le formulaire (2e flux Zapier / Mailjet).
+
+  Compiler : npx mjml contact-confirmation-visiteur-mailjet.mjml -o contact-confirmation-visiteur-mailjet.html
+
+  Champs effectivement envoyés par public/contact-zapier.php (JSON) :
+    name, company, email, objet, message, source, submitted_at
+
+  Variables utiles dans le template / Zapier :
+    {{var:name}}                      — Nom (formulaire : champ "name")
+    {{var:email}}                     — Email ("email")
+    {{var:company}}                   — Entreprise (peut être vide ou "—")
+    {{var:objet}}                     — Valeur du select (sur le site : libellé complet, ex. thème choisi)
+    {{var:objet_label}}               — Optionnel : libellé affiché (si vous normalisez le flux ; sinon = {{var:objet}})
+    {{var:message}}                   — Corps du message
+    {{var:source}}                    — ex. emmanuelsauvage
+    {{var:page}}                      — Optionnel : URL de la page au moment de l’envoi
+    {{var:privacy_policy_accepted}}   — Optionnel (non POSTé par le PHP actuel)
+    {{var:privacy_policy_accepted_at}}— Optionnel (non POSTé par le PHP actuel)
+    {{var:submitted_at}}              — Horodatage ISO (envoi)
+-->
+<mjml>
+  <mj-head>
+    <mj-title>Votre message a bien été envoyé — Emmanuel SAUVAGE</mj-title>
+    <mj-preview>Merci : nous avons bien reçu votre demande. Récapitulatif ci-dessous.</mj-preview>
+    <mj-attributes>
+      <mj-all font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" />
+      <mj-text color="#2D2D2D" font-size="16px" line-height="24px" />
+      <mj-button
+        background-color="#2F3A8F"
+        color="#ffffff"
+        font-size="16px"
+        font-weight="600"
+        border-radius="10px"
+        inner-padding="14px 28px"
+      />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#F7F8FC" width="600px">
+    <mj-section background-color="#2F3A8F" padding="24px 40px 20px">
+      <mj-column width="100%">
+        <mj-image
+          src="https://emmanuelsauvage.fr/images/logo-256.png"
+          alt="Emmanuel SAUVAGE"
+          width="120px"
+          padding-bottom="8px"
+          href="https://emmanuelsauvage.fr/"
+        />
+        <mj-text
+          align="center"
+          font-size="13px"
+          font-weight="700"
+          letter-spacing="0.06em"
+          text-transform="uppercase"
+          color="#ffffff"
+          padding="0"
+          line-height="20px"
+        >
+          Développement web · Symfony · Vue.js · React
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="0" background-color="#2F3A8F">
+      <mj-column width="100%">
+        <mj-divider border-width="3px" border-color="#C45C2E" padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#ffffff" padding="28px 40px 12px">
+      <mj-column width="100%">
+        <mj-text font-size="20px" font-weight="700" color="#2F3A8F" padding-bottom="8px">
+          Bonjour {{var:name}},
+        </mj-text>
+        <mj-text font-size="15px" color="#5b5b5b" padding-bottom="0">
+          Nous avons bien reçu votre message via le formulaire de contact de
+          <strong style="color: #2F3A8F">emmanuelsauvage.fr</strong>. Vous trouvez ci-dessous une copie des
+          informations que vous nous avez transmises. Nous vous répondrons à l’adresse
+          <a href="mailto:{{var:email}}" style="color: #4F6EF7; font-weight: 600;">{{var:email}}</a>
+          dès que possible.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#ffffff" padding="8px 40px 8px">
+      <mj-column width="100%">
+        <mj-text font-size="15px" font-weight="700" color="#2F3A8F" padding-bottom="12px">
+          Récapitulatif de votre demande
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#ffffff" padding="0 40px 20px">
+      <mj-column width="100%">
+        <mj-text padding-bottom="12px">
+          <strong style="color: #2F3A8F">Objet</strong><br />
+          {{var:objet_label}}
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #2F3A8F">Nom</strong><br />
+          {{var:name}}
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #2F3A8F">Entreprise</strong><br />
+          {{var:company}}
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #2F3A8F">Email</strong><br />
+          <a href="mailto:{{var:email}}" style="color: #4F6EF7; font-weight: 600;">{{var:email}}</a>
+        </mj-text>
+        <mj-text padding-bottom="8px">
+          <strong style="color: #2F3A8F">Message</strong>
+        </mj-text>
+        <mj-text padding="12px 16px" container-background-color="#f7f8fc" color="#2D2D2D" border-radius="8px">
+          {{var:message}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#ffffff" padding="0 40px 28px">
+      <mj-column width="100%">
+        <mj-button href="https://emmanuelsauvage.fr/" align="left">Retour au site</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#E8ECF8" padding="22px 40px">
+      <mj-column width="100%">
+        <mj-text font-size="12px" color="#5b5b5b" align="center" padding="0">
+          <a href="https://emmanuelsauvage.fr/politique-de-confidentialite/" style="color: #4F6EF7;">Politique de confidentialité</a>
+          ·
+          <a href="https://emmanuelsauvage.fr/contact/" style="color: #4F6EF7;">Contact</a><br /><br />
+          Emmanuel SAUVAGE — <a href="https://emmanuelsauvage.fr/" style="color: #4F6EF7;">emmanuelsauvage.fr</a><br />
+          <span style="color: #6b7280;">Cet e-mail confirme la réception de votre message ; merci de ne pas y répondre si ce n’est pas nécessaire (utilisez une nouvelle demande depuis le site si besoin).</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
