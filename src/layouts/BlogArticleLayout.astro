@@ -22,12 +22,15 @@ const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
 const published = new Date(pubDate).toISOString();
 const modified = (updatedDate ? new Date(updatedDate) : new Date(pubDate)).toISOString();
 
+/** Image partagée Open Graph / Twitter (SVG ; les réseaux préfèrent souvent 1200×630 PNG — asset dédié possible plus tard). */
+const shareImageUrl = `${SITE_ORIGIN}/images/hero-illustration-v2.svg`;
+
 const jsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'TechArticle',
 	headline: title,
 	description,
-	image: `${SITE_ORIGIN}/images/favicon-32x32.png`,
+	image: shareImageUrl,
 	datePublished: published,
 	dateModified: modified,
 	author: {
@@ -65,7 +68,9 @@ const breadcrumbLd = {
 	<meta property="og:title" content={title} slot="head" />
 	<meta property="og:description" content={description} slot="head" />
 	<meta property="og:url" content={canonicalUrl} slot="head" />
+	<meta property="og:image" content={shareImageUrl} slot="head" />
 	<meta name="twitter:card" content="summary_large_image" slot="head" />
+	<meta name="twitter:image" content={shareImageUrl} slot="head" />
 
 	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
