@@ -1,23 +1,38 @@
 <!--
-  Template MJML — Notification formulaire contact (Emmanuel SAUVAGE)
-  À compiler avec https://mjml.io (CLI ou VS Code) puis coller le HTML dans Mailjet
-  (Transactional templates) ou utiliser l’API avec le HTML compilé.
+  Template MJML — Notification formulaire contact (Emmanuel SAUVAGE) — e-mail interne / vous
+  À compiler : npx mjml contact-notification-mailjet.mjml -o contact-notification-mailjet.html
+  Puis coller le HTML dans Mailjet (Transactional templates) ou API.
 
-  Variables Mailjet (alignées sur le JSON du formulaire / contact-zapier.php) :
-    {{var:name}}        — Nom
-    {{var:company}}     — Entreprise (ou « — »)
-    {{var:email}}       — Email
-    {{var:objet}}       — Code thème (ex. dev-symfony)
-    {{var:objet_label}} — Libellé lisible du thème
-    {{var:message}}     — Message
-    {{var:source}}      — ex. emmanuelsauvage
-    {{var:page}}        — URL de la page au moment de l’envoi
+  Champs envoyés par public/contact-zapier.php vers Zapier (JSON) — à mapper dans Zapier → Mailjet :
+    name, company, email,
+    objet, objet_label, message,
+    budget_range, budget_range_label,
+    urgency, urgency_label,
+    project_type, project_type_label,
+    source, page,
+    privacy_policy_accepted, privacy_policy_accepted_at,
+    submitted_at
+
+  Variables Mailjet (déclarer dans le template ou passer via API / Zapier) :
+    {{var:name}}
+    {{var:email}}
+    {{var:company}}                    — peut être « — »
+    {{var:objet}}                      — code thème (ex. automation)
+    {{var:objet_label}}                — libellé lisible
+    {{var:message}}
+    {{var:budget_range}}               — code (ex. 8k-20k)
+    {{var:budget_range_label}}         — libellé affiché
+    {{var:urgency}}                    — code (ex. quarter)
+    {{var:urgency_label}}              — libellé affiché
+    {{var:project_type}}               — code (ex. audit-diagnostic)
+    {{var:project_type_label}}         — libellé affiché
+    {{var:source}}                     — ex. emmanuelsauvage
+    {{var:page}}                       — URL page d’envoi
     {{var:privacy_policy_accepted}}    — true
     {{var:privacy_policy_accepted_at}} — ISO 8601
-    {{var:submitted_at}} — ISO 8601 (envoi)
+    {{var:submitted_at}}               — ISO 8601
 
-  Logo : remplacez l’URL ci-dessous par l’URL absolue de votre logo en production
-  (ex. https://votredomaine.fr/images/logo-256.png).
+  Logo : URL absolue en production (ex. https://emmanuelsauvage.fr/images/logo-256.png).
 -->
 <mjml>
   <mj-head>
@@ -26,19 +41,45 @@
     <mj-attributes>
       <mj-all font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" />
       <mj-text color="#2D2D2D" font-size="16px" line-height="24px" />
-      <mj-button background-color="#2F3A8F" color="#ffffff" font-size="16px" border-radius="10px" padding="14px 28px" />
+      <mj-button
+        background-color="#2F3A8F"
+        color="#ffffff"
+        font-size="16px"
+        font-weight="600"
+        border-radius="10px"
+        inner-padding="14px 28px"
+      />
     </mj-attributes>
   </mj-head>
   <mj-body background-color="#F7F8FC" width="600px">
     <!-- Bandeau -->
-    <mj-section background-color="#2F3A8F" padding="24px 40px">
+    <mj-section background-color="#2F3A8F" padding="24px 40px 20px">
       <mj-column width="100%">
         <mj-image
           src="https://emmanuelsauvage.fr/images/logo-256.png"
           alt="Emmanuel SAUVAGE"
           width="120px"
-          href="https://emmanuelsauvage.fr"
+          padding-bottom="8px"
+          href="https://emmanuelsauvage.fr/"
         />
+        <mj-text
+          align="center"
+          font-size="13px"
+          font-weight="700"
+          letter-spacing="0.06em"
+          text-transform="uppercase"
+          color="#ffffff"
+          padding="0"
+          line-height="20px"
+        >
+          Optimisation business · outils digitaux &amp; processus
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="0" background-color="#2F3A8F">
+      <mj-column width="100%">
+        <mj-divider border-width="3px" border-color="#C45C2E" padding="0" />
       </mj-column>
     </mj-section>
 
@@ -49,35 +90,66 @@
           Nouveau message depuis le site
         </mj-text>
         <mj-text font-size="14px" color="#5b5b5b" padding-bottom="0">
-          Formulaire de contact — réponse attendue à l’adresse indiquée ci-dessous.
+          Formulaire de contact — qualification (type de projet, budget, urgence) incluse. Répondre à l’adresse indiquée.
         </mj-text>
       </mj-column>
     </mj-section>
 
-    <!-- Données du formulaire (variables Zapier / Mailjet) -->
+    <!-- Données (Zapier / Mailjet) -->
+    <mj-section background-color="#ffffff" padding="0 40px 8px">
+      <mj-column width="100%">
+        <mj-text font-size="15px" font-weight="700" color="#2F3A8F" padding-bottom="12px">
+          Synthèse
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #2F3A8F">Source</strong><br />
+          {{var:source}}
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #2F3A8F">Thème de la sollicitation</strong><br />
+          {{var:objet_label}}
+          <span style="color: #6b7280; font-size: 13px;"> (code : {{var:objet}})</span>
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #2F3A8F">Type de projet</strong><br />
+          {{var:project_type_label}}
+          <span style="color: #6b7280; font-size: 13px;"> ({{var:project_type}})</span>
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #2F3A8F">Budget envisagé</strong><br />
+          {{var:budget_range_label}}
+          <span style="color: #6b7280; font-size: 13px;"> ({{var:budget_range}})</span>
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #2F3A8F">Urgence / échéance</strong><br />
+          {{var:urgency_label}}
+          <span style="color: #6b7280; font-size: 13px;"> ({{var:urgency}})</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
     <mj-section background-color="#ffffff" padding="0 40px 24px">
       <mj-column width="100%">
         <mj-text padding-bottom="12px">
-          <strong>Nom</strong><br />
+          <strong style="color: #2F3A8F">Nom</strong><br />
           {{var:name}}
         </mj-text>
         <mj-text padding-bottom="12px">
-          <strong>Entreprise</strong><br />
+          <strong style="color: #2F3A8F">Entreprise</strong><br />
           {{var:company}}
         </mj-text>
         <mj-text padding-bottom="12px">
-          <strong>Objet</strong><br />
-          {{var:objet_label}} <span style="color:#6b7280;font-size:14px;">({{var:objet}})</span>
-        </mj-text>
-        <mj-text padding-bottom="12px">
-          <strong>Email</strong><br />
-          <a href="mailto:{{var:email}}" style="color: #4F6EF7;">{{var:email}}</a>
+          <strong style="color: #2F3A8F">Email</strong><br />
+          <a href="mailto:{{var:email}}" style="color: #4F6EF7; font-weight: 600;">{{var:email}}</a>
         </mj-text>
         <mj-text padding-bottom="8px">
-          <strong>Message</strong>
+          <strong style="color: #2F3A8F">Message</strong>
         </mj-text>
         <mj-text padding="12px 16px" container-background-color="#f7f8fc" color="#2D2D2D">
           {{var:message}}
+        </mj-text>
+        <mj-text font-size="12px" color="#6b7280" padding-top="14px" padding-bottom="0">
+          Page d’envoi : {{var:page}}
         </mj-text>
       </mj-column>
     </mj-section>
@@ -85,9 +157,7 @@
     <!-- CTA répondre -->
     <mj-section background-color="#ffffff" padding="0 40px 32px">
       <mj-column width="100%">
-        <mj-button href="mailto:{{var:email}}" align="left">
-          Répondre par email
-        </mj-button>
+        <mj-button href="mailto:{{var:email}}" align="left">Répondre par email</mj-button>
       </mj-column>
     </mj-section>
 
@@ -95,10 +165,11 @@
     <mj-section background-color="#E8ECF8" padding="24px 40px">
       <mj-column width="100%">
         <mj-text font-size="12px" color="#5b5b5b" align="center" padding="0">
-          Email automatique — site vitrine Emmanuel SAUVAGE.<br />
-          <span style="color:#6b7280;">Source : {{var:source}} — Page : {{var:page}}<br />
-          Consentement : {{var:privacy_policy_accepted_at}}<br />
-          Reçu le : {{var:submitted_at}}</span>
+          Email automatique — site vitrine Emmanuel SAUVAGE.<br /><br />
+          <span style="color: #6b7280;">
+            Consentement RGPD (horodatage) : {{var:privacy_policy_accepted_at}}<br />
+            Reçu le : {{var:submitted_at}}
+          </span>
         </mj-text>
       </mj-column>
     </mj-section>
