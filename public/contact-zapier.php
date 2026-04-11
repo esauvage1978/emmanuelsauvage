@@ -116,6 +116,8 @@ curl_setopt_array($ch, [
 	CURLOPT_TIMEOUT => 25,
 	CURLOPT_CONNECTTIMEOUT => 12,
 	CURLOPT_SSL_VERIFYPEER => true,
+	/* Évite des blocages longs si la résolution IPv6 / la connexion sortante échoue lentement (souvent sous Windows / WAMP). */
+	CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
 ]);
 
 $response = curl_exec($ch);
