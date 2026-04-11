@@ -1,0 +1,172 @@
+---
+import ServiceLandingLayout from '../layouts/ServiceLandingLayout.astro';
+
+const title =
+	'Audit outils digitaux entreprise : pertes cachées, priorités et plan d’action | Emmanuel SAUVAGE';
+const description =
+	'Audit des outils digitaux et des processus : cartographie, risques, dette technique, ROI et feuille de route. Méthode orientée décideurs, pas jargon inutile.';
+const h1 = 'Audit des outils digitaux : rendre visibles les pertes — puis les réduire dans le bon ordre';
+const lead =
+	'Un audit n’est pas un inventaire de technologies : c’est une photographie honnête des frictions qui coûtent de l’argent — temps, erreurs, risques, lenteur du changement. Voici comment le cadrer pour en sortir avec des priorités actionnables.';
+const faq = [
+	{
+		question: 'Combien de temps dure un audit utile (pas un rapport éternel) ?',
+		answer:
+			'Selon la taille et la clarté du périmètre, de quelques jours à quelques semaines. L’objectif est d’obtenir vite des décisions : périmètre, risques majeurs, premiers chantiers — pas un PDF qui vieillit dans un tiroir.',
+	},
+	{
+		question: 'Que contient un livrable d’audit « orienté direction » ?',
+		answer:
+			'Une cartographie des flux critiques, une analyse risque / impact, des recommandations priorisées (effort vs bénéfice), et une feuille de route réaliste — avec indicateurs de succès mesurables.',
+	},
+	{
+		question: 'Faut-il auditer avant d’automatiser ou de refondre ?',
+		answer:
+			'Souvent oui : automatiser un mauvais processus accélère les erreurs ; refondre sans cadrage multiplie le risque budget. L’audit permet d’éviter les projets « parce que l’IT l’a dit » sans lien avec la marge.',
+	},
+	{
+		question: 'Comment intégrer la conformité (RGPD) sans bloquer le business ?',
+		answer:
+			'En traitant la minimisation des données et la traçabilité comme des contraintes de conception — pas comme un contre-projet. Les audits utiles relient sécurité, exploitation et usages réels.',
+	},
+	{
+		question: 'Que se passe-t-il après l’audit si vous n’avez pas de capacité interne ?',
+		answer:
+			'On peut enchaîner sur un accompagnement ciblé : chantiers courts, transfert de compétences, et parfois développement d’un outil métier. L’important est que l’audit serve une exécution — pas qu’il se substitue à elle.',
+	},
+];
+---
+
+<ServiceLandingLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	breadcrumbLabel="Audit outils digitaux"
+	faq={faq}
+>
+	<h2>Pourquoi un audit d’outils digitaux est un levier financier (pas une formalité IT)</h2>
+	<p>
+		Les entreprises investissent dans des logiciels, des intégrations, des tableaux de bord — et continuent pourtant à perdre du temps sur des tâches manuelles, des incohérences de données et des outils qui ne dialoguent pas. Ce n’est pas toujours un problème de budget : c’est souvent un problème de <strong>priorisation</strong> et de <strong>clarté des processus</strong>. Un audit bien mené met en évidence où l’argent et le temps se perdent réellement, puis propose un ordre de bataille crédible.
+	</p>
+	<p>
+		Mon angle n’est pas « technologique pour la technologie » : il relie <strong>risque</strong>, <strong>coût d’opportunité</strong> et <strong>capacité d’exécution</strong> interne. Si une recommandation ne peut pas être assumée par les équipes dans un horizon réaliste, elle n’est pas encore mûre — mieux vaut le dire tôt.
+	</p>
+
+	<h2>Les pertes invisibles que révèle un audit sérieux</h2>
+	<p>
+		On retrouve souvent les mêmes familles de problèmes : double saisie entre systèmes, fichiers Excel parallèles devenus « source de vérité » par défaut, applications critiques sans tests ni documentation, dépendances logicielles obsolètes, et manque de droits clairs sur les données personnelles. Chaque famille a un coût : heures humaines, erreurs client, retard de mise sur le marché, ou exposition réglementaire.
+	</p>
+	<p>
+		L’audit vise à <strong>quantifier l’ordre de grandeur</strong> — pas avec une précision comptable illusoire, mais suffisamment pour trancher entre « on endure encore 12 mois » et « on déclenche un chantier maintenant ». Pour le lien avec la dette technique et le business, voir{' '}
+		<a href="/blog/cout-dette-technique-entreprise-analyse/">le coût de la dette technique</a> et{' '}
+		<a href="/blog/application-web-perd-argent-signes/">les signes qu’une application fait perdre de l’argent</a>.
+	</p>
+
+	<h2>Méthode : entretiens courts, observation des flux, preuves</h2>
+	<p>
+		Je commence par les personnes qui font tourner l’entreprise au quotidien : pas pour leur demander une liste de bugs, mais pour comprendre les <strong>flux à valeur</strong> et les contournements réels. Ensuite, on croise avec la réalité technique (architecture, versions, sauvegardes, accès) et avec les objectifs business. Un audit qui ignore le terrain produit des slides ; un audit qui l’écoute produit des décisions.
+	</p>
+	<p>
+		Le livrable typique comprend : une cartographie synthétique, une liste de risques classés, des recommandations priorisées (impact / effort / urgence), et une proposition de feuille de route — avec des indicateurs simples pour savoir si ça fonctionne. La forme importe moins que l’usage : si le comité de direction ne peut pas s’en servir en 20 minutes, ce n’est pas fini.
+	</p>
+
+	<h2>Audit et conformité : éviter le « projet conformité » hors sol</h2>
+	<p>
+		La protection des données et la minimisation ne sont pas des exercices juridiques abstraits : elles conditionnent la <strong>faisabilité</strong> des intégrations et la confiance des clients. Dans un audit, je vérifie où circulent les données personnelles, qui y accède, et si les flux sont proportionnés au besoin — en m’appuyant sur des références utiles comme l’article{' '}
+		<a href="/blog/api-donnees-personnelles-minimisation-rgpd/">API et minimisation RGPD</a> lorsque des échanges système sont en jeu.
+	</p>
+	<p>
+		L’objectif n’est pas de bloquer le business : c’est d’éviter le scénario où l’on découvre trop tard qu’un export automatique crée une fuite de périmètre — coût bien supérieur à une correction amont.
+	</p>
+
+	<h2>Cas type : « tout va bien » sauf que rien n’est mesurable</h2>
+	<p>
+		Une direction pensait son SI « stable » : peu d’incidents visibles. En creusant, on a trouvé des équipes qui compensaient avec des heures supplémentaires cachées, des ressaisies et des outils non reliés. Les incidents étaient rares parce que l’humain absorbait la friction — jusqu’au départ d’un collaborateur clé. L’audit a permis de prioriser deux chantiers à ROI rapide : intégration d’un flux critique et fiabilisation d’un référentiel.
+	</p>
+	<p>
+		<strong>Moral :</strong> l’absence de panne n’est pas l’absence de coût. L’audit doit révéler la charge cachée, pas seulement la disponibilité serveur.
+	</p>
+
+	<h2>Ce que mon expérience d’organisations complexes apporte à un audit</h2>
+	<p>
+		J’interviens avec une culture de <strong>service public exigeant</strong> et de systèmes critiques : exigence de traçabilité, sensibilité aux audits externes, nécessité de rendre des comptes sans jargon inutile. Cela se traduit par une lecture « risque / preuve » : je sais ce qu’un décideur attend quand il doit justifier un budget ou répondre à un contrôle — pas seulement ce qu’un développeur trouverait élégant.
+	</p>
+	<p>
+		Cette expérience ne remplace pas vos équipes : elle aide à <strong>aligner</strong> la technique et le métier sur un langage commun — gains, risques, délais — pour éviter les projets qui sonnent bien en réunion et échouent au contact du terrain.
+	</p>
+
+	<h2>Après l’audit : exécution — refonte, automatisation, accompagnement</h2>
+	<p>
+		Un audit utile prépare la suite : parfois une{' '}
+		<a href="/automatisation-entreprise/">automatisation ciblée</a>, parfois une{' '}
+		<a href="/refonte-application-web/">refonte</a> progressive, parfois une montée en compétence sur{' '}
+		<a href="/expert-google-sheets-entreprise/">Google Sheets</a> quand le tableur est le bon outil — temporairement ou durablement. L’audit évite de lancer le mauvais chantier en premier.
+	</p>
+	<p>
+		Si le besoin est purement technique et cadré — par exemple une évolution Symfony — on peut aussi enchaîner directement avec une exécution : voir{' '}
+		<a href="/developpeur-symfony-freelance/">développeur Symfony freelance</a>. L’important est que la chaîne « diagnostic → décision → mise en œuvre » reste continue.
+	</p>
+
+	<h2>Indicateurs pour suivre si l’audit « paie »</h2>
+	<p>
+		Avant : <strong>délai de traitement</strong> des flux critiques, <strong>taux d’erreurs</strong> ou retours, <strong>temps de préparation des reportings</strong>, <strong>charge support</strong> liée aux outils. Après : les mêmes métriques, mesurées de la même façon. Si on ne peut pas mesurer, on ne peut pas prouver le ROI — et l’audit n’a pas fini son travail de cadrage.
+	</p>
+	<p>
+		On ajoute souvent un indicateur « humain » : <strong>saturation ressentie</strong> (enquête courte) parce que la productivité n’est pas qu’un chiffre — mais le chiffre évite les débats d’opinion sans fin.
+	</p>
+
+	<h2>Ce qu’un audit ne peut pas promettre (honnêteté utile)</h2>
+	<p>
+		Il ne peut pas transformer une direction qui refuse de trancher, ni garantir un ROI au centime près sans données de départ. Il peut en revanche <strong>réduire l’incertitude</strong> et éviter des investissements dans le mauvais ordre — ce qui, à l’échelle d’un exercice, représente souvent plus que les honoraires du diagnostic.
+	</p>
+	<p>
+		Il ne « résout » pas non plus une gouvernance floue : si personne n’est mandaté pour tenir le référentiel produit ou les règles métier, les meilleures recommandations se heurtent à l’organisation. Dans ce cas, l’audit met en lumière un prérequis : <strong>clarifier les rôles</strong> avant d’industrialiser — sinon on digitalise le chaos.
+	</p>
+
+	<h2>Pièges classiques des audits « boîtes noires »</h2>
+	<p>
+		<strong>Trop de technologie, pas assez de processus.</strong> Si on audite uniquement les serveurs et pas les usages, on rate le coût principal.
+	</p>
+	<p>
+		<strong>Un rapport de 120 pages sans priorisation.</strong> La valeur est dans les trois décisions qui changent le trimestre — pas dans l’épaisseur.
+	</p>
+	<p>
+		<strong>Oublier l’adoption.</strong> Une recommandation que les équipes ne peuvent pas absorber est une dette future — il faut la dimensionner.
+	</p>
+
+	<h2>Structuration en « silo » et maillage interne</h2>
+	<p>
+		Sur le web, l’audit sert de page pivot : il relie la compréhension des pertes aux pages d’exécution (services) et aux articles de fond (blog). C’est aussi un bon réflexe SEO : une intention « diagnostic / ROI » trouve une réponse unique, puis des liens vers des approfondissements —{' '}
+		<a href="/blog/refonte-ou-maintenance-application/">refonte ou maintenance</a>,{' '}
+		<a href="/blog/refonte-application-web-signaux-strategie-dette-technique/">signaux de refonte</a>, etc.
+	</p>
+	<p>
+		Côté entreprise, le même principe s’applique : l’audit n’est pas une fin — c’est le moment où l’on arrête de payer le même problème plusieurs fois parce qu’il était invisible.
+	</p>
+	<p>
+		En pratique, les entreprises qui tirent le meilleur parti d’un diagnostic sont celles qui fixent une <strong>réunion d’arbitrage</strong> dès le départ : qui décide, avec quel mandat, et quels critères (cash, risque, délai client). Sans ce cadre, même un excellent audit devient une belle analyse — pas un levier.
+	</p>
+
+	<div class="ctaInline">
+		<p>
+			<strong>Prochaine étape :</strong> décrivez votre contexte (outils, irritants, échéances). Je propose un audit cadré ou un premier diagnostic — avec des priorités utilisables en réunion de direction.
+		</p>
+		<p>
+			<a href="/contact">Demander un audit ou un diagnostic →</a>
+		</p>
+	</div>
+
+	<h2>Maillage utile</h2>
+	<ul>
+		<li>
+			<a href="/services/">Vue d’ensemble des services</a>
+		</li>
+		<li>
+			<a href="/blog/freelance-vs-agence-vs-internalisation-projets-tech/">Organiser la gouvernance projet</a>
+		</li>
+		<li>
+			<a href="/a-propos/">Pourquoi ce positionnement</a>
+		</li>
+	</ul>
+</ServiceLandingLayout>

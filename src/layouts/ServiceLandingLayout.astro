@@ -1,0 +1,415 @@
+---
+import Layout from './Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { SITE_ORIGIN } from '../config/site';
+
+export interface FaqItem {
+	question: string;
+	answer: string;
+}
+
+type Props = {
+	title: string;
+	description: string;
+	h1: string;
+	lead: string;
+	breadcrumbLabel: string;
+	faq?: FaqItem[];
+};
+
+const { title, description, h1, lead, breadcrumbLabel, faq = [] } = Astro.props;
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const canonicalUrl = `${SITE_ORIGIN}${path === '/' ? '/' : `${path}/`}`;
+
+const faqJsonLd =
+	faq.length > 0
+		? {
+				'@context': 'https://schema.org',
+				'@type': 'FAQPage',
+				mainEntity: faq.map((item) => ({
+					'@type': 'Question',
+					name: item.question,
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: item.answer,
+					},
+				})),
+			}
+		: null;
+---
+
+<Layout title={title} description={description}>
+	{
+		faqJsonLd ? (
+			<script slot="head" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+		) : null
+	}
+	<script
+		slot="head"
+		type="application/ld+json"
+		set:html={JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'WebPage',
+			name: h1,
+			description,
+			url: canonicalUrl,
+			isPartOf: { '@type': 'WebSite', name: 'Emmanuel SAUVAGE', url: SITE_ORIGIN },
+		})}
+	/>
+
+	<SiteHeader current="services" />
+
+	<main class="serviceLanding">
+		<header class="pageHead">
+			<div class="pageHead__fx" aria-hidden="true">
+				<div class="pageHead__blob pageHead__blob--a"></div>
+				<div class="pageHead__blob pageHead__blob--spot"></div>
+			</div>
+			<div class="container pageHead__inner">
+				<nav class="breadcrumb" aria-label="Fil d’Ariane">
+					<a href="/">Accueil</a>
+					<span class="breadcrumb__sep" aria-hidden="true">/</span>
+					<a href="/services">Services</a>
+					<span class="breadcrumb__sep" aria-hidden="true">/</span>
+					<span class="breadcrumb__current">{breadcrumbLabel}</span>
+				</nav>
+				<p class="pageHead__eyebrow">Expertise</p>
+				<h1>{h1}</h1>
+				<p class="pageHead__lead">{lead}</p>
+				<div class="pageHead__cta">
+					<a class="button button--primary" href="/contact">Demander un diagnostic ou un audit</a>
+					<a class="button button--secondary" href="tel:+33609924945">Appeler — 06 09 92 49 45</a>
+				</div>
+			</div>
+		</header>
+
+		<div class="serviceLanding__body">
+			<div class="container">
+				<article class="serviceProse">
+					<slot />
+				</article>
+			</div>
+		</div>
+
+		<section class="serviceLanding__footerCta" aria-label="Prochaine étape">
+			<div class="container ctaBox">
+				<div>
+					<h2 class="ctaBox__title">Passer du constat à un plan chiffré</h2>
+					<p class="ctaBox__text">
+						Décrivez votre contexte (outil, équipe, échéance) : je vous réponds avec une première orientation et, si
+						besoin, une proposition d’audit cadré.
+					</p>
+				</div>
+				<div class="ctaBox__actions">
+					<a class="button button--primary" href="/contact">Formulaire de contact</a>
+					<a class="button button--secondary" href="/services">Toutes les expertises</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<SiteFooter />
+</Layout>
+
+<style>
+	.serviceLanding {
+		min-width: 0;
+		padding-bottom: 32px;
+	}
+
+	.pageHead {
+		position: relative;
+		overflow: hidden;
+		padding: 28px 0 20px;
+		background: #fff;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.pageHead__fx {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.pageHead__blob {
+		position: absolute;
+		border-radius: 999px;
+		filter: blur(44px);
+		opacity: 0.85;
+		mix-blend-mode: multiply;
+	}
+
+	.pageHead__blob--a {
+		width: 300px;
+		height: 300px;
+		top: -100px;
+		right: -60px;
+		background: radial-gradient(circle at 40% 40%, rgba(79, 110, 247, 0.38), transparent 62%);
+	}
+
+	.pageHead__blob--spot {
+		width: 240px;
+		height: 240px;
+		bottom: -80px;
+		left: -50px;
+		background: radial-gradient(circle at 40% 40%, rgba(196, 92, 46, 0.32), transparent 62%);
+	}
+
+	.pageHead__inner {
+		position: relative;
+		z-index: 1;
+	}
+
+	.container {
+		width: min(1120px, calc(100% - 32px));
+		margin: 0 auto;
+	}
+
+	@media (min-width: 521px) {
+		.container {
+			width: min(1120px, calc(100% - 48px));
+		}
+	}
+
+	.breadcrumb {
+		font-size: 13px;
+		color: var(--color-muted);
+		margin: 0 0 14px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		align-items: center;
+	}
+
+	.breadcrumb a {
+		color: var(--color-spot-hover);
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.breadcrumb a:hover {
+		text-decoration: underline;
+	}
+
+	.breadcrumb__sep {
+		opacity: 0.45;
+	}
+
+	.breadcrumb__current {
+		color: var(--color-text);
+		font-weight: 600;
+		max-width: 100%;
+	}
+
+	.pageHead__eyebrow {
+		margin: 0 0 8px;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--color-muted);
+	}
+
+	.pageHead h1 {
+		margin: 0 0 12px;
+		font-size: clamp(1.5rem, 4.5vw, 2.35rem);
+		line-height: 1.12;
+		letter-spacing: -0.03em;
+		color: var(--color-primary);
+	}
+
+	.pageHead__lead {
+		margin: 0;
+		max-width: 72ch;
+		font-size: clamp(1rem, 2.5vw, 1.125rem);
+		line-height: 1.55;
+		color: var(--color-muted);
+	}
+
+	.pageHead__cta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: 20px;
+	}
+
+	.serviceLanding__body {
+		padding: 28px 0 8px;
+	}
+
+	.serviceProse {
+		max-width: 72ch;
+		font-size: 17px;
+		line-height: 1.65;
+		color: var(--color-text);
+	}
+
+	.serviceProse :global(h2) {
+		margin: 2.2rem 0 0.75rem;
+		font-size: clamp(1.25rem, 2.5vw, 1.45rem);
+		letter-spacing: -0.02em;
+		color: var(--color-primary);
+		padding-bottom: 10px;
+		border-bottom: 2px solid color-mix(in srgb, var(--color-spot) 35%, transparent);
+	}
+
+	.serviceProse :global(h2:first-child) {
+		margin-top: 0;
+	}
+
+	.serviceProse :global(h3) {
+		margin: 1.35rem 0 0.5rem;
+		font-size: 1.08rem;
+		color: color-mix(in srgb, var(--color-primary) 85%, var(--color-spot));
+	}
+
+	.serviceProse :global(p) {
+		margin: 0 0 1rem;
+		opacity: 0.95;
+	}
+
+	.serviceProse :global(ul),
+	.serviceProse :global(ol) {
+		margin: 0 0 1rem;
+		padding-left: 1.35rem;
+	}
+
+	.serviceProse :global(li) {
+		margin-bottom: 0.45rem;
+	}
+
+	.serviceProse :global(strong) {
+		font-weight: 700;
+		color: var(--color-text);
+	}
+
+	.serviceProse :global(a) {
+		color: var(--color-spot-hover);
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-color: rgba(196, 92, 46, 0.35);
+		text-underline-offset: 3px;
+	}
+
+	.serviceProse :global(a:hover) {
+		color: var(--color-spot);
+	}
+
+	.serviceProse :global(blockquote) {
+		margin: 1.25rem 0;
+		padding: 14px 18px;
+		border-left: 4px solid var(--color-spot);
+		background: var(--color-spot-soft);
+		border-radius: 0 12px 12px 0;
+		font-style: normal;
+	}
+
+	.serviceProse :global(.ctaInline) {
+		margin: 1.5rem 0;
+		padding: 18px 20px;
+		border-radius: 16px;
+		border: 1px solid color-mix(in srgb, var(--color-spot) 28%, var(--color-border));
+		background: linear-gradient(135deg, rgba(47, 58, 143, 0.06), var(--color-spot-soft));
+	}
+
+	.serviceProse :global(.ctaInline p) {
+		margin: 0 0 12px;
+	}
+
+	.serviceProse :global(.ctaInline p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		border-radius: 14px;
+		padding: 12px 16px;
+		font-weight: 600;
+		border: 1px solid transparent;
+		transition: transform 0.15s ease, box-shadow 0.15s ease;
+		font-size: 15px;
+	}
+
+	.button--primary {
+		color: white;
+		background: var(--color-primary);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.button--primary:hover {
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.button--secondary {
+		color: var(--color-text);
+		background: rgba(255, 255, 255, 0.9);
+		border-color: var(--color-border);
+	}
+
+	.button--secondary:hover {
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.serviceLanding__footerCta {
+		padding: 36px 0 48px;
+		background: linear-gradient(180deg, transparent, rgba(247, 248, 251, 0.85));
+		border-top: 1px solid var(--color-border);
+	}
+
+	.ctaBox {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 18px;
+		align-items: center;
+		padding: 24px;
+		border-radius: 22px;
+		border: 1px solid color-mix(in srgb, var(--color-spot) 22%, var(--color-border));
+		background: #fff;
+		box-shadow: var(--shadow-md);
+	}
+
+	@media (min-width: 880px) {
+		.ctaBox {
+			grid-template-columns: 1.2fr 0.8fr;
+		}
+	}
+
+	.ctaBox__title {
+		margin: 0 0 8px;
+		font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+		color: var(--color-primary);
+	}
+
+	.ctaBox__text {
+		margin: 0;
+		color: var(--color-muted);
+		line-height: 1.55;
+		max-width: 56ch;
+	}
+
+	.ctaBox__actions {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	@media (min-width: 880px) {
+		.ctaBox__actions {
+			align-items: flex-end;
+		}
+
+		.ctaBox__actions .button {
+			min-width: 220px;
+			justify-content: center;
+		}
+	}
+</style>

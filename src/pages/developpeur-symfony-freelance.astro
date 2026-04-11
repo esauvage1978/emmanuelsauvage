@@ -1,0 +1,177 @@
+---
+import ServiceLandingLayout from '../layouts/ServiceLandingLayout.astro';
+
+const title =
+	'Développeur Symfony freelance : applications métier, API et production | Emmanuel SAUVAGE';
+const description =
+	'Développeur Symfony freelance pour entreprises : API REST, applications métier, migrations, maintenance production, qualité et sécurité. Approche ROI et priorisation.';
+const h1 =
+	'Développeur Symfony freelance : livrer du logiciel utile — maintenable, sécurisé, aligné sur le métier';
+const lead =
+	'Symfony reste un socle solide pour des applications B2B exigeantes : API, règles métier, intégrations. En freelance, la valeur ne se mesure pas au nombre de lignes : elle se mesure à la vélocité durable, à la baisse des incidents et à la capacité d’évolution.';
+const faq = [
+	{
+		question: 'Intervenez-vous sur du Symfony existant ou uniquement du neuf ?',
+		answer:
+			'Les deux : évolutions ciblées, corrections de dette, montées de version, et créations lorsque le périmètre le justifie. Le bon point de départ est un diagnostic rapide des risques (versions, sécurité, tests) et des flux critiques.',
+	},
+	{
+		question: 'Comment éviter la dépendance à un freelance sur du long terme ?',
+		answer:
+			'Par documentation utile, transfert de compétences, conventions de code et livraisons fréquentes. L’objectif est que votre équipe — ou un autre prestataire — puisse reprendre le flambeau sans archeologie interminable.',
+	},
+	{
+		question: 'API REST : que livrez-vous au-delà du code ?',
+		answer:
+			'Contrats d’interface clairs (OpenAPI quand c’est pertinent), gestion d’erreurs cohérente, versioning réfléchi, et sécurité par défaut — pour réduire les surprises en intégration.',
+	},
+	{
+		question: 'Travaillez-vous avec Vue.js ou React côté front ?',
+		answer:
+			'Oui : interfaces modernes connectées à des API Symfony, avec une attention à l’UX et aux performances. Le découplage propre entre back et front facilite la maintenance.',
+	},
+	{
+		question: 'Proposez-vous de la maintenance Symfony en production ?',
+		answer:
+			'Oui : correctifs, surveillance des dépendances, optimisations, et préparation des montées de version. La maintenance n’est pas une ligne « optionnelle » quand l’outil est critique.',
+	},
+];
+---
+
+<ServiceLandingLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	breadcrumbLabel="Développeur Symfony freelance"
+	faq={faq}
+>
+	<h2>Pourquoi Symfony en entreprise : stabilité, écosystème, cadre</h2>
+	<p>
+		Dans beaucoup de contextes B2B, ce qui compte n’est pas la mode du framework : c’est la capacité à faire évoluer des <strong>règles métier</strong> sans casser la production, à intégrer des systèmes tiers, et à garder une dette technique sous contrôle. Symfony fournit un cadre, des composants éprouvés et une communauté large — ce qui réduit le risque sur le long terme lorsque l’application devient critique.
+	</p>
+	<p>
+		En revanche, Symfony n’est pas une garantie magique : une mauvaise modularisation, l’absence de tests sur les flux sensibles, ou une montée de version négligée peuvent transformer un projet sain en charge lourde. Mon rôle est d’aligner <strong>qualité technique</strong> et <strong>priorités business</strong> — pas de produire du code pour impressionner.
+	</p>
+
+	<h2>Ce que vous « achetez » avec un développeur Symfony freelance compétent</h2>
+	<p>
+		Vous achetez de la <strong>capacité à livrer</strong> dans un périmètre défini : features, API, correctifs, performance — avec une vision maintenance. Ce que vous évitez : des refactorings interminables, des régressions non détectées, et des architectures « inventées » difficiles à reprendre par quelqu’un d’autre. Sur le long terme, la maintenabilité est un poste de coût plus important que le jour de développement initial.
+	</p>
+	<p>
+		Pour cadrer le dialogue « refonte vs évolutions », voir{' '}
+		<a href="/blog/symfony-refonte-ou-evolutions-ciblees/">Symfony : refonte ou évolutions ciblées</a> et{' '}
+		<a href="/blog/refonte-ou-maintenance-application/">refonte ou maintenance</a>. Pour le contexte décisionnel :{' '}
+		<a href="/blog/freelance-vs-agence-vs-internalisation-projets-tech/">freelance, agence ou interne</a>.
+	</p>
+
+	<h2>API, intégrations, production : le triangle souvent négligé</h2>
+	<p>
+		Une API interne ou partenaire doit être <strong>prévisible</strong> : erreurs utiles, versionnement, idempotence des callbacks quand c’est nécessaire, et journalisation pour diagnostiquer sans deviner. Ces sujets ne sont pas « bonus » : ils déterminent le coût réel d’intégration — celui que paient vos équipes en support quand « ça marche sur ma machine ».
+	</p>
+	<p>
+		Je m’appuie sur des pratiques éprouvées (contrats OpenAPI quand c’est pertinent, validation des entrées, limites de taux côté conception) et sur une lecture orientée exploitation : ce qui se passe quand un partenaire envoie un fichier mal formé, quand une file est en retard, ou quand une clé API fuit. Pour aller plus loin : articles du blog sur la validation API, les webhooks et la maintenance Symfony en production.
+	</p>
+
+	<h2>Migrations et montées de version : un projet en soi</h2>
+	<p>
+		Reporter une montée de Symfony ou de PHP n’est pas « gagner du temps » : c’est <strong>accumuler du risque</strong> — sécurité, incompatibilités, impossibilité de bénéficier des correctifs. Quand la version approche de la fin de support, le coût de migration augmente souvent de façon non linéaire. Une planification honnête vaut mieux qu’un incident le week-end de clôture.
+	</p>
+	<p>
+		Pour une vision complète des étapes et pièges :{' '}
+		<a href="/blog/migration-symfony-guide-complet-2026/">guide de migration Symfony</a>. Si la dette est structurelle, il faut aussi envisager une{' '}
+		<a href="/refonte-application-web/">refonte progressive</a> plutôt qu’un upgrade lineaire impossible.
+	</p>
+
+	<h2>Cas type : stabiliser une API critique sans arrêter le business</h2>
+	<p>
+		Une équipe avait une API utilisée par plusieurs services internes : chaque évolution cassait des consommateurs, et le support était submergé de tickets « mystère ». Nous avons introduit un contrat plus clair, des tests de non-régression ciblés sur les scénarios critiques, et une stratégie de version minimale. Le gain immédiat fut la baisse du bruit ; le gain structurant, la capacité à itérer sans peur — ce qui se traduit en vélocité métier.
+	</p>
+	<p>
+		<strong>Point clé :</strong> la valeur était mesurable en temps de diagnostic et en nombre d’incidents — pas en « beauté du code ».
+	</p>
+
+	<h2>Symfony et données personnelles : la conformité comme contrainte de conception</h2>
+	<p>
+		Les applications métiers manipulent souvent des données identifiantes. Ce n’est pas un paragraphe juridique à coller : c’est une conception : minimiser les champs transportés, tracer les accès utiles, éviter les exports incontrôlés. Cette rigueur diminue les risques et simplifie souvent l’architecture — moins de surface, moins de bugs.
+	</p>
+
+	<h2>Front-end : Symfony n’est pas qu’un back-end</h2>
+	<p>
+		Selon le projet, je livre des interfaces modernes (Vue.js / React) ou des intégrations pragmatiques — toujours avec une séparation claire des responsabilités. L’objectif est que le métier obtienne des écrans <strong>efficaces</strong>, pas seulement « modernes ». Une UI lente ou confuse coûte des heures chaque semaine — même si la stack est à la mode.
+	</p>
+
+	<h2>Maintenance : le coût caché qui se paie toujours</h2>
+	<p>
+		Une application en production vit : dépendances, navigateurs, réglementation, usage réel différent des specs. La maintenance n’est pas une ligne optionnelle : c’est l’assurance que l’outil continue d’être un actif. Je peux accompagner des revues régulières, des correctifs priorisés et une veille sur les versions — en restant transparent sur ce qui est urgent vs ce qui peut attendre.
+	</p>
+	<p>
+		Voir aussi{' '}
+		<a href="/blog/maintenance-symfony-production-indicateurs/">maintenance Symfony : indicateurs</a> pour un cadrage utile avec votre direction.
+	</p>
+
+	<h2>Pourquoi mon profil n’est pas « un exécutant de tickets »</h2>
+	<p>
+		Après des années dans des organisations complexes, j’ai une culture de <strong>priorisation</strong> : toutes les demandes ne se valent pas, et la vélocité sans cap tire l’équipe vers la dette. Je préfère dire non à une feature secondaire si elle met en danger la stabilité d’un flux critique — et proposer une alternative moins risquée.
+	</p>
+	<p>
+		Ce positionnement n’est pas de la rigidité : c’est une lecture <strong>coût / risque</strong> compatible avec des environnements où l’erreur est visible et où l’on doit rendre des comptes — y compris face à des audits ou des exigences fortes de fiabilité.
+	</p>
+
+	<h2>Quand un freelance Symfony n’est pas la bonne réponse</h2>
+	<p>
+		Si le besoin est flou, si la gouvernance produit n’existe pas, ou si l’entreprise veut « bricoler vite » sans accepter la dette, un développeur seul ne sauvera pas le schéma — il documentera des arbitrages impossibles. Dans ces cas, je recommande souvent un{' '}
+		<a href="/audit-outils-digitaux/">audit / diagnostic</a> avant un chantier de développement.
+	</p>
+
+	<h2>Liens utiles avec d’autres expertises</h2>
+	<p>
+		<strong>Automatisation</strong> autour des exports et imports :{' '}
+		<a href="/automatisation-entreprise/">automatisation entreprise</a>. <strong>Reporting</strong> et outils data :{' '}
+		<a href="/expert-google-sheets-entreprise/">Google Sheets</a>. <strong>Vision globale</strong> quand l’outil métier doit être repensé :{' '}
+		<a href="/refonte-application-web/">refonte application web</a>.
+	</p>
+
+	<h2>Engagement et transparence (modalités)</h2>
+	<p>
+		Je travaille en télétravail ou hybride selon le besoin, avec des points réguliers et des livrables visibles. Les priorités sont explicitées : ce qui est dans le périmètre, ce qui ne l’est pas, et ce qui relève d’une phase ultérieure — pour éviter les malentendus sur le budget.
+	</p>
+	<p>
+		Si vous attendez un partenaire capable de traduire la technique en arbitrages compréhensibles par la direction — et de livrer du code qui tient la route — nous sommes probablement alignés. Si vous cherchez uniquement le prix au jour le moins cher sans critère de qualité, nous ne le serons sans doute pas : ce type de « gain » se paie en incidents.
+	</p>
+
+	<h2>Qualité : tests, revue et dette visible</h2>
+	<p>
+		Une base Symfony professionnelle suppose au minimum des garde-fous sur les chemins critiques : tests qui protègent les invariants métier, revue de code lorsque l’équipe est plusieurs, et une politique de dépendances suivie. Ce n’est pas du luxe : c’est ce qui permet de livrer vite <strong>plus tard</strong>, quand l’application a grossi. Sans cela, chaque évolution devient une loterie — et la direction voit des délais imprévisibles sans comprendre pourquoi « un petit changement » prend trois semaines.
+	</p>
+	<p>
+		En mission freelance, je rends la dette visible : ce qui est provisoire, ce qui doit être consolidé, et dans quel ordre — pour éviter que des raccourcis nécessaires ne deviennent permanents par omission.
+	</p>
+
+	<h2>Critères pour réussir une collaboration technique</h2>
+	<p>
+		<strong>Un propriétaire produit côté client</strong> qui tranche, <strong>un accès aux environnements</strong> et aux personnes qui connaissent l’historique, et <strong>une définition de « terminé »</strong> qui inclut la mise en production ou la recette métier. Sans ces trois éléments, même un profil senior passe son temps à débloquer des situations organisationnelles — ce qui frustre tout le monde et gonfle le budget.
+	</p>
+
+	<div class="ctaInline">
+		<p>
+			<strong>Prochaine étape :</strong> décrivez votre application (version Symfony, pain points, échéance). Je propose un premier échange technique et business — puis un plan d’intervention réaliste.
+		</p>
+		<p>
+			<a href="/contact">Discuter d’une mission Symfony →</a>
+		</p>
+	</div>
+
+	<h2>Maillage utile</h2>
+	<ul>
+		<li>
+			<a href="/blog/monolithe-modulaire-symfony-frontieres/">Monolithe modulaire : frontières</a>
+		</li>
+		<li>
+			<a href="/blog/versionner-api-rest-symfony/">Versionner une API REST Symfony</a>
+		</li>
+		<li>
+			<a href="/services/">Retour aux services</a>
+		</li>
+	</ul>
+</ServiceLandingLayout>

@@ -1,0 +1,153 @@
+---
+import ServiceLandingLayout from '../layouts/ServiceLandingLayout.astro';
+
+const title =
+	'Automatisation entreprise : ROI, processus et intégrations | Emmanuel SAUVAGE';
+const description =
+	'Automatiser les processus métier sans usine à gaz : gains mesurables, intégrations API, Google Workspace, scripts et workflows. Expertise terrain et priorisation ROI.';
+const h1 = 'Automatisation d’entreprise : transformer des tâches répétitives en marge récupérable';
+const lead =
+	'L’automatisation n’est pas un gadget « digital » : c’est une réponse directe aux coûts cachés — erreurs humaines, délais, saisies doubles, et fatigue des équipes. Voici comment la cadrer pour un retour sur investissement lisible par la direction.';
+const faq = [
+	{
+		question: 'Par où commencer quand tout semble « à automatiser » ?',
+		answer:
+			'On commence par les flux à fort volume ou à fort risque d’erreur : fréquence, coût d’une erreur, et dépendance à des héros individuels. Si un processus casse chaque fois qu’une personne est absente, c’est un bon candidat. Ensuite seulement on élargit.',
+	},
+	{
+		question: 'Faut-il un ERP pour automatiser ?',
+		answer:
+			'Pas nécessairement. Beaucoup de gains viennent de l’intelligence entre outils existants (CRM, messagerie, tableurs, bases) via des APIs, des scripts maîtrisés et des workflows fiables. L’ERP peut venir plus tard si le périmètre métier l’exige.',
+	},
+	{
+		question: 'Quel ROI attendre sur 6 à 12 mois ?',
+		answer:
+			'Le ROI se lit en heures gagnées, réduction d’erreurs et délai de traitement — pas en « nombre de scripts ». Un bon projet fixe des indicateurs avant la mise en ligne et mesure après stabilisation (souvent 4 à 8 semaines).',
+	},
+	{
+		question: 'Google Workspace et automatisation : est-ce sérieux pour une PME ?',
+		answer:
+			'Oui, lorsque les données et les règles sont bien cadrées. Sheets, Apps Script et les connecteurs permettent d’industrialiser des usages encore manuels — à condition de traiter la sécurité, les accès et la traçabilité comme en production.',
+	},
+	{
+		question: 'Comment éviter les automatisations fragiles ?',
+		answer:
+			'En documentant les cas limites, en ajoutant des garde-fous (alertes, validations métier), et en prévoyant la reprise sur erreur. Une automatisation qui « marche en démo » mais casse en cas de fichier exceptionnel coûte plus cher qu’une tâche manuelle bien contrôlée.',
+	},
+];
+---
+
+<ServiceLandingLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	breadcrumbLabel="Automatisation entreprise"
+	faq={faq}
+>
+	<h2>Pourquoi l’automatisation est un sujet de direction (et pas seulement d’outils)</h2>
+	<p>
+		Les directions opérationnelles savent intuitivement qu’elles perdent du temps sur des tâches répétitives. Ce qu’elles voient moins bien, c’est le <strong>coût total</strong> : salaires, erreurs, retards clients, et opportunités manquées parce que les équipes sont saturées à « faire tourner » le quotidien. 		L’automatisation bien pensée libère du temps pour du travail à valeur ajoutée — vente, qualité, relation client, pilotage — dès que les priorités sont claires.
+	</p>
+	<p>
+		Le piège classique est de vouloir tout connecter d’un coup. On obtient une usine à gaz opaque, que personne ne maintient. La bonne approche : <strong>prioriser par impact</strong>, livrer vite, mesurer, puis enchaîner. C’est la même logique que sur une refonte applicative : des jalons, des preuves, pas des promesses.
+	</p>
+
+	<h2>Ce que ça vous coûte aujourd’hui sans le voir au budget « automatisation »</h2>
+	<p>
+		Chaque fois qu’un collaborateur recopie des données d’un fichier à un autre, qu’un mail sert de « workflow », ou qu’un tableur devient une base de vérité non contrôlée, vous payez trois fois : une fois en temps, une fois en risque d’erreur, une fois en impossibilité de piloter finement. Multiplié par des mois, le montant dépasse souvent le coût d’un accompagnement structuré.
+	</p>
+	<p>
+		L’automatisation n’est pas une ligne « IA » : c’est souvent des <strong>règles métier</strong> clarifiées, des intégrations API, des validations, des notifications au bon moment. Le ROI apparaît quand on arrête de confondre vitesse de démo et robustesse en production. Pour approfondir, voir les{' '}
+		<a href="/blog/automatiser-entreprise-google-workspace-gains-cas/">gains et cas réels avec Google Workspace</a> et{' '}
+		<a href="/blog/automatiser-processus-metier-google-apps-script-entreprise/">Apps Script sur processus métier</a>.
+	</p>
+
+	<h2>Architecture cible : intégrations, scripts et garde-fous</h2>
+	<p>
+		Une automatisation durable repose sur trois piliers : <strong>source de vérité</strong> (où vit la donnée référence), <strong>règles métier explicites</strong> (qui valide quoi, et quand), et <strong>observabilité</strong> (comment savoir qu’un flux a échoué avant que le client ne l’apprenne). Sans ces trois piliers, on automatise des erreurs plus vite — ce qui est pire que le statu quo.
+	</p>
+	<p>
+		Sur le plan technique, cela peut passer par des webhooks idempotents, des files d’attente, des scripts planifiés, ou des connecteurs SaaS — le choix dépend du volume, de la criticité et des compétences internes. L’important est de ne pas créer une dépendance à une personne unique : documentation, droits d’accès, et procédure de reprise doivent être au même niveau que le code.
+	</p>
+
+	<h2>Cas type : du « copier-coller » quotidien à un flux piloté</h2>
+	<p>
+		Une équipe commerciale passait plusieurs heures par semaine à consolider des exports disparates dans un classeur avant réunion. Les erreurs de version étaient fréquentes ; les décisions, parfois prises sur des chiffres déjà obsolètes. Après cadrage, nous avons défini une source unique, automatisé l’import et ajouté des contrôles de cohérence (écarts, doublons, dates). Le gain immédiat n’a pas été « plus de technologie » : ce fut une <strong>réunion plus courte</strong> et des décisions mieux alignées.
+	</p>
+	<p>
+		<strong>Point clé :</strong> le métier a accepté la bascule parce que les bénéfices étaient visibles dans son agenda — pas seulement dans un tableau de bord IT.
+	</p>
+
+	<h2>Ce que mon expérience en organisation complexe change à l’automatisation</h2>
+	<p>
+		Dans des environnements soumis à forte exigence de conformité et de traçabilité, on apprend vite qu’une automatisation n’est jamais « purement technique » : elle traverse des métiers, des habilitations, parfois des audits. Je ne propose pas une solution isolée : je la relie à la <strong>réalité du terrain</strong>, aux contraintes de formation et à l’adoption — sinon les équipes reviennent aux fichiers parallèles au moindre stress.
+	</p>
+	<p>
+		Côté technique, je m’appuie sur des pratiques éprouvées (API, intégrations, automatisation Google Workspace lorsque pertinent) en gardant la sécurité et la RGPD en tête — par exemple la minimisation des données et la clarté des flux. Pour un angle décisionnel, voir aussi{' '}
+		<a href="/blog/fichiers-excel-cout-cache-entreprise/">le coût caché des fichiers Excel</a> et{' '}
+		<a href="/audit-outils-digitaux/">l’audit des outils digitaux</a> pour cadrer avant d’automatiser à l’aveugle.
+	</p>
+
+	<h2>Indicateurs pour convaincre sans promesse irréaliste</h2>
+	<p>
+		Avant projet, je recommande de figer : <strong>temps moyen du processus</strong> actuel, <strong>taux d’erreurs ou de retours</strong>, <strong>coût horaire chargé</strong> des personnes impliquées, et <strong>délai de traitement vu client</strong>. Après stabilisation, on compare sur les mêmes bases. Si une métrique ne peut pas être mesurée, c’est un signal : soit le besoin n’est pas encore clair, soit le périmètre est trop flou pour un ROI sérieux.
+	</p>
+	<p>
+		L’automatisation n’est pas une ligne magique dans un budget : c’est un <strong>levier de productivité</strong> qui doit s’inscrire dans une feuille de route claire. Les gains se cumulent quand on évite les projets « fourre-tout » et qu’on traite les goulots d’étranglement réels — en premier. Une feuille de route honnête inclut aussi le temps d’adoption : sans lui, le meilleur flux reste théorique.
+	</p>
+
+	<h2>Risques à anticiper (et comment les réduire)</h2>
+	<p>
+		<strong>Dépendance à un script non documenté.</strong> Si une personne part en vacances et que tout s’arrête, c’est un risque opérationnel. Il faut une documentation de reprise, des droits partagés et des alertes en cas d’échec.
+	</p>
+	<p>
+		<strong>Données sensibles dans des canaux inadaptés.</strong> Automatiser ne doit pas déplacer des données personnelles vers des outils non conformes. Le choix des connecteurs et des espaces de stockage fait partie du cadrage — pas seulement une option technique.
+	</p>
+	<p>
+		<strong>Sur-automatisation.</strong> Tout automatiser rend le système rigide. Il faut laisser des exceptions métier explicites, sinon les cas particuliers cassent le flux et créent des contournements pires que l’ancien processus.
+	</p>
+
+	<h2>Ce que je ne fais pas (pour éviter les déceptions)</h2>
+	<p>
+		Je ne vends pas de « transformation digitale » sans périmètre : si le besoin n’est pas cadré, mon rôle est d’abord de clarifier — quitte à recommander un audit plutôt qu’un développement. Je ne promets pas non plus un ROI chiffré sans données de départ : un chiffre honnête vaut mieux qu’un slide marketing.
+	</p>
+
+	<h2>Du pilote à l’industrialisation : ce qui change (et pourquoi c’est important)</h2>
+	<p>
+		Un pilote réussi n’est pas encore une industrialisation. Le pilote prouve qu’un flux peut fonctionner dans un périmètre contrôlé ; l’industrialisation, elle, suppose des <strong>conditions d’exploitation</strong> : qui surveille, qui corrige, comment on gère les mises à jour des outils tiers, et comment on informe les métiers quand une règle change. Sans ce passage, on retombe dans le « script magique » que seule une personne ose toucher.
+	</p>
+	<p>
+		En pratique, j’aide à définir un <strong>mode de fonctionnement</strong> : fréquence des contrôles, journaux d’exécution, procédure en cas d’échec, et critères pour décider quand arrêter temporairement un flux plutôt que de propager une erreur. Ce sont des sujets peu « vendeurs », mais ce sont eux qui séparent une automatisation utile d’un gadget coûteux.
+	</p>
+
+	<h2>Automatisation et culture d’entreprise : le facteur invisible</h2>
+	<p>
+		Les outils accélèrent ce que les équipes sont prêtes à formaliser. Si les règles métier restent implicites (« on se débrouille »), l’automatisation reproduit le chaos plus vite. C’est pourquoi je passe du temps sur la <strong>clarification</strong> : qui est responsable du référentiel, comment on tranche un cas limite, comment on évite que chaque service ne redéfinisse sa propre version des indicateurs.
+	</p>
+	<p>
+		Dans des organisations où la pression est forte — production, support, administration — cette étape fait gagner des semaines plus tard, parce qu’on évite les allers-retours et les « exceptions » non gérées. Ce n’est pas du consulting rhétorique : c’est une condition nécessaire pour que le ROI tienne après le départ du prestataire. Souvent, le premier livrable utile n’est même pas un script : c’est une <strong>cartographie</strong> claire des flux et des responsabilités.
+	</p>
+
+	<div class="ctaInline">
+		<p>
+			<strong>Étape suivante :</strong> décrivez un processus à forte friction (volume, erreurs, délais). Je vous propose une lecture « impact / effort » et une première piste d’automatisation réaliste.
+		</p>
+		<p>
+			<a href="/contact">Demander un diagnostic automatisation →</a>
+		</p>
+	</div>
+
+	<h2>Maillage utile</h2>
+	<ul>
+		<li>
+			<a href="/expert-google-sheets-entreprise/">Expert Google Sheets</a> — quand le tableur est au cœur du processus.
+		</li>
+		<li>
+			<a href="/refonte-application-web/">Refonte application web</a> — quand l’outil métier doit être reconstruit.
+		</li>
+		<li>
+			<a href="/blog/freelance-vs-agence-vs-internalisation-projets-tech/">Freelance vs agence</a> — pour structurer la gouvernance.
+		</li>
+	</ul>
+</ServiceLandingLayout>

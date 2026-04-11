@@ -1,0 +1,147 @@
+---
+import ServiceLandingLayout from '../layouts/ServiceLandingLayout.astro';
+
+const title =
+	'Refonte application web : réduire la dette technique et les coûts cachés | Emmanuel SAUVAGE';
+const description =
+	'Refonte d’application web orientée ROI : signaux d’alerte, coût de la dette technique, stratégie refonte vs évolutions ciblées. Accompagnement Symfony et méthode terrain.';
+const h1 = 'Refonte d’application web : quand l’outil métier devient un frein à la marge';
+const lead =
+	'Une application vieillissante ne se traduit pas seulement par des bugs : elle ralentit les équipes, multiplie les contournements et fait exploser le coût du changement. Voici comment cadrer une refonte pour retrouver de la vélocité — sans tout jeter d’un coup.';
+const faq = [
+	{
+		question: 'Comment savoir si une refonte est vraiment nécessaire ?',
+		answer:
+			'On regarde trois signaux : le coût marginal d’une évolution (temps, risques), la fiabilité en production (incidents, dette de tests), et l’adoption par les métiers (contournements, fichiers Excel parallèles). Si deux de ces axes sont rouges, une refonte ou une restructuration majeure est souvent plus rentable que des rustines.',
+	},
+	{
+		question: 'Faut-il tout refondre ou peut-on procéder par étapes ?',
+		answer:
+			'Dans la majorité des cas, une approche progressive — monolithe modulaire, strangler fig pattern, livraisons courtes — réduit le risque et préserve le cash-flow. La refonte « big bang » se justifie surtout quand l’architecture empêche toute évolution sécurisée ou quand la dette de sécurité est critique.',
+	},
+	{
+		question: 'Quel est le lien entre refonte et dette technique ?',
+		answer:
+			'La dette technique est un coût financier différé : chaque raccourci accélère aujourd’hui mais facture demain en maintenance, incidents et lenteur des équipes. Une refonte bien cadrée vise à convertir cette dette en actif maintenable. Pour approfondir : article sur le coût de la dette technique et les signaux avant refonte.',
+	},
+	{
+		question: 'Symfony : refonte complète ou évolutions ciblées ?',
+		answer:
+			'Souvent les deux dans le temps : sécuriser et modulariser le existant, puis remplacer les zones les plus coûteuses. La décision dépend du risque métier, des versions supportées et de la capacité des équipes à absorber le changement.',
+	},
+	{
+		question: 'Comment mesurer le ROI d’une refonte ?',
+		answer:
+			'On combine des indicateurs d’efficacité (temps gagné par processus, réduction d’erreurs), des indicateurs IT (déploiements, incidents, lead time) et des risques évités (conformité, sécurité). L’objectif est de rendre le gain visible pour les décideurs, pas seulement pour les développeurs.',
+	},
+];
+---
+
+<ServiceLandingLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	breadcrumbLabel="Refonte application web"
+	faq={faq}
+>
+	<h2>Le vrai problème : une application qui « tient » mais qui coûte trop cher à faire évoluer</h2>
+	<p>
+		Dans beaucoup d’entreprises, l’outil métier historique n’est pas en panne permanente. Il tourne. Mais chaque petite demande — un champ en plus, un export, un rôle utilisateur — prend des semaines, génère des effets de bord et oblige à multiplier les validations. Ce n’est pas un problème de motivation des équipes : c’est souvent un problème d’architecture, de dette accumulée et de manque de garde-fous (tests, observabilité, documentation utile).
+	</p>
+	<p>
+		<strong>Traduction business :</strong> vous payez le même salaire pour une vélocité qui baisse. Pire : les métiers compensent avec des fichiers Excel, des mails et des outils parallèles, ce qui crée des incohérences de données et des risques de conformité. La refonte n’est pas un caprice technique ; c’est une réponse à un coût d’opportunité de plus en plus visible.
+	</p>
+
+	<h2>Ce que ça vous coûte concrètement (même sans ligne « refonte » au budget)</h2>
+	<p>
+		Avant de parler de solution, il faut chiffrer l’invisible : temps passé en reprises sur erreur, double saisie, attente IT, hotfix du week-end, et opportunités non saisies parce que l’outil ne suit pas le marché. Une application qui impose deux jours de développement pour une évolution qui devrait en prendre quelques heures « mange » plusieurs milliers d’euros par mois — rien qu’en charge support et coordination, sans compter la frustration client.
+	</p>
+	<p>
+		Les directions financières voient parfois uniquement le coût d’un projet de refonte. Les coûts cachés, eux, sont déjà là : ils sont répartis en support, en qualité, en retard commercial et en risque. Les analyser, c’est ce qui permet de prioriser sans débat stérile « technique vs métier ». Pour aller plus loin sur le sujet, voir l’article{' '}
+		<a href="/blog/cout-dette-technique-entreprise-analyse/">combien vous coûte une dette technique</a> et celui sur les{' '}
+		<a href="/blog/application-web-perd-argent-signes/">signes qu’une application web fait perdre de l’argent</a>.
+	</p>
+
+	<h2>Refonte ou maintenance évolutive : le bon critère est le risque, pas le buzzword</h2>
+	<p>
+		Une refonte totale n’est pas toujours le bon premier pas. Parfois, une série d’évolutions ciblées — avec clarification des frontières du système et réduction des zones les plus risquées — redonne assez de marges de manœuvre pour tenir 12 à 24 mois. Dans d’autres cas, l’empilement de couches incompatibles et l’absence de tests rendent toute modification dangereuse : là, reconstruire par morceaux (ou isoler un domaine métier) devient une question de survie du produit.
+	</p>
+	<p>
+		J’accompagne les équipes sur ce choix en le reliant à des exemples concrets : charge support, fréquence des incidents, dette de sécurité, dépendances obsolètes. La méthode est détaillée dans{' '}
+		<a href="/blog/refonte-ou-maintenance-application/">refonte ou maintenance : que choisir ?</a> et, côté Symfony, dans{' '}
+		<a href="/blog/symfony-refonte-ou-evolutions-ciblees/">refonte Symfony ou évolutions ciblées</a>.
+	</p>
+
+	<h2>Une méthode de refonte qui parle aux opérationnels comme à la direction</h2>
+	<p>
+		Une refonte réussie commence par des entretiens courts avec les personnes qui subissent l’outil au quotidien : pas pour collecter une liste de bugs, mais pour identifier les flux à valeur et les goulots d’étranglement. Ensuite seulement on traduit en exigences priorisées, avec une estimation honnête effort / impact — et des jalons qui permettent d’arrêter ou de pivoter si les hypothèses étaient fausses.
+	</p>
+	<p>
+		Côté technique, je privilégie des livraisons fréquentes, une dette visible (pas niée), et des critères de fin de sprint qui incluent l’adoption : documentation, formation, et parfois « désactivation » progressive de l’ancien module pour forcer la bascule proprement. L’objectif n’est pas le code pour le code : c’est un service rendu mesurable — moins d’erreurs, plus de débit, moins de dépendance à des héros individuels.
+	</p>
+
+	<h2>Pourquoi mon parcours change la donne sur une refonte</h2>
+	<p>
+		J’interviens comme expert qui a vu des organisations complexes de l’intérieur : exigence de fiabilité, contraintes de conformité, besoin de pédagogie auprès des métiers, et réalité du terrain (ce qui est annoncé vs ce qui est réellement utilisé). Je ne vends pas une refonte pour refaire du neuf : je cherche le levier qui réduit le coût total de possession — y compris en formant pour que l’équipe interne ne soit pas prisonnière d’un prestataire.
+	</p>
+	<p>
+		Sur le plan technique, j’emploie des stacks éprouvées (notamment Symfony côté back-end, intégrations API, interfaces modernes) en gardant un œil sur la maintenance de demain : observabilité, tests, sécurité par défaut. Pour les signaux d’alerte avant projet, l’article{' '}
+		<a href="/blog/refonte-application-web-signaux-strategie-dette-technique/">refonte web : signaux et stratégie</a> résume une grille utile en comité de direction.
+	</p>
+
+	<h2>Cas type ( anonymisé ) : d’une application « figée » à des releases régulières</h2>
+	<p>
+		Une PME industrielle utilisait un outil métier devenu incontrôlable : chaque évolution cassait un autre écran, les métiers géraient des compensations dans des tableurs. Nous avons cartographié les flux critiques, isolé un premier périmètre (saisie et validation), livré en trois mois avec tests de non-régression ciblés, puis déprécié progressivement l’ancien module. Le gain immédiat a été la réduction des erreurs de saisie ; le gain structurant, la capacité à itérer sans peur.
+	</p>
+	<p>
+		<strong>Point clé :</strong> le ROI n’est pas apparu au jour du go-live final, mais dès la première brique livrée — parce que les indicateurs avaient été définis à l’avance.
+	</p>
+	<p>
+		Ce type de situation se retrouve dans les PME comme dans des structures plus grandes : la différence n’est pas la taille du budget, mais la <strong>clarté des priorités</strong>. Quand tout est « urgent », rien ne l’est vraiment — et la refonte devient un marathon sans ligne d’arrivée. Un cadrage sérieux sert précisément à redonner une hiérarchie : risque, revenus, conformité, puis confort utilisateur. C’est aussi ce qui permet d’aligner direction, métiers et IT sur un même récit de valeur.
+	</p>
+
+	<div class="ctaInline">
+		<p>
+			<strong>Prochaine étape concrète :</strong> un diagnostic cadré (outil, équipe, risques, délais) pour décider si une refonte complète, une restructuration progressive ou des évolutions ciblées est la meilleure option financière.
+		</p>
+		<p>
+			<a href="/contact">Demander un diagnostic refonte →</a>
+		</p>
+	</div>
+
+	<h2>Les pièges qui font échouer une refonte (et comment les éviter)</h2>
+	<p>
+		<strong>Le piège du cahier des charges figé.</strong> Si tout est spécifié avant d’avoir livré quoi que ce soit, on reproduit souvent les défauts de l’existant en plus propre — sans gains métier. La bonne approche : un périmètre initial réaliste, des retours utilisateurs tôt, et des ajustements mesurés.
+	</p>
+	<p>
+		<strong>Le piège du « on recrutera après ».</strong> Une refonte sans propriétaire produit côté métier et sans développeur référent côté technique dérive. Les arbitrages se font trop tard, sous pression. Dès le départ, il faut nommer qui tranche, qui teste, et qui valide la mise en production.
+	</p>
+	<p>
+		<strong>Le piège du tout réécrire.</strong> Remplacer 100 % du code sans stratégie de bascule, c’est maximiser le risque au moment le plus visible. Les approches progressives (modules, feature flags, remplacement par strates) réduisent l’aléa et permettent d’apprendre du terrain avant d’engager le reste du budget.
+	</p>
+
+	<h2>Indicateurs utiles en comité de direction (sans jargon inutile)</h2>
+	<p>
+		Pour décider du budget et du calendrier, je recommande de suivre quelques métriques simples : <strong>temps moyen pour livrer une évolution standard</strong> (et son évolution sur 6 mois), <strong>taux d’erreurs ou de retours qualité</strong> sur les flux critiques, <strong>temps passé par le support métier</strong> à contourner l’outil, et <strong>coût des incidents</strong> (y compris opportunité perdue). Ce ne sont pas des KPI « IT » : ce sont des traductions de friction business.
+	</p>
+	<p>
+		On peut aussi comparer le <strong>coût total de possession</strong> : hébergement, licences, maintenance, dette sécurité, formation des nouveaux arrivants. Quand la courbe du « maintenir l’existant » dépasse celle du « reconstruire par étapes », la décision de refonte devient rationnelle — même si elle reste lourde politiquement.
+	</p>
+	<p>
+		Enfin, l’urgence se lit dans les <strong>risques</strong> : dépendances non supportées, exposition sécurité, incapacité à intégrer un partenaire clé ou à respecter une réglementation. Ces sujets ne tolèrent pas l’atermoiement — ils imposent un plan avec dates, même si le périmètre fonctionnel doit être réduit pour tenir le créneau.
+	</p>
+
+	<h2>Maillage utile : poursuivre la lecture</h2>
+	<ul>
+		<li>
+			<a href="/blog/migration-symfony-guide-complet-2026/">Migration Symfony</a> — quand l’upgrade devient un projet structurant.
+		</li>
+		<li>
+			<a href="/blog/freelance-vs-agence-vs-internalisation-projets-tech/">Freelance, agence ou interne</a> — critères de décision pour un projet de refonte.
+		</li>
+		<li>
+			<a href="/developpeur-symfony-freelance/">Développeur Symfony freelance</a> — continuité technique après la refonte.
+		</li>
+	</ul>
+</ServiceLandingLayout>

@@ -1,0 +1,163 @@
+---
+import ServiceLandingLayout from '../layouts/ServiceLandingLayout.astro';
+
+const title =
+	'Expert Google Sheets pour entreprises : pilotage, fiabilité et limites | Emmanuel SAUVAGE';
+const description =
+	'Google Sheets en entreprise : modèles robustes, automatisation, fiabilisation des données, formation équipes. Quand le tableur est un levier — et quand il faut passer à autre chose.';
+const h1 =
+	'Expert Google Sheets pour entreprises : faire du tableur un levier — sans en faire une dette';
+const lead =
+	'Google Sheets est partout : il accélère le pilotage quand il est bien cadré, et devient un frein quand il se substitue à une base de données sans règles. Voici comment en faire un outil professionnel — et reconnaître le moment où il faut évoluer.';
+const faq = [
+	{
+		question: 'Sheets peut-il remplacer un ERP ou une base de données ?',
+		answer:
+			'Pour du pilotage, de la simulation et du reporting agile, souvent oui — dans une limite de volume et de complexité. Quand les concurrences d’écriture, les droits fins et l’historique fort deviennent critiques, il faut un système adapté — parfois en complément de Sheets, pas en opposition.',
+	},
+	{
+		question: 'Comment fiabiliser des classeurs « hérités » ?',
+		answer:
+			'On commence par identifier la source de vérité, figer des plages maîtrisées, ajouter des validations, et documenter les formules critiques. Ensuite on automatise ce qui est répétitif et on réduit les copies manuelles — c’est là que le ROI apparaît vite.',
+	},
+	{
+		question: 'Excel ou Google Sheets en entreprise ?',
+		answer:
+			'Cela dépend de l’écosystème (Microsoft 365 vs Google Workspace), du volume, des besoins hors ligne et des contraintes de conformité. Les deux ont des forces ; l’erreur est de décider par habitude plutôt que par cas d’usage — voir la comparaison détaillée sur le blog.',
+	},
+	{
+		question: 'Proposez-vous des formations Google Sheets ?',
+		answer:
+			'Oui, sur mesure, avec des fichiers d’entreprise anonymisés quand c’est possible. L’objectif est l’autonomie : moins d’erreurs, plus de vitesse, et des bonnes pratiques partagées.',
+	},
+	{
+		question: 'Quand faut-il arrêter d’empiler des formules ?',
+		answer:
+			'Quand le classeur devient fragile (une case cassée fait tomber un tableau de bord), quand les versions se multiplient, ou quand la sécurité des données ne peut plus être garantie. À ce stade, un outil métier ou une base relationnelle est souvent moins cher que le coût des incidents.',
+	},
+];
+---
+
+<ServiceLandingLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	breadcrumbLabel="Expert Google Sheets entreprise"
+	faq={faq}
+>
+	<h2>Le tableur n’est pas le problème : c’est l’absence de règles qui coûte cher</h2>
+	<p>
+		Dans beaucoup d’entreprises, Google Sheets est devenu le <strong>lieu par défaut</strong> où se prennent les décisions : prévisions, stocks, suivi commercial, planning. Ce n’est pas un échec en soi : c’est souvent le signe que les outils officiels sont trop rigides ou trop lents. Le vrai coût apparaît quand plusieurs versions circulent, que personne ne sait quelle feuille est « la bonne », et que les erreurs de saisie se propagent dans des tableaux de bord présentés en comité.
+	</p>
+	<p>
+		Mon approche : traiter Sheets comme un <strong>produit</strong> — avec une gouvernance minimale (qui modifie quoi), des protections, des plages nommées, des modèles propres et, quand c’est pertinent, des scripts pour éliminer les tâches idiotes. Le but n’est pas d’impressionner par la complexité des formules : c’est de réduire le risque et le temps perdu.
+	</p>
+
+	<h2>Ce que Google Sheets vous coûte quand il remplace une vraie base de données</h2>
+	<p>
+		Quand un classeur accumule des milliers de lignes, des formules imbriquées et des liaisons fragiles, chaque mise à jour devient une loterie. Les équipes passent du temps à « réparer » plutôt qu’à analyser. Les directions voient des indicateurs qui bougent sans qu’on sache si c’est la réalité ou une erreur de copie. Ce phénomène a un coût : il est réparti sur du support, de la qualité et de la confiance interne.
+	</p>
+	<p>
+		La question n’est pas « Sheets oui/non » mais <strong>à quel niveau de criticité</strong> un tableur reste acceptable. Pour un angle chiffré et décisionnel, lire{' '}
+		<a href="/blog/fichiers-excel-cout-cache-entreprise/">le coût caché des fichiers Excel</a> (les mécanismes sont souvent les mêmes) et{' '}
+		<a href="/blog/google-sheets-limite-outil-metier/">Sheets comme outil métier : limites</a>. Pour comparer les environnements :{' '}
+		<a href="/blog/google-sheets-vs-excel-limites-cas-usage/">Google Sheets vs Excel</a>.
+	</p>
+
+	<h2>Modèles robustes : validations, sources et documentation utile</h2>
+	<p>
+		Un modèle professionnel commence par des <strong>entrées contrôlées</strong> : listes déroulantes, règles de cohérence, messages d’erreur explicites. Ensuite, on sépare clairement données brutes, calculs intermédiaires et restitution — pour éviter qu’une présentation « jolie » ne mélange tout dans les mêmes cellules. Enfin, on documente les hypothèses : une formule non expliquée est une dette, pas un atout. Cette discipline paraît « lourde » au début, mais elle évite des heures de chasse aux erreurs lors des pics d’activité — clôtures, soldes, pics saisonniers.
+	</p>
+	<p>
+		Sur Google Workspace, on peut aller plus loin : déclencheurs, scripts pour importer ou contrôler, alertes par email quand un seuil est franchi — à condition de traiter les droits et la confidentialité sérieusement. Ce sont des sujets où l’expérience terrain fait la différence entre « ça marche sur mon écran » et « ça tient en production ».
+	</p>
+
+	<h2>Formation : l’investissement qui amortit le classeur en quelques semaines</h2>
+	<p>
+		Beaucoup d’entreprises sous-investissent dans la montée en compétences : on « sait se servir » de Sheets, mais pas assez pour éviter les pièges (références qui se décalent, copies qui cassent, versions). Une formation ciblée sur <strong>vos fichiers réels</strong> change la courbe d’erreurs et accélère le quotidien — voir{' '}
+		<a href="/blog/formation-google-sheets-entreprise-levier-productivite/">formation Google Sheets en entreprise</a>.
+	</p>
+	<p>
+		Je construis des sessions courtes, orientées problèmes : pas un catalogue générique, mais des exercices sur vos cas — anonymisés si nécessaire. L’objectif est que les équipes partagent les mêmes bonnes pratiques et que le modèle vive sans dépendre d’une seule personne.
+	</p>
+
+	<h2>Cas type : du « mille-feuille » de feuilles à un référentiel lisible</h2>
+	<p>
+		Une équipe finance utilisait une douzaine de fichiers reliés par des IMPORTRANGE et des copies manuelles. Chaque clôture était stressante : un lien cassé faisait diverger les agrégats. Nous avons recentré la source, stabilisé les plages, ajouté des contrôles d’écart et une feuille d’audit des erreurs. Le gain n’a pas été seulement du temps : c’est la <strong>confiance</strong> des relectures qui est remontée — un point rarement chiffré mais décisif en direction.
+	</p>
+	<p>
+		<strong>Enseignement :</strong> le ROI est apparu dès la première clôture après stabilisation, parce que les reprises d’erreur ont chuté.
+	</p>
+
+	<h2>Quand il faut passer à un outil métier (et comment ne pas le faire trop tôt)</h2>
+	<p>
+		Si vos enjeux sont l’historisation fine, les droits par rôle, l’intégration temps réel avec plusieurs systèmes, ou des volumes qui font ramper le navigateur, il est temps d’évaluer une application dédiée — souvent en gardant Sheets pour le reporting ou la simulation. Le piège est de vouloir « un ERP » sans avoir clarifié le processus : on digitalise alors une pagaille existante.
+	</p>
+	<p>
+		Dans ce cas, je m’appuie sur une approche de <a href="/audit-outils-digitaux/">cadrage / audit</a> puis, si besoin, sur du{' '}
+		<a href="/developpeur-symfony-freelance/">développement Symfony</a> ou une{' '}
+		<a href="/refonte-application-web/">refonte applicative</a> — toujours avec des jalons mesurables.
+	</p>
+
+	<h2>Ce que mon parcours change pour vos classeurs « sensibles »</h2>
+	<p>
+		J’ai travaillé dans des environnements où la <strong>fiabilité</strong> et la <strong>traçabilité</strong> ne sont pas optionnelles : une erreur de données ne se voit pas seulement dans une cellule — elle se voit en responsabilité opérationnelle. Cette culture se traduit dans la façon de construire des modèles : moins de bricolage opaque, plus de lisibilité pour le management et pour les audits internes.
+	</p>
+	<p>
+		Je ne pousse pas une techno par idéologie : je relie l’outil au <strong>risque métier</strong>. Parfois la meilleure décision est un classeur mieux cadré ; parfois c’est un chantier applicatif — l’important est que la direction sache ce qu’elle achète et ce qu’elle évite comme coût latent.
+	</p>
+
+	<h2>Indicateurs simples pour décider d’investir (ou non)</h2>
+	<p>
+		<strong>Temps de préparation des reportings</strong>, <strong>nombre d’incidents de chiffres contestés</strong>, <strong>nombre de versions « officielles » concurrentes</strong>, et <strong>temps de reprise après erreur</strong>. Si ces signaux augmentent alors que l’activité est stable, votre outillage tableur est sous stress — indépendamment du talent des équipes.
+	</p>
+	<p>
+		Une feuille de route doit préciser ce qui est <strong>acceptable</strong> comme dette temporaire et ce qui ne l’est pas (sécurité, données personnelles, risque client). Sur ce dernier point, l’alignement RGPD et minimisation des données fait partie du cadrage — voir les réflexes utiles côté API et données dans les articles du blog sur la conformité.
+	</p>
+	<p>
+		On peut aussi suivre un indicateur simple mais parleur : le <strong>ratio « temps de contrôle / temps d’analyse »</strong>. Si vos équipes passent plus de temps à vérifier qu’à décider, votre outil de pilotage — Sheets ou autre — ne remplit pas son rôle, même si les graphiques sont élégants.
+	</p>
+
+	<h2>Pièges fréquents (et comment les éviter)</h2>
+	<p>
+		<strong>Trop de plugins et de scripts opaques.</strong> La sophistication qui n’est pas maintenue devient un risque. Mieux vaut moins d’automatisation mais comprise par l’équipe.
+	</p>
+	<p>
+		<strong>Confondre accès « facile » et contrôle d’accès.</strong> Partager un lien en « consultation » ne règle pas la gouvernance : il faut des rôles clairs et des procédures quand quelqu’un quitte l’entreprise.
+	</p>
+	<p>
+		<strong>Dépendre d’une seule « personne tableur ».</strong> Si une absence bloque la clôture, vous avez un risque opérationnel — pas seulement un sujet de formules.
+	</p>
+
+	<h2>Automatisation et Sheets : le bon couplage</h2>
+	<p>
+		Lorsque les flux sont répétitifs — imports, contrôles, envois de relances — l’automatisation via Apps Script ou des connecteurs peut retirer des heures à la semaine. L’erreur est de croire que « tout scripté » est mieux : il faut des conditions de reprise, des journaux et des alertes. J’articule souvent ce volet avec une vision plus large :{' '}
+		<a href="/automatisation-entreprise/">automatisation d’entreprise</a> et intégrations lorsque le périmètre dépasse le classeur.
+	</p>
+	<p>
+		On vise un équilibre : <strong>le tableur reste lisible</strong> par un nouveau manager dans six mois — sinon la dette change de nature sans disparaître. C’est le même principe que pour une application : la maintenabilité est un critère business, pas un détail d’atelier.
+	</p>
+
+	<div class="ctaInline">
+		<p>
+			<strong>Prochaine étape :</strong> envoyez le contexte (usage, volumétrie, irritants). Je propose un diagnostic : fiabilisation rapide, formation, ou bascule vers un outil métier — avec des priorités honnêtes.
+		</p>
+		<p>
+			<a href="/contact">Demander un diagnostic Google Sheets →</a>
+		</p>
+	</div>
+
+	<h2>Maillage utile</h2>
+	<ul>
+		<li>
+			<a href="/blog/google-sheets-vs-excel-limites-cas-usage/">Sheets vs Excel : limites et cas</a>
+		</li>
+		<li>
+			<a href="/automatisation-entreprise/">Automatisation entreprise</a>
+		</li>
+		<li>
+			<a href="/audit-outils-digitaux/">Audit outils digitaux</a>
+		</li>
+	</ul>
+</ServiceLandingLayout>

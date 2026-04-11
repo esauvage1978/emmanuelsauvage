@@ -10,8 +10,8 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 ---
 
 <Layout
-	title="Contact | Emmanuel SAUVAGE"
-	description="Contactez Emmanuel SAUVAGE : développement Symfony, Vue.js, React, automatisation et reporting (Sheets, Power BI, Looker) pour votre entreprise."
+	title="Contact — diagnostic, audit ou mission | Emmanuel SAUVAGE"
+	description="Contact entreprise : projet, budget envisagé, urgence et besoin. Réponse orientée ROI — Symfony, automatisation, Google Sheets, refonte web et audit d’outils digitaux."
 >
 	<SiteHeader current="contact" />
 
@@ -37,16 +37,16 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 			</div>
 			<div class="container hero__grid">
 				<div class="hero__content">
-					<p class="eyebrow contactEyebrow">Développement web • Symfony • Vue.js • React</p>
-					<h1>Parlons de <span class="contactH1Accent">vos outils</span> et de vos processus</h1>
+					<p class="eyebrow contactEyebrow">Optimisation business · outils digitaux · processus</p>
+					<h1>Un premier échange <span class="contactH1Accent">cadré</span> — budget, urgence, type de projet</h1>
 					<p class="hero__subtitle">
-						Expliquez votre contexte : applications métier, interfaces, automatisation ou reporting — je vous réponds
-						avec une première piste concrète.
+						Vous décrivez votre contexte et vos contraintes ; je réponds avec une orientation réaliste (périmètre, risques,
+						prochaine étape). Pas de promesse creuse : des priorités actionnables.
 					</p>
 					<ul class="trust">
-						<li class="trust__item"><strong>Fullstack</strong> : de l’API à l’interface</li>
-						<li class="trust__item"><strong>Stack</strong> : PHP, Symfony, JavaScript, MySQL</li>
-						<li class="trust__item"><strong>Data</strong> : Google Sheets, Power BI, Looker</li>
+						<li class="trust__item"><strong>ROI</strong> : gains, pertes, risques — pas seulement de la technique</li>
+						<li class="trust__item"><strong>Stack</strong> : Symfony, API, automatisation, Sheets / data</li>
+						<li class="trust__item"><strong>Terrain</strong> : organisations complexes, adoption, formation</li>
 					</ul>
 				</div>
 
@@ -104,6 +104,41 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 							</select>
 						</div>
 						<div class="field">
+							<label for="project-type">Type de projet (qualification)</label>
+							<select id="project-type" name="project_type" required>
+								<option value="" disabled selected>— Préciser le type —</option>
+								<option value="audit-diagnostic">Audit / diagnostic / cadrage</option>
+								<option value="refonte-evolution">Refonte ou évolution d’outil métier</option>
+								<option value="automation-integration">Automatisation / intégrations</option>
+								<option value="data-reporting">Data, reporting, Google Sheets / BI</option>
+								<option value="maintenance-support">Maintenance, perf, sécurité</option>
+								<option value="formation">Formation / montée en compétences</option>
+								<option value="autre-projet">Autre / à définir</option>
+							</select>
+						</div>
+						<div class="field">
+							<label for="budget-range">Budget envisagé (ordre de grandeur)</label>
+							<select id="budget-range" name="budget_range" required>
+								<option value="" disabled selected>— Indiquer une fourchette —</option>
+								<option value="under-3k">&lt; 3 k€</option>
+								<option value="3k-8k">3 k€ — 8 k€</option>
+								<option value="8k-20k">8 k€ — 20 k€</option>
+								<option value="20k-50k">20 k€ — 50 k€</option>
+								<option value="50k-plus">50 k€ et +</option>
+								<option value="unknown">À définir avec vous</option>
+							</select>
+						</div>
+						<div class="field">
+							<label for="urgency">Urgence / échéance</label>
+							<select id="urgency" name="urgency" required>
+								<option value="" disabled selected>— Choisir —</option>
+								<option value="asap">Critique (&lt; 2 semaines)</option>
+								<option value="month">Court terme (2 à 6 semaines)</option>
+								<option value="quarter">Moyen terme (1 à 3 mois)</option>
+								<option value="later">Plus tard / planification</option>
+							</select>
+						</div>
+						<div class="field">
 							<label for="message">Message</label>
 							<textarea
 								id="message"
@@ -131,7 +166,8 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 							</label>
 						</div>
 						<p class="hint">
-							Indiquez si possible : outils actuels (ERP, CRM, fichiers, SaaS), volume / fréquence, et le délai souhaité.
+							Indiquez si possible : outils actuels (ERP, CRM, fichiers, SaaS), volume / fréquence, risques ou irritants
+							majeurs — et ce qu’un « succès » changerait concrètement pour votre activité.
 						</p>
 					</form>
 
@@ -232,15 +268,32 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 				const objetSelect = document.getElementById('objet');
 				const objet = objetSelect?.value?.trim() ?? '';
 				const objetLabel = objetSelect?.selectedOptions?.[0]?.textContent?.trim() ?? '';
+				const projectTypeSelect = document.getElementById('project-type');
+				const projectType = projectTypeSelect?.value?.trim() ?? '';
+				const projectTypeLabel = projectTypeSelect?.selectedOptions?.[0]?.textContent?.trim() ?? '';
+				const budgetSelect = document.getElementById('budget-range');
+				const budgetRange = budgetSelect?.value?.trim() ?? '';
+				const budgetRangeLabel = budgetSelect?.selectedOptions?.[0]?.textContent?.trim() ?? '';
+				const urgencySelect = document.getElementById('urgency');
+				const urgency = urgencySelect?.value?.trim() ?? '';
+				const urgencyLabel = urgencySelect?.selectedOptions?.[0]?.textContent?.trim() ?? '';
 				const message = document.getElementById('message')?.value?.trim() ?? '';
 				const source =
 					form.querySelector('input[name="source"]')?.value?.trim() || 'emmanuelsauvage';
 				const page = typeof window !== 'undefined' ? window.location.href : '';
 
-				if (!name || !email || !objet || !message) {
+				if (
+					!name ||
+					!email ||
+					!objet ||
+					!message ||
+					!projectType ||
+					!budgetRange ||
+					!urgency
+				) {
 					setStatus(
 						'err',
-						'Merci de remplir les champs obligatoires (nom, email, objet de la sollicitation, message).',
+						'Merci de remplir tous les champs obligatoires (y compris qualification projet, budget et urgence).',
 					);
 					return;
 				}
@@ -255,6 +308,12 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 					email,
 					objet,
 					objet_label: objetLabel || objet,
+					project_type: projectType,
+					project_type_label: projectTypeLabel || projectType,
+					budget_range: budgetRange,
+					budget_range_label: budgetRangeLabel || budgetRange,
+					urgency,
+					urgency_label: urgencyLabel || urgency,
 					message,
 					source,
 					page,

@@ -7,8 +7,8 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 ---
 
 <Layout
-	title="Optimisation et développement d’outils digitaux pour les entreprises | Emmanuel SAUVAGE"
-	description="Consultant indépendant : audit outils digitaux entreprise, optimisation processus entreprise, développement d’outils métier et automatisation workflows. Audit, développement, formation et dépannage."
+	title="Réduire les pertes liées aux outils digitaux (ROI, processus) | Emmanuel SAUVAGE"
+	description="Expert en optimisation business via les outils digitaux : audit, automatisation, Symfony, Google Sheets, refonte web. Pour entreprises qui veulent moins de friction et des décisions basées sur des données fiables."
 	preloadLcpHref="/images/hero-illustration-unsplash-2-662.jpg"
 	preloadLcpType="image/jpeg"
 >
@@ -34,15 +34,18 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 			</div>
 			<div class="container hero__grid hero__grid--impact">
 				<div class="hero__content">
-					<p class="eyebrow">Consultant indépendant — outils digitaux &amp; processus</p>
-					<h1>Vos outils digitaux, <span class="h1Accent">plus simples et plus efficaces</span></h1>
+					<p class="eyebrow">Optimisation business · outils digitaux &amp; processus</p>
+					<h1>
+						Votre SI et vos fichiers vous coûtent cher <span class="h1Accent">sans apparaître au bilan</span>
+					</h1>
 					<p class="hero__subtitle hero__subtitle--short">
-						L’idée, c’est que vos outils vous fassent gagner du temps — pas l’inverse.
+						Double saisie, dette technique, tableurs devenus « système » : je vous aide à réduire les pertes — temps,
+						erreurs, délais — avec un plan d’action priorisé et mesurable.
 					</p>
 
 					<div class="hero__actions">
-						<a class="button button--primary" href="#contact">Discuter de votre projet</a>
-						<a class="button button--secondary" href="#services">Voir l’offre</a>
+						<a class="button button--primary" href="/contact">Diagnostic ou audit</a>
+						<a class="button button--secondary" href="#services">Voir les expertises</a>
 					</div>
 				</div>
 
@@ -66,19 +69,90 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 			</div>
 		</section>
 
-		<section id="services" class="homeSection homeSection--surface section section--alt" aria-labelledby="home-services-heading">
+		<section class="homeSection section" aria-labelledby="home-pains-heading">
 			<div class="container">
 				<header class="homeSection__header">
 					<p class="homeSection__rail" aria-hidden="true">
 						<span class="homeSection__num">01</span>
-						<span class="homeSection__label">Offre</span>
+						<span class="homeSection__label">Frictions</span>
 					</p>
 					<div class="homeSection__intro">
-						<h2 id="home-services-heading">Ce que je propose</h2>
+						<h2 id="home-pains-heading">Problèmes fréquents côté business</h2>
 						<p class="homeSection__lede">
-							Applications Symfony, interfaces (Vue ou React), reporting, maintenance, formation… Les cartes
-							donnent le fil. Pour les exemples et le déroulé concret, j’ai tout regroupé sur la page
-							<a href="/services">Services</a>.
+							Ce ne sont pas des « bugs » : ce sont des fuites de valeur — souvent tolérées jusqu’au jour où un départ, une
+							pic d’activité ou un audit révèle le manque à gagner.
+						</p>
+					</div>
+				</header>
+				<div class="painGrid">
+					<article class="painCard">
+						<h3>Outil métier lent à faire évoluer</h3>
+						<p>
+							Chaque demande prend des semaines ; les métiers compensent avec des fichiers parallèles — et la donnée se
+							disperse.
+						</p>
+					</article>
+					<article class="painCard">
+						<h3>Excel / Sheets devenus « système »</h3>
+						<p>
+							Indispensables, mais fragiles : versions multiples, erreurs de saisie, reporting chronophage avant les
+							comités.
+						</p>
+					</article>
+					<article class="painCard">
+						<h3>Processus manuels entre outils</h3>
+						<p>
+							Copier-coller, relances par mail, ressaisies : la charge explose quand le volume augmente — sans que le
+							budget suive.
+						</p>
+					</article>
+				</div>
+				<p class="homePainCta">
+					<a class="button button--secondary" href="/blog/cout-dette-technique-entreprise-analyse/">Lire : coût de la dette technique →</a>
+				</p>
+			</div>
+		</section>
+
+		<section class="homeSection homeSection--surface section section--alt" aria-labelledby="home-cost-heading">
+			<div class="container">
+				<header class="homeSection__header">
+					<p class="homeSection__rail" aria-hidden="true">
+						<span class="homeSection__num">02</span>
+						<span class="homeSection__label">Pertes</span>
+					</p>
+					<div class="homeSection__intro">
+						<h2 id="home-cost-heading">Ce que ça vous coûte (ordre de grandeur)</h2>
+						<p class="homeSection__lede">
+							Sans viser une précision comptable : si une équipe perd plusieurs heures par semaine sur des tâches
+							répétitives ou des reprises d’erreur, le coût annuel dépasse souvent le prix d’un diagnostic ou d’un premier
+							chantier ciblé — avant même de compter les opportunités manquées.
+						</p>
+					</div>
+				</header>
+				<ul class="costList">
+					<li><strong>Temps</strong> — coordination, double saisie, attente IT, hotfix.</li>
+					<li><strong>Qualité</strong> — retours clients, litiges internes, décisions prises sur de mauvais chiffres.</li>
+					<li><strong>Risque</strong> — sécurité, conformité, dépendance à une personne clé.</li>
+				</ul>
+				<div class="costCtaRow">
+					<a class="button button--primary" href="/audit-outils-digitaux/">Audit des outils digitaux</a>
+					<a class="button button--secondary" href="/contact">Parler chiffrage &amp; urgence</a>
+				</div>
+			</div>
+		</section>
+
+		<section id="services" class="homeSection section" aria-labelledby="home-services-heading">
+			<div class="container">
+				<header class="homeSection__header">
+					<p class="homeSection__rail" aria-hidden="true">
+						<span class="homeSection__num">03</span>
+						<span class="homeSection__label">Expertises</span>
+					</p>
+					<div class="homeSection__intro">
+						<h2 id="home-services-heading">Ce que je mets en œuvre pour vous</h2>
+						<p class="homeSection__lede">
+							Des pages dédiées par intention : refonte, automatisation, Sheets, audit, Symfony. Le hub{' '}
+							<a href="/services">Services</a> résume l’ensemble — les liens ci-dessous approfondissent chaque levier.
 						</p>
 					</div>
 				</header>
@@ -104,8 +178,8 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 								/>
 							</svg>
 						</div>
-						<h3>Applications Symfony</h3>
-						<p>API, MySQL, sécurité, performance, mise en production.</p>
+						<h3><a href="/refonte-application-web/">Refonte application web</a></h3>
+						<p>Réduire dette et coût du changement : Symfony, API, stratégie progressive.</p>
 					</article>
 
 					<article class="bento__card bento__card--wide">
@@ -127,8 +201,8 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 								/>
 							</svg>
 						</div>
-						<h3>Interfaces Vue.js / React</h3>
-						<p>Composants, formulaires, tableaux, UX soignée.</p>
+						<h3><a href="/automatisation-entreprise/">Automatisation d’entreprise</a></h3>
+						<p>Workflows, intégrations, ROI — moins de répétition, plus de fiabilité.</p>
 					</article>
 
 					<article class="bento__card">
@@ -139,8 +213,8 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 								<path d="M9 21h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
 							</svg>
 						</div>
-						<h3>Data &amp; reporting</h3>
-						<p>Sheets, Power BI, Looker, indicateurs actionnables.</p>
+						<h3><a href="/expert-google-sheets-entreprise/">Google Sheets entreprise</a></h3>
+						<p>Fiabilisation, formation, limites — quand le tableur est critique.</p>
 					</article>
 
 					<article class="bento__card">
@@ -155,8 +229,8 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 								/>
 							</svg>
 						</div>
-						<h3>Maintenance &amp; optimisation</h3>
-						<p>Fiabilité, perf, RGPD, évolutions progressives.</p>
+						<h3><a href="/audit-outils-digitaux/">Audit outils digitaux</a></h3>
+						<p>Cartographie, risques, plan d’action priorisé pour la direction.</p>
 					</article>
 
 					<article class="bento__card">
@@ -172,13 +246,13 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 								/>
 							</svg>
 						</div>
-						<h3>Formation</h3>
-						<p>Autonomie sur Symfony et bonnes pratiques web.</p>
+						<h3><a href="/developpeur-symfony-freelance/">Symfony freelance</a></h3>
+						<p>API, applications métier, migrations, qualité et production.</p>
 					</article>
 				</div>
 
 				<p class="section__more">
-					<a href="/services">Tout le détail des prestations →</a>
+					<a href="/services">Vue d’ensemble des prestations →</a>
 				</p>
 			</div>
 		</section>
@@ -187,7 +261,7 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 			<div class="container">
 				<header class="homeSection__header">
 					<p class="homeSection__rail" aria-hidden="true">
-						<span class="homeSection__num">02</span>
+						<span class="homeSection__num">04</span>
 						<span class="homeSection__label">Démarche</span>
 					</p>
 					<div class="homeSection__intro">
@@ -229,11 +303,57 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 			</div>
 		</section>
 
-		<section class="homeSection homeSection--surface section section--alt" aria-labelledby="home-proof-heading">
+		<section class="homeSection homeSection--surface section section--alt" aria-labelledby="home-trust-heading">
 			<div class="container">
 				<header class="homeSection__header">
 					<p class="homeSection__rail" aria-hidden="true">
-						<span class="homeSection__num">03</span>
+						<span class="homeSection__num">05</span>
+						<span class="homeSection__label">Crédibilité</span>
+					</p>
+					<div class="homeSection__intro">
+						<h2 id="home-trust-heading">Pourquoi me faire confiance ?</h2>
+						<p class="homeSection__lede">
+							Pas une biographie : des situations où la <strong>fiabilité</strong>, la <strong>compréhension métier</strong> et
+							l’<strong>adoption</strong> comptent autant que la technique.
+						</p>
+					</div>
+				</header>
+				<div class="trustGrid">
+					<article class="trustCard">
+						<h3>Organisations exigeantes</h3>
+						<p>
+							<strong>Plus de 20 ans</strong> dans des environnements complexes (dont la sphère Assurance maladie) : je sais
+							ce que signifie « critique » pour un traitement, une échéance, une conformité — et comment éviter les
+							solutions brillantes mais inutilisables.
+						</p>
+					</article>
+					<article class="trustCard">
+						<h3>Culture de contrôle &amp; de résultats</h3>
+						<p>
+							Exposition à des contextes où les <strong>audits</strong> et la reddition de comptes structurent le réel :
+							j’anticipe les questions de traçabilité, de preuve et de gestion du risque — pas seulement le code.
+						</p>
+					</article>
+					<article class="trustCard">
+						<h3>Technique + terrain + transmission</h3>
+						<p>
+							Expérience <strong>technique</strong>, <strong>management</strong> et <strong>formation</strong> : je peux
+							faire adopter une solution et la documenter — y compris après mise en production (ex. déploiements type IPBX,
+							outils critiques).
+						</p>
+					</article>
+				</div>
+				<p class="homeSection__footerLink">
+					<a href="/a-propos">Storytelling et positionnement — À propos →</a>
+				</p>
+			</div>
+		</section>
+
+		<section class="homeSection section" aria-labelledby="home-proof-heading">
+			<div class="container">
+				<header class="homeSection__header">
+					<p class="homeSection__rail" aria-hidden="true">
+						<span class="homeSection__num">06</span>
 						<span class="homeSection__label">Confiance</span>
 					</p>
 					<div class="homeSection__intro">
@@ -300,10 +420,13 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 			<div class="container">
 				<p class="homeSeo__text">
 					<strong class="homeSeo__title">En savoir plus :</strong>
-					<a href="/services">audit outils digitaux</a>, optimisation des processus et
-					<a href="/services">développement Symfony, Vue.js et React</a> — détails sur la page
-					<a href="/services">Services</a>, parcours sur <a href="/a-propos">À propos</a> et articles techniques sur le{' '}
-					<a href="/blog">blog</a> (Symfony, API, outils métier).
+					<a href="/audit-outils-digitaux/">audit outils digitaux</a>,
+					<a href="/automatisation-entreprise/">automatisation</a>,
+					<a href="/refonte-application-web/">refonte web</a>,
+					<a href="/expert-google-sheets-entreprise/">Google Sheets entreprise</a>,
+					<a href="/developpeur-symfony-freelance/">Symfony freelance</a> — hub{' '}
+					<a href="/services">Services</a>, parcours sur <a href="/a-propos">À propos</a>, articles ROI sur le{' '}
+					<a href="/blog">blog</a> (dette technique, Excel, refonte, processus).
 				</p>
 			</div>
 		</section>
@@ -312,14 +435,14 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 			<div class="container">
 				<header class="homeSection__header homeSection__header--cta">
 					<p class="homeSection__rail" aria-hidden="true">
-						<span class="homeSection__num">05</span>
+						<span class="homeSection__num">07</span>
 						<span class="homeSection__label">Contact</span>
 					</p>
 					<div class="homeSection__intro">
-						<h2 id="home-contact-heading">Parlons de votre contexte</h2>
+						<h2 id="home-contact-heading">Passer du constat à une action</h2>
 						<p class="homeSection__lede">
-							Un projet en tête, un outil qui coince, ou juste envie de voir si je peux aider ? Écrivez-moi
-							— je réponds avec une première piste concrète.
+							Formulaire avec budget, urgence et type de projet — pour une réponse directement exploitable. Préférence pour
+							un appel court ? Indiquez-le dans le message.
 						</p>
 					</div>
 				</header>
@@ -327,12 +450,13 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 				<div class="cta__inner cta__inner--bold">
 					<div>
 						<p class="cta__lede cta__lede--strong">
-							C’est sans engagement : formulaire sur la page contact, ou un simple message — vous choisissez.
+							<strong>Audit</strong>, <strong>diagnostic</strong> ou <strong>mission</strong> : décrivez l’irritant principal
+							— je priorise avec vous.
 						</p>
 					</div>
 					<div class="cta__actions">
-						<a class="button button--primary" href="/contact">Prendre contact</a>
-						<a class="button button--secondary" href="/services">Relire l’offre</a>
+						<a class="button button--primary" href="/contact">Demander un diagnostic</a>
+						<a class="button button--secondary" href="tel:+33609924945">Appeler</a>
 					</div>
 				</div>
 			</div>
@@ -969,10 +1093,115 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		text-decoration-color: var(--color-spot);
 	}
 
+	.painGrid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 14px;
+	}
+
+	.painCard {
+		margin: 0;
+		padding: 20px 18px;
+		border-radius: 18px;
+		border: 1px solid var(--color-border);
+		background: rgba(255, 255, 255, 0.94);
+		box-shadow: var(--shadow-sm);
+		border-left: 4px solid var(--color-spot);
+	}
+
+	.painCard h3 {
+		margin: 0 0 8px;
+		font-size: 17px;
+		color: var(--color-primary);
+	}
+
+	.painCard p {
+		margin: 0;
+		color: var(--color-muted);
+		font-size: 15px;
+		line-height: 1.5;
+	}
+
+	.homePainCta {
+		margin: 22px 0 0;
+		text-align: center;
+	}
+
+	.costList {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 12px;
+		max-width: 62ch;
+	}
+
+	.costList li {
+		margin: 0;
+		padding: 14px 16px;
+		border-radius: 14px;
+		border: 1px solid color-mix(in srgb, var(--color-border) 85%, rgba(196, 92, 46, 0.15));
+		background: rgba(255, 255, 255, 0.92);
+		line-height: 1.5;
+		color: var(--color-text);
+	}
+
+	.costCtaRow {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: 22px;
+		justify-content: center;
+	}
+
+	@media (min-width: 980px) {
+		.costCtaRow {
+			justify-content: flex-start;
+		}
+	}
+
+	.trustGrid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 14px;
+	}
+
+	.trustCard {
+		margin: 0;
+		padding: 20px 18px;
+		border-radius: 18px;
+		border: 1px solid var(--color-border);
+		background: linear-gradient(160deg, rgba(47, 58, 143, 0.04), rgba(255, 255, 255, 0.95));
+		box-shadow: var(--shadow-sm);
+	}
+
+	.trustCard h3 {
+		margin: 0 0 8px;
+		font-size: 17px;
+		color: var(--color-primary);
+	}
+
+	.trustCard p {
+		margin: 0;
+		color: var(--color-muted);
+		font-size: 15px;
+		line-height: 1.55;
+	}
+
 	.bento {
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
 		gap: 14px;
+	}
+
+	.bento h3 a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.bento h3 a:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(196, 92, 46, 0.45);
 	}
 
 	.bento__card {
@@ -1323,6 +1552,11 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 	}
 
 	@media (max-width: 980px) {
+		.painGrid,
+		.trustGrid {
+			grid-template-columns: 1fr;
+		}
+
 		:global(.homeSection__header) {
 			grid-template-columns: 1fr;
 			gap: 20px;

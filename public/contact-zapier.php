@@ -46,6 +46,22 @@ $privacyAt = isset($data['privacy_policy_accepted_at']) ? trim((string) $data['p
 $privacyRaw = $data['privacy_policy_accepted'] ?? false;
 $privacyAccepted = $privacyRaw === true || $privacyRaw === 1 || $privacyRaw === '1' || $privacyRaw === 'true';
 
+$budgetRange = isset($data['budget_range']) ? trim((string) $data['budget_range']) : '';
+$budgetRangeLabel = isset($data['budget_range_label']) ? trim((string) $data['budget_range_label']) : '';
+if ($budgetRangeLabel === '') {
+	$budgetRangeLabel = $budgetRange;
+}
+$urgency = isset($data['urgency']) ? trim((string) $data['urgency']) : '';
+$urgencyLabel = isset($data['urgency_label']) ? trim((string) $data['urgency_label']) : '';
+if ($urgencyLabel === '') {
+	$urgencyLabel = $urgency;
+}
+$projectType = isset($data['project_type']) ? trim((string) $data['project_type']) : '';
+$projectTypeLabel = isset($data['project_type_label']) ? trim((string) $data['project_type_label']) : '';
+if ($projectTypeLabel === '') {
+	$projectTypeLabel = $projectType;
+}
+
 if ($name === '' || $email === '' || $objet === '' || $message === '') {
 	http_response_code(400);
 	echo json_encode(['ok' => false, 'error' => 'Missing required fields']);
@@ -70,6 +86,12 @@ $payload = json_encode(
 		'objet' => $objet,
 		'objet_label' => $objetLabel,
 		'message' => $message,
+		'budget_range' => $budgetRange,
+		'budget_range_label' => $budgetRangeLabel !== '' ? $budgetRangeLabel : '—',
+		'urgency' => $urgency,
+		'urgency_label' => $urgencyLabel !== '' ? $urgencyLabel : '—',
+		'project_type' => $projectType,
+		'project_type_label' => $projectTypeLabel !== '' ? $projectTypeLabel : '—',
 		'source' => $source,
 		'page' => $page,
 		'privacy_policy_accepted' => true,
