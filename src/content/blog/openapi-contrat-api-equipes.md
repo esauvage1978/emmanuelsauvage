@@ -1,5 +1,6 @@
 ---
 title: "OpenAPI comme contrat d’API : aligner back, front et QA"
+shortTitle: "OpenAPI : contrat d’API pour les équipes"
 description: "Spécification partagée, génération de clients, mocks et tests de non-régression sur le schéma — sans bloquer la livraison."
 pubDate: 2026-03-18
 readingTimeMinutes: 10

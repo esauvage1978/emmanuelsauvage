@@ -1,5 +1,6 @@
 ---
 title: "Votre application web vous fait-elle perdre de l’argent ? Les signes à détecter"
+shortTitle: "App web : signaux qui font perdre de l’argent"
 description: "Signaux financiers et opérationnels d’une application web toxique : paniers, SLA, support, cloud, recrutement. Tableau de diagnostic et premiers arbitrages pour PME et équipes produit."
 pubDate: 2026-05-18
 readingTimeMinutes: 9

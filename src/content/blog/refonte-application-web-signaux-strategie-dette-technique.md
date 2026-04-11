@@ -1,5 +1,6 @@
 ---
 title: "Quand et pourquoi refondre une application web ? Signaux et stratégie"
+shortTitle: "Refonte web : signaux, dette et stratégie"
 description: "Dette technique expliquée, symptômes d’obsolescence, coûts cachés et stratégie de refonte (progressive vs big-bang) pour décideurs et équipes produit — avec critères opposables."
 pubDate: 2026-04-12
 readingTimeMinutes: 8

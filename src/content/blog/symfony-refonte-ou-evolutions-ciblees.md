@@ -1,5 +1,6 @@
 ---
 title: "Refonte Symfony ou évolutions ciblées : critères opposables en cadrage"
+shortTitle: "Refonte Symfony ou évolutions ciblées"
 description: "Comment trancher entre gros chantier et itérations : dette mesurable, risques métier, coût marginal d’une feature — avec repères concrets pour un cadrage freelance."
 pubDate: 2026-03-17
 readingTimeMinutes: 11

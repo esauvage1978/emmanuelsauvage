@@ -6,6 +6,8 @@ import { SITE_ORIGIN } from '../config/site';
 
 type Props = {
 	title: string;
+	/** Titre court SEO (balise document & partage) ; si absent, dérivé de `title`. */
+	shortTitle?: string;
 	description: string;
 	slug: string;
 	pubDate: string;
@@ -14,9 +16,14 @@ type Props = {
 	tags: string[];
 };
 
-const { title, description, slug, pubDate, updatedDate, readingTimeMinutes, tags } = Astro.props;
+const { title, shortTitle, description, slug, pubDate, updatedDate, readingTimeMinutes, tags } = Astro.props;
 
-const pageTitle = `${title} | Blog | Emmanuel SAUVAGE`;
+/** Titre affiché dans le SERP / onglet : version courte + marque, ou titre long + Blog + marque. */
+const pageTitle = shortTitle
+	? `${shortTitle} | Emmanuel SAUVAGE`
+	: `${title} | Blog | Emmanuel SAUVAGE`;
+/** Titre « article » pour og/twitter (sans suffixe site). */
+const ogTitle = shortTitle ?? title;
 const canonicalPath = `/blog/${slug}/`;
 const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
 const published = new Date(pubDate).toISOString();
@@ -65,7 +72,8 @@ const breadcrumbLd = {
 <Layout title={pageTitle} description={description}>
 	<link rel="canonical" href={canonicalUrl} slot="head" />
 	<meta property="og:type" content="article" slot="head" />
-	<meta property="og:title" content={title} slot="head" />
+	<meta property="og:title" content={ogTitle} slot="head" />
+	<meta name="twitter:title" content={ogTitle} slot="head" />
 	<meta property="og:description" content={description} slot="head" />
 	<meta property="og:url" content={canonicalUrl} slot="head" />
 	<meta property="og:image" content={shareImageUrl} slot="head" />

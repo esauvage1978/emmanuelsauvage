@@ -1,5 +1,6 @@
 ---
 title: "Pourquoi faire une migration Symfony ? (Guide complet 2026)"
+shortTitle: "Migration Symfony 2026 : guide et ROI"
 description: "Signaux de migration, risques de l’inaction, gains performance/sécurité/maintenabilité, coût et ROI — avec cas d’entreprise et critères de cadrage pour TPE, PME et startups."
 pubDate: 2026-04-15
 readingTimeMinutes: 8

@@ -1,5 +1,6 @@
 ---
 title: "RFC 9457 (Problem Details) et Symfony : erreurs API lisibles et stables"
+shortTitle: "RFC 9457 Problem Details et Symfony"
 description: "Format application/problem+json, champs type/title/status/instance, mapping des exceptions Symfony vers des réponses cohérentes pour les clients."
 pubDate: 2026-03-18
 readingTimeMinutes: 9

@@ -1,5 +1,6 @@
 ---
 title: "Google Sheets vs Excel : limites techniques et cas d’usage"
+shortTitle: "Google Sheets vs Excel : limites et cas"
 description: "Comparatif des plafonds (partages, cellules, fichiers, collaboration) et repères pour choisir Sheets, Excel bureau ou Excel en ligne selon votre contexte."
 pubDate: 2026-03-20
 readingTimeMinutes: 13

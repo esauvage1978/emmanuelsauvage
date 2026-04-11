@@ -1,5 +1,6 @@
 ---
 title: "Google Sheets comme outil métier : seuils de rupture avant un back-office"
+shortTitle: "Sheets métier : seuils avant back-office"
 description: "Volume, droits, audit trail, concurrence et risques — quand un tableur suffit et quand un outil web devient moins cher que l’informel."
 pubDate: 2026-03-17
 readingTimeMinutes: 9

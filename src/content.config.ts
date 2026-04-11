@@ -21,6 +21,8 @@ const blog = defineCollection({
 	loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
 	schema: z.object({
 		title: z.string(),
+		/** Titre court pour la balise title du document et Open Graph (≤ 60 car.) ; le H1 reste `title`. */
+		shortTitle: z.string().max(60).optional(),
 		description: z.string(),
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),

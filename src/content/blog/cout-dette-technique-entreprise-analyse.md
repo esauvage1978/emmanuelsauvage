@@ -1,5 +1,6 @@
 ---
 title: "Combien coûte une dette technique à une entreprise ? (Analyse complète)"
+shortTitle: "Coût dette technique PME : méthode et tableaux"
 description: "Méthode pour chiffrer la dette technique : temps perdu, incidents, opportunité manquée et recrutement. Tableaux de coûts cachés et arbitrages pour PME et équipes produit — avant qu’il ne soit trop tard."
 pubDate: 2026-05-19
 readingTimeMinutes: 9

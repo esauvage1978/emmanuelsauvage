@@ -1,5 +1,6 @@
 ---
 title: "Webhooks et idempotence : éviter les doublons sans sur-architecturer"
+shortTitle: "Webhooks et idempotence : éviter les doublons"
 description: "Idempotency-Key, stockage minimal, retries HTTP et sécurité basique — code PHP illustratif et pièges fréquents."
 pubDate: 2026-03-17
 readingTimeMinutes: 10

@@ -1,5 +1,6 @@
 ---
 title: "Freelance, agence ou internalisation : quel choix pour vos projets tech ?"
+shortTitle: "Freelance, agence ou interne : arbitrage tech"
 description: "Arbitrage B2B : freelance senior, agence, recrutement interne — coûts réels, risques, cas d’usage et critères de décision pour dirigeants et CTO (Symfony, API, data, Workspace)."
 pubDate: 2026-05-20
 readingTimeMinutes: 9

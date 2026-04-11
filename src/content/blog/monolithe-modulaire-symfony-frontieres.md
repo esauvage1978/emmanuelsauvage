@@ -1,5 +1,6 @@
 ---
 title: "Monolithe modulaire Symfony : frontières nettes sans microservices"
+shortTitle: "Monolithe modulaire Symfony : frontières"
 description: "Contextes délimités, namespaces, règles de dépendance et points d’intégration explicites pour garder une base évolutive."
 pubDate: 2026-03-18
 readingTimeMinutes: 11

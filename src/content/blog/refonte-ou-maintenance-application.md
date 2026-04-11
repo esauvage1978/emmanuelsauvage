@@ -1,5 +1,6 @@
 ---
 title: "Refonte ou maintenance : que choisir pour votre application ?"
+shortTitle: "Refonte ou maintenance applicative : trancher"
 description: "Critères d’arbitrage entre maintenance renforcée et refonte : risque métier, coût marginal, fin de support, équipe. Tableaux comparatifs et méthode de décision pour CTO et dirigeants."
 pubDate: 2026-05-17
 readingTimeMinutes: 9

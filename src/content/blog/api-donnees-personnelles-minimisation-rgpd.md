@@ -1,5 +1,6 @@
 ---
 title: "API et données personnelles : minimisation, journaux et rétention"
+shortTitle: "API & données perso : minimisation RGPD"
 description: "DTO publics, pseudonymisation dans les logs, durées de conservation et documentation pour limiter les risques RGPD."
 pubDate: 2026-03-18
 readingTimeMinutes: 10

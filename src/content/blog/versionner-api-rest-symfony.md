@@ -1,5 +1,6 @@
 ---
 title: "Versionner une API REST avec Symfony : URL, en-têtes et déploiement"
+shortTitle: "Versionner une API REST avec Symfony"
 description: "Comparaison praticable URI /v1 vs négociation par en-têtes, impacts cache et clients, extraits routes et contrôleurs Symfony."
 pubDate: 2026-03-17
 readingTimeMinutes: 10

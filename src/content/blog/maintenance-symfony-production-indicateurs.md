@@ -1,5 +1,6 @@
 ---
 title: "Maintenance Symfony en production : indicateurs utiles au-delà du « tout est vert »"
+shortTitle: "Maintenance Symfony prod : indicateurs"
 description: "composer audit, migrations, requêtes lentes, erreurs applicatives et capacité — une checklist opposable pour le run."
 pubDate: 2026-03-18
 readingTimeMinutes: 8
