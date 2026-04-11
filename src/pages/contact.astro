@@ -351,9 +351,14 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 					const data = await res.json().catch(() => ({}));
 
 					if (!res.ok) {
-						const detail =
-							typeof data?.error === 'string' ? ` (${data.error})` : data?.message ? ` (${data.message})` : '';
-						throw new Error((res.statusText || 'Erreur') + detail);
+						const upstream =
+							(typeof data?.detail === 'string' && data.detail) ||
+							(typeof data?.error === 'string' && data.error) ||
+							(typeof data?.message === 'string' && data.message) ||
+							'';
+						throw new Error(
+							upstream || `${res.status} ${res.statusText || 'Erreur'}`,
+						);
 					}
 
 					/* Webhook / PHP : 2xx + pas d’erreur explicite dans le JSON */
@@ -382,13 +387,17 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 					const isNetwork =
 						err instanceof TypeError ||
 						(err instanceof Error && /failed to fetch|networkerror|load failed/i.test(err.message));
+					const fallbackErr =
+						"L'envoi a échoué. Réessayez plus tard ou écrivez-moi à contact@emmanuelsauvage.fr.";
 					setStatus(
 						'err',
 						isAbort
 							? 'Délai dépassé : le serveur n’a pas répondu à temps. Réessayez ou écrivez à contact@emmanuelsauvage.fr.'
 							: isNetwork
 								? "Connexion impossible (réseau ou serveur). Si vous testez en local sans WAMP, lancez « npm run dev » (proxy intégré) ou déployez le site avec PHP. Sinon écrivez à contact@emmanuelsauvage.fr."
-								: "L'envoi a échoué. Réessayez plus tard ou écrivez-moi à contact@emmanuelsauvage.fr.",
+								: err instanceof Error && err.message
+									? err.message
+									: fallbackErr,
 					);
 				} finally {
 					if (timeoutId) window.clearTimeout(timeoutId);

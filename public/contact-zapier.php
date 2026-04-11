@@ -101,15 +101,21 @@ $payload = json_encode(
 	JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
 );
 
-$hook = 'https://webhooky.builders/webhook/form/789f78eab00-cd38-4cbb-9e57-46796830e108';
+/*
+ * URL du formulaire Webhooky : à copier depuis le tableau de bord (Formulaire → URL d’ingestion).
+ * Si vous voyez « Webhook inconnu » côté site : le jeton dans l’URL est invalide ou le workflow est désactivé.
+ */
+$hook = getenv('CONTACT_WEBHOOK_URL') ?: 'https://webhooky.builders/webhook/form/789f78eab00-cd38-4cbb-9e57-46796830e108';
 
 $ch = curl_init($hook);
 curl_setopt_array($ch, [
 	CURLOPT_POST => true,
 	CURLOPT_POSTFIELDS => $payload,
-	CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+	CURLOPT_HTTPHEADER => ['Content-Type: application/json; charset=utf-8'],
 	CURLOPT_RETURNTRANSFER => true,
-	CURLOPT_TIMEOUT => 20,
+	CURLOPT_TIMEOUT => 25,
+	CURLOPT_CONNECTTIMEOUT => 12,
+	CURLOPT_SSL_VERIFYPEER => true,
 ]);
 
 $response = curl_exec($ch);
@@ -119,13 +125,31 @@ curl_close($ch);
 
 if ($errno !== 0 || $response === false) {
 	http_response_code(502);
-	echo json_encode(['ok' => false, 'error' => 'Upstream request failed']);
+	echo json_encode([
+		'ok' => false,
+		'error' => 'Webhook injoignable (réseau ou TLS)',
+		'detail' => $errno !== 0 ? 'curl: ' . curl_strerror($errno) : 'empty response',
+	], JSON_UNESCAPED_UNICODE);
 	exit;
 }
 
 if ($httpCode < 200 || $httpCode >= 300) {
+	$decoded = json_decode((string) $response, true);
+	$upstreamMessage = '';
+	if (is_array($decoded)) {
+		if (isset($decoded['error']) && is_string($decoded['error'])) {
+			$upstreamMessage = $decoded['error'];
+		} elseif (isset($decoded['message']) && is_string($decoded['message'])) {
+			$upstreamMessage = $decoded['message'];
+		}
+	}
 	http_response_code(502);
-	echo json_encode(['ok' => false, 'error' => 'Webhook returned an error', 'status' => $httpCode]);
+	echo json_encode([
+		'ok' => false,
+		'error' => 'Le service webhook a refusé ou ignoré la requête',
+		'status' => $httpCode,
+		'detail' => $upstreamMessage !== '' ? $upstreamMessage : 'HTTP ' . $httpCode,
+	], JSON_UNESCAPED_UNICODE);
 	exit;
 }
 
