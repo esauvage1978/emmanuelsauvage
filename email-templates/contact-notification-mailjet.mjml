@@ -1,42 +1,11 @@
 <!--
-  Template MJML — Notification formulaire contact (Emmanuel SAUVAGE) — e-mail interne / vous
+  Template MJML — Notification interne (équipe / vous) — nouveau message formulaire contact
+  PAS l’accusé de réception visiteur : utiliser contact-confirmation-visiteur-mailjet.mjml pour l’émetteur.
+
   À compiler : npx mjml contact-notification-mailjet.mjml -o contact-notification-mailjet.html
-  Puis coller le HTML dans Mailjet (Transactional templates) ou API.
 
-  Champs envoyés par public/contact-zapier.php vers Zapier (JSON) — à mapper dans Zapier → Mailjet :
-    name, company, email,
-    objet, objet_label, message,
-    budget_range, budget_range_label,
-    urgency, urgency_label,
-    project_type, project_type_label,
-    source, page,
-    privacy_policy_accepted, privacy_policy_accepted_at,
-    submitted_at
-
-  Variables Mailjet (déclarer dans le template ou passer via API / Zapier) :
-    {{var:name}}
-    {{var:email}}
-    {{var:company}}                    — peut être « — »
-    {{var:objet}}                      — code thème (ex. automation)
-    {{var:objet_label}}                — libellé lisible
-    {{var:message}}
-    {{var:budget_range}}               — code (ex. 8k-20k)
-    {{var:budget_range_label}}         — libellé affiché
-    {{var:urgency}}                    — code (ex. quarter)
-    {{var:urgency_label}}              — libellé affiché
-    {{var:project_type}}               — code (ex. audit-diagnostic)
-    {{var:project_type_label}}         — libellé affiché
-    {{var:source}}                     — ex. emmanuelsauvage
-    {{var:page}}                       — URL page d’envoi
-    {{var:privacy_policy_accepted}}    — true
-    {{var:privacy_policy_accepted_at}} — ISO 8601
-    {{var:submitted_at}}               — ISO 8601
-
-  Logo : URL absolue en production (ex. https://emmanuelsauvage.fr/images/logo-256.png).
-
-  Forme de référence des clés (placeholders) : contact-zapier-payload-keys.json
-
-  Affichage : la synthèse commence par le thème ; source + page sont en pied de bloc « Contact ».
+  Champs : public/contact-zapier.php — contact-zapier-payload-keys.json
+  Variables : {{var:name}}, {{var:email}}, …
 -->
 <mjml>
   <mj-head>
@@ -56,7 +25,6 @@
     </mj-attributes>
   </mj-head>
   <mj-body background-color="#F7F8FC" width="600px">
-    <!-- Bandeau -->
     <mj-section background-color="#2F3A8F" padding="24px 40px 20px">
       <mj-column width="100%">
         <mj-image
@@ -87,19 +55,17 @@
       </mj-column>
     </mj-section>
 
-    <!-- Titre -->
     <mj-section background-color="#ffffff" padding="32px 40px 16px">
       <mj-column width="100%">
         <mj-text font-size="20px" font-weight="700" color="#2F3A8F" padding-bottom="8px">
           Nouveau message depuis le site
         </mj-text>
         <mj-text font-size="14px" color="#5b5b5b" padding-bottom="0">
-          Formulaire de contact — qualification (type de projet, budget, urgence) incluse. Répondre à l’adresse indiquée.
+          Formulaire de contact — qualification (type de projet, budget, urgence). Répondre au contact ci-dessous.
         </mj-text>
       </mj-column>
     </mj-section>
 
-    <!-- Données (Zapier / Mailjet) -->
     <mj-section background-color="#ffffff" padding="0 40px 8px">
       <mj-column width="100%">
         <mj-text font-size="15px" font-weight="700" color="#2F3A8F" padding-bottom="12px">
@@ -154,18 +120,16 @@
       </mj-column>
     </mj-section>
 
-    <!-- CTA répondre -->
     <mj-section background-color="#ffffff" padding="0 40px 32px">
       <mj-column width="100%">
-        <mj-button href="mailto:{{var:email}}" align="left">Répondre par email</mj-button>
+        <mj-button href="mailto:{{var:email}}" align="left">Répondre au contact</mj-button>
       </mj-column>
     </mj-section>
 
-    <!-- Pied -->
     <mj-section background-color="#E8ECF8" padding="24px 40px">
       <mj-column width="100%">
         <mj-text font-size="12px" color="#5b5b5b" align="center" padding="0">
-          Email automatique — site vitrine Emmanuel SAUVAGE.<br /><br />
+          Email automatique — notification interne Emmanuel SAUVAGE.<br /><br />
           <span style="color: #6b7280;">
             Consentement RGPD (horodatage) : {{var:privacy_policy_accepted_at}}<br />
             Reçu le : {{var:submitted_at}}

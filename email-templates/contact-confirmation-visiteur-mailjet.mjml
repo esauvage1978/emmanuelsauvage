@@ -1,48 +1,19 @@
 <!--
-  Template MJML — Confirmation d’envoi au visiteur (Emmanuel SAUVAGE)
-  Même charte que contact-notification-mailjet.mjml (couleurs Layout.astro).
-
-  À envoyer au même {{var:email}} que celui saisi dans le formulaire (2e flux Zapier / Mailjet).
+  Template MJML — Accusé de réception / confirmation à l’émetteur (Emmanuel SAUVAGE)
+  Envoyé à {{var:email}} — 2ᵉ flux Zapier / Mailjet (après la notification interne éventuelle).
 
   Compiler : npx mjml contact-confirmation-visiteur-mailjet.mjml -o contact-confirmation-visiteur-mailjet.html
 
-  Champs envoyés par public/contact-zapier.php vers Zapier (JSON) :
-    name, company, email,
-    objet, objet_label, message,
-    budget_range, budget_range_label,
-    urgency, urgency_label,
-    project_type, project_type_label,
-    source, page,
-    privacy_policy_accepted, privacy_policy_accepted_at,
-    submitted_at
+  Champs : identiques à public/contact-zapier.php — voir contact-zapier-payload-keys.json
+  Variables Mailjet : {{var:name}}, {{var:email}}, etc.
 
-  Forme de référence des clés (placeholders) : contact-zapier-payload-keys.json
-
-  Variables Mailjet / Zapier (mapper depuis le corps JSON du webhook) :
-    {{var:name}}
-    {{var:email}}
-    {{var:company}}                    — peut être vide ou « — »
-    {{var:objet}}                      — valeur technique du select « thème »
-    {{var:objet_label}}                — libellé affiché (recommandé dans le mail)
-    {{var:message}}
-    {{var:budget_range}}               — ex. 8k-20k
-    {{var:budget_range_label}}         — libellé affiché (recommandé)
-    {{var:urgency}}                    — ex. quarter
-    {{var:urgency_label}}              — libellé affiché (recommandé)
-    {{var:project_type}}             — ex. audit-diagnostic
-    {{var:project_type_label}}        — libellé affiché (recommandé)
-    {{var:source}}                     — ex. emmanuelsauvage
-    {{var:page}}                       — URL de la page au moment de l’envoi
-    {{var:privacy_policy_accepted}}   — true une fois acceptée côté formulaire
-    {{var:privacy_policy_accepted_at}} — ISO 8601
-    {{var:submitted_at}}              — ISO 8601 (horodatage envoi)
-
-  Exemple de JSON Zapier (voir message utilisateur + bloc EXEMPLE JSON ci-dessous).
+  Différence avec la notification interne : ton « vous », pas de bouton « répondre à vous-même »,
+  CTA « Retour au site », pas d’affichage « Source » (usage interne).
 -->
 <mjml>
   <mj-head>
-    <mj-title>Votre message a bien été envoyé — Emmanuel SAUVAGE</mj-title>
-    <mj-preview>Merci : nous avons bien reçu votre demande. Récapitulatif ci-dessous.</mj-preview>
+    <mj-title>Votre message a bien été reçu — Emmanuel SAUVAGE</mj-title>
+    <mj-preview>Merci : accusé de réception et copie de votre demande.</mj-preview>
     <mj-attributes>
       <mj-all font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" />
       <mj-text color="#2D2D2D" font-size="16px" line-height="24px" />
@@ -87,48 +58,52 @@
       </mj-column>
     </mj-section>
 
-    <mj-section background-color="#ffffff" padding="28px 40px 12px">
+    <!-- Accusé de réception -->
+    <mj-section background-color="#ffffff" padding="32px 40px 16px">
       <mj-column width="100%">
         <mj-text font-size="20px" font-weight="700" color="#2F3A8F" padding-bottom="8px">
           Bonjour {{var:name}},
         </mj-text>
-        <mj-text font-size="15px" color="#5b5b5b" padding-bottom="0">
-          Nous avons bien reçu votre message via le formulaire de contact de
-          <strong style="color: #2F3A8F">emmanuelsauvage.fr</strong>. Vous trouvez ci-dessous une copie des
-          informations que vous nous avez transmises (y compris la qualification : type de projet, budget, urgence).
-          Nous vous répondrons à l’adresse
+        <mj-text font-size="14px" color="#5b5b5b" padding-bottom="0">
+          Nous accusons réception de votre message envoyé depuis le formulaire de
+          <strong style="color: #2F3A8F">emmanuelsauvage.fr</strong>. Ci-dessous la copie des informations transmises
+          (thème, qualification : type de projet, budget, urgence). Nous vous répondrons à l’adresse
           <a href="mailto:{{var:email}}" style="color: #4F6EF7; font-weight: 600;">{{var:email}}</a>
-          dès que possible.
+          dans les meilleurs délais.
         </mj-text>
       </mj-column>
     </mj-section>
 
-    <mj-section background-color="#ffffff" padding="8px 40px 8px">
+    <mj-section background-color="#ffffff" padding="0 40px 8px">
       <mj-column width="100%">
         <mj-text font-size="15px" font-weight="700" color="#2F3A8F" padding-bottom="12px">
           Récapitulatif de votre demande
         </mj-text>
-      </mj-column>
-    </mj-section>
-
-    <mj-section background-color="#ffffff" padding="0 40px 20px">
-      <mj-column width="100%">
         <mj-text padding-bottom="12px">
           <strong style="color: #2F3A8F">Thème de la sollicitation</strong><br />
           {{var:objet_label}}
+          <span style="color: #6b7280; font-size: 13px;"> (réf. : {{var:objet}})</span>
         </mj-text>
         <mj-text padding-bottom="12px">
           <strong style="color: #2F3A8F">Type de projet</strong><br />
           {{var:project_type_label}}
+          <span style="color: #6b7280; font-size: 13px;"> ({{var:project_type}})</span>
         </mj-text>
         <mj-text padding-bottom="12px">
           <strong style="color: #2F3A8F">Budget envisagé</strong><br />
           {{var:budget_range_label}}
+          <span style="color: #6b7280; font-size: 13px;"> ({{var:budget_range}})</span>
         </mj-text>
         <mj-text padding-bottom="12px">
           <strong style="color: #2F3A8F">Urgence / échéance</strong><br />
           {{var:urgency_label}}
+          <span style="color: #6b7280; font-size: 13px;"> ({{var:urgency}})</span>
         </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#ffffff" padding="0 40px 24px">
+      <mj-column width="100%">
         <mj-text padding-bottom="12px">
           <strong style="color: #2F3A8F">Nom</strong><br />
           {{var:name}}
@@ -144,17 +119,16 @@
         <mj-text padding-bottom="8px">
           <strong style="color: #2F3A8F">Message</strong>
         </mj-text>
-        <mj-text padding="12px 16px" container-background-color="#f7f8fc" color="#2D2D2D" border-radius="8px">
+        <mj-text padding="12px 16px" container-background-color="#f7f8fc" color="#2D2D2D">
           {{var:message}}
         </mj-text>
-        <mj-text font-size="12px" color="#6b7280" padding-top="16px" padding-bottom="0">
-          Référence : {{var:submitted_at}}<br />
-          <span style="color: #9ca3af;">Page d’envoi : {{var:page}}</span>
+        <mj-text font-size="12px" color="#6b7280" padding-top="14px" padding-bottom="0">
+          Envoyé le : {{var:submitted_at}} — Page : {{var:page}}
         </mj-text>
       </mj-column>
     </mj-section>
 
-    <mj-section background-color="#ffffff" padding="0 40px 28px">
+    <mj-section background-color="#ffffff" padding="0 40px 32px">
       <mj-column width="100%">
         <mj-button href="https://emmanuelsauvage.fr/" align="left">Retour au site</mj-button>
       </mj-column>
@@ -167,7 +141,10 @@
           ·
           <a href="https://emmanuelsauvage.fr/contact/" style="color: #4F6EF7;">Contact</a><br /><br />
           Emmanuel SAUVAGE — <a href="https://emmanuelsauvage.fr/" style="color: #4F6EF7;">emmanuelsauvage.fr</a><br />
-          <span style="color: #6b7280;">Cet e-mail confirme la réception de votre message ; merci de ne pas y répondre si ce n’est pas nécessaire (utilisez une nouvelle demande depuis le site si besoin).</span>
+          <span style="color: #6b7280;">
+            Cet e-mail est un accusé de réception automatique. Pour toute précision, attendez notre réponse ou utilisez une
+            nouvelle demande depuis le site.
+          </span>
         </mj-text>
       </mj-column>
     </mj-section>

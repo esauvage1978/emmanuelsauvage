@@ -9,9 +9,10 @@ Le corps POST envoyé par `public/contact-zapier.php` vers Zapier utilise **exac
 | Fichier | Usage |
 |--------|--------|
 | `contact-zapier-payload-keys.json` | Liste des clés JSON (placeholders `clé` → `"clé"`). |
-| `contact-notification-mailjet.mjml` | Source MJML (à modifier puis recompiler). |
-| `contact-notification-mailjet.html` | HTML généré — à coller dans **Mailjet** (template transactionnel) ou à uploader selon votre flux. |
-| `contact-confirmation-visiteur-mailjet.mjml` | Email de confirmation au visiteur (2ᵉ flux Zapier). |
+| `contact-confirmation-visiteur-mailjet.mjml` | **Accusé de réception** envoyé à l’émetteur (`{{var:email}}`) — même structure « récap » que l’ancien template notification. |
+| `contact-confirmation-visiteur-mailjet.html` | HTML généré (Mailjet, flux visiteur). |
+| `contact-notification-mailjet.mjml` | **Notification interne** (vous / équipe) — nouveau message, bouton répondre au contact. |
+| `contact-notification-mailjet.html` | HTML généré (Mailjet, flux interne). |
 
 Compiler le MJML :
 
