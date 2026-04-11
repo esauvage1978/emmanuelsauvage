@@ -105,7 +105,7 @@ $payload = json_encode(
  * URL du formulaire Webhooky : à copier depuis le tableau de bord (Formulaire → URL d’ingestion).
  * Si vous voyez « Webhook inconnu » côté site : le jeton dans l’URL est invalide ou le workflow est désactivé.
  */
-$hook = getenv('CONTACT_WEBHOOK_URL') ?: 'https://webhooky.builders/webhook/form/789f78eab00-cd38-4cbb-9e57-46796830e108';
+$hook = getenv('CONTACT_WEBHOOK_URL') ?: 'https://webhooky.builders/webhook/form/0b40160efaa3f78eab00-cd38-4cbb-9e57-46796830e108';
 
 $ch = curl_init($hook);
 curl_setopt_array($ch, [
