@@ -76,7 +76,6 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 
 				<div class="grid2">
 					<form id="contact-form" class="form card" method="post" action="#" novalidate>
-						<p id="form-status" class="formStatus" role="status" aria-live="polite" hidden></p>
 						<input type="hidden" name="source" value="emmanuelsauvage" />
 						<div class="field">
 							<label for="name">Nom</label>
@@ -149,6 +148,7 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 							></textarea>
 						</div>
 						<button class="button button--primary" id="contact-submit" type="submit">Envoyer le message</button>
+						<p id="form-status" class="formStatus formStatus--afterSubmit" role="status" aria-live="polite" hidden></p>
 						<div class="consent">
 							<label class="consent__label">
 								<input
@@ -740,11 +740,16 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 	}
 
 	.formStatus {
-		margin: 0 0 14px;
+		margin: 0;
 		padding: 12px 14px;
 		border-radius: 12px;
 		font-size: 14px;
 		font-weight: 600;
+	}
+
+	/* Message succès / erreur : sous le bouton Envoyer */
+	.formStatus--afterSubmit {
+		margin: 14px 0 16px;
 	}
 
 	.formStatus--ok {
