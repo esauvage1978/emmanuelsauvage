@@ -1,215 +1,246 @@
 ---
-title: "Freelance vs agence vs internalisation : que choisir pour vos projets tech ?"
-description: "Comparatif honnête : avantages, limites, coûts typiques et cas d’usage — pour choisir un mode d’exécution aligné risque, délai et qualité (PME, startups, équipes IT)."
-pubDate: 2026-04-11
-readingTimeMinutes: 8
+title: "Freelance, agence ou internalisation : quel choix pour vos projets tech ?"
+description: "Arbitrage B2B : freelance senior, agence, recrutement interne — coûts réels, risques, cas d’usage et critères de décision pour dirigeants et CTO (Symfony, API, data, Workspace)."
+pubDate: 2026-05-20
+readingTimeMinutes: 9
 tags:
   - "Conseil"
   - "Prestataire"
-  - "PME"
+  - "Décision"
 illustration: modules
 ---
 <aside class="tldr">
 <strong>En bref</strong>
-Le bon critère n’est pas le prix affiché : c’est le transfert de risque. Freelance senior, agence et recrutement interne répondent à des contraintes différentes — le piège est de comparer des étiquettes sans comparer des périmètres, une maintenance réelle et une gouvernance produit.
+Le bon mode d’exécution dépend du transfert de risque que vous acceptez : délai, qualité, coût total, capacité à maintenir. Le prix affiché (TJM, forfait, salaire) est un mauvais critère s’il est pris sans périmètre, sans critères d’acceptation et sans plan de reprise.
 </aside>
 
 <p>
-Choisir comment exécuter un projet tech (refonte, migration, automatisation, API) est une décision de <strong>risque</strong> : délai, qualité, coût total, et capacité à <strong>maintenir</strong> le résultat. Ce texte est volontairement pragmatique : il vise dirigeants, CTO et responsables IT qui doivent arbitrer sans jargon inutile — tout en évitant les généralisations creuses du type « l’agence c’est toujours… ».
+Vous devez livrer une migration, sécuriser une API, industrialiser des flux Google Workspace ou enfin traiter une <a href="/blog/cout-dette-technique-entreprise-analyse/">dette technique</a> qui mange votre roadmap. La question n’est pas « qui est le moins cher sur le papier », mais : <strong>qui porte le risque</strong> quand le périmètre est mal défini, quand l’intégration explose en production, ou quand la personne clé part ? C’est une décision d’<strong>assurance</strong> autant que de budget.
 </p>
 
-<h2>Le bon critère : risque, délai, qualité — pas le tarif au jour</h2>
+<h2>Le problème : comparer des étiquettes sans comparer des périmètres</h2>
 
 <p>
-Le TJM ou le forfait ne racontent pas l’histoire complète. Ce qui coûte cher, c’est la <strong>reprise</strong> d’un livrable bancal, l’absence de transfert, et la dépendance à une personne ou une équipe opaque. La bonne question est : <strong>qui porte la responsabilité</strong> de la définition, de la preuve (tests), et de l’exploitation après livraison ?
+Le marché propose trois familles : <strong>freelance senior</strong>, <strong>agence</strong>, <strong>équipe interne</strong>. Chacune peut être excellente — ou catastrophique — selon le contexte. L’échec classique : un forfait attractif sans définition de « terminé », une équipe interne surchargée sans senior pour cadrer, ou un freelance brillant sans accès ni sponsor business — trois chemins vers le même résultat : <strong>retard, rework, tension</strong>.
 </p>
-
-<h2>Les pièges classiques en choix de prestataire</h2>
-
-<ul>
-<li><strong>Périmètre flou</strong> : « refaire le site » sans critères d’acceptation mesurables — source numéro un de conflits.</li>
-<li><strong>Prix bas + urgence</strong> : sans marge pour tests et reprise, le coût total explose en production.</li>
-<li><strong>Documentation absente</strong> : le livrable fonctionne un jour, personne ne peut le maintenir le lendemain.</li>
-<li><strong>Dépendance outrancière</strong> : pas de transfert, pas de revue, pas de droits sur le dépôt — risque juridique et opérationnel.</li>
-</ul>
 
 <p>
-Ces pièges sont évitables avec un cadrage sérieux : même quelques pages de spécification sur les <strong>parcours critiques</strong>, les environnements, et la définition de « terminé » suffisent souvent à éviter des mois de friction.
+Techniquement, les projets qui pénalisent le plus sont ceux où le socle est déjà fragile (<a href="/blog/application-web-perd-argent-signes/">pertes d’argent liées à l’appli</a>, dette, manque d’observabilité). Le mode d’exécution ne remplace pas un <strong>diagnostic</strong> : il le conditionne.
 </p>
 
-<h2>Comparatif synthétique</h2>
+<h2>Les coûts cachés : ce que la compta ne voit pas tout de suite</h2>
+
+<h3>Temps interne de pilotage</h3>
+
+<p>
+Un prestataire externe n’élimine pas le besoin de <strong>product owner</strong> : arbitrages, accès, validation. Si personne n’est disponible, vous payez des allers-retours et des attentes — en jours calendaires, pas en lignes de facture.
+</p>
+
+<h3>Reprise et rework</h3>
+
+<p>
+Un livrable « presque bon » coûte souvent plus cher à corriger qu’à faire proprement — surtout si les tests et la documentation manquent. Le coût total inclut <strong>l’équipe interne</strong> qui débugue un système qu’elle n’a pas conçue.
+</p>
+
+<h3>Dette et opportunité</h3>
+
+<p>
+Retard sur un chantier critique = <strong>CA non réalisé</strong>, pénalités, ou perte d’un appel d’offres. Un recrutement long bloque la roadmap ; un mauvais choix d’agence fige un budget sans résultat. Ces postes sont rarement dans le devis initial.
+</p>
+
+<h3>Risque juridique et données</h3>
+
+<p>
+Propriété intellectuelle, sous-traitance RGPD, accès production : mal cadré, c’est un contentieux ou un incident en attente. Le coût peut dépasser largement le montant du contrat.
+</p>
 
 <div class="table-wrap">
 <table class="compareTable">
 <thead>
 <tr>
 <th scope="col">Mode</th>
-<th scope="col">Forces</th>
-<th scope="col">Faiblesses</th>
-<th scope="col">Coût typique (ordre de grandeur EU)</th>
+<th scope="col">Ce qu’il optimise</th>
+<th scope="col">Ce qu’il pénalise si mal utilisé</th>
+<th scope="col">Ordre de grandeur EU (indicatif)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Freelance senior</td>
-<td>vélocité, expertise pointue, flexibilité</td>
-<td>capacité limitée (une tête), bus factor</td>
-<td>TJM 500–900 €+ selon rareté / urgence</td>
+<td>expertise, vélocité ciblée</td>
+<td>capacité limitée, bus factor</td>
+<td>TJM 500–900 €+</td>
 </tr>
 <tr>
 <td>Agence</td>
-<td>équipe, méthodes, couverture</td>
+<td>masse, méthodes, design</td>
 <td>overhead, staffing variable</td>
-<td>forfait + régie, marges structurelles</td>
+<td>forfait / régie + marge</td>
 </tr>
 <tr>
 <td>Interne</td>
-<td>ownership long terme, culture produit</td>
-<td>recrutement lent, masse salariale fixe</td>
-<td>salaire + charges + outils + management</td>
+<td>ownership, itération longue</td>
+<td>recrutement, masse fixe</td>
+<td>salaire + charges + outils</td>
 </tr>
 </tbody>
 </table>
 </div>
 
-<p>
-Les fourchettes sont indicatives (France / remote EU, 2025–2026) : elles varient fortement selon stack, urgence et responsabilité assumée (cadrage inclus ou non).
-</p>
-
-<h2>Freelance senior : avantages, limites, coût réel</h2>
+<h2>Solutions possibles : quand privilégier quoi</h2>
 
 <p>
-<strong>Avantages</strong> : accès à un profil expérimenté sans embauche ; pertinent pour audit, architecture, migration (<a href="/blog/migration-symfony-guide-complet-2026/">Symfony</a>), automatisation (<a href="/blog/automatiser-processus-metier-google-apps-script-entreprise/">Apps Script</a>), ou remise à flot d’un module critique.<br />
-<strong>Limites</strong> : débit maximal d’une personne ; besoin de pilotage côté client (priorités, accès, arbitrages).<br />
-<strong>Coût réel</strong> : TJM × durée + <strong>coût de pilotage interne</strong>. Un bon freelance réduit le temps total ; un mauvais cadrage le multiplie.
+La bonne réponse est souvent <strong>hybride</strong> : freelance senior pour cadrer le risque et livrer le cœur critique, interne pour l’exploitation, agence sur un lot front/design si vous n’avez pas la compétence — à condition de <strong>découper les interfaces</strong> et les responsabilités.
 </p>
-
-<h2>Agence : avantages, limites, coût réel</h2>
-
-<p>
-<strong>Avantages</strong> : capacité projet, rôles complémentaires (PM/PO, design), continuité d’équipe possible.<br />
-<strong>Limites</strong> : qualité = équipe réellement affectée, pas logo ; promesses commerciales trop larges sans périmètre mesurable.<br />
-<strong>Coût réel</strong> : comparer périmètre, critères d’acceptation, et <strong>maintenance</strong> post-lancement — souvent sous-estimée dans les budgets initiaux.
-</p>
-
-<h2>Internalisation : avantages, limites, coût réel</h2>
-
-<p>
-<strong>Avantages</strong> : capitalisation, proximité métier, itérations rapides si la culture engineering est saine.<br />
-<strong>Limites</strong> : marché du recrutement tendu ; salaires élevés pour profils rares ; besoin de management technique.<br />
-<strong>Coût réel</strong> : charges + turnover + outils + formation — le « prix » n’est pas le salaire affiché seul.
-</p>
-
-<h2>Cas où chaque option est pertinente</h2>
 
 <ul>
-<li><strong>Freelance senior</strong> : cadrage risque, POC, migration, automatisation, audit sécurité/perf sur un périmètre borné.</li>
-<li><strong>Agence</strong> : produit greenfield avec design + delivery, équipe client peu mature en produit — si l’agence impose un cadrage et des jalons mesurables.</li>
-<li><strong>Interne</strong> : produit cœur, roadmap continue, besoin d’ownership long terme.</li>
+<li><strong>Freelance senior</strong> : audit, architecture, <a href="/blog/migration-symfony-guide-complet-2026/">migration Symfony</a>, automatisation sensible, POC — quand l’écart de compétence crée du risque immédiat.</li>
+<li><strong>Agence</strong> : produit greenfield avec UI forte, besoin d’équipe projet structurée — si le cadrage et les jalons sont opposables.</li>
+<li><strong>Interne</strong> : produit cœur, roadmap continue, culture engineering — quand l’horizon dépasse 18–24 mois et que vous pouvez recruter.</li>
 </ul>
 
 <p>
-Combinaison fréquente et saine : <strong>freelance senior</strong> pour cadrer/exécuter le risque, puis <strong>montée en compétence interne</strong> pour l’exploitation — notamment après une <a href="/blog/refonte-application-web-signaux-strategie-dette-technique/">refonte</a> ou une phase d’industrialisation.
+Pour l’arbitrage <a href="/blog/refonte-ou-maintenance-application/">refonte vs maintenance</a>, le mode d’exécution découle du risque : une refonte mal découpée pénalise quel que soit le prestataire.
 </p>
 
-<h2>Maturité produit : adapter le mode d’exécution</h2>
+<div class="table-wrap">
+<table class="compareTable">
+<thead>
+<tr>
+<th scope="col">Situation</th>
+<th scope="col">Option souvent pertinente</th>
+<th scope="col">Garde-fou</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Urgence + expertise rare</td>
+<td>freelance senior cadré</td>
+<td>périmètre écrit, critères d’acceptation</td>
+</tr>
+<tr>
+<td>Gros lot UI + delivery</td>
+<td>agence (si staffing clair)</td>
+<td>références, équipe réelle affectée</td>
+</tr>
+<tr>
+<td>Plateforme longue durée</td>
+<td>interne + éventuellement kick-off externe</td>
+<td>management tech, dette maîtrisée</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2>Ce que je regarde en premier (client)</h2>
 
 <p>
-Une startup en recherche de <strong>product/market fit</strong> n’a pas les mêmes besoins qu’une PME avec un flux récurrent et des obligations contractuelles. Au début, la vélocité et l’itération priment ; la formalisation peut être légère — mais avec des garde-fous (sauvegardes, accès). En phase de scale, la dette se paie cash : là, l’internalisation et les standards (CI, revue, observabilité) deviennent rentables. Le freelance senior aide souvent à <strong>passer de l’un à l’autre</strong> sans casser l’existant.
-</p>
-
-<h2>Contrats, IP et réversibilité : ce qui doit être écrit</h2>
-
-<p>
-Quel que soit le mode, certaines clauses évitent les mauvaises surprises : propriété du code et des livrables, licences des dépendances, confidentialité, localisation des données, et <strong>réversibilité</strong> (accès repo, secrets, procédure de transfert). Pour du traitement de données personnelles, le rôle (sous-traitant ou pas) et les instructions documentées. Ce n’est pas de la paperasse gratuite : c’est ce qui permet de dormir quand un collaborateur part ou qu’un prestataire change.
+<strong>Sponsor business</strong> : sans personne qui peut trancher, les projets glissent. <strong>Accès</strong> : repo, environnements, production si nécessaire — pas de magie sans visibilité. <strong>Réalité du planning</strong> : une roadmap déjà surchargée ne digère pas un chantier en parallèle sans arbitrage explicite. <strong>Historique</strong> : incidents récents, dette de version, dépendances critiques — pour calibrer le risque.
 </p>
 
 <p>
-Côté budget, méfiez-vous des forfaits « tout compris » sans périmètre : demandez un découpage <strong>jalons</strong> avec validation explicite, surtout si l’UI/UX et l’intégration API sont dans le même sac — ce sont souvent deux flux de risque différents.
+Ce n’est pas une checklist bureaucratique : c’est ce qui permet de dire « oui, on peut tenir » ou « non, il faut réduire le périmètre » — sans bullshit.
 </p>
 
-<h2>Positionnement : ce que j’apporte (sans promesse creuse)</h2>
-
-<p>
-Mon mode d’intervention est volontairement orienté <strong>expertise senior</strong> et <strong>transfert</strong> : transparence sur risques et inconnues, livrables exploitables (documentation utile, scripts, conventions), priorisation ROI et réduction de dette plutôt qu’empilement de complexité. L’objectif n’est pas de « rester indispensable », mais de rendre l’organisation plus autonome à l’issue de la mission — avec une disponibilité sur les sujets à forte expertise.
-</p>
+<h2>Cas concret</h2>
 
 <p>
-Si vous comparez des prestataires, exigez : périmètre écrit, critères d’acceptation, plan de tests minimal sur flux critiques, et clause de <strong>réversibilité</strong> (accès, IP, documentation).
+<strong>Contexte</strong> : PME B2B, équipe produit 3 personnes, besoin de stabiliser un module facturation et préparer une montée de version.<br />
+<strong>Mauvais scénario</strong> : agence forfait « refonte » sans propriété métier disponible — dérives, incompréhensions, factures additionnelles.<br />
+<strong>Scénario retenu</strong> : freelance senior en régie limitée (audit + plan + extraction du module critique) + développeur interne monté en compétence sur les tests et le déploiement ; agence non retenue faute de valeur ajoutée sur le cœur back-office.<br />
+<strong>Résultat</strong> : risque réduit, transfert effectif, budget prévisible — avec un interne qui « tient » le module après départ du consultant.
 </p>
+
+<h2>Le coût total de possession (3 ans)</h2>
+
+<p>
+Pour comparer honnêtement, projetez sur 24–36 mois : coût initial, coût de maintenance, coût interne de pilotage, risque de rework, et coût d’opportunité si le calendrier glisse. Un salaire interne semble « fixe », mais inclut management, outils, formation et turnover. Un forfait agence semble « plafonné », jusqu’à ce que les hors-scope s’accumulent. Un freelance au TJM élevé peut être le moins cher <strong>en total</strong> s’il réduit le calendrier et évite une reprise catastrophique.
+</p>
+
+<p>
+La bonne question n’est pas « qui est moins cher aujourd’hui », mais « quel scénario maximise la probabilité de <strong>livrer un système exploitable</strong> par mon équipe dans 12 mois » — avec une dette maîtrisée.
+</p>
+
+<h2>Recommandations d’expert</h2>
+
+<ol>
+<li><strong>Écrire le périmètre</strong> en inclus/exclus — une page suffit pour éviter 80 % des conflits.</li>
+<li><strong>Exiger critères d’acceptation</strong> mesurables (tests, métriques, parcours critiques).</li>
+<li><strong>Prévoir réversibilité</strong> : accès repo, secrets, documentation minimale utile — pas un roman.</li>
+<li><strong>Ne pas confondre</strong> vitesse de signature et vitesse de livraison : un contrat signé vite sans cadre coûte plus cher.</li>
+<li>Aligner avec la stratégie produit : si vous <a href="/blog/automatiser-entreprise-google-workspace-gains-cas/">automatisez le périmètre Workspace</a> et le socle PHP en parallèle, définissez des frontières claires entre les flux.</li>
+</ol>
 
 <section class="faq" aria-label="Questions fréquentes">
 <h2>FAQ</h2>
 <details>
-<summary>Le moins cher est-il le plus rentable ?</summary>
+<summary>Le freelance remplace-t-il une agence ?</summary>
 <p>
-Rarement. Le coût total inclut reprises, opportunité perdue et incidents. Un prix bas sans critères d’acceptation est souvent un crédit à rembourser en production.
+Sur des chantiers à forte expertise et périmètre borné, souvent oui. Sur un portefeuille très parallèle multi-compétences, il faut structurer ou compléter.
 </p>
 </details>
 <details>
-<summary>Un freelance peut-il remplacer une agence ?</summary>
+<summary>Comment négocier sans se faire avoir ?</summary>
 <p>
-Pour certains chantiers, oui. Pour un portefeuille parallèle large, il faut structurer (phases, plusieurs profils, ou complément agence sur des lots précis).
+Exigez jalons, pénalités de retard raisonnables, et surtout transparence sur l’équipe réelle — pas seulement le commercial.
 </p>
 </details>
 <details>
-<summary>Comment sécuriser juridiquement ?</summary>
+<summary>Recruter ou sous-traiter en premier ?</summary>
 <p>
-Propriété intellectuelle, accès, secrets, SLA de correction, et réversibilité documentée — surtout si données personnelles ou intégrations financières.
+Si le risque est immédiat et le recrutement long, l’externe senior débloque ; si l’horizon est 3 ans et le produit cœur, l’interne se justifie.
 </p>
 </details>
 <details>
 <summary>Remote ou sur site ?</summary>
 <p>
-Le remote fonctionne si pilotage et outils sont sains ; le sur site aide au cadrage initial et aux ateliers à fortes interactions métier.
+Le remote fonctionne avec pilotage clair ; le sur site aide au cadrage initial et aux ateliers à forts arbitrages métier.
+</p>
+</details>
+<details>
+<summary>Que demander comme livrables ?</summary>
+<p>
+Code versionné, README d’exploitation, liste des secrets et comptes, et tests minimaux sur règles critiques — adapté au contexte.
 </p>
 </details>
 </section>
 
-<h2>Quand mixer les modes (hybride)</h2>
+<h2>Signaux d’alarme côté prestataire (ou recrutement)</h2>
 
 <p>
-Un schéma fréquent : <strong>freelance senior</strong> pour le cadrage et le cœur risqué (architecture, migration, automatisation sensible), <strong>agence</strong> sur un lot UI/front si vous manquez de capacité design intégrée, et <strong>interne</strong> pour l’exploitation et l’itération produit. L’important est la <strong>clarité des interfaces</strong> : qui signe quoi, quels livrables, quels tests, quel runbook. Sans ça, le mode hybride devient un jeu de ping-pong de responsabilités.
+Méfiez-vous : promesses floues, absence de questions sur l’existant, refus de définir des critères d’acceptation, ou calendrier « serré » sans marge pour tests. Côté recrutement interne, un profil « bon sur le papier » sans entretien technique sérieux ou sans mise en situation — même courte — reproduit les échecs. Le coût d’un mauvais choix se paie en mois de friction, pas en euros de salaire uniquement.
 </p>
 
 <p>
-Pour les projets data et Workspace, l’hybride peut aussi vouloir dire : mise en place encadrée par un externe, puis <strong>autonomie</strong> sur les évolutions quotidiennes — cf. les guides <a href="/blog/formation-google-sheets-entreprise-levier-productivite/">formation Sheets</a> et <a href="/blog/automatiser-processus-metier-google-apps-script-entreprise/">Apps Script</a>.
-</p>
-
-<h2>Questions à poser avant de signer (checklist courte)</h2>
-
-<ul>
-<li>Quel est le <strong>périmètre exact</strong> (inclus / exclu) et comment gère-t-on les hors-scope ?</li>
-<li>Quels sont les <strong>critères d’acceptation</strong> et qui valide ?</li>
-<li>Quel est le plan de <strong>tests</strong> minimal sur les parcours critiques ?</li>
-<li>Quelle <strong>documentation</strong> et quel transfert pour l’équipe interne ?</li>
-<li>Quel <strong>support</strong> post-livraison (durée, canal, exclusions) ?</li>
-</ul>
-
-<p>
-Ces questions valent pour un freelance comme pour une agence : la différence se joue sur la <strong>qualité des réponses</strong>, pas sur l’étiquette. Une réponse vague est un signal — pas nécessairement une disqualification, mais un point à creuser avant engagement.
-</p>
-
-<h2>Contexte marché : tension des compétences et arbitrage</h2>
-
-<p>
-Le marché du recrutement tech reste tendu sur certaines stacks : embaucher un profil senior coûte cher et prend du temps ; l’agence peut absorber un pic de charge ; le freelance peut accélérer un chantier à forte expertise sans alourdir la masse salariale. L’arbitrage n’est pas idéologique : il dépend du <strong>horizon</strong> (quelques mois vs plusieurs années), du <strong>niveau de risque</strong> (paiement, données sensibles, disponibilité), et de votre capacité à <strong>piloter</strong> un prestataire (cadrage, accès, validation).
+Un bon prestataire challenge vos hypothèses : périmètre, risques, dépendances — parce que son réputation se joue sur <strong>la livraison exploitable</strong>, pas sur le nombre de slides vendus.
 </p>
 
 <p>
-Pour une PME, la règle pratique est souvent : <strong>acheter de l’expertise</strong> là où l’écart de compétence crée du risque, et <strong>capitaliser en interne</strong> là où la répétition et la proximité métier dominent. Les projets Symfony, API et automatisation Workspace que j’accompagne rentrent typiquement dans la première catégorie au début, puis glissent vers la seconde après transfert — voir aussi <a href="/blog/migration-symfony-guide-complet-2026/">migration Symfony</a> et <a href="/blog/refonte-application-web-signaux-strategie-dette-technique/">refonte web</a> pour le volet applicatif.
+Si votre enjeu principal est la dette applicative avant même le choix du prestataire, commencez par cadrer le risque avec <a href="/blog/cout-dette-technique-entreprise-analyse/">l’analyse de coût de dette</a> et les <a href="/blog/refonte-ou-maintenance-application/">options refonte / maintenance</a> : le mode d’exécution ne résout pas un mauvais diagnostic.
 </p>
 
 <p>
-En résumé : le bon prestataire n’est pas une étiquette, c’est une <strong>capacité à réduire votre risque</strong> sur un périmètre défini — avec des preuves, des livrables testables, une traçabilité claire et un plan de transfert.
+Dernier point : l’internalisation n’est pas une fin en soi. Si vous recrutez sans <strong>cadre technique</strong> (revue, standards, observabilité), vous importez une dette organisationnelle qui coûtera plus cher que des mois de prestation — surtout si l’équipe est petite. Le bon modèle est souvent : expertise externe pour cadrer et livrer le socle, puis équipe interne pour l’itération — avec transfert explicite.
+</p>
+
+<p>
+Quand vous comparez des devis, demandez explicitement : <strong>qui teste</strong>, <strong>qui documente</strong>, <strong>qui tient le run</strong> après livraison. Les écarts de prix se comprennent souvent à ces trois lignes — pas au nombre de développeurs affichés sur la slide.
+</p>
+
+<p>
+Si votre besoin immédiat est plutôt un diagnostic de dette ou un arbitrage refonte, commencez par <a href="/blog/cout-dette-technique-entreprise-analyse/">l’analyse de coût</a> — le choix du prestataire vient après, pas avant.
+</p>
+
+<p>
+Une phrase utile en closing interne : <strong>on n’achète pas du code, on achète une probabilité de succès et une capacité à tenir le run</strong>.
 </p>
 
 <h2>Conclusion</h2>
 
 <p>
-Le bon choix dépend de votre maturité produit, du niveau de risque, et de l’horizon (ponctuel vs plateforme longue). Comparez des <strong>périmètres</strong>, pas des slogans.
+Freelance, agence ou internalisation ne sont pas des religions : ce sont des <strong>instruments</strong>. Le bon choix maximise la probabilité de livrer un résultat maintenable, au bon coût total, avec un risque maîtrisé. Si votre critère unique est le TJM le plus bas, vous sélectionnez probablement le rework le plus cher.
 </p>
 
 <p>
-<strong>Prochaine étape</strong> : une <a href="/contact/">prise de contact</a> — décrivez stack, contraintes, échéance : retour structuré avec recommandation de mode d’exécution et prochaines étapes. Retrouvez le détail des <a href="/services/">services</a> et des notes associées sur <a href="/blog/">le blog</a>.
+<strong>CTA</strong> : <a href="/contact/">prise de contact</a> — décrivez stack, échéance, risques : retour avec recommandation de mode et prochaines étapes. <a href="/services/">Services</a> · <a href="/blog/">Blog</a>.
 </p>
