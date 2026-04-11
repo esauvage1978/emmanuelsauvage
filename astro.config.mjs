@@ -2,9 +2,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-/** Même URL que dans public/contact-zapier.php — évite le CORS navigateur → Zapier en dev */
-const ZAPIER_WEBHOOK_ORIGIN = 'https://zapier.emmanuelsauvage.fr';
-const ZAPIER_WEBHOOK_PATH = '/webhook/form/1264ea10-cc2c-49d4-9614-c22647fa1f88';
+/** Même URL que dans public/contact-zapier.php — évite le CORS navigateur → webhook en dev */
+const ZAPIER_WEBHOOK_ORIGIN = 'https://webhooky.builders';
+const ZAPIER_WEBHOOK_PATH = '/webhook/form/789f78eab00-cd38-4cbb-9e57-46796830e108';
 
 // https://astro.build/config
 export default defineConfig({

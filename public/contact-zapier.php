@@ -1,6 +1,6 @@
 <?php
 /**
- * Proxy formulaire → webhook Zapier (évite le blocage CORS du navigateur).
+ * Proxy formulaire → webhook (webhooky.builders — évite le blocage CORS du navigateur).
  * Requis : hébergement PHP (ex. WAMP). Ne pas exposer ce fichier sans HTTPS en production.
  */
 declare(strict_types=1);
@@ -101,7 +101,7 @@ $payload = json_encode(
 	JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
 );
 
-$hook = 'https://zapier.emmanuelsauvage.fr/webhook/form/1264ea10-cc2c-49d4-9614-c22647fa1f88';
+$hook = 'https://webhooky.builders/webhook/form/789f78eab00-cd38-4cbb-9e57-46796830e108';
 
 $ch = curl_init($hook);
 curl_setopt_array($ch, [
@@ -125,11 +125,11 @@ if ($errno !== 0 || $response === false) {
 
 if ($httpCode < 200 || $httpCode >= 300) {
 	http_response_code(502);
-	echo json_encode(['ok' => false, 'error' => 'Zapier returned an error', 'status' => $httpCode]);
+	echo json_encode(['ok' => false, 'error' => 'Webhook returned an error', 'status' => $httpCode]);
 	exit;
 }
 
-// Renvoyer la réponse Zapier telle quelle (souvent {"status":"success",...})
+// Renvoyer la réponse du webhook telle quelle (souvent {"status":"success",...})
 header('Content-Type: application/json; charset=utf-8');
 http_response_code(200);
 echo $response;

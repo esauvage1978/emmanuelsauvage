@@ -53,7 +53,7 @@ Remplacez par votre domaine réel une fois le site en ligne (le fichier `public/
 Le navigateur ne peut en général **pas** appeler directement `hooks.zapier.com` en `POST` JSON (CORS / préflight). Le site envoie donc les données en **same-origin** :
 
 - **`npm run dev`** → URL interne `/api/zapier-contact` (proxy Vite dans `astro.config.mjs`).
-- **Build + WAMP / PHP** → `public/contact-zapier.php` relaie vers Zapier (à servir par Apache avec PHP).
+- **Build + WAMP / PHP** → `public/contact-zapier.php` relaie vers le webhook (URL dans le fichier PHP ; actuellement webhooky.builders).
 
 Sur un hébergement **100 % statique** sans PHP, il faudra une fonction serverless ou un autre relais équivalent.
 
