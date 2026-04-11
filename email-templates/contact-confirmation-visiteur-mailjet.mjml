@@ -16,6 +16,8 @@
     privacy_policy_accepted, privacy_policy_accepted_at,
     submitted_at
 
+  Forme de référence des clés (placeholders) : contact-zapier-payload-keys.json
+
   Variables Mailjet / Zapier (mapper depuis le corps JSON du webhook) :
     {{var:name}}
     {{var:email}}

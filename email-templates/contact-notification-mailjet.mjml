@@ -33,6 +33,8 @@
     {{var:submitted_at}}               — ISO 8601
 
   Logo : URL absolue en production (ex. https://emmanuelsauvage.fr/images/logo-256.png).
+
+  Forme de référence des clés (placeholders) : contact-zapier-payload-keys.json
 -->
 <mjml>
   <mj-head>

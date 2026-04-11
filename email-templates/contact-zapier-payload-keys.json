@@ -1,0 +1,19 @@
+{
+  "name": "name",
+  "company": "company",
+  "email": "email",
+  "objet": "objet",
+  "objet_label": "objet_label",
+  "message": "message",
+  "budget_range": "budget_range",
+  "budget_range_label": "budget_range_label",
+  "urgency": "urgency",
+  "urgency_label": "urgency_label",
+  "project_type": "project_type",
+  "project_type_label": "project_type_label",
+  "source": "source",
+  "page": "page",
+  "privacy_policy_accepted": "privacy_policy_accepted",
+  "privacy_policy_accepted_at": "privacy_policy_accepted_at",
+  "submitted_at": "submitted_at"
+}

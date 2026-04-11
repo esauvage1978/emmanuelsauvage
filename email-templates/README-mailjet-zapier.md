@@ -1,11 +1,17 @@
 # Email « contact » — Mailjet + Zapier
 
+## Référence JSON (`contact-zapier-payload-keys.json`)
+
+Le corps POST envoyé par `public/contact-zapier.php` vers Zapier utilise **exactement** ces clés. Pour la doc et le mapping (Zapier ↔ Mailjet), la forme systématique de référence est : chaque valeur placeholder reprend le nom de la clé (fichier `contact-zapier-payload-keys.json`).
+
 ## Fichiers
 
 | Fichier | Usage |
 |--------|--------|
+| `contact-zapier-payload-keys.json` | Liste des clés JSON (placeholders `clé` → `"clé"`). |
 | `contact-notification-mailjet.mjml` | Source MJML (à modifier puis recompiler). |
 | `contact-notification-mailjet.html` | HTML généré — à coller dans **Mailjet** (template transactionnel) ou à uploader selon votre flux. |
+| `contact-confirmation-visiteur-mailjet.mjml` | Email de confirmation au visiteur (2ᵉ flux Zapier). |
 
 Compiler le MJML :
 
