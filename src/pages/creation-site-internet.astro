@@ -1,0 +1,767 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { GOOGLE_REVIEW_URL } from '../config/site';
+
+const title =
+	'Création de site internet & optimisation : mes réalisations | Emmanuel SAUVAGE';
+const description =
+	'Création de sites internet rapides, accessibles et optimisés SEO (Astro). Découvrez mes dernières réalisations : Cabinet Beligat, EDAME et Hecker & Frères Énergie, avec des scores Lighthouse au maximum.';
+
+const realisations = [
+	{
+		name: 'Hecker & Frères Énergie (HFE)',
+		url: 'https://hfe-energie.fr/',
+		image: '/images/realisations/hfe-energie.png',
+		sector: 'Pompe à chaleur, climatisation & plomberie — Lille',
+		description:
+			'Site vitrine d’un installateur RGE QualiPAC : pages services, zone d’intervention, avis Google, FAQ et formulaire de devis. Optimisé pour le référencement local et la conversion.',
+		tags: ['Site vitrine', 'SEO local', 'Performance 100/100'],
+	},
+	{
+		name: 'Cabinet Beligat',
+		url: 'https://podologue-beligat.fr/',
+		image: '/images/realisations/podologue-beligat.png',
+		sector: 'Pédicures-podologues — Armentières',
+		description:
+			'Présentation d’un cabinet de podologie : services, équipe, parcours semelles sur mesure et prise de rendez-vous Doctolib. Design sobre et rassurant pour un univers santé.',
+		tags: ['Site vitrine', 'Santé', 'Prise de RDV'],
+	},
+	{
+		name: 'EDAME',
+		url: 'https://edame.fr/',
+		image: '/images/realisations/edame.png',
+		sector: 'Accompagnement scolaire & éducatif — Lille, Dunkerque',
+		description:
+			'Site d’une éducatrice spécialisée : présentation de l’offre, blog, FAQ et formulaire de premier contact. Identité douce et lisible, pensée pour les familles.',
+		tags: ['Site vitrine', 'Blog', 'Formulaire de contact'],
+	},
+];
+
+const faq = [
+	{
+		question: 'Quel type de sites internet créez-vous ?',
+		answer:
+			'Principalement des sites vitrines et des sites métiers rapides, accessibles et optimisés pour le référencement (SEO). J’utilise des technologies modernes (Astro) qui produisent des pages très légères et faciles à maintenir.',
+	},
+	{
+		question: 'Que veut dire « optimisation » d’un site existant ?',
+		answer:
+			'Améliorer la vitesse de chargement, l’accessibilité, le SEO technique et la qualité du code d’un site déjà en ligne. L’objectif est d’augmenter la visibilité, la conversion et la note des outils de mesure (Lighthouse / PageSpeed).',
+	},
+	{
+		question: 'Pourquoi la performance est-elle importante ?',
+		answer:
+			'Un site rapide est mieux référencé par Google, consomme moins de ressources et convertit davantage. Mes réalisations atteignent régulièrement des scores Lighthouse proches de 100 en performance, accessibilité, bonnes pratiques et SEO.',
+	},
+];
+
+const faqJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: faq.map((item) => ({
+		'@type': 'Question',
+		name: item.question,
+		acceptedAnswer: { '@type': 'Answer', text: item.answer },
+	})),
+};
+---
+
+<Layout title={title} description={description}>
+	<script slot="head" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+	<SiteHeader current="services" />
+
+	<main class="page">
+		<header class="page__head">
+			<div class="page__headFx" aria-hidden="true">
+				<div class="page__blob page__blob--a"></div>
+				<div class="page__blob page__blob--spot"></div>
+			</div>
+			<div class="container">
+				<nav class="breadcrumb" aria-label="Fil d’Ariane">
+					<a href="/">Accueil</a>
+					<span class="breadcrumb__sep" aria-hidden="true">/</span>
+					<a href="/services">Services</a>
+					<span class="breadcrumb__sep" aria-hidden="true">/</span>
+					<span class="breadcrumb__current">Création de site internet</span>
+				</nav>
+				<p class="page__eyebrow">Création &amp; optimisation</p>
+				<h1>
+					Création de site internet <span class="page__h1Accent">& optimisation</span>
+				</h1>
+				<p class="lead">
+					Des sites vitrines rapides, accessibles et bien référencés — pensés pour convertir vos visiteurs en clients.
+					Création sur mesure ou optimisation d’un site existant (vitesse, SEO technique, accessibilité). Découvrez
+					ci-dessous mes dernières réalisations.
+				</p>
+				<div class="page__cta">
+					<a class="button button--primary" href="/contact">Demander un devis gratuit</a>
+					<a class="button button--secondary" href="#realisations">Voir mes réalisations</a>
+				</div>
+			</div>
+		</header>
+
+		<section class="section">
+			<div class="container offer">
+				<article class="offer__card">
+					<h2>Création de site</h2>
+					<p>
+						Site vitrine sur mesure : arborescence, design, contenus, SEO et mise en ligne. Une base saine,
+						performante et facile à faire évoluer.
+					</p>
+				</article>
+				<article class="offer__card">
+					<h2>Optimisation</h2>
+					<p>
+						Vous avez déjà un site ? J’améliore sa vitesse, son accessibilité et son référencement technique pour
+						gagner en visibilité et en conversions.
+					</p>
+				</article>
+				<article class="offer__card">
+					<h2>Performance prouvée</h2>
+					<p>
+						Mes réalisations visent l’excellence sur les outils de mesure : scores Lighthouse proches de 100 en
+						performance, accessibilité, bonnes pratiques et SEO.
+					</p>
+				</article>
+			</div>
+		</section>
+
+		<section id="realisations" class="section section--realisations">
+			<div class="container">
+				<header class="sectionHead">
+					<h2 class="sectionHead__title">Mes dernières réalisations</h2>
+					<p class="sectionHead__text">
+						Quelques sites récents développés et mis en ligne. Cliquez sur une vignette pour visiter le site.
+					</p>
+				</header>
+
+				<div class="works">
+					{
+						realisations.map((item) => (
+							<article class="work">
+								<a class="work__media" href={item.url} target="_blank" rel="noopener noreferrer">
+									<img
+										src={item.image}
+										alt={`Aperçu du site ${item.name}`}
+										loading="lazy"
+										decoding="async"
+										width="1024"
+										height="700"
+									/>
+								</a>
+								<div class="work__body">
+									<p class="work__sector">{item.sector}</p>
+									<h3 class="work__title">
+										<a href={item.url} target="_blank" rel="noopener noreferrer">
+											{item.name}
+										</a>
+									</h3>
+									<p class="work__desc">{item.description}</p>
+									<ul class="work__tags">
+										{item.tags.map((tag) => (
+											<li>{tag}</li>
+										))}
+									</ul>
+									<a class="work__link" href={item.url} target="_blank" rel="noopener noreferrer">
+										Visiter le site
+										<span aria-hidden="true">↗</span>
+									</a>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--proof">
+			<div class="container proof">
+				<div class="proof__text">
+					<p class="page__eyebrow">Preuve de performance</p>
+					<h2>Des sites notés au maximum</h2>
+					<p>
+						Exemple sur <a href="https://hfe-energie.fr/" target="_blank" rel="noopener noreferrer">hfe-energie.fr</a> :
+						un rapport PageSpeed Insights (mobile) avec <strong>100 en performance</strong>, 97 en accessibilité,
+						<strong>100 en bonnes pratiques</strong> et <strong>100 en SEO</strong>. Un site rapide et conforme, c’est
+						un meilleur référencement et plus de conversions.
+					</p>
+				</div>
+				<figure class="proof__media">
+					<img
+						src="/images/realisations/hfe-energie-performance.png"
+						alt="Rapport PageSpeed Insights de hfe-energie.fr : 100 en performance, 97 en accessibilité, 100 en bonnes pratiques et 100 en SEO"
+						loading="lazy"
+						decoding="async"
+						width="960"
+						height="1024"
+					/>
+				</figure>
+			</div>
+		</section>
+
+		<section class="cta page__preFooter" aria-label="Contact">
+			<div class="container cta__inner cta__inner--accent">
+				<div>
+					<h2>Un projet de site ou un site à optimiser ?</h2>
+					<p>Décrivez votre besoin (création, refonte, optimisation) : je vous propose une première orientation.</p>
+					<p class="cta__extra">
+						Déjà client ?
+						<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
+					</p>
+				</div>
+				<div class="cta__actions">
+					<a class="button button--primary" href="/contact">Demander un devis</a>
+					<a class="button button--secondary" href="/services">Toutes les expertises</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<SiteFooter />
+</Layout>
+
+<style>
+	.container {
+		width: min(1120px, calc(100% - 32px));
+		margin: 0 auto;
+	}
+
+	@media (min-width: 521px) {
+		.container {
+			width: min(1120px, calc(100% - 48px));
+		}
+	}
+
+	.page {
+		padding-bottom: 32px;
+		min-width: 0;
+	}
+
+	.page__head {
+		position: relative;
+		overflow: hidden;
+		padding: 28px 0 24px;
+		background: #fff;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	@media (min-width: 768px) {
+		.page__head {
+			padding: 44px 0 28px;
+		}
+	}
+
+	.page__headFx {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.page__blob {
+		position: absolute;
+		border-radius: 999px;
+		filter: blur(44px);
+		opacity: 0.85;
+		mix-blend-mode: multiply;
+	}
+
+	.page__blob--a {
+		width: 280px;
+		height: 280px;
+		top: -120px;
+		right: -80px;
+		background: radial-gradient(circle at 40% 40%, rgba(79, 110, 247, 0.4), transparent 62%);
+	}
+
+	.page__blob--spot {
+		width: 220px;
+		height: 220px;
+		bottom: -60px;
+		left: -40px;
+		background: radial-gradient(circle at 40% 40%, rgba(196, 92, 46, 0.35), transparent 62%);
+	}
+
+	.page__head .container {
+		position: relative;
+		z-index: 1;
+	}
+
+	.breadcrumb {
+		font-size: 13px;
+		color: var(--color-muted);
+		margin: 0 0 14px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		align-items: center;
+	}
+
+	.breadcrumb a {
+		color: var(--color-spot-hover);
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.breadcrumb a:hover {
+		text-decoration: underline;
+	}
+
+	.breadcrumb__sep {
+		opacity: 0.45;
+	}
+
+	.breadcrumb__current {
+		color: var(--color-text);
+		font-weight: 600;
+	}
+
+	.page__eyebrow {
+		position: relative;
+		margin: 0 0 10px;
+		padding-left: 14px;
+		font-size: 13px;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: color-mix(in srgb, var(--color-text) 72%, var(--color-spot));
+	}
+
+	.page__eyebrow::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.15em;
+		bottom: 0.15em;
+		width: 3px;
+		border-radius: 2px;
+		background: linear-gradient(180deg, var(--color-spot), var(--color-primary));
+	}
+
+	h1 {
+		margin: 0 0 12px;
+		font-size: clamp(1.65rem, 5vw, 2.75rem);
+		line-height: 1.12;
+		letter-spacing: -0.03em;
+	}
+
+	.page__h1Accent {
+		background: linear-gradient(105deg, var(--color-primary) 0%, var(--color-spot) 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.lead {
+		margin: 0;
+		font-size: clamp(1rem, 2.8vw, 1.125rem);
+		color: var(--color-muted);
+		max-width: 72ch;
+		line-height: 1.55;
+	}
+
+	.page__cta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: 20px;
+	}
+
+	.section {
+		padding: 24px 0;
+	}
+
+	.section--realisations {
+		padding-top: 8px;
+	}
+
+	.sectionHead {
+		margin-bottom: 18px;
+	}
+
+	.sectionHead__title {
+		margin: 0 0 6px;
+		font-size: clamp(1.3rem, 3vw, 1.75rem);
+		letter-spacing: -0.02em;
+		color: var(--color-primary);
+	}
+
+	.sectionHead__text {
+		margin: 0;
+		color: var(--color-muted);
+		max-width: 60ch;
+	}
+
+	/* Offre : 3 cartes */
+	.offer {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 14px;
+	}
+
+	@media (min-width: 720px) {
+		.offer {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.offer__card {
+		background: rgba(255, 255, 255, 0.96);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 18px;
+		box-shadow:
+			inset 0 3px 0 0 rgba(196, 92, 46, 0.28),
+			var(--shadow-sm);
+	}
+
+	.offer__card h2 {
+		margin: 0 0 8px;
+		font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+		color: var(--color-primary);
+		letter-spacing: -0.02em;
+	}
+
+	.offer__card p {
+		margin: 0;
+		color: var(--color-text);
+		opacity: 0.92;
+		line-height: 1.5;
+	}
+
+	/* Grille des réalisations */
+	.works {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 18px;
+	}
+
+	@media (min-width: 720px) {
+		.works {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1040px) {
+		.works {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.work {
+		display: flex;
+		flex-direction: column;
+		background: #fff;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		overflow: hidden;
+		box-shadow: var(--shadow-sm);
+		transition: box-shadow 0.18s ease, transform 0.18s ease;
+	}
+
+	.work:hover {
+		box-shadow: var(--shadow-md);
+		transform: translateY(-3px);
+	}
+
+	.work__media {
+		display: block;
+		aspect-ratio: 16 / 11;
+		overflow: hidden;
+		background: var(--color-bg);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.work__media img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top center;
+		transition: transform 0.4s ease;
+	}
+
+	.work:hover .work__media img {
+		transform: scale(1.04);
+	}
+
+	.work__body {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 16px 18px 18px;
+		flex: 1;
+	}
+
+	.work__sector {
+		margin: 0;
+		font-size: 12px;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: color-mix(in srgb, var(--color-text) 60%, var(--color-spot));
+		font-weight: 600;
+	}
+
+	.work__title {
+		margin: 0;
+		font-size: 1.15rem;
+		letter-spacing: -0.02em;
+		color: var(--color-primary);
+	}
+
+	.work__title a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.work__title a:hover {
+		text-decoration: underline;
+		text-decoration-color: rgba(196, 92, 46, 0.4);
+	}
+
+	.work__desc {
+		margin: 0;
+		color: var(--color-text);
+		opacity: 0.9;
+		line-height: 1.5;
+		font-size: 0.95rem;
+	}
+
+	.work__tags {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		padding: 0;
+		margin: 2px 0 0;
+	}
+
+	.work__tags li {
+		font-size: 12px;
+		font-weight: 600;
+		color: var(--color-primary);
+		background: rgba(47, 58, 143, 0.08);
+		border: 1px solid rgba(47, 58, 143, 0.12);
+		border-radius: 999px;
+		padding: 4px 10px;
+	}
+
+	.work__link {
+		margin-top: auto;
+		padding-top: 8px;
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-weight: 600;
+		color: var(--color-spot-hover);
+		text-decoration: none;
+	}
+
+	.work__link:hover {
+		color: var(--color-spot);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	/* Preuve de performance */
+	.section--proof {
+		padding-top: 8px;
+	}
+
+	.proof {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 20px;
+		align-items: center;
+		padding: 22px;
+		border-radius: 22px;
+		border: 1px solid color-mix(in srgb, var(--color-spot) 22%, var(--color-border));
+		background: linear-gradient(135deg, rgba(47, 58, 143, 0.06), var(--color-spot-soft));
+	}
+
+	@media (min-width: 880px) {
+		.proof {
+			grid-template-columns: 1fr 0.9fr;
+		}
+	}
+
+	.proof__text h2 {
+		margin: 0 0 10px;
+		font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+		color: var(--color-primary);
+		letter-spacing: -0.02em;
+	}
+
+	.proof__text p {
+		margin: 0;
+		color: var(--color-text);
+		opacity: 0.92;
+		line-height: 1.55;
+	}
+
+	.proof__text a {
+		color: var(--color-spot-hover);
+		font-weight: 600;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	.proof__text a:hover {
+		color: var(--color-spot);
+	}
+
+	.proof__media {
+		margin: 0;
+		border-radius: 16px;
+		overflow: hidden;
+		border: 1px solid var(--color-border);
+		background: #fff;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.proof__media img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		border-radius: 14px;
+		padding: 12px 16px;
+		font-weight: 600;
+		border: 1px solid transparent;
+		transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border 0.15s ease;
+	}
+
+	.button--primary {
+		color: white;
+		background: var(--color-primary);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.button--primary:hover {
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.button--secondary {
+		color: var(--color-text);
+		background: rgba(255, 255, 255, 0.85);
+		border-color: var(--color-border);
+	}
+
+	.button--secondary:hover {
+		background: rgba(255, 255, 255, 1);
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.cta {
+		padding: 8px 0;
+	}
+
+	.page__preFooter {
+		padding-bottom: 56px;
+		background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.75) 40%, #ffffff 100%);
+		border-bottom: 1px solid rgba(47, 58, 143, 0.1);
+	}
+
+	.cta__inner {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 18px;
+		align-items: center;
+		padding: 22px;
+		border-radius: 24px;
+		border: 1px solid rgba(47, 58, 143, 0.2);
+		background: linear-gradient(180deg, rgba(47, 58, 143, 0.1), rgba(255, 255, 255, 0.65));
+		box-shadow: var(--shadow-md);
+		min-width: 0;
+		box-sizing: border-box;
+	}
+
+	.cta__inner > * {
+		min-width: 0;
+	}
+
+	.cta__inner--accent {
+		border-color: color-mix(in srgb, var(--color-spot) 32%, rgba(47, 58, 143, 0.2));
+		background: linear-gradient(
+			135deg,
+			rgba(47, 58, 143, 0.12),
+			var(--color-spot-soft),
+			rgba(79, 110, 247, 0.06)
+		);
+		box-shadow: 0 12px 40px rgba(47, 58, 143, 0.08), 0 0 0 1px rgba(196, 92, 46, 0.1);
+	}
+
+	.cta__inner h2 {
+		margin: 0 0 8px;
+		font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+		color: var(--color-primary);
+		letter-spacing: -0.02em;
+	}
+
+	.cta__inner p {
+		margin: 0;
+		color: var(--color-muted);
+		line-height: 1.55;
+	}
+
+	.cta__extra {
+		margin: 14px 0 0;
+		font-size: 14px;
+		color: var(--color-muted);
+	}
+
+	.cta__extra a {
+		color: var(--color-spot-hover);
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-color: rgba(196, 92, 46, 0.35);
+		text-underline-offset: 3px;
+	}
+
+	.cta__extra a:hover {
+		color: var(--color-spot);
+	}
+
+	.cta__actions {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 12px;
+		width: 100%;
+		min-width: 0;
+		box-sizing: border-box;
+	}
+
+	.cta__actions .button {
+		width: 100%;
+		justify-content: center;
+		box-sizing: border-box;
+		text-align: center;
+	}
+
+	@media (min-width: 960px) {
+		.cta__inner {
+			grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.85fr);
+		}
+
+		.cta__actions {
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+		}
+
+		.cta__actions .button {
+			width: auto;
+			white-space: nowrap;
+		}
+	}
+</style>
