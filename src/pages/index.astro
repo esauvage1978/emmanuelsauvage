@@ -4,13 +4,20 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import PartnersLogos from '../components/PartnersLogos.astro';
 import { GOOGLE_REVIEW_URL } from '../config/site';
+
+/** Slot réel de l’image hero — évite de demander 1400w quand sizes surestimait 662px (DPR 2 → 1324px). */
+const heroImageSizes = '(max-width: 520px) calc(100vw - 32px), (max-width: 979px) calc(100vw - 48px), 620px';
+const heroSrcsetWebp =
+	'/images/hero-illustration-unsplash-2-480.webp 480w, /images/hero-illustration-unsplash-2-662.webp 662w, /images/hero-illustration-unsplash-2-1000.webp 1000w, /images/hero-illustration-unsplash-2-1400.webp 1400w';
+const heroSrcsetJpeg =
+	'/images/hero-illustration-unsplash-2-480.jpg 480w, /images/hero-illustration-unsplash-2-662.jpg 662w, /images/hero-illustration-unsplash-2-1000.jpg 1000w, /images/hero-illustration-unsplash-2-1400.jpg 1400w';
 ---
 
 <Layout
 	title="Réduire les pertes liées aux outils digitaux (ROI, processus) | Emmanuel SAUVAGE"
 	description="Expert en optimisation business via les outils digitaux : audit, automatisation, Symfony, Google Sheets, refonte web. Pour entreprises qui veulent moins de friction et des décisions basées sur des données fiables."
-	preloadLcpHref="/images/hero-illustration-unsplash-2-662.jpg"
-	preloadLcpType="image/jpeg"
+	preloadLcpHref="/images/hero-illustration-unsplash-2-662.webp"
+	preloadLcpType="image/webp"
 >
 	<SiteHeader current="home" />
 
@@ -51,18 +58,21 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 
 				<div class="hero__visual hero__visual--impact">
 					<figure class="heroMedia heroMedia--impact">
-						<img
-							class="heroMedia__img"
-							/* Valeur de secours volontairement basse : évite que le navigateur tombe sur la version 1400w. */
-							src="/images/hero-illustration-unsplash-2-662.jpg"
-							srcset="/images/hero-illustration-unsplash-2-662.jpg 662w, /images/hero-illustration-unsplash-2-1000.jpg 1000w, /images/hero-illustration-unsplash-2-1400.jpg 1400w"
-							sizes="(max-width: 720px) 662px, (max-width: 980px) 1000px, 1400px"
-							width="1400"
-							height="933"
-							alt="Photo : analyse de données et décisions à partir de graphes sur ordinateur."
-							loading="eager"
-							fetchpriority="high"
-						/>
+						<picture>
+							<source type="image/webp" srcset={heroSrcsetWebp} sizes={heroImageSizes} />
+							<img
+								class="heroMedia__img"
+								src="/images/hero-illustration-unsplash-2-662.jpg"
+								srcset={heroSrcsetJpeg}
+								sizes={heroImageSizes}
+								width="1400"
+								height="933"
+								alt="Photo : analyse de données et décisions à partir de graphes sur ordinateur."
+								loading="eager"
+								fetchpriority="high"
+								decoding="async"
+							/>
+						</picture>
 						<figcaption class="srOnly">Illustration d’accueil.</figcaption>
 					</figure>
 				</div>
@@ -435,7 +445,7 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 			<div class="container">
 				<header class="homeSection__header homeSection__header--cta">
 					<p class="homeSection__rail" aria-hidden="true">
-						<span class="homeSection__num">07</span>
+						<span class="homeSection__num">08</span>
 						<span class="homeSection__label">Contact</span>
 					</p>
 					<div class="homeSection__intro">
@@ -839,8 +849,15 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		position: relative;
 	}
 
+	.heroMedia--impact picture {
+		display: block;
+		width: 100%;
+		line-height: 0;
+	}
+
 	.heroMedia--impact {
 		width: min(620px, 100%);
+		aspect-ratio: 1400 / 933;
 		border-radius: 28px;
 		box-shadow:
 			0 34px 90px color-mix(in srgb, var(--color-primary) 18%, transparent),
@@ -875,6 +892,8 @@ import { GOOGLE_REVIEW_URL } from '../config/site';
 		display: block;
 		width: 100%;
 		height: auto;
+		aspect-ratio: 1400 / 933;
+		object-fit: cover;
 		transform: scale(1.05) translateY(-2px);
 		position: relative;
 		z-index: 1;

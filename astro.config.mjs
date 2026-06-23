@@ -12,6 +12,10 @@ export default defineConfig({
 	trailingSlash: 'ignore',
 	site: 'https://emmanuelsauvage.fr',
 	integrations: [sitemap()],
+	build: {
+		/** Évite les CSS /_astro/*.css bloquants le rendu (PageSpeed « requêtes de blocage »). */
+		inlineStylesheets: 'always',
+	},
 	vite: {
 		server: {
 			proxy: {

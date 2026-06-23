@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate:logos": "node scripts/generate-logo-assets.mjs"
+    "generate:logos": "node scripts/generate-logo-assets.mjs",
+    "generate:hero": "node scripts/generate-hero-assets.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.1",

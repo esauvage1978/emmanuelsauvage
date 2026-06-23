@@ -1,5 +1,5 @@
 /**
- * Génère des versions responsives du hero (JPEG) pour améliorer le LCP.
+ * Génère des versions responsives du hero (JPEG + WebP) pour améliorer le LCP.
  *
  * Usage :
  *   node scripts/generate-hero-assets.mjs
@@ -8,7 +8,7 @@ import sharp from 'sharp';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
-const root = join(process.cwd(), '.'); // ex. projet en cours
+const root = join(process.cwd(), '.');
 const src = join(root, 'public', 'images', 'hero-illustration-unsplash-2.jpg');
 
 if (!existsSync(src)) {
@@ -17,22 +17,25 @@ if (!existsSync(src)) {
 
 const imagesDir = join(root, 'public', 'images');
 
+/** Largeurs alignées sur le srcset ; 480 couvre le mobile 1x sans surcharger le 662. */
 const variants = [
-	[662, 'hero-illustration-unsplash-2-662.jpg'],
-	[1000, 'hero-illustration-unsplash-2-1000.jpg'],
-	[1400, 'hero-illustration-unsplash-2-1400.jpg'],
+	[480, 'hero-illustration-unsplash-2-480'],
+	[662, 'hero-illustration-unsplash-2-662'],
+	[1000, 'hero-illustration-unsplash-2-1000'],
+	[1400, 'hero-illustration-unsplash-2-1400'],
 ];
 
 await Promise.all(
-	variants.map(async ([width, outName]) => {
-		await sharp(src)
+	variants.flatMap(([width, baseName]) => [
+		sharp(src)
 			.resize(width, null, { withoutEnlargement: true })
-			.jpeg({
-				quality: 78,
-				progressive: true,
-			})
-			.toFile(join(imagesDir, outName));
-		console.log('OK', outName);
-	}),
+			.jpeg({ quality: 78, progressive: true, mozjpeg: true })
+			.toFile(join(imagesDir, `${baseName}.jpg`))
+			.then(() => console.log('OK', `${baseName}.jpg`)),
+		sharp(src)
+			.resize(width, null, { withoutEnlargement: true })
+			.webp({ quality: 80, effort: 4 })
+			.toFile(join(imagesDir, `${baseName}.webp`))
+			.then(() => console.log('OK', `${baseName}.webp`)),
+	]),
 );
-

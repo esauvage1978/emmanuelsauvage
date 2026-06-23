@@ -8,8 +8,18 @@ type Props = {
 };
 
 import CookieBanner from '../components/CookieBanner.astro';
-import '@fontsource-variable/inter/wght.css';
-import { SITE_ORIGIN } from '../config/site';
+import interLatinWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import '../styles/inter-subset.css';
+import {
+	SITE_ADDRESS,
+	SITE_DESCRIPTION,
+	SITE_EMAIL,
+	SITE_LOGO_URL,
+	SITE_NAME,
+	SITE_ORIGIN,
+	SITE_SAME_AS,
+	SITE_TELEPHONE,
+} from '../config/site';
 
 const {
 	title = 'Emmanuel SAUVAGE — Consultant en optimisation d’outils digitaux',
@@ -29,6 +39,65 @@ function canonicalizePathname(pathname: string) {
 
 const canonicalPath = canonicalizePathname(Astro.url.pathname);
 const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
+const personId = `${SITE_ORIGIN}/#person`;
+const businessId = `${SITE_ORIGIN}/#business`;
+const websiteId = `${SITE_ORIGIN}/#website`;
+const webpageId = `${canonicalUrl}#webpage`;
+
+const siteJsonLd = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'Person',
+			'@id': personId,
+			name: SITE_NAME,
+			url: SITE_ORIGIN,
+			image: SITE_LOGO_URL,
+			jobTitle: 'Consultant en optimisation d’outils digitaux',
+			email: `mailto:${SITE_EMAIL}`,
+			telephone: SITE_TELEPHONE,
+			address: SITE_ADDRESS,
+			sameAs: SITE_SAME_AS,
+		},
+		{
+			'@type': 'ProfessionalService',
+			'@id': businessId,
+			name: SITE_NAME,
+			url: SITE_ORIGIN,
+			logo: SITE_LOGO_URL,
+			image: SITE_LOGO_URL,
+			description: SITE_DESCRIPTION,
+			email: `mailto:${SITE_EMAIL}`,
+			telephone: SITE_TELEPHONE,
+			address: SITE_ADDRESS,
+			founder: { '@id': personId },
+			areaServed: {
+				'@type': 'Country',
+				name: 'France',
+			},
+			sameAs: SITE_SAME_AS,
+		},
+		{
+			'@type': 'WebSite',
+			'@id': websiteId,
+			url: SITE_ORIGIN,
+			name: SITE_NAME,
+			description: SITE_DESCRIPTION,
+			inLanguage: 'fr-FR',
+			publisher: { '@id': personId },
+		},
+		{
+			'@type': 'WebPage',
+			'@id': webpageId,
+			url: canonicalUrl,
+			name: title,
+			description,
+			inLanguage: 'fr-FR',
+			isPartOf: { '@id': websiteId },
+			about: { '@id': businessId },
+		},
+	],
+};
 ---
 
 <!doctype html>
@@ -41,6 +110,7 @@ const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
 		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
 		<link rel="shortcut icon" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="preload" href={interLatinWoff2} as="font" type="font/woff2" crossorigin="anonymous" />
 		{
 			preloadLcpHref ? (
 				<link rel="preload" href={preloadLcpHref} as="image" type={preloadLcpType} />
@@ -50,6 +120,7 @@ const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonicalUrl} />
 		<meta property="og:url" content={canonicalUrl} />
+		<script type="application/ld+json" set:html={JSON.stringify(siteJsonLd)} />
 		<slot name="head" />
 
 		<!--
@@ -161,10 +232,29 @@ const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
 		min-height: 100%;
 	}
 
+	/* Métriques proches d’Inter → limite le reflow si la police charge tard (CLS) */
+	@font-face {
+		font-family: 'Inter Fallback';
+		src: local('Segoe UI'), local('Arial');
+		size-adjust: 107.4%;
+		ascent-override: 90.2%;
+		descent-override: 22.5%;
+		line-gap-override: 0%;
+	}
+
 	body {
 		background: var(--color-bg);
 		color: var(--color-text);
-		font-family: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+		font-family:
+			'Inter Variable',
+			'Inter Fallback',
+			ui-sans-serif,
+			system-ui,
+			-apple-system,
+			'Segoe UI',
+			Roboto,
+			Arial,
+			sans-serif;
 		line-height: 1.5;
 		letter-spacing: -0.01em;
 	}
