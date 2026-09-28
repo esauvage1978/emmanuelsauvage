@@ -1,13 +1,14 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import { GOOGLE_REVIEW_URL } from '../config/site';
+import OfferLayout from '../layouts/OfferLayout.astro';
+import { serviceJsonLd } from '../data/schema';
+import { testimonials } from '../data/testimonials';
 
-const title =
-	'Création de site internet & optimisation : mes réalisations | Emmanuel SAUVAGE';
+const title = 'Création site internet Lille & Armentières – rapide et SEO';
 const description =
-	'Création de sites internet rapides, accessibles et optimisés SEO (Astro). Découvrez mes dernières réalisations : Cabinet Beligat, EDAME et Hecker & Frères Énergie, avec des scores Lighthouse au maximum.';
+	'Sites vitrines rapides (100/100 PageSpeed), bien référencés et pensés pour générer des demandes. Freelance près de Lille et Armentières.';
+const h1 = 'Création de site internet pour les entreprises de Lille et d’Armentières';
+const lead =
+	'Des sites ultra-rapides qui vous amènent des demandes, pas juste une carte de visite : pages de service claires, référencement local, formulaire de devis connecté, et des scores PageSpeed mesurés.';
 
 const realisations = [
 	{
@@ -43,748 +44,288 @@ const faq = [
 	{
 		question: 'Quel type de sites internet créez-vous ?',
 		answer:
-			'Principalement des sites vitrines et des sites métiers rapides, accessibles et optimisés pour le référencement (SEO). J’utilise des technologies modernes (Astro) qui produisent des pages très légères et faciles à maintenir.',
+			'Principalement des sites vitrines pour les TPE, PME, artisans et professions libérales : rapides, accessibles et optimisés pour le référencement. J’utilise Astro, qui produit des pages très légères sans plugins à maintenir.',
 	},
 	{
-		question: 'Que veut dire « optimisation » d’un site existant ?',
+		question: 'Combien coûte un site vitrine ?',
 		answer:
-			'Améliorer la vitesse de chargement, l’accessibilité, le SEO technique et la qualité du code d’un site déjà en ligne. L’objectif est d’augmenter la visibilité, la conversion et la note des outils de mesure (Lighthouse / PageSpeed).',
+			'Le prix dépend du nombre de pages, de la rédaction des contenus et des fonctionnalités (formulaire connecté, blog, prise de rendez-vous). Je vous envoie un devis détaillé après un premier échange.',
+	},
+	{
+		question: 'Mon site sera-t-il visible sur Google à Lille ou Armentières ?',
+		answer:
+			'Le site est construit pour le référencement local : pages de service, zone d’intervention, balisage structuré, vitesse et optimisation de votre fiche Google Business Profile. Personne ne peut garantir une position, mais ces fondations mettent toutes les chances de votre côté.',
+	},
+	{
+		question: 'Pouvez-vous refaire mon site WordPress sans perdre mon référencement ?',
+		answer:
+			'Oui : reprise des contenus utiles, conservation ou redirection 301 des anciennes adresses, et mesure de la vitesse avant et après la refonte.',
+	},
+	{
+		question: 'Pouvez-vous connecter le formulaire à mon CRM ou à Google Sheets ?',
+		answer:
+			'Oui : les demandes peuvent arriver par e-mail, s’enregistrer dans Google Sheets ou alimenter un CRM, par exemple via Zapier.',
 	},
 	{
 		question: 'Pourquoi la performance est-elle importante ?',
 		answer:
-			'Un site rapide est mieux référencé par Google, consomme moins de ressources et convertit davantage. Mes réalisations atteignent régulièrement des scores Lighthouse proches de 100 en performance, accessibilité, bonnes pratiques et SEO.',
+			'Un site rapide est mieux référencé, plus agréable sur mobile et convertit davantage. Les sites que je livre visent 100/100 sur PageSpeed en performance, accessibilité, bonnes pratiques et SEO.',
 	},
 ];
 
-const faqJsonLd = {
-	'@context': 'https://schema.org',
-	'@type': 'FAQPage',
-	mainEntity: faq.map((item) => ({
-		'@type': 'Question',
-		name: item.question,
-		acceptedAnswer: { '@type': 'Answer', text: item.answer },
-	})),
-};
+const parafiniukQuote = testimonials.find((t) => t.author === 'Maître Iwona Parafiniuk');
+
+const jsonLd = [
+	serviceJsonLd({
+		name: 'Création de site internet',
+		path: '/creation-site-internet/',
+		description,
+		serviceType: 'Création de sites internet vitrines',
+	}),
+];
 ---
 
-<Layout title={title} description={description}>
-	<script slot="head" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
-	<SiteHeader current="services" />
+<OfferLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	eyebrow="Offre 3 · Sites internet"
+	breadcrumb={[{ label: 'Création de site internet' }]}
+	badges={['100/100 PageSpeed mesuré', 'SEO local Lille & Armentières', 'Formulaires connectés']}
+	primaryCta={{ label: 'Demander un devis', href: '/contact/?offre=site' }}
+	secondaryCta={{ label: 'Voir les réalisations', href: '#realisations' }}
+	faq={faq}
+	jsonLd={jsonLd}
+	current="sites"
+	ogImage="/images/og/creation-site-internet.png"
+	finalCta={{
+		title: 'Un projet de site ou un site à refaire ?',
+		text: 'Présentez votre activité, votre zone et le site actuel s’il existe : je vous réponds avec une proposition et un devis.',
+		primary: { label: 'Demander un devis', href: '/contact/?offre=site' },
+		secondary: { label: 'Voir toutes les réalisations', href: '/realisations/' },
+	}}
+>
+	<!-- TODO (Emmanuel) : re-mesurer les scores PageSpeed des sites clients avant publication ; obtenir l’accord de HFE, Beligat, EDAME et du cabinet Parafiniuk pour les citer ; résultats avant/après (positions, demandes) à collecter. -->
+	<!-- Tarifs : sur devis (confirmé). TODO (Emmanuel) : hébergement et maintenance inclus ou non, possibilité pour le client de modifier ses contenus (CMS ?), délais, propriété du site et du nom de domaine. -->
 
-	<main class="page">
-		<header class="page__head">
-			<div class="page__headFx" aria-hidden="true">
-				<div class="page__blob page__blob--a"></div>
-				<div class="page__blob page__blob--spot"></div>
-			</div>
-			<div class="container">
-				<nav class="breadcrumb" aria-label="Fil d’Ariane">
-					<a href="/">Accueil</a>
-					<span class="breadcrumb__sep" aria-hidden="true">/</span>
-					<a href="/services">Services</a>
-					<span class="breadcrumb__sep" aria-hidden="true">/</span>
-					<span class="breadcrumb__current">Création de site internet</span>
-				</nav>
-				<p class="page__eyebrow">Création &amp; optimisation</p>
-				<h1>
-					Création de site internet <span class="page__h1Accent">& optimisation</span>
-				</h1>
-				<p class="lead">
-					Des sites vitrines rapides, accessibles et bien référencés — pensés pour convertir vos visiteurs en clients.
-					Création sur mesure ou optimisation d’un site existant (vitesse, SEO technique, accessibilité). Découvrez
-					ci-dessous mes dernières réalisations.
-				</p>
-				<div class="page__cta">
-					<a class="button button--primary" href="/contact">Demander un devis gratuit</a>
-					<a class="button button--secondary" href="#realisations">Voir mes réalisations</a>
+	<section class="oSection" aria-labelledby="csi-pourquoi">
+		<div class="oContainer">
+			<h2 id="csi-pourquoi" class="oTitle">Pourquoi la vitesse et le référencement comptent</h2>
+			<div class="oGrid oGrid--3">
+				<div class="oCard">
+					<h3>Google favorise les sites rapides</h3>
+					<p>La vitesse et la qualité technique font partie des signaux pris en compte par Google, surtout sur mobile.</p>
+				</div>
+				<div class="oCard">
+					<h3>Vos clients cherchent sur mobile</h3>
+					<p>Un site qui s’affiche instantanément sur smartphone garde le visiteur au lieu de l’envoyer chez un concurrent.</p>
+				</div>
+				<div class="oCard">
+					<h3>Un site doit générer des demandes</h3>
+					<p>Pages de service claires, preuves, appels à l’action et formulaire de devis simple : le site travaille pour vous.</p>
 				</div>
 			</div>
-		</header>
+		</div>
+	</section>
 
-		<section class="section">
-			<div class="container offer">
-				<article class="offer__card">
-					<h2>Création de site</h2>
-					<p>
-						Site vitrine sur mesure : arborescence, design, contenus, SEO et mise en ligne. Une base saine,
-						performante et facile à faire évoluer.
-					</p>
-				</article>
-				<article class="offer__card">
-					<h2>Optimisation</h2>
-					<p>
-						Vous avez déjà un site ? J’améliore sa vitesse, son accessibilité et son référencement technique pour
-						gagner en visibilité et en conversions.
-					</p>
-				</article>
-				<article class="offer__card">
-					<h2>Performance prouvée</h2>
-					<p>
-						Mes réalisations visent l’excellence sur les outils de mesure : scores Lighthouse proches de 100 en
-						performance, accessibilité, bonnes pratiques et SEO.
-					</p>
-				</article>
+	<section class="oSection oSection--alt" aria-labelledby="csi-formules">
+		<div class="oContainer">
+			<h2 id="csi-formules" class="oTitle">Formules</h2>
+			<p class="oIntro">Chaque formule est chiffrée sur devis, selon votre activité et vos contenus.</p>
+			<div class="oGrid oGrid--2">
+				<div class="oCard">
+					<span class="oCard__tag">Essentiel</span>
+					<h3>Site Essentiel</h3>
+					<p>1 à 3 pages ou une page unique, formulaire de contact, SEO de base et fiche Google Business Profile.</p>
+				</div>
+				<div class="oCard oCard--accent">
+					<span class="oCard__tag">Cœur de gamme</span>
+					<h3>Site Vitrine PME</h3>
+					<p>5 à 8 pages, rédaction SEO des pages de service, SEO local, formulaire de devis connecté, avis Google, 100/100 PageSpeed visé.</p>
+				</div>
+				<div class="oCard">
+					<span class="oCard__tag">Visibilité</span>
+					<h3>Site + Visibilité</h3>
+					<p>Site vitrine avec blog, pages de service et de zones, et suivi Search Console pendant les premiers mois.</p>
+				</div>
+				<div class="oCard">
+					<span class="oCard__tag">Refonte</span>
+					<h3>Refonte / migration</h3>
+					<p>Reprise des contenus, redirections 301, gain de vitesse mesuré avant et après.</p>
+				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<section id="realisations" class="section section--realisations">
-			<div class="container">
-				<header class="sectionHead">
-					<h2 class="sectionHead__title">Mes dernières réalisations</h2>
-					<p class="sectionHead__text">
-						Quelques sites récents développés et mis en ligne. Cliquez sur une vignette pour visiter le site.
-					</p>
-				</header>
-
-				<div class="works">
-					{
-						realisations.map((item) => (
-							<article class="work">
-								<a class="work__media" href={item.url} target="_blank" rel="noopener noreferrer">
-									<img
-										src={item.image}
-										alt={`Aperçu du site ${item.name}`}
-										loading="lazy"
-										decoding="async"
-										width="1024"
-										height="700"
-									/>
+	<section id="realisations" class="oSection" aria-labelledby="csi-realisations">
+		<div class="oContainer">
+			<h2 id="csi-realisations" class="oTitle">Mes dernières réalisations</h2>
+			<p class="oIntro">Quelques sites récents développés et mis en ligne. Cliquez sur une vignette pour visiter le site.</p>
+			<div class="oGrid oGrid--3">
+				{
+					realisations.map((item) => (
+						<article class="oCard csiWork">
+							<a class="oMedia" href={item.url} target="_blank" rel="noopener noreferrer">
+								<img
+									src={item.image}
+									alt={`Aperçu du site ${item.name}`}
+									loading="lazy"
+									decoding="async"
+									width="1024"
+									height="700"
+								/>
+							</a>
+							<p class="csiWork__sector">{item.sector}</p>
+							<h3>
+								<a href={item.url} target="_blank" rel="noopener noreferrer">
+									{item.name}
 								</a>
-								<div class="work__body">
-									<p class="work__sector">{item.sector}</p>
-									<h3 class="work__title">
-										<a href={item.url} target="_blank" rel="noopener noreferrer">
-											{item.name}
-										</a>
-									</h3>
-									<p class="work__desc">{item.description}</p>
-									<ul class="work__tags">
-										{item.tags.map((tag) => (
-											<li>{tag}</li>
-										))}
-									</ul>
-									<a class="work__link" href={item.url} target="_blank" rel="noopener noreferrer">
-										Visiter le site
-										<span aria-hidden="true">↗</span>
-									</a>
-								</div>
-							</article>
-						))
-					}
-				</div>
+							</h3>
+							<p>{item.description}</p>
+							<ul class="csiWork__tags">
+								{item.tags.map((tag) => (
+									<li>{tag}</li>
+								))}
+							</ul>
+						</article>
+					))
+				}
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<section class="section section--proof">
-			<div class="container">
-				<header class="sectionHead">
-					<p class="page__eyebrow">Preuve de performance</p>
-					<h2 class="sectionHead__title">Des sites notés au maximum</h2>
-					<p class="sectionHead__text">
-						Rapports PageSpeed Insights (mobile) sur des sites en production : performance, accessibilité, bonnes
-						pratiques et SEO au plus haut. Un site rapide et conforme, c’est un meilleur référencement et plus de
-						conversions.
-					</p>
-				</header>
+	<section id="performance" class="oSection oSection--alt" aria-labelledby="csi-performance">
+		<div class="oContainer">
+			<h2 id="csi-performance" class="oTitle">Des sites notés au maximum</h2>
+			<p class="oIntro">
+				Rapports PageSpeed Insights (mobile) sur des sites en production : performance, accessibilité, bonnes pratiques
+				et SEO au plus haut.
+			</p>
+			<div class="oGrid oGrid--2 csiProofs">
+				<figure class="oMedia">
+					<img
+						src="/images/realisations/hfe-energie-performance.png"
+						alt="Rapport PageSpeed Insights de hfe-energie.fr : 100 en performance, 100 en accessibilité, 100 en bonnes pratiques et 100 en SEO"
+						loading="lazy"
+						decoding="async"
+						width="763"
+						height="828"
+					/>
+					<figcaption>
+						<a href="https://hfe-energie.fr/" target="_blank" rel="noopener noreferrer">hfe-energie.fr</a> · 100 · 100 · 100 · 100
+					</figcaption>
+				</figure>
+				<figure class="oMedia">
+					<img
+						src="/images/realisations/podologue-beligat-performance.png"
+						alt="Rapport PageSpeed Insights de podologue-beligat.fr : 100 en performance, 96 en accessibilité, 100 en bonnes pratiques et 100 en SEO"
+						loading="lazy"
+						decoding="async"
+						width="960"
+						height="1024"
+					/>
+					<figcaption>
+						<a href="https://podologue-beligat.fr/" target="_blank" rel="noopener noreferrer">podologue-beligat.fr</a> · 100 · 96 · 100 · 100
+					</figcaption>
+				</figure>
+			</div>
+		</div>
+	</section>
 
-				<div class="proofs">
-					<figure class="proofCard">
-						<img
-							src="/images/realisations/hfe-energie-performance.png"
-							alt="Rapport PageSpeed Insights de hfe-energie.fr : 100 en performance, 100 en accessibilité, 100 en bonnes pratiques et 100 en SEO"
-							loading="lazy"
-							decoding="async"
-							width="763"
-							height="828"
-						/>
-						<figcaption class="proofCard__caption">
-							<a href="https://hfe-energie.fr/" target="_blank" rel="noopener noreferrer">hfe-energie.fr</a>
-							<span>100 · 100 · 100 · 100</span>
+	<section class="oSection" aria-labelledby="csi-methode">
+		<div class="oContainer">
+			<h2 id="csi-methode" class="oTitle">Méthode</h2>
+			<ol class="oSteps oSteps--3">
+				<li><strong>Brief</strong>Votre activité, vos clients, votre zone et vos objectifs.</li>
+				<li><strong>Maquette</strong>Structure des pages et design validés avant le développement.</li>
+				<li><strong>Rédaction SEO</strong>Pages de service et contenus pensés pour vos clients et pour Google.</li>
+				<li><strong>Développement</strong>Site Astro rapide, accessible, avec données structurées.</li>
+				<li><strong>Mise en ligne</strong>Nom de domaine, redirections, Search Console et fiche Google.</li>
+				<li><strong>Suivi</strong>Mesure des performances et ajustements après la mise en ligne.</li>
+			</ol>
+		</div>
+	</section>
+
+	<section class="oSection oSection--alt" aria-labelledby="csi-difference">
+		<div class="oContainer oSplit">
+			<div>
+				<h2 id="csi-difference" class="oTitle">Ce qui me différencie</h2>
+				<ul class="oChecks">
+					<li>Pas de WordPress ni de plugins à mettre à jour : moins de failles et moins de maintenance</li>
+					<li>Formulaires connectés : e-mail, Google Sheets, CRM ou Zapier</li>
+					<li>Fiche Google Business Profile optimisée avec le site</li>
+					<li>Évolution possible vers un espace client ou une <a href="/developpement-application-sur-mesure/">application sur mesure</a></li>
+					<li>Refonte d’un site existant (WordPress, Wix…) vers un site rapide, sans perdre votre référencement</li>
+				</ul>
+				<ul class="oLinks">
+					<li><a href="/blog/site-vitrine-astro-zapier-mailjet/">Comment je crée des sites vitrines rapides et connectés</a></li>
+				</ul>
+			</div>
+			{
+				parafiniukQuote && (
+					<figure class="oQuote">
+						<blockquote>« {parafiniukQuote.quote} »</blockquote>
+						<figcaption>
+							{parafiniukQuote.author}, {parafiniukQuote.context}
 						</figcaption>
 					</figure>
+				)
+			}
+		</div>
+	</section>
 
-					<figure class="proofCard">
-						<img
-							src="/images/realisations/podologue-beligat-performance.png"
-							alt="Rapport PageSpeed Insights de podologue-beligat.fr : 100 en performance, 96 en accessibilité, 100 en bonnes pratiques et 100 en SEO"
-							loading="lazy"
-							decoding="async"
-							width="960"
-							height="1024"
-						/>
-						<figcaption class="proofCard__caption">
-							<a href="https://podologue-beligat.fr/" target="_blank" rel="noopener noreferrer">podologue-beligat.fr</a>
-							<span>100 · 96 · 100 · 100</span>
-						</figcaption>
-					</figure>
-				</div>
-			</div>
-		</section>
-
-		<section class="cta page__preFooter" aria-label="Contact">
-			<div class="container cta__inner cta__inner--accent">
-				<div>
-					<h2>Un projet de site ou un site à optimiser ?</h2>
-					<p>Décrivez votre besoin (création, refonte, optimisation) : je vous propose une première orientation.</p>
-					<p class="cta__extra">
-						Déjà client ?
-						<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
-					</p>
-				</div>
-				<div class="cta__actions">
-					<a class="button button--primary" href="/contact">Demander un devis</a>
-					<a class="button button--secondary" href="/services">Toutes les expertises</a>
-				</div>
-			</div>
-		</section>
-	</main>
-
-	<SiteFooter />
-</Layout>
+	<section class="oSection" aria-labelledby="csi-zone">
+		<div class="oContainer">
+			<h2 id="csi-zone" class="oTitle">Zone d’intervention</h2>
+			<p class="oIntro">
+				Basé à Erquinghem-Lys, je travaille avec les entreprises de Lille, Armentières, Nieppe, Bailleul, Hazebrouck,
+				Lomme et de toute la métropole lilloise. Rendez-vous sur place ou à distance.
+			</p>
+		</div>
+	</section>
+</OfferLayout>
 
 <style>
-	.container {
-		width: min(1120px, calc(100% - 32px));
-		margin: 0 auto;
-	}
-
-	@media (min-width: 521px) {
-		.container {
-			width: min(1120px, calc(100% - 48px));
-		}
-	}
-
-	.page {
-		padding-bottom: 32px;
-		min-width: 0;
-	}
-
-	.page__head {
-		position: relative;
-		overflow: hidden;
-		padding: 28px 0 24px;
-		background: #fff;
-		border-bottom: 1px solid var(--color-border);
-	}
-
-	@media (min-width: 768px) {
-		.page__head {
-			padding: 44px 0 28px;
-		}
-	}
-
-	.page__headFx {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		z-index: 0;
-	}
-
-	.page__blob {
-		position: absolute;
-		border-radius: 999px;
-		filter: blur(44px);
-		opacity: 0.85;
-		mix-blend-mode: multiply;
-	}
-
-	.page__blob--a {
-		width: 280px;
-		height: 280px;
-		top: -120px;
-		right: -80px;
-		background: radial-gradient(circle at 40% 40%, rgba(79, 110, 247, 0.4), transparent 62%);
-	}
-
-	.page__blob--spot {
-		width: 220px;
-		height: 220px;
-		bottom: -60px;
-		left: -40px;
-		background: radial-gradient(circle at 40% 40%, rgba(196, 92, 46, 0.35), transparent 62%);
-	}
-
-	.page__head .container {
-		position: relative;
-		z-index: 1;
-	}
-
-	.breadcrumb {
-		font-size: 13px;
-		color: var(--color-muted);
-		margin: 0 0 14px;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 6px;
-		align-items: center;
-	}
-
-	.breadcrumb a {
-		color: var(--color-spot-hover);
-		font-weight: 600;
-		text-decoration: none;
-	}
-
-	.breadcrumb a:hover {
-		text-decoration: underline;
-	}
-
-	.breadcrumb__sep {
-		opacity: 0.45;
-	}
-
-	.breadcrumb__current {
-		color: var(--color-text);
-		font-weight: 600;
-	}
-
-	.page__eyebrow {
-		position: relative;
-		margin: 0 0 10px;
-		padding-left: 14px;
-		font-size: 13px;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: color-mix(in srgb, var(--color-text) 72%, var(--color-spot));
-	}
-
-	.page__eyebrow::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: 0.15em;
-		bottom: 0.15em;
-		width: 3px;
-		border-radius: 2px;
-		background: linear-gradient(180deg, var(--color-spot), var(--color-primary));
-	}
-
-	h1 {
-		margin: 0 0 12px;
-		font-size: clamp(1.65rem, 5vw, 2.75rem);
-		line-height: 1.12;
-		letter-spacing: -0.03em;
-	}
-
-	.page__h1Accent {
-		background: linear-gradient(105deg, var(--color-primary) 0%, var(--color-spot) 100%);
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: transparent;
-	}
-
-	.lead {
-		margin: 0;
-		font-size: clamp(1rem, 2.8vw, 1.125rem);
-		color: var(--color-muted);
-		max-width: 72ch;
-		line-height: 1.55;
-	}
-
-	.page__cta {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 12px;
-		margin-top: 20px;
-	}
-
-	.section {
-		padding: 24px 0;
-	}
-
-	.section--realisations {
-		padding-top: 8px;
-	}
-
-	.sectionHead {
-		margin-bottom: 18px;
-	}
-
-	.sectionHead__title {
-		margin: 0 0 6px;
-		font-size: clamp(1.3rem, 3vw, 1.75rem);
-		letter-spacing: -0.02em;
-		color: var(--color-primary);
-	}
-
-	.sectionHead__text {
-		margin: 0;
-		color: var(--color-muted);
-		max-width: 60ch;
-	}
-
-	/* Offre : 3 cartes */
-	.offer {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 14px;
-	}
-
-	@media (min-width: 720px) {
-		.offer {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	.offer__card {
-		background: rgba(255, 255, 255, 0.96);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		padding: 18px;
-		box-shadow:
-			inset 0 3px 0 0 rgba(196, 92, 46, 0.28),
-			var(--shadow-sm);
-	}
-
-	.offer__card h2 {
-		margin: 0 0 8px;
-		font-size: clamp(1.05rem, 2.5vw, 1.2rem);
-		color: var(--color-primary);
-		letter-spacing: -0.02em;
-	}
-
-	.offer__card p {
-		margin: 0;
-		color: var(--color-text);
-		opacity: 0.92;
-		line-height: 1.5;
-	}
-
-	/* Grille des réalisations */
-	.works {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 18px;
-	}
-
-	@media (min-width: 720px) {
-		.works {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	@media (min-width: 1040px) {
-		.works {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	.work {
-		display: flex;
-		flex-direction: column;
-		background: #fff;
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		overflow: hidden;
-		box-shadow: var(--shadow-sm);
-		transition: box-shadow 0.18s ease, transform 0.18s ease;
-	}
-
-	.work:hover {
-		box-shadow: var(--shadow-md);
-		transform: translateY(-3px);
-	}
-
-	.work__media {
-		display: block;
-		aspect-ratio: 16 / 11;
-		overflow: hidden;
-		background: var(--color-bg);
-		border-bottom: 1px solid var(--color-border);
-	}
-
-	.work__media img {
-		display: block;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: top center;
-		transition: transform 0.4s ease;
-	}
-
-	.work:hover .work__media img {
-		transform: scale(1.04);
-	}
-
-	.work__body {
+	.csiWork {
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
-		padding: 16px 18px 18px;
-		flex: 1;
 	}
 
-	.work__sector {
-		margin: 0;
-		font-size: 12px;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-		color: color-mix(in srgb, var(--color-text) 60%, var(--color-spot));
-		font-weight: 600;
+	.csiWork .oMedia {
+		margin-bottom: 8px;
 	}
 
-	.work__title {
-		margin: 0;
-		font-size: 1.15rem;
-		letter-spacing: -0.02em;
-		color: var(--color-primary);
-	}
-
-	.work__title a {
-		color: inherit;
-		text-decoration: none;
-	}
-
-	.work__title a:hover {
-		text-decoration: underline;
-		text-decoration-color: rgba(196, 92, 46, 0.4);
-	}
-
-	.work__desc {
-		margin: 0;
-		color: var(--color-text);
-		opacity: 0.9;
-		line-height: 1.5;
-		font-size: 0.95rem;
-	}
-
-	.work__tags {
-		list-style: none;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 6px;
-		padding: 0;
-		margin: 2px 0 0;
-	}
-
-	.work__tags li {
-		font-size: 12px;
-		font-weight: 600;
-		color: var(--color-primary);
-		background: rgba(47, 58, 143, 0.08);
-		border: 1px solid rgba(47, 58, 143, 0.12);
-		border-radius: 999px;
-		padding: 4px 10px;
-	}
-
-	.work__link {
-		margin-top: auto;
-		padding-top: 8px;
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		font-weight: 600;
-		color: var(--color-spot-hover);
-		text-decoration: none;
-	}
-
-	.work__link:hover {
-		color: var(--color-spot);
-		text-decoration: underline;
-		text-underline-offset: 3px;
-	}
-
-	/* Preuve de performance */
-	.section--proof {
-		padding-top: 8px;
-	}
-
-	.proofs {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 18px;
-	}
-
-	@media (min-width: 720px) {
-		.proofs {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	.proofCard {
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		border-radius: 16px;
-		overflow: hidden;
-		border: 1px solid color-mix(in srgb, var(--color-spot) 22%, var(--color-border));
-		background: #fff;
-		box-shadow: var(--shadow-sm);
-	}
-
-	.proofCard img {
-		display: block;
-		width: 100%;
-		height: auto;
-		border-bottom: 1px solid var(--color-border);
-	}
-
-	.proofCard__caption {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: baseline;
-		justify-content: space-between;
-		gap: 6px;
-		padding: 12px 16px;
-		background: linear-gradient(135deg, rgba(47, 58, 143, 0.06), var(--color-spot-soft));
-	}
-
-	.proofCard__caption a {
-		font-weight: 700;
-		color: var(--color-primary);
-		text-decoration: none;
-	}
-
-	.proofCard__caption a:hover {
-		color: var(--color-spot-hover);
-		text-decoration: underline;
-		text-underline-offset: 3px;
-	}
-
-	.proofCard__caption span {
+	.csiWork__sector {
+		margin: 0 !important;
 		font-size: 13px;
 		font-weight: 600;
-		color: var(--color-muted);
-		letter-spacing: 0.02em;
-	}
-
-	.button {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		text-decoration: none;
-		border-radius: 14px;
-		padding: 12px 16px;
-		font-weight: 600;
-		border: 1px solid transparent;
-		transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border 0.15s ease;
-	}
-
-	.button--primary {
-		color: white;
-		background: var(--color-primary);
-		box-shadow: var(--shadow-sm);
-	}
-
-	.button--primary:hover {
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-md);
-	}
-
-	.button--secondary {
-		color: var(--color-text);
-		background: rgba(255, 255, 255, 0.85);
-		border-color: var(--color-border);
-	}
-
-	.button--secondary:hover {
-		background: rgba(255, 255, 255, 1);
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-sm);
-	}
-
-	.cta {
-		padding: 8px 0;
-	}
-
-	.page__preFooter {
-		padding-bottom: 56px;
-		background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.75) 40%, #ffffff 100%);
-		border-bottom: 1px solid rgba(47, 58, 143, 0.1);
-	}
-
-	.cta__inner {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 18px;
-		align-items: center;
-		padding: 22px;
-		border-radius: 24px;
-		border: 1px solid rgba(47, 58, 143, 0.2);
-		background: linear-gradient(180deg, rgba(47, 58, 143, 0.1), rgba(255, 255, 255, 0.65));
-		box-shadow: var(--shadow-md);
-		min-width: 0;
-		box-sizing: border-box;
-	}
-
-	.cta__inner > * {
-		min-width: 0;
-	}
-
-	.cta__inner--accent {
-		border-color: color-mix(in srgb, var(--color-spot) 32%, rgba(47, 58, 143, 0.2));
-		background: linear-gradient(
-			135deg,
-			rgba(47, 58, 143, 0.12),
-			var(--color-spot-soft),
-			rgba(79, 110, 247, 0.06)
-		);
-		box-shadow: 0 12px 40px rgba(47, 58, 143, 0.08), 0 0 0 1px rgba(196, 92, 46, 0.1);
-	}
-
-	.cta__inner h2 {
-		margin: 0 0 8px;
-		font-size: clamp(1.15rem, 2.4vw, 1.45rem);
-		color: var(--color-primary);
-		letter-spacing: -0.02em;
-	}
-
-	.cta__inner p {
-		margin: 0;
-		color: var(--color-muted);
-		line-height: 1.55;
-	}
-
-	.cta__extra {
-		margin: 14px 0 0;
-		font-size: 14px;
-		color: var(--color-muted);
-	}
-
-	.cta__extra a {
 		color: var(--color-spot-hover);
-		font-weight: 600;
-		text-decoration: underline;
-		text-decoration-color: rgba(196, 92, 46, 0.35);
-		text-underline-offset: 3px;
 	}
 
-	.cta__extra a:hover {
-		color: var(--color-spot);
-	}
-
-	.cta__actions {
+	.csiWork__tags {
 		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-		gap: 12px;
-		width: 100%;
-		min-width: 0;
-		box-sizing: border-box;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin: auto 0 0 !important;
+		padding: 0 !important;
+		list-style: none;
 	}
 
-	.cta__actions .button {
-		width: 100%;
-		justify-content: center;
-		box-sizing: border-box;
-		text-align: center;
+	.csiWork__tags li {
+		margin: 0 !important;
+		padding: 4px 10px;
+		border-radius: 999px;
+		font-size: 12px;
+		font-weight: 600;
+		color: var(--color-primary);
+		background: rgba(47, 58, 143, 0.06);
 	}
 
-	@media (min-width: 960px) {
-		.cta__inner {
-			grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.85fr);
-		}
-
-		.cta__actions {
-			flex-direction: row;
-			flex-wrap: wrap;
-			justify-content: flex-end;
-		}
-
-		.cta__actions .button {
-			width: auto;
-			white-space: nowrap;
-		}
+	.csiProofs .oMedia img {
+		max-height: 520px;
+		object-fit: contain;
+		background: #fff;
 	}
 </style>

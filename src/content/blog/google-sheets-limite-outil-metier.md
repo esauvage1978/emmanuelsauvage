@@ -9,6 +9,7 @@ tags:
   - "Sheets"
   - "Décision"
 illustration: sheets
+category: google-sheets
 ---
 <aside class="tldr">
 <strong>En bref</strong>

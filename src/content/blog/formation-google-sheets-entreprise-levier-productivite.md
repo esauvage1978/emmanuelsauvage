@@ -2,6 +2,7 @@
 title: "Pourquoi former ses collaborateurs à Google Sheets ? (Le levier sous-estimé)"
 shortTitle: "Formation Google Sheets entreprise : ROI"
 description: "Productivité, réduction d’erreurs, automatisation Apps Script et API : méthode, cas d’usage (reporting, CRM léger, ops) et ROI formation vs recrutement pour dirigeants et équipes."
+metaDescription: "Former vos équipes à Google Sheets : productivité, moins d’erreurs, Apps Script et API. Méthode, cas d’usage (reporting, CRM léger) et ROI de la formation."
 pubDate: 2026-04-14
 readingTimeMinutes: 8
 tags:
@@ -9,6 +10,7 @@ tags:
   - "Formation"
   - "ROI"
 illustration: sheets
+category: google-sheets
 ---
 <aside class="tldr">
 <strong>En bref</strong>

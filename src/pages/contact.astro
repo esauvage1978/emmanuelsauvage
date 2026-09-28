@@ -10,8 +10,8 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 ---
 
 <Layout
-	title="Contact — diagnostic, audit ou mission | Emmanuel SAUVAGE"
-	description="Contact entreprise : projet, budget envisagé, urgence et besoin. Réponse orientée ROI — Symfony, automatisation, Google Sheets, refonte web et audit d’outils digitaux."
+	title="Contact – formation, application ou site | Emmanuel Sauvage"
+	description="Parlez-moi de votre projet : formation Google Sheets finançable OPCO, application sur mesure, automatisation ou site internet. Près de Lille ou à distance."
 >
 	<SiteHeader current="contact" />
 
@@ -37,16 +37,16 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 			</div>
 			<div class="container hero__grid">
 				<div class="hero__content">
-					<p class="eyebrow contactEyebrow">Optimisation business · outils digitaux · processus</p>
-					<h1>Un premier échange <span class="contactH1Accent">cadré</span> — budget, urgence, type de projet</h1>
+					<p class="eyebrow contactEyebrow">Formation · Applications · Sites internet</p>
+					<h1>Parlons de votre projet : <span class="contactH1Accent">formation, application ou site</span></h1>
 					<p class="hero__subtitle">
-						Vous décrivez votre contexte et vos contraintes ; je réponds avec une orientation réaliste (périmètre, risques,
-						prochaine étape). Pas de promesse creuse : des priorités actionnables.
+						Décrivez votre contexte en quelques lignes : je vous réponds avec une première orientation (format, périmètre,
+						prochaine étape), sans engagement.
 					</p>
 					<ul class="trust">
-						<li class="trust__item"><strong>ROI</strong> : gains, pertes, risques — pas seulement de la technique</li>
-						<li class="trust__item"><strong>Stack</strong> : Symfony, API, automatisation, Sheets / data</li>
-						<li class="trust__item"><strong>Terrain</strong> : organisations complexes, adoption, formation</li>
+						<li class="trust__item"><strong>Formation</strong> : finançable OPCO via notre organisme partenaire certifié Qualiopi</li>
+						<li class="trust__item"><strong>Applications</strong> : automatisation Google Sheets, outils métier, maintenance</li>
+						<li class="trust__item"><strong>Sites</strong> : rapides, bien référencés, formulaires connectés</li>
 					</ul>
 				</div>
 
@@ -92,39 +92,41 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 						<div class="field">
 							<label for="objet">Objet de la sollicitation</label>
 							<select id="objet" name="objet" required>
-								<option value="" disabled selected>— Choisir un thème —</option>
-								<option value="dev-symfony">Développement applicatif (Symfony, API)</option>
-								<option value="front-vue-react">Interfaces web (Vue.js, React)</option>
-								<option value="data-bi">Data, reporting &amp; BI (Sheets, Power BI, Looker…)</option>
-								<option value="automation">Automatisation &amp; intégrations (API, outils métier…)</option>
-								<option value="maintenance">Maintenance, audit ou refonte technique</option>
-								<option value="formation">Formation ou accompagnement</option>
+								<option value="" disabled selected>— Choisir une offre —</option>
+								<option value="formation">Formation Google Sheets / Apps Script</option>
+								<option value="application">Application sur mesure ou automatisation</option>
+								<option value="site">Site internet (création ou refonte)</option>
 								<option value="autre">Autre</option>
 							</select>
 						</div>
+						<fieldset class="field formationFields" data-formation-fields hidden>
+							<legend class="formationFields__legend">Pour une formation</legend>
+							<label for="participants">Nombre de participants</label>
+							<input id="participants" name="participants" inputmode="numeric" placeholder="Ex. : 8" />
+							<label for="opco">Financement OPCO</label>
+							<select id="opco" name="opco">
+								<option value="">— Préciser —</option>
+								<option value="opco-connu">Nous connaissons notre OPCO et souhaitons une prise en charge</option>
+								<option value="opco-a-verifier">Prise en charge souhaitée, OPCO à identifier</option>
+								<option value="sans-financement">Pas de financement OPCO</option>
+								<option value="ne-sait-pas">Je ne sais pas encore</option>
+							</select>
+							<p class="formationFields__hint">
+								Formation finançable OPCO via notre organisme partenaire certifié Qualiopi, selon les règles de votre OPCO.
+							</p>
+						</fieldset>
 						<div class="field">
 							<label for="project-type">Type de projet (qualification)</label>
 							<select id="project-type" name="project_type" required>
 								<option value="" disabled selected>— Préciser le type —</option>
-								<option value="audit-diagnostic">Audit / diagnostic / cadrage</option>
-								<option value="refonte-evolution">Refonte ou évolution d’outil métier</option>
-								<option value="automation-integration">Automatisation / intégrations</option>
-								<option value="data-reporting">Data, reporting, Google Sheets / BI</option>
-								<option value="maintenance-support">Maintenance, perf, sécurité</option>
-								<option value="formation">Formation / montée en compétences</option>
+								<option value="formation-presentiel">Formation dans nos locaux</option>
+								<option value="formation-distance">Formation à distance</option>
+								<option value="automation-integration">Automatisation Google Sheets / intégrations</option>
+								<option value="audit-diagnostic">Cadrage d’une nouvelle application</option>
+								<option value="refonte-evolution">Refonte, maintenance ou évolution d’une application</option>
+								<option value="site-creation">Création de site internet</option>
+								<option value="site-refonte">Refonte de site internet</option>
 								<option value="autre-projet">Autre / à définir</option>
-							</select>
-						</div>
-						<div class="field">
-							<label for="budget-range">Budget envisagé (ordre de grandeur)</label>
-							<select id="budget-range" name="budget_range" required>
-								<option value="" disabled selected>— Indiquer une fourchette —</option>
-								<option value="under-3k">&lt; 3 k€</option>
-								<option value="3k-8k">3 k€ — 8 k€</option>
-								<option value="8k-20k">8 k€ — 20 k€</option>
-								<option value="20k-50k">20 k€ — 50 k€</option>
-								<option value="50k-plus">50 k€ et +</option>
-								<option value="unknown">À définir avec vous</option>
 							</select>
 						</div>
 						<div class="field">
@@ -143,7 +145,7 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 								id="message"
 								name="message"
 								rows="6"
-								placeholder="Ex. : refonte d’un outil Symfony, tableau de bord Power BI, automatisation Google Sheets, intégration API…"
+								placeholder="Ex. : former 8 personnes au niveau avancé, automatiser un reporting Google Sheets, remplacer un fichier par une application, refaire notre site…"
 								required
 							></textarea>
 						</div>
@@ -160,7 +162,7 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 									required
 								/>
 								<span>
-									J’ai lu la <a href="/politique-de-confidentialite">politique de confidentialité</a> et j’accepte que
+									J’ai lu la <a href="/politique-de-confidentialite/">politique de confidentialité</a> et j’accepte que
 									mes données soient utilisées pour répondre à ma demande.
 								</span>
 							</label>
@@ -185,17 +187,19 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 							<h3>Coordonnées</h3>
 							<p class="card__text">
 								<a href="tel:+33609924945">06 09 92 49 45</a><br />
-								Erquinghem-lys<br />
+								Erquinghem-Lys (59193)<br />
 								<a href="mailto:contact@emmanuelsauvage.fr">contact@emmanuelsauvage.fr</a>
 							</p>
 						</div>
 
 						<div class="card card--accent">
-							<h3>Services</h3>
+							<h3>Les offres</h3>
 							<p class="card__text">
-								Développement Symfony • interfaces Vue.js / React • data &amp; reporting • automatisation • formation.
+								<a href="/formation-google-sheets/">Formation Google Sheets</a> •
+								<a href="/developpement-application-sur-mesure/">Applications sur mesure</a> •
+								<a href="/creation-site-internet/">Sites internet</a>
 							</p>
-							<a class="button button--secondary" href="/services">Voir les services</a>
+							<a class="button button--secondary" href="/services/">Voir les services</a>
 						</div>
 
 						<div class="card googleReviewCard">
@@ -227,8 +231,8 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 					</p>
 				</div>
 				<div class="cta__actions">
-					<a class="button button--primary" href="/services">Découvrir les services</a>
-					<a class="button button--secondary" href="/a-propos">À propos</a>
+					<a class="button button--primary" href="/services/">Découvrir les services</a>
+					<a class="button button--secondary" href="/a-propos/">À propos</a>
 				</div>
 			</div>
 		</section>
@@ -267,6 +271,23 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 				submitBtn.textContent = SUBMIT_LABEL_LOADING;
 			};
 
+			/* Présélection de l’offre via ?offre=formation|application|site et affichage des champs formation. */
+			const objetEl = document.getElementById('objet');
+			const formationFields = form.querySelector('[data-formation-fields]');
+			const syncFormationFields = () => {
+				if (formationFields) formationFields.hidden = objetEl?.value !== 'formation';
+			};
+			try {
+				const offre = new URLSearchParams(window.location.search).get('offre');
+				if (offre && objetEl && ['formation', 'application', 'site', 'autre'].includes(offre)) {
+					objetEl.value = offre;
+				}
+			} catch (_) {
+				/* ignore */
+			}
+			objetEl?.addEventListener('change', syncFormationFields);
+			syncFormationFields();
+
 			form.addEventListener('submit', async (e) => {
 				e.preventDefault();
 				statusEl.hidden = true;
@@ -288,13 +309,21 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 				const projectTypeSelect = document.getElementById('project-type');
 				const projectType = projectTypeSelect?.value?.trim() ?? '';
 				const projectTypeLabel = projectTypeSelect?.selectedOptions?.[0]?.textContent?.trim() ?? '';
-				const budgetSelect = document.getElementById('budget-range');
-				const budgetRange = budgetSelect?.value?.trim() ?? '';
-				const budgetRangeLabel = budgetSelect?.selectedOptions?.[0]?.textContent?.trim() ?? '';
 				const urgencySelect = document.getElementById('urgency');
 				const urgency = urgencySelect?.value?.trim() ?? '';
 				const urgencyLabel = urgencySelect?.selectedOptions?.[0]?.textContent?.trim() ?? '';
-				const message = document.getElementById('message')?.value?.trim() ?? '';
+				let message = document.getElementById('message')?.value?.trim() ?? '';
+				/* Champs formation : ajoutés au message (le relais PHP ne transmet qu’une liste fixe de champs). */
+				if (objet === 'formation') {
+					const participants = document.getElementById('participants')?.value?.trim() ?? '';
+					const opcoSelect = document.getElementById('opco');
+					const opcoLabel = opcoSelect?.value ? opcoSelect.selectedOptions?.[0]?.textContent?.trim() ?? '' : '';
+					const extra = [
+						participants ? `Participants : ${participants}` : '',
+						opcoLabel ? `Financement : ${opcoLabel}` : '',
+					].filter(Boolean);
+					if (extra.length) message = `${message}\n\n[Formation] ${extra.join(' · ')}`;
+				}
 				const source =
 					form.querySelector('input[name="source"]')?.value?.trim() || 'emmanuelsauvage';
 				const page = typeof window !== 'undefined' ? window.location.href : '';
@@ -305,12 +334,11 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 					!objet ||
 					!message ||
 					!projectType ||
-					!budgetRange ||
 					!urgency
 				) {
 					setStatus(
 						'err',
-						'Merci de remplir tous les champs obligatoires (y compris qualification projet, budget et urgence).',
+						'Merci de remplir tous les champs obligatoires (y compris type de projet et urgence).',
 					);
 					return;
 				}
@@ -326,8 +354,6 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 					objet_label: objetLabel || objet,
 					project_type: projectType,
 					project_type_label: projectTypeLabel || projectType,
-					budget_range: budgetRange,
-					budget_range_label: budgetRangeLabel || budgetRange,
 					urgency,
 					urgency_label: urgencyLabel || urgency,
 					message,
@@ -422,6 +448,32 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 </Layout>
 
 <style>
+	.formationFields {
+		display: grid;
+		gap: 8px;
+		margin: 0;
+		padding: 14px 16px;
+		border: 1px dashed color-mix(in srgb, var(--color-spot) 35%, var(--color-border));
+		border-radius: 12px;
+		background: var(--color-spot-soft);
+	}
+
+	.formationFields[hidden] {
+		display: none;
+	}
+
+	.formationFields__legend {
+		padding: 0 6px;
+		font-weight: 700;
+		color: var(--color-primary);
+	}
+
+	.formationFields__hint {
+		margin: 4px 0 0;
+		font-size: 13px;
+		color: var(--color-muted);
+	}
+
 	.container {
 		width: min(1120px, calc(100% - 32px));
 		margin: 0 auto;
@@ -827,8 +879,10 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 
 	.field {
 		display: grid;
+		grid-template-columns: minmax(0, 1fr);
 		gap: 8px;
 		margin-bottom: 14px;
+		min-width: 0;
 	}
 
 	label {
@@ -1005,7 +1059,7 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 
 	@media (max-width: 980px) {
 		.grid2 {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(0, 1fr);
 		}
 
 		.cta__inner {

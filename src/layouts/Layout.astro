@@ -5,6 +5,15 @@ type Props = {
 	/** Ressource LCP probable (ex. hero) — améliore FCP/LCP sur la home */
 	preloadLcpHref?: string;
 	preloadLcpType?: string;
+	/** Titre Open Graph / Twitter (par défaut : `title`). */
+	ogTitle?: string;
+	/** Type Open Graph : `website` (défaut) ou `article`. */
+	ogType?: 'website' | 'article';
+	/** Image de partage absolue (PNG/JPG 1200×630) ; par défaut l’image de marque. */
+	ogImage?: string;
+	ogImageAlt?: string;
+	/** Pages à ne pas indexer (ex. 404). */
+	noindex?: boolean;
 };
 
 import CookieBanner from '../components/CookieBanner.astro';
@@ -12,21 +21,33 @@ import interLatinWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-n
 import '../styles/inter-subset.css';
 import {
 	SITE_ADDRESS,
+	SITE_AREA_SERVED,
 	SITE_DESCRIPTION,
 	SITE_EMAIL,
 	SITE_LOGO_URL,
 	SITE_NAME,
+	SITE_OG_IMAGE,
 	SITE_ORIGIN,
 	SITE_SAME_AS,
 	SITE_TELEPHONE,
 } from '../config/site';
 
 const {
-	title = 'Emmanuel SAUVAGE — Consultant en optimisation d’outils digitaux',
-	description = 'Audit, optimisation des processus, développement d’outils métier et automatisation des workflows pour améliorer l’efficacité opérationnelle des entreprises.',
+	title = 'Emmanuel Sauvage – Formation Google Sheets & dev, Lille',
+	description = SITE_DESCRIPTION,
 	preloadLcpHref,
 	preloadLcpType = 'image/svg+xml',
+	ogTitle,
+	ogType = 'website',
+	ogImage,
+	ogImageAlt,
+	noindex = false,
 } = Astro.props;
+
+const shareTitle = ogTitle ?? title;
+const shareImage = ogImage ?? SITE_OG_IMAGE.url;
+const shareImageAlt = ogImageAlt ?? (ogImage ? shareTitle : SITE_OG_IMAGE.alt);
+const shareImageType = /\.jpe?g$/i.test(shareImage) ? 'image/jpeg' : 'image/png';
 
 function canonicalizePathname(pathname: string) {
 	// Normalise les URL SEO : trailing slash sur les “pages” (sauf fichiers type .xml/.pdf)
@@ -53,7 +74,20 @@ const siteJsonLd = {
 			name: SITE_NAME,
 			url: SITE_ORIGIN,
 			image: SITE_LOGO_URL,
-			jobTitle: 'Consultant en optimisation d’outils digitaux',
+			jobTitle: 'Formateur Google Sheets et développeur d’applications',
+			knowsAbout: [
+				'Google Sheets',
+				'Google Apps Script',
+				'Google Workspace',
+				'Formation professionnelle',
+				'Automatisation des processus',
+				'Développement d’applications web sur mesure',
+				'Symfony',
+				'PHP',
+				'API REST',
+				'Création de sites internet',
+				'Astro',
+			],
 			email: `mailto:${SITE_EMAIL}`,
 			telephone: SITE_TELEPHONE,
 			address: SITE_ADDRESS,
@@ -71,10 +105,7 @@ const siteJsonLd = {
 			telephone: SITE_TELEPHONE,
 			address: SITE_ADDRESS,
 			founder: { '@id': personId },
-			areaServed: {
-				'@type': 'Country',
-				name: 'France',
-			},
+			areaServed: SITE_AREA_SERVED,
 			sameAs: SITE_SAME_AS,
 		},
 		{
@@ -118,8 +149,23 @@ const siteJsonLd = {
 		}
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		<link rel="canonical" href={canonicalUrl} />
+		{noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={canonicalUrl} />}
+		<meta property="og:locale" content="fr_FR" />
+		<meta property="og:site_name" content={SITE_NAME} />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:title" content={shareTitle} />
+		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={shareImage} />
+		<meta property="og:image:type" content={shareImageType} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={shareImageAlt} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={shareTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={shareImage} />
+		<meta name="twitter:image:alt" content={shareImageAlt} />
 		<script type="application/ld+json" set:html={JSON.stringify(siteJsonLd)} />
 		<slot name="head" />
 
@@ -396,7 +442,7 @@ const siteJsonLd = {
 
 	.footer__grid {
 		display: grid;
-		grid-template-columns: 1.45fr repeat(5, minmax(0, 1fr));
+		grid-template-columns: minmax(0, 1.45fr) repeat(5, minmax(0, 1fr));
 		gap: 18px;
 		align-items: start;
 	}
@@ -457,6 +503,7 @@ const siteJsonLd = {
 	.footer__links a {
 		color: var(--color-muted);
 		text-decoration: none;
+		overflow-wrap: anywhere;
 	}
 
 	.footer__links a:hover {

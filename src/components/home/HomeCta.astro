@@ -1,0 +1,114 @@
+---
+import { finalCta } from '../../data/home';
+---
+
+<section id="contact" class="homeCta homeSection" aria-labelledby="home-cta-heading">
+	<div class="homeContainer">
+		<div class="homeCta__box">
+			<div class="homeCta__photoWrap">
+				<img
+					class="homeCta__photo"
+					src={finalCta.photo.src}
+					alt={finalCta.photo.alt}
+					width="120"
+					height="120"
+					loading="lazy"
+					decoding="async"
+				/>
+			</div>
+			<div class="homeCta__content">
+				<h2 id="home-cta-heading" class="homeCta__title">{finalCta.title}</h2>
+				<p class="homeCta__text">{finalCta.text}</p>
+			</div>
+			<div class="homeCta__action">
+				<a class="homeBtn homeBtn--white homeCta__btn" href={finalCta.button.href}>
+					{finalCta.button.label}
+				</a>
+				<p class="homeCta__note">{finalCta.note}</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.homeCta {
+		padding-bottom: clamp(64px, 8vw, 88px);
+	}
+
+	.homeCta__box {
+		display: grid;
+		gap: 20px;
+		padding: clamp(24px, 4vw, 32px);
+		border-radius: var(--home-radius-lg);
+		background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 45%, #4f46e5 100%);
+		color: #fff;
+		box-shadow: var(--home-shadow-lg);
+		align-items: center;
+	}
+
+	@media (min-width: 768px) {
+		.homeCta__box {
+			grid-template-columns: auto 1fr auto;
+			gap: 28px;
+		}
+	}
+
+	.homeCta__photoWrap {
+		display: none;
+	}
+
+	@media (min-width: 768px) {
+		.homeCta__photoWrap {
+			display: block;
+		}
+	}
+
+	.homeCta__photo {
+		display: block;
+		width: 88px;
+		height: 88px;
+		border-radius: 16px;
+		object-fit: cover;
+		border: 3px solid rgba(255, 255, 255, 0.25);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+	}
+
+	.homeCta__title {
+		margin: 0 0 8px;
+		font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+		line-height: 1.25;
+		letter-spacing: -0.02em;
+		font-weight: 800;
+	}
+
+	.homeCta__text {
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.5;
+		opacity: 0.92;
+	}
+
+	.homeCta__action {
+		text-align: center;
+	}
+
+	@media (min-width: 768px) {
+		.homeCta__action {
+			text-align: right;
+		}
+	}
+
+	.homeCta__btn {
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 300px;
+		font-size: 14px;
+		padding: 14px 22px;
+	}
+
+	.homeCta__note {
+		margin: 10px 0 0;
+		font-size: 13px;
+		opacity: 0.9;
+	}
+</style>

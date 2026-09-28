@@ -1,7 +1,8 @@
 ---
 title: "Validation d’entrées API Symfony : contraintes qui tiennent en production"
-shortTitle: "Validation API Symfony : contraintes prod"
+shortTitle: "Symfony Validator : contraintes Assert pour valider une API"
 description: "DTO + Validator, normalisation, UUID et messages d’erreur exploitables par les clients — exemples PHP 8 et bonnes pratiques."
+metaDescription: "Valider les entrées d’une API avec Symfony Validator : contraintes #[Assert] sur des DTO, UUID, normalisation et messages d’erreur exploitables. Exemples PHP 8."
 pubDate: 2026-03-17
 readingTimeMinutes: 12
 tags:
@@ -9,6 +10,7 @@ tags:
   - "API"
   - "PHP"
 illustration: validation
+category: applications
 ---
 <aside class="tldr">
 <strong>En bref</strong>

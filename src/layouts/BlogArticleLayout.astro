@@ -2,52 +2,90 @@
 import Layout from './Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { SITE_ORIGIN } from '../config/site';
+import { SITE_NAME, SITE_ORIGIN, withBrand } from '../config/site';
 
 type Props = {
 	title: string;
 	/** Titre court SEO (balise document & partage) ; si absent, dérivé de `title`. */
 	shortTitle?: string;
 	description: string;
+	/** Meta description SEO (≤ 160 car.) ; si absente, `description` (qui reste affichée en chapô). */
+	metaDescription?: string;
 	slug: string;
 	pubDate: string;
 	updatedDate?: string;
 	readingTimeMinutes: number;
 	tags: string[];
+	/** Rubrique : détermine l’encart « offre » en fin d’article. */
+	category?: 'google-sheets' | 'applications' | 'sites-web';
 };
 
-const { title, shortTitle, description, slug, pubDate, updatedDate, readingTimeMinutes, tags } = Astro.props;
+const {
+	title,
+	shortTitle,
+	description,
+	metaDescription,
+	slug,
+	pubDate,
+	updatedDate,
+	readingTimeMinutes,
+	tags,
+	category = 'applications',
+} = Astro.props;
 
-/** Titre affiché dans le SERP / onglet : version courte + marque, ou titre long + Blog + marque. */
-const pageTitle = shortTitle
-	? `${shortTitle} | Emmanuel SAUVAGE`
-	: `${title} | Blog | Emmanuel SAUVAGE`;
+const categoryCta = {
+	'google-sheets': {
+		title: 'Former votre équipe à Google Sheets',
+		text: 'Formations intra-entreprise en présentiel dans vos locaux (Lille et Hauts-de-France) ou à distance, du niveau débutant à Apps Script, sur vos propres fichiers. Finançable OPCO via notre organisme partenaire certifié Qualiopi.',
+		primary: { label: 'Voir les programmes', href: '/formation-google-sheets/' },
+		secondary: { label: 'Automatiser vos fichiers', href: '/automatisation-google-sheets/' },
+	},
+	applications: {
+		title: 'Un outil métier à créer, reprendre ou faire évoluer ?',
+		text: 'Applications sur mesure, automatisation Google Sheets, maintenance et refonte : parlons de votre projet.',
+		primary: { label: 'Applications sur mesure', href: '/developpement-application-sur-mesure/' },
+		secondary: { label: 'Refonte et maintenance', href: '/refonte-application-web/' },
+	},
+	'sites-web': {
+		title: 'Un site rapide qui vous amène des demandes',
+		text: 'Création et refonte de sites vitrines à Lille et Armentières : rapides, bien référencés, connectés à vos outils.',
+		primary: { label: 'Création de site internet', href: '/creation-site-internet/' },
+		secondary: { label: 'Voir les réalisations', href: '/realisations/' },
+	},
+}[category];
+
+/** Titre affiché dans le SERP / onglet : version courte (+ marque si ≤ 60 caractères au total). */
+const pageTitle = withBrand(shortTitle ?? title);
 /** Titre « article » pour og/twitter (sans suffixe site). */
 const ogTitle = shortTitle ?? title;
+const seoDescription = metaDescription ?? description;
 const canonicalPath = `/blog/${slug}/`;
 const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
 const published = new Date(pubDate).toISOString();
 const modified = (updatedDate ? new Date(updatedDate) : new Date(pubDate)).toISOString();
+const personId = `${SITE_ORIGIN}/#person`;
 
-/** Image partagée Open Graph / Twitter (SVG ; les réseaux préfèrent souvent 1200×630 PNG — asset dédié possible plus tard). */
-const shareImageUrl = `${SITE_ORIGIN}/images/hero-illustration-v2.svg`;
+/** Image partagée Open Graph / Twitter : carte 1200×630 PNG par article (`npm run generate:og`). */
+const shareImageUrl = `${SITE_ORIGIN}/images/og/blog/${slug}.png`;
 
 const jsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'TechArticle',
 	headline: title,
-	description,
+	description: seoDescription,
 	image: shareImageUrl,
 	datePublished: published,
 	dateModified: modified,
 	author: {
 		'@type': 'Person',
-		name: 'Emmanuel SAUVAGE',
+		'@id': personId,
+		name: SITE_NAME,
 		url: SITE_ORIGIN,
 	},
 	publisher: {
 		'@type': 'Person',
-		name: 'Emmanuel SAUVAGE',
+		'@id': personId,
+		name: SITE_NAME,
 	},
 	mainEntityOfPage: {
 		'@type': 'WebPage',
@@ -63,22 +101,24 @@ const breadcrumbLd = {
 	'@type': 'BreadcrumbList',
 	itemListElement: [
 		{ '@type': 'ListItem', position: 1, name: 'Accueil', item: `${SITE_ORIGIN}/` },
-		{ '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_ORIGIN}/blog` },
+		{ '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_ORIGIN}/blog/` },
 		{ '@type': 'ListItem', position: 3, name: title, item: canonicalUrl },
 	],
 };
 ---
 
-<Layout title={pageTitle} description={description}>
-	<link rel="canonical" href={canonicalUrl} slot="head" />
-	<meta property="og:type" content="article" slot="head" />
-	<meta property="og:title" content={ogTitle} slot="head" />
-	<meta name="twitter:title" content={ogTitle} slot="head" />
-	<meta property="og:description" content={description} slot="head" />
-	<meta property="og:url" content={canonicalUrl} slot="head" />
-	<meta property="og:image" content={shareImageUrl} slot="head" />
-	<meta name="twitter:card" content="summary_large_image" slot="head" />
-	<meta name="twitter:image" content={shareImageUrl} slot="head" />
+<Layout
+	title={pageTitle}
+	description={seoDescription}
+	ogTitle={ogTitle}
+	ogType="article"
+	ogImage={shareImageUrl}
+	ogImageAlt={title}
+>
+	<meta property="article:published_time" content={published} slot="head" />
+	<meta property="article:modified_time" content={modified} slot="head" />
+	<meta property="article:author" content={SITE_NAME} slot="head" />
+	{tags.map((t) => <meta property="article:tag" content={t} slot="head" />)}
 
 	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
@@ -96,7 +136,7 @@ const breadcrumbLd = {
 				<nav class="blogBreadcrumb" aria-label="Fil d’Ariane">
 					<ol>
 						<li><a href="/">Accueil</a></li>
-						<li><a href="/blog">Blog</a></li>
+						<li><a href="/blog/">Blog</a></li>
 						<li aria-current="page">{title}</li>
 					</ol>
 				</nav>
@@ -141,11 +181,20 @@ const breadcrumbLd = {
 					<slot />
 				</div>
 
+				<aside class="blogCta" aria-label="Offre liée">
+					<p class="blogCta__title">{categoryCta.title}</p>
+					<p class="blogCta__text">{categoryCta.text}</p>
+					<p class="blogCta__actions">
+						<a class="button button--primary" href={categoryCta.primary.href}>{categoryCta.primary.label}</a>
+						<a class="blogCta__link" href={categoryCta.secondary.href}>{categoryCta.secondary.label}</a>
+					</p>
+				</aside>
+
 				<footer class="blogArticle__footer">
 					<p>
-						<strong>À propos de l’auteur :</strong> Emmanuel SAUVAGE, développeur fullstack et consultant indépendant
-						(Symfony, Vue.js, React, outils métier, data et automatisation).{' '}
-						<a href="/contact">Contact</a> · <a href="/services">Services</a>
+						<strong>À propos de l’auteur :</strong> Emmanuel Sauvage, formateur Google Sheets et développeur
+						indépendant près de Lille (Apps Script, Symfony, applications métier, sites web).{' '}
+						<a href="/a-propos/">À propos</a> · <a href="/contact/">Contact</a>
 					</p>
 				</footer>
 			</div>
@@ -156,6 +205,47 @@ const breadcrumbLd = {
 </Layout>
 
 <style>
+	.blogCta {
+		margin: 40px 0 0;
+		padding: 22px 24px;
+		border-radius: 18px;
+		border: 1px solid rgba(47, 58, 143, 0.18);
+		background: linear-gradient(135deg, rgba(47, 58, 143, 0.05), rgba(47, 58, 143, 0.02));
+	}
+
+	.blogCta__title {
+		margin: 0 0 6px;
+		font-size: 1.2rem;
+		font-weight: 800;
+		color: var(--color-primary);
+	}
+
+	.blogCta__text {
+		margin: 0 0 14px;
+		line-height: 1.55;
+	}
+
+	.blogCta__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 12px 18px;
+		margin: 0;
+	}
+
+	.blogCta__actions .button {
+		display: inline-flex;
+		padding: 11px 16px;
+		border-radius: 12px;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.blogCta__link {
+		font-weight: 600;
+		color: var(--color-spot-hover, var(--color-primary));
+	}
+
 	.blogMain {
 		background: var(--color-bg);
 		min-width: 0;

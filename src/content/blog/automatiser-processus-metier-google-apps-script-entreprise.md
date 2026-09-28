@@ -2,6 +2,7 @@
 title: "Automatiser ses processus métier avec Google Apps Script : guide pour entreprises"
 shortTitle: "Apps Script : automatiser les processus métier"
 description: "Cas d’automatisation Google Workspace, gains de temps chiffrés, avant/après, quotas et bonnes pratiques — pour dirigeants, ops et IT qui veulent un ROI réel sans chaos no-code."
+metaDescription: "Cas d’automatisation Google Workspace avec Apps Script : gains de temps chiffrés, avant/après, quotas et bonnes pratiques, pour un ROI réel sans chaos no-code."
 pubDate: 2026-04-13
 readingTimeMinutes: 8
 tags:
@@ -9,6 +10,7 @@ tags:
   - "Apps Script"
   - "Automatisation"
 illustration: ops
+category: google-sheets
 ---
 <aside class="tldr">
 <strong>En bref</strong>

@@ -2,6 +2,7 @@
 title: "Création de ce site vitrine : Astro (SSG), Zapier et Mailjet — sans surcouche serveur inutile"
 shortTitle: "Site vitrine Astro, Zapier et Mailjet"
 description: "Retour d’expérience sur la stack du site emmanuelsauvage.fr : génération statique, blog en Markdown (content collections + Zod), formulaire contact via proxy, Zapier et Mailjet (MJML)."
+metaDescription: "Retour d’expérience sur la stack d’emmanuelsauvage.fr : site statique Astro, blog Markdown (content collections + Zod), formulaire via proxy, Zapier et Mailjet."
 pubDate: 2026-03-19
 updatedDate: 2026-03-22
 readingTimeMinutes: 16
@@ -11,6 +12,7 @@ tags:
   - "Mailjet"
   - "Architecture web"
 illustration: vitrine
+category: sites-web
 ---
 <aside class="tldr">
 <strong>En bref</strong>

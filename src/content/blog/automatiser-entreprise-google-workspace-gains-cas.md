@@ -2,6 +2,7 @@
 title: "Automatiser son entreprise avec Google Workspace : gains réels et cas concrets"
 shortTitle: "Automatisation Google Workspace : gains réels (PME)"
 description: "Gmail, Drive, Sheets, Apps Script : où sont les gains mesurables (temps, erreurs, délais) et comment éviter les projets no-code qui finissent en dette. Cas PME et critères d’arbitrage."
+metaDescription: "Gmail, Drive, Sheets, Apps Script : où sont les gains mesurables (temps, erreurs, délais) et comment éviter les projets no-code qui finissent en dette. Cas PME."
 pubDate: 2026-05-15
 readingTimeMinutes: 9
 tags:
@@ -9,6 +10,7 @@ tags:
   - "Automatisation"
   - "PME"
 illustration: ops
+category: applications
 ---
 <aside class="tldr">
 <strong>En bref</strong>

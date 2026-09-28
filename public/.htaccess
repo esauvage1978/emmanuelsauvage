@@ -7,6 +7,9 @@
 # Pages par défaut dans chaque dossier (ex. /contact/ → contact/index.html)
 DirectoryIndex index.html
 
+# Page d'erreur personnalisée (générée par Astro : src/pages/404.astro → dist/404.html)
+ErrorDocument 404 /404.html
+
 # Pas de listing des dossiers ; liens symboliques suivis si besoin du serveur
 Options -Indexes
 <IfModule mod_negotiation.c>
@@ -59,6 +62,10 @@ AddDefaultCharset UTF-8
 	Header set X-Content-Type-Options "nosniff"
 	Header set X-Frame-Options "SAMEORIGIN"
 	Header set Referrer-Policy "strict-origin-when-cross-origin"
+	# HSTS : le navigateur ne passe plus que par HTTPS (1 an). Volontairement SANS includeSubDomains ni preload,
+	# pour ne pas bloquer d'éventuels sous-domaines (webmail, mail…) sans certificat valide.
+	# (Les navigateurs ignorent cet en-tête sur les réponses en HTTP simple : sans risque.)
+	Header set Strict-Transport-Security "max-age=31536000"
 </IfModule>
 
 # -----------------------------------------------------------------------------
@@ -67,6 +74,23 @@ AddDefaultCharset UTF-8
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 	RewriteBase /
+
+	# --- Redirections 301 du repositionnement (09/2026) : une seule étape, sans chaîne ---
+	# Pages de services fusionnées
+	RewriteRule ^expert-google-sheets-entreprise/?$ https://emmanuelsauvage.fr/automatisation-google-sheets/ [R=301,L]
+	RewriteRule ^automatisation-entreprise/?$ https://emmanuelsauvage.fr/automatisation-google-sheets/ [R=301,L]
+	RewriteRule ^audit-outils-digitaux/?$ https://emmanuelsauvage.fr/developpement-application-sur-mesure/ [R=301,L]
+	# Articles de blog fusionnés
+	RewriteRule ^blog/refonte-ou-maintenance-application/?$ https://emmanuelsauvage.fr/blog/refonte-application-web-signaux-strategie-dette-technique/ [R=301,L]
+	RewriteRule ^blog/(openapi-contrat-api-equipes|problem-details-rfc9457-symfony|webhooks-idempotence-cles-pratique|api-donnees-personnelles-minimisation-rgpd)/?$ https://emmanuelsauvage.fr/blog/versionner-api-rest-symfony/ [R=301,L]
+	RewriteRule ^blog/maintenance-symfony-production-indicateurs/?$ https://emmanuelsauvage.fr/refonte-application-web/ [R=301,L]
+
+	# Dossier demandé sans « / » final (ex. http://www.emmanuelsauvage.fr/contact) :
+	# une seule redirection 301 directement vers l'URL canonique https://emmanuelsauvage.fr/contact/
+	# (sinon : http → https, puis ajout du slash par Apache = 2 sauts).
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteCond %{REQUEST_URI} !/$
+	RewriteRule ^(.+)$ https://emmanuelsauvage.fr/$1/ [L,R=301]
 
 	# Canonicalisation domaine + protocole (évite les chaînes de redirections).
 	# - force HTTPS

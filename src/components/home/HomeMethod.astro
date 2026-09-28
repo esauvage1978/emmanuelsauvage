@@ -1,0 +1,80 @@
+---
+import { method } from '../../data/home';
+import HomeIcon from './HomeIcon.astro';
+---
+
+<section class="homeMethod homeSection homeSection--alt" aria-labelledby="home-method-heading">
+	<div class="homeContainer">
+		<header class="homeSection__head homeSection__head--center">
+			<h2 id="home-method-heading" class="homeSection__title">{method.title}</h2>
+			<p class="homeSection__lede">{method.lede}</p>
+		</header>
+
+		<ol class="homeMethod__steps">
+			{
+				method.steps.map((s) => (
+					<li class="homeMethod__step homeCard">
+						<span class="homeMethod__num" aria-hidden="true">{s.step}</span>
+						<h3 class="homeMethod__title">{s.title}</h3>
+						<p class="homeMethod__desc">{s.description}</p>
+						<a class="homeLink" href={s.href}>
+							En savoir plus<span class="srOnly"> : {s.title}</span>
+							<HomeIcon name="arrow" />
+						</a>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>
+
+<style>
+	.homeMethod__steps {
+		display: grid;
+		gap: 16px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	@media (min-width: 820px) {
+		.homeMethod__steps {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.homeMethod__step {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 26px 22px;
+		background: var(--home-slate-50);
+	}
+
+	.homeMethod__num {
+		display: grid;
+		place-items: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		font-weight: 800;
+		color: #fff;
+		background: linear-gradient(135deg, var(--home-blue), #c2410c);
+	}
+
+	.homeMethod__title {
+		margin: 6px 0 0;
+		font-size: 1.2rem;
+		font-weight: 800;
+		color: var(--home-navy);
+	}
+
+	.homeMethod__desc {
+		flex: 1 0 auto;
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.55;
+		color: var(--color-muted);
+	}
+</style>

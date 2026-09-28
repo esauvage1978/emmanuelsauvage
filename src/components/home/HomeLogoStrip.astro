@@ -1,0 +1,96 @@
+---
+import { clientLogoStrip } from '../../data/home';
+---
+
+<section class="homeLogos homeSection--muted" aria-label="Références clients">
+	<p class="srOnly">Ils m’ont fait confiance : {clientLogoStrip.map((logo) => logo.name).join(', ')}.</p>
+	<div class="homeLogos__track" aria-hidden="true">
+		<ul class="homeLogos__list">
+			{
+				[...clientLogoStrip, ...clientLogoStrip].map((logo, i) => (
+					<li class={i >= clientLogoStrip.length ? 'homeLogos__dup' : undefined}>
+						{/* 1re série : alt explicite (SEO / images) ; 2e série = doublon du défilement, décoratif. */}
+						<img
+							src={logo.logo}
+							class:list={[{ 'is-square': logo.square, 'is-wide': logo.wide }]}
+							alt={i < clientLogoStrip.length ? `Logo ${logo.name}` : ''}
+							width="120"
+							height="32"
+							loading="lazy"
+							decoding="async"
+						/>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.homeLogos {
+		padding-block: 28px;
+		overflow: hidden;
+		border-block: 1px solid #e2e8f0;
+	}
+
+	.homeLogos__track {
+		mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+	}
+
+	.homeLogos__list {
+		display: flex;
+		align-items: center;
+		gap: clamp(32px, 6vw, 64px);
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		width: max-content;
+		animation: homeLogoScroll 40s linear infinite;
+	}
+
+	.homeLogos__list img {
+		display: block;
+		height: 28px;
+		width: auto;
+		max-width: 120px;
+		object-fit: contain;
+		filter: grayscale(1);
+		opacity: 0.55;
+	}
+
+	/* Logos compacts (HFE, EDAME) : plus hauts pour un poids visuel comparable aux logotypes horizontaux. */
+	.homeLogos__list img.is-square {
+		height: 40px;
+	}
+
+	/* Logotypes très allongés (OpenClassrooms, Parafiniuk-Leroy) : plus larges, hauteur plafonnée. */
+	.homeLogos__list img.is-wide {
+		height: auto;
+		max-height: 30px;
+		max-width: 170px;
+	}
+
+	@keyframes homeLogoScroll {
+		from { transform: translateX(0); }
+		to { transform: translateX(-50%); }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		/* Sans défilement, la 2e série (doublon servant à la boucle) n'a pas lieu d'être. */
+		.homeLogos__dup {
+			display: none;
+		}
+
+		.homeLogos__list {
+			animation: none;
+			flex-wrap: wrap;
+			justify-content: center;
+			width: 100%;
+			gap: 24px 40px;
+		}
+
+		.homeLogos__track {
+			mask-image: none;
+		}
+	}
+</style>

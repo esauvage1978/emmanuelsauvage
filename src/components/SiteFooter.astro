@@ -1,92 +1,302 @@
 ---
 import BrandLogo from './BrandLogo.astro';
-import { GOOGLE_REVIEW_URL, MALT_PROFILE_URL, LINKEDIN_URL } from '../config/site';
+import { GOOGLE_PROFILE_URL, GOOGLE_REVIEW_URL, MALT_PROFILE_URL, LINKEDIN_URL } from '../config/site';
+import { footerColumns } from '../data/home';
 
 interface Props {
-	/** Sur l’accueil : `#contact`. Sur les autres pages : `/#contact`. */
+	/** Sur l'accueil : `#contact`. Sur les autres pages : `/#contact`. */
 	discussHref?: string;
+	/** Variante home : colonnes simplifiées orientées conversion. */
+	variant?: 'default' | 'home';
 }
 
-const { discussHref = '/#contact' } = Astro.props;
+const { discussHref = '/#contact', variant = 'default' } = Astro.props;
 ---
 
-<footer class="footer footer--brand" aria-label="Pied de page">
+<footer class:list={['footer', 'footer--brand', { 'footer--home': variant === 'home' }]} aria-label="Pied de page">
 	<div class="container footer__grid">
-		<div>
-			<div class="footer__brand">
-				<span class="footer__logoWrap" aria-hidden="true">
-					<BrandLogo variant="footer" class="footer__logo" />
-				</span>
-				<span>Emmanuel SAUVAGE</span>
-			</div>
-			<p class="footer__text">
-				Expert en optimisation business via les outils digitaux — audit, automatisation, applications et données.
-			</p>
-			<p class="footer__text">
-				<a href="mailto:contact@emmanuelsauvage.fr">contact@emmanuelsauvage.fr</a>
-			</p>
-			<p class="footer__text">
-				<a href="tel:+33609924945">06 09 92 49 45</a> · Erquinghem-lys
-			</p>
-		</div>
+		{
+			variant === 'home' ? (
+				<>
+					<div>
+						<div class="footer__brand">
+							<span class="footer__logoWrap" aria-hidden="true">
+								<BrandLogo variant="footer" class="footer__logo" />
+							</span>
+							<span>Emmanuel Sauvage</span>
+						</div>
+						<p class="footer__text">
+							Du tableur à l’application : formation Google Sheets, automatisation, applications métier sur mesure et
+							sites web pour les entreprises.
+						</p>
+						<p class="footer__text">Basé à Erquinghem-Lys (59193), près de Lille</p>
+						<ul class="footer__social" aria-label="Réseaux professionnels">
+							<li>
+								<a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+							</li>
+							<li>
+								<a href={MALT_PROFILE_URL} target="_blank" rel="noopener noreferrer">Malt</a>
+							</li>
+							<li>
+								<a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener noreferrer">Avis Google</a>
+							</li>
+						</ul>
+					</div>
 
-		<div>
-			<div class="footer__title">Navigation</div>
-			<ul class="footer__links">
-				<li><a href="/services">Services</a></li>
-				<li><a href="/blog">Blog</a></li>
-				<li><a href="/a-propos">À propos</a></li>
-				<li><a href="/contact">Contact</a></li>
-			</ul>
-		</div>
+					<div>
+						<div class="footer__title">Offres</div>
+						<ul class="footer__links">
+							{footerColumns.services.map((link) => (
+								<li>
+									<a href={link.href}>{link.label}</a>
+								</li>
+							))}
+						</ul>
+					</div>
 
-		<div>
-			<div class="footer__title">Expertises</div>
-			<ul class="footer__links">
-				<li><a href="/audit-outils-digitaux/">Audit outils digitaux</a></li>
-				<li><a href="/automatisation-entreprise/">Automatisation</a></li>
-				<li><a href="/refonte-application-web/">Refonte application web</a></li>
-				<li><a href="/creation-site-internet/">Création de site internet</a></li>
-				<li><a href="/expert-google-sheets-entreprise/">Google Sheets entreprise</a></li>
-				<li><a href="/developpeur-symfony-freelance/">Symfony freelance</a></li>
-			</ul>
-		</div>
+					<div>
+						<div class="footer__title">Ressources</div>
+						<ul class="footer__links">
+							{footerColumns.resources.map((link) => (
+								<li>
+									<a href={link.href}>{link.label}</a>
+								</li>
+							))}
+						</ul>
+					</div>
 
-		<div>
-			<div class="footer__title">Coordonnées</div>
-			<ul class="footer__links">
-				<li><a href="/contact">Formulaire de contact</a></li>
-				<li><a href={discussHref}>Discuter de votre projet</a></li>
-				<li>
-					<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
-				</li>
-			</ul>
-		</div>
+					<div>
+						<div class="footer__title">À propos</div>
+						<ul class="footer__links">
+							{footerColumns.about.map((link) => (
+								<li>
+									<a href={link.href}>{link.label}</a>
+								</li>
+							))}
+						</ul>
+					</div>
 
-		<div>
-			<div class="footer__title">Réseaux pro</div>
-			<ul class="footer__links">
-				<li>
-					<a href={MALT_PROFILE_URL} target="_blank" rel="noopener noreferrer">Profil Malt</a>
-				</li>
-				<li>
-					<a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-				</li>
-			</ul>
-		</div>
+					<div>
+						<div class="footer__title">Contact</div>
+						<ul class="footer__links">
+							{footerColumns.contact.map((link) => (
+								<li>
+									<a href={link.href}>{link.label}</a>
+								</li>
+							))}
+							<li>
+								<a href="/contact/">Demander un devis</a>
+							</li>
+						</ul>
+					</div>
+				</>
+			) : (
+				<>
+					<div>
+						<div class="footer__brand">
+							<span class="footer__logoWrap" aria-hidden="true">
+								<BrandLogo variant="footer" class="footer__logo" />
+							</span>
+							<span>Emmanuel SAUVAGE</span>
+						</div>
+						<p class="footer__text">
+							Formateur Google Sheets &amp; développeur : formation, automatisation, applications métier sur mesure et
+							sites web.
+						</p>
+						<p class="footer__text">
+							<a href="mailto:contact@emmanuelsauvage.fr">contact@emmanuelsauvage.fr</a>
+						</p>
+						<p class="footer__text">
+							<a href="tel:+33609924945">06 09 92 49 45</a> · Erquinghem-Lys (59193)
+						</p>
+					</div>
 
-		<div>
-			<div class="footer__title">Légal</div>
-			<ul class="footer__links">
-				<li><a href="/mentions-legales">Mentions légales</a></li>
-				<li><a href="/politique-de-confidentialite">Politique de confidentialité</a></li>
-				<li><a href="/cgu">CGU</a></li>
-				<li><a href="/cgv">CGV</a></li>
-				<li><a href="/cookies">Cookies</a></li>
-			</ul>
-		</div>
+					<div>
+						<div class="footer__title">Navigation</div>
+						<ul class="footer__links">
+							<li><a href="/services/">Services</a></li>
+							<li><a href="/realisations/">Réalisations</a></li>
+							<li><a href="/blog/">Blog</a></li>
+							<li><a href="/a-propos/">À propos</a></li>
+							<li><a href="/contact/">Contact</a></li>
+						</ul>
+					</div>
+
+					<div>
+						<div class="footer__title">Offres</div>
+						<ul class="footer__links">
+							<li><a href="/formation-google-sheets/">Formation Google Sheets</a></li>
+							<li><a href="/formation-apps-script/">Formation Apps Script</a></li>
+							<li><a href="/automatisation-google-sheets/">Automatisation Google Sheets</a></li>
+							<li><a href="/developpement-application-sur-mesure/">Application sur mesure</a></li>
+							<li><a href="/refonte-application-web/">Refonte d’application web</a></li>
+							<li><a href="/developpeur-symfony-freelance/">Développeur Symfony freelance</a></li>
+							<li><a href="/creation-site-internet/">Création de site internet</a></li>
+						</ul>
+					</div>
+
+					<div>
+						<div class="footer__title">Coordonnées</div>
+						<ul class="footer__links">
+							<li><a href="/contact/">Formulaire de contact</a></li>
+							<li><a href="/contact/">Parler de mon projet</a></li>
+							<li>
+								<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
+							</li>
+						</ul>
+					</div>
+
+					<div>
+						<div class="footer__title">Réseaux pro</div>
+						<ul class="footer__links">
+							<li>
+								<a href={MALT_PROFILE_URL} target="_blank" rel="noopener noreferrer">Profil Malt</a>
+							</li>
+							<li>
+								<a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+							</li>
+						</ul>
+					</div>
+
+					<div>
+						<div class="footer__title">Légal</div>
+						<ul class="footer__links">
+							<li><a href="/mentions-legales/">Mentions légales</a></li>
+							<li><a href="/politique-de-confidentialite/">Politique de confidentialité</a></li>
+							<li><a href="/cgu/">CGU</a></li>
+							<li><a href="/cgv/">CGV</a></li>
+							<li><a href="/cookies/">Cookies</a></li>
+						</ul>
+					</div>
+				</>
+			)
+		}
 	</div>
 	<div class="container footer__bottom">
-		<p>© {new Date().getFullYear()} Emmanuel SAUVAGE — Tous droits réservés.</p>
+		<p>
+			© {new Date().getFullYear()} Emmanuel Sauvage — Tous droits réservés.
+			{
+				variant === 'home' ? (
+					<>
+						{' '}
+						· <a href="/mentions-legales/">Mentions légales</a> ·{' '}
+						<a href="/politique-de-confidentialite/">Confidentialité</a> · <a href="/cookies/">Cookies</a>
+					</>
+				) : null
+			}
+		</p>
 	</div>
 </footer>
+
+<style is:global>
+	.footer--home {
+		background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+		border-top: none;
+		box-shadow: none;
+		color: #cbd5e1;
+	}
+
+	.footer--home::before {
+		display: none;
+	}
+
+	.footer--home .footer__brand {
+		color: #fff;
+	}
+
+	.footer--home .footer__text {
+		color: #94a3b8;
+	}
+
+	.footer--home .footer__title {
+		color: #fff;
+		font-size: 14px;
+		margin-bottom: 12px;
+	}
+
+	.footer--home .footer__links a {
+		color: #94a3b8;
+		font-size: 14px;
+	}
+
+	.footer--home .footer__links a:hover {
+		color: #fff;
+		text-decoration-color: rgba(255, 255, 255, 0.4);
+	}
+
+	.footer--home .footer__bottom {
+		border-top-color: rgba(255, 255, 255, 0.1);
+		color: #64748b;
+	}
+
+	.footer--home .footer__bottom a {
+		color: #94a3b8;
+	}
+
+	.footer.footer--home .footer__social a {
+		color: #93c5fd;
+	}
+
+	.footer--home .footer__grid {
+		grid-template-columns: 1fr;
+		gap: 28px;
+	}
+
+	@media (min-width: 560px) {
+		.footer--home .footer__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.footer--home .footer__grid > :first-child {
+			grid-column: 1 / -1;
+		}
+	}
+
+	@media (min-width: 900px) {
+		.footer--home .footer__grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.footer--home .footer__grid {
+			grid-template-columns: minmax(0, 1.5fr) repeat(4, minmax(0, 1fr));
+			gap: 18px;
+		}
+
+		.footer--home .footer__grid > :first-child {
+			grid-column: auto;
+		}
+	}
+</style>
+
+<style>
+	.footer__social {
+		list-style: none;
+		padding: 0;
+		margin: 12px 0 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px 16px;
+	}
+
+	.footer__social a {
+		font-size: 14px;
+		font-weight: 600;
+		color: var(--color-primary);
+		text-decoration: none;
+	}
+
+	.footer__social a:hover {
+		text-decoration: underline;
+	}
+
+	.footer__bottom a {
+		color: var(--color-muted);
+		text-decoration: none;
+	}
+
+	.footer__bottom a:hover {
+		text-decoration: underline;
+	}
+</style>

@@ -1,7 +1,8 @@
 ---
 title: "Refonte Symfony ou évolutions ciblées : critères opposables en cadrage"
-shortTitle: "Refonte Symfony ou évolutions ciblées"
+shortTitle: "Refonte Symfony ou évolutions ciblées : comment choisir ?"
 description: "Comment trancher entre gros chantier et itérations : dette mesurable, risques métier, coût marginal d’une feature — avec repères concrets pour un cadrage freelance."
+metaDescription: "Refondre une application Symfony ou la faire évoluer par itérations ? Critères de dette, risques métier et coût marginal pour trancher."
 pubDate: 2026-03-17
 readingTimeMinutes: 11
 tags:
@@ -9,6 +10,7 @@ tags:
   - "Architecture"
   - "Cadrage"
 illustration: refonte
+category: applications
 ---
 <aside class="tldr">
 <strong>En bref</strong>

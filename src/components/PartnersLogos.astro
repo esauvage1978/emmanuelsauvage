@@ -21,7 +21,7 @@ const partners: { name: string; href: string; logo: string }[] = [
 	<div class="container">
 		<header class="homeSection__header">
 			<p class="homeSection__rail" aria-hidden="true">
-				<span class="homeSection__num">04</span>
+				<span class="homeSection__num">07</span>
 				<span class="homeSection__label">Références</span>
 			</p>
 			<div class="homeSection__intro">
@@ -48,7 +48,7 @@ const partners: { name: string; href: string; logo: string }[] = [
 								<img
 									class="partnersLogos__logo"
 									src={p.logo}
-									alt=""
+									alt={`Logo ${p.name}`}
 									width="200"
 									height="48"
 									loading="lazy"

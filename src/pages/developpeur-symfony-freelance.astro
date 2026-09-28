@@ -1,14 +1,15 @@
 ---
-import ServiceLandingLayout from '../layouts/ServiceLandingLayout.astro';
+import OfferLayout from '../layouts/OfferLayout.astro';
+import { serviceJsonLd } from '../data/schema';
 
 const title =
-	'Développeur Symfony freelance : applications métier, API et production | Emmanuel SAUVAGE';
+	'Développeur Symfony freelance – prestataire à Lille';
 const description =
-	'Développeur Symfony freelance pour entreprises : API REST, applications métier, migrations, maintenance production, qualité et sécurité. Approche ROI et priorisation.';
+	'Prestataire Symfony senior pour agences, ESN et DSI : API Platform, migration de version, maintenance, reprise d’applications. Lille ou à distance.';
 const h1 =
-	'Développeur Symfony freelance : livrer du logiciel utile — maintenable, sécurisé, aligné sur le métier';
+	'Développeur Symfony freelance pour vos applications et vos API';
 const lead =
-	'Symfony reste un socle solide pour des applications B2B exigeantes : API, règles métier, intégrations. En freelance, la valeur ne se mesure pas au nombre de lignes : elle se mesure à la vélocité durable, à la baisse des incidents et à la capacité d’évolution.';
+	'Symfony reste un socle solide pour des applications B2B exigeantes : API, règles métier, intégrations. En renfort de votre équipe, la valeur se mesure à la vélocité durable, à la baisse des incidents et à la capacité d’évolution.';
 const faq = [
 	{
 		question: 'Intervenez-vous sur du Symfony existant ou uniquement du neuf ?',
@@ -36,16 +37,65 @@ const faq = [
 			'Oui : correctifs, surveillance des dépendances, optimisations, et préparation des montées de version. La maintenance n’est pas une ligne « optionnelle » quand l’outil est critique.',
 	},
 ];
+
+const jsonLd = [
+	serviceJsonLd({
+		name: 'Développement Symfony freelance',
+		path: '/developpeur-symfony-freelance/',
+		description,
+		serviceType: 'Développement et maintenance d’applications Symfony',
+	}),
+];
 ---
 
-<ServiceLandingLayout
+<OfferLayout
 	title={title}
 	description={description}
 	h1={h1}
 	lead={lead}
-	breadcrumbLabel="Développeur Symfony freelance"
+	eyebrow="Offre 2 · Applications"
+	breadcrumb={[{ label: 'Applications sur mesure', href: '/developpement-application-sur-mesure/' }, { label: 'Développeur Symfony freelance' }]}
+	badges={['Agences, ESN et DSI', 'API Platform, migrations, maintenance', 'Lille ou à distance']}
+	primaryCta={{ label: 'Discuter d’une mission', href: '/contact/?offre=application' }}
+	secondaryCta={{ label: 'Refonte et maintenance', href: '/refonte-application-web/' }}
 	faq={faq}
+	jsonLd={jsonLd}
+	current="applications"
+	ogImage="/images/og/developpeur-symfony-freelance.png"
 >
+	<!-- Section « Cas type » supprimée : exemple non vérifiable. TODO (Emmanuel) : la remplacer par une mission réelle citable. -->
+	<section class="oSection" aria-labelledby="dsf-pour-qui">
+		<div class="oContainer oSplit">
+			<div>
+				<h2 id="dsf-pour-qui" class="oTitle">Un renfort Symfony senior pour les agences, ESN et DSI</h2>
+				<p class="oIntro">
+					Vous avez un projet Symfony à livrer, une application à maintenir ou une montée de version à mener, et pas la
+					capacité en interne ? J’interviens en sous-traitance ou en renfort d’équipe, à Lille ou à distance.
+				</p>
+				<ul class="oChecks oChecks--2">
+					<li>Développement de fonctionnalités et d’API (API Platform, REST)</li>
+					<li>Migrations de version Symfony et PHP</li>
+					<li>Maintenance et correctifs en production</li>
+					<li>Reprise d’applications existantes</li>
+					<li>Interfaces Vue.js ou React connectées à Symfony</li>
+					<li>Tests, revue de code et documentation</li>
+				</ul>
+			</div>
+			<div class="oCard oCard--accent">
+				<span class="oCard__tag">Vous êtes une PME ?</span>
+				<h3>Un projet d’application complet</h3>
+				<p>
+					Si vous cherchez un prestataire pour concevoir votre outil métier de A à Z, consultez plutôt l’offre
+					application sur mesure.
+				</p>
+				<p><a href="/developpement-application-sur-mesure/">Développement d’application sur mesure</a></p>
+			</div>
+		</div>
+	</section>
+
+	<section class="oSection" aria-label="En détail">
+		<div class="oContainer">
+			<div class="oProse">
 	<h2>Pourquoi Symfony en entreprise : stabilité, écosystème, cadre</h2>
 	<p>
 		Dans beaucoup de contextes B2B, ce qui compte n’est pas la mode du framework : c’est la capacité à faire évoluer des <strong>règles métier</strong> sans casser la production, à intégrer des systèmes tiers, et à garder une dette technique sous contrôle. Symfony fournit un cadre, des composants éprouvés et une communauté large — ce qui réduit le risque sur le long terme lorsque l’application devient critique.
@@ -61,7 +111,7 @@ const faq = [
 	<p>
 		Pour cadrer le dialogue « refonte vs évolutions », voir{' '}
 		<a href="/blog/symfony-refonte-ou-evolutions-ciblees/">Symfony : refonte ou évolutions ciblées</a> et{' '}
-		<a href="/blog/refonte-ou-maintenance-application/">refonte ou maintenance</a>. Pour le contexte décisionnel :{' '}
+		<a href="/blog/refonte-application-web-signaux-strategie-dette-technique/">refonte : signaux et stratégie</a>. Pour le contexte décisionnel :{' '}
 		<a href="/blog/freelance-vs-agence-vs-internalisation-projets-tech/">freelance, agence ou interne</a>.
 	</p>
 
@@ -83,14 +133,6 @@ const faq = [
 		<a href="/refonte-application-web/">refonte progressive</a> plutôt qu’un upgrade lineaire impossible.
 	</p>
 
-	<h2>Cas type : stabiliser une API critique sans arrêter le business</h2>
-	<p>
-		Une équipe avait une API utilisée par plusieurs services internes : chaque évolution cassait des consommateurs, et le support était submergé de tickets « mystère ». Nous avons introduit un contrat plus clair, des tests de non-régression ciblés sur les scénarios critiques, et une stratégie de version minimale. Le gain immédiat fut la baisse du bruit ; le gain structurant, la capacité à itérer sans peur — ce qui se traduit en vélocité métier.
-	</p>
-	<p>
-		<strong>Point clé :</strong> la valeur était mesurable en temps de diagnostic et en nombre d’incidents — pas en « beauté du code ».
-	</p>
-
 	<h2>Symfony et données personnelles : la conformité comme contrainte de conception</h2>
 	<p>
 		Les applications métiers manipulent souvent des données identifiantes. Ce n’est pas un paragraphe juridique à coller : c’est une conception : minimiser les champs transportés, tracer les accès utiles, éviter les exports incontrôlés. Cette rigueur diminue les risques et simplifie souvent l’architecture — moins de surface, moins de bugs.
@@ -107,7 +149,7 @@ const faq = [
 	</p>
 	<p>
 		Voir aussi{' '}
-		<a href="/blog/maintenance-symfony-production-indicateurs/">maintenance Symfony : indicateurs</a> pour un cadrage utile avec votre direction.
+		<a href="/refonte-application-web/#maintenance">les indicateurs de maintenance en production</a> pour un cadrage utile avec votre direction.
 	</p>
 
 	<h2>Pourquoi mon profil n’est pas « un exécutant de tickets »</h2>
@@ -121,14 +163,14 @@ const faq = [
 	<h2>Quand un freelance Symfony n’est pas la bonne réponse</h2>
 	<p>
 		Si le besoin est flou, si la gouvernance produit n’existe pas, ou si l’entreprise veut « bricoler vite » sans accepter la dette, un développeur seul ne sauvera pas le schéma — il documentera des arbitrages impossibles. Dans ces cas, je recommande souvent un{' '}
-		<a href="/audit-outils-digitaux/">audit / diagnostic</a> avant un chantier de développement.
+		<a href="/developpement-application-sur-mesure/#cadrage">cadrage / diagnostic</a> avant un chantier de développement.
 	</p>
 
 	<h2>Liens utiles avec d’autres expertises</h2>
 	<p>
-		<strong>Automatisation</strong> autour des exports et imports :{' '}
-		<a href="/automatisation-entreprise/">automatisation entreprise</a>. <strong>Reporting</strong> et outils data :{' '}
-		<a href="/expert-google-sheets-entreprise/">Google Sheets</a>. <strong>Vision globale</strong> quand l’outil métier doit être repensé :{' '}
+		<strong>Automatisation</strong> autour des fichiers et des exports :{' '}
+		<a href="/automatisation-google-sheets/">automatisation Google Sheets</a>. <strong>Projet complet</strong> pour une PME :{' '}
+		<a href="/developpement-application-sur-mesure/">application sur mesure</a>. <strong>Vision globale</strong> quand l’outil métier doit être repensé :{' '}
 		<a href="/refonte-application-web/">refonte application web</a>.
 	</p>
 
@@ -158,7 +200,7 @@ const faq = [
 			<strong>Prochaine étape :</strong> décrivez votre application (version Symfony, pain points, échéance). Je propose un premier échange technique et business — puis un plan d’intervention réaliste.
 		</p>
 		<p>
-			<a href="/contact">Discuter d’une mission Symfony →</a>
+			<a href="/contact/?offre=application">Discuter d’une mission Symfony →</a>
 		</p>
 	</div>
 
@@ -168,10 +210,13 @@ const faq = [
 			<a href="/blog/monolithe-modulaire-symfony-frontieres/">Monolithe modulaire : frontières</a>
 		</li>
 		<li>
-			<a href="/blog/versionner-api-rest-symfony/">Versionner une API REST Symfony</a>
+			<a href="/blog/versionner-api-rest-symfony/">Guide API REST avec Symfony</a>
 		</li>
 		<li>
 			<a href="/services/">Retour aux services</a>
 		</li>
 	</ul>
-</ServiceLandingLayout>
+			</div>
+		</div>
+	</section>
+</OfferLayout>

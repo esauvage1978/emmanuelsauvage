@@ -2,6 +2,7 @@
 title: "Freelance, agence ou internalisation : quel choix pour vos projets tech ?"
 shortTitle: "Freelance, agence ou interne : arbitrage tech"
 description: "Arbitrage B2B : freelance senior, agence, recrutement interne — coûts réels, risques, cas d’usage et critères de décision pour dirigeants et CTO (Symfony, API, data, Workspace)."
+metaDescription: "Freelance senior, agence ou recrutement interne : coûts réels, risques, cas d’usage et critères de décision pour dirigeants et CTO (Symfony, API, data)."
 pubDate: 2026-05-20
 readingTimeMinutes: 9
 tags:
@@ -9,6 +10,7 @@ tags:
   - "Prestataire"
   - "Décision"
 illustration: modules
+category: applications
 ---
 <aside class="tldr">
 <strong>En bref</strong>
@@ -70,7 +72,7 @@ Propriété intellectuelle, sous-traitance RGPD, accès production : mal cadré,
 <td>Freelance senior</td>
 <td>expertise, vélocité ciblée</td>
 <td>capacité limitée, bus factor</td>
-<td>TJM 500–900 €+</td>
+<td>TJM selon séniorité et marché</td>
 </tr>
 <tr>
 <td>Agence</td>
@@ -101,7 +103,7 @@ La bonne réponse est souvent <strong>hybride</strong> : freelance senior pour c
 </ul>
 
 <p>
-Pour l’arbitrage <a href="/blog/refonte-ou-maintenance-application/">refonte vs maintenance</a>, le mode d’exécution découle du risque : une refonte mal découpée pénalise quel que soit le prestataire.
+Pour l’arbitrage <a href="/blog/refonte-application-web-signaux-strategie-dette-technique/#refonte-ou-maintenance">refonte vs maintenance</a>, le mode d’exécution découle du risque : une refonte mal découpée pénalise quel que soit le prestataire.
 </p>
 
 <div class="table-wrap">
@@ -217,7 +219,7 @@ Un bon prestataire challenge vos hypothèses : périmètre, risques, dépendance
 </p>
 
 <p>
-Si votre enjeu principal est la dette applicative avant même le choix du prestataire, commencez par cadrer le risque avec <a href="/blog/cout-dette-technique-entreprise-analyse/">l’analyse de coût de dette</a> et les <a href="/blog/refonte-ou-maintenance-application/">options refonte / maintenance</a> : le mode d’exécution ne résout pas un mauvais diagnostic.
+Si votre enjeu principal est la dette applicative avant même le choix du prestataire, commencez par cadrer le risque avec <a href="/blog/cout-dette-technique-entreprise-analyse/">l’analyse de coût de dette</a> et les <a href="/blog/refonte-application-web-signaux-strategie-dette-technique/#refonte-ou-maintenance">options refonte / maintenance</a> : le mode d’exécution ne résout pas un mauvais diagnostic.
 </p>
 
 <p>

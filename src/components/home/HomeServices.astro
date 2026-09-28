@@ -1,0 +1,103 @@
+---
+import { services } from '../../data/home';
+import HomeIcon from './HomeIcon.astro';
+---
+
+<section id="services" class="homeServices homeSection" aria-labelledby="home-services-heading">
+	<div class="homeContainer">
+		<header class="homeSection__head homeSection__head--center">
+			<h2 id="home-services-heading" class="homeSection__title">{services.title}</h2>
+		</header>
+
+		<div class="homeServices__grid">
+			{
+				services.items.map((item) => (
+					<article class="homeServices__card homeCard">
+						<div class="homeIcon" aria-hidden="true">
+							<HomeIcon name={item.icon} />
+						</div>
+						<h3 class="homeServices__title">{item.title}</h3>
+						<p class="homeServices__desc">{item.description}</p>
+						<ul class="homeServices__points">
+							{item.points.map((pt) => (
+								<li>
+									<HomeIcon name="check" />
+									<span>{pt}</span>
+								</li>
+							))}
+						</ul>
+						<p class="homeServices__meta">{item.meta}</p>
+						<a class="homeLink" href={item.href}>
+							{item.linkLabel}
+							<HomeIcon name="arrow" />
+						</a>
+					</article>
+				))
+			}
+		</div>
+		<!-- Tarifs : tous sur devis (confirmé par Emmanuel le 28/09/2026). -->
+	</div>
+</section>
+
+<style>
+	.homeServices__grid {
+		display: grid;
+		gap: 16px;
+	}
+
+	@media (min-width: 900px) {
+		.homeServices__grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.homeServices__card {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding: 26px 22px;
+	}
+
+	.homeServices__title {
+		margin: 4px 0 0;
+		font-size: 1.15rem;
+		font-weight: 800;
+		color: var(--home-navy);
+	}
+
+	.homeServices__desc {
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.55;
+		color: var(--color-muted);
+	}
+
+	.homeServices__points {
+		display: grid;
+		gap: 8px;
+		margin: 4px 0 0;
+		padding: 0;
+		list-style: none;
+		font-size: 14.5px;
+	}
+
+	.homeServices__points li {
+		display: flex;
+		gap: 8px;
+		align-items: flex-start;
+	}
+
+	.homeServices__points :global(svg) {
+		flex-shrink: 0;
+		margin-top: 2px;
+		color: #16a34a;
+	}
+
+	.homeServices__meta {
+		flex: 1 0 auto;
+		margin: 6px 0 0;
+		font-size: 13px;
+		font-weight: 600;
+		color: #c2410c;
+	}
+</style>

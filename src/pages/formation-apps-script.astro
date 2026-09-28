@@ -1,0 +1,189 @@
+---
+import OfferLayout from '../layouts/OfferLayout.astro';
+import { serviceJsonLd } from '../data/schema';
+
+const title = 'Formation Google Apps Script – automatiser Google Sheets';
+const description =
+	'Automatisez Google Sheets avec Apps Script : e-mails, documents, déclencheurs. Présentiel ou à distance, finançable OPCO via un organisme partenaire Qualiopi.';
+const h1 = 'Formation Google Apps Script : automatisez vos Google Sheets';
+const lead =
+	'Deux jours pour apprendre à faire travailler vos fichiers à votre place : envoi d’e-mails, génération de documents et de présentations, déclencheurs, connexion à des API. Avec des exemples tirés d’outils réellement déployés en entreprise.';
+
+const faq = [
+	{
+		question: 'Faut-il savoir programmer pour suivre la formation ?',
+		answer:
+			'Non, mais il faut être à l’aise avec Google Sheets (niveau avancé ou expert). La formation part des bases de JavaScript nécessaires à Apps Script et progresse par exercices.',
+	},
+	{
+		question: 'La formation Apps Script est-elle finançable par notre OPCO ?',
+		answer:
+			'Oui : elle est dispensée via notre organisme partenaire certifié Qualiopi, ce qui permet une demande de prise en charge auprès de votre OPCO, selon ses règles et la taille de votre entreprise.',
+	},
+	{
+		question: 'Peut-on travailler sur un cas réel de notre entreprise ?',
+		answer:
+			'Oui : une demi-journée optionnelle permet de construire une première automatisation sur l’un de vos processus, avec vos fichiers.',
+	},
+	{
+		question: 'Et si nous préférons que l’automatisation soit développée pour nous ?',
+		answer:
+			'C’est possible : je développe aussi des automatisations Google Sheets et Apps Script sur mesure, puis je forme vos référents pour qu’ils puissent les faire évoluer.',
+	},
+	{
+		question: 'Quelles sont les limites d’Apps Script ?',
+		answer:
+			'Apps Script est soumis à des quotas (durée d’exécution, nombre d’e-mails, appels externes). La formation montre comment les anticiper et à quel moment une application dédiée devient préférable.',
+	},
+];
+
+const jsonLd = [
+	serviceJsonLd({
+		name: 'Formation Google Apps Script',
+		path: '/formation-apps-script/',
+		description,
+		serviceType: 'Formation professionnelle Google Apps Script',
+	}),
+];
+---
+
+<OfferLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	eyebrow="Offre 1 · Formation"
+	breadcrumb={[{ label: 'Formation Google Sheets', href: '/formation-google-sheets/' }, { label: 'Formation Apps Script' }]}
+	badges={[
+		'Finançable OPCO via notre organisme partenaire certifié Qualiopi',
+		'2 jours, en présentiel ou à distance',
+		'Exemples issus de vrais outils',
+	]}
+	primaryCta={{ label: 'Recevoir le programme et un devis', href: '/contact/?offre=formation' }}
+	secondaryCta={{ label: 'Voir le programme', href: '#programme' }}
+	faq={faq}
+	jsonLd={jsonLd}
+	current="formation"
+	ogImage="/images/og/formation-apps-script.png"
+	finalCta={{
+		title: 'Former vos référents à Apps Script',
+		text: 'Indiquez le nombre de participants, leur niveau actuel sur Google Sheets et les processus que vous aimeriez automatiser : je vous propose un programme adapté et un devis.',
+		primary: { label: 'Demander un programme', href: '/contact/?offre=formation' },
+		secondary: { label: 'Toutes les formations', href: '/formation-google-sheets/' },
+	}}
+>
+	<!-- Tarifs : sur devis (confirmé). TODO (Emmanuel) : programme et durée à valider avec l’organisme partenaire ; nom du partenaire à ajouter. -->
+	<section class="oSection" aria-labelledby="fas-pour-qui">
+		<div class="oContainer">
+			<h2 id="fas-pour-qui" class="oTitle">Pour qui ?</h2>
+			<div class="oGrid oGrid--3">
+				<div class="oCard">
+					<h3>Référents Google Sheets</h3>
+					<p>Les personnes à qui l’on confie les fichiers critiques et qui veulent aller au-delà des formules.</p>
+				</div>
+				<div class="oCard">
+					<h3>Contrôle de gestion et finance</h3>
+					<p>Pour automatiser les consolidations, les reportings et les contrôles répétitifs.</p>
+				</div>
+				<div class="oCard">
+					<h3>Opérations et réseaux multisites</h3>
+					<p>Pour déployer un même fichier dans chaque site, collecter les données et diffuser les résultats automatiquement.</p>
+				</div>
+			</div>
+			<p class="oNote">Prérequis : niveau avancé (N2) ou expert (N3) sur Google Sheets. <a href="/formation-google-sheets/">Voir les niveaux</a>.</p>
+		</div>
+	</section>
+
+	<section id="programme" class="oSection oSection--alt" aria-labelledby="fas-programme">
+		<div class="oContainer">
+			<h2 id="fas-programme" class="oTitle">Le programme sur 2 jours</h2>
+			<div class="oGrid oGrid--2">
+				<div class="oCard">
+					<span class="oCard__tag">Jour 1</span>
+					<h3>Les bases de l’automatisation</h3>
+					<ul>
+						<li>L’éditeur Apps Script, les macros enregistrées et leur code</li>
+						<li>Les notions de JavaScript utiles : variables, boucles, conditions, fonctions</li>
+						<li>Lire et écrire dans une feuille efficacement (lecture par plages)</li>
+						<li>Menus personnalisés et boîtes de dialogue</li>
+						<li>Déclencheurs simples et installables (à l’ouverture, à la modification, planifiés)</li>
+					</ul>
+				</div>
+				<div class="oCard">
+					<span class="oCard__tag">Jour 2</span>
+					<h3>Automatiser un vrai processus</h3>
+					<ul>
+						<li>Envoyer des e-mails automatiques depuis Google Sheets</li>
+						<li>Générer des documents, des présentations Google Slides et des PDF</li>
+						<li>Exploiter les réponses de Google Forms</li>
+						<li>Appeler une API externe (UrlFetchApp)</li>
+						<li>Quotas, gestion des erreurs, journalisation et bonnes pratiques de maintenance</li>
+					</ul>
+				</div>
+			</div>
+			<p class="oNote">Option : ½ journée supplémentaire pour construire une automatisation sur l’un de vos processus réels.</p>
+		</div>
+	</section>
+
+	<section class="oSection" aria-labelledby="fas-exemples">
+		<div class="oContainer oSplit">
+			<div>
+				<h2 id="fas-exemples" class="oTitle">Des exemples tirés d’outils réels</h2>
+				<div class="oProse">
+					<p>
+						Les exercices s’inspirent d’automatisations déployées en entreprise : un fichier créé automatiquement pour
+						chaque magasin ou agence, la consolidation centrale des données, une présentation Google Slides générée pour
+						chaque site et chaque région, des relances par e-mail quand une saisie manque.
+					</p>
+					<p>
+						Vous repartez avec des scripts commentés et réutilisables, et les réflexes pour les maintenir dans la durée.
+					</p>
+				</div>
+			</div>
+			<div class="oCard oCard--accent">
+				<h3>Vous préférez qu’on le développe pour vous ?</h3>
+				<p>
+					Je développe aussi des automatisations sur mesure, documentées, puis je forme vos référents pour qu’ils
+					restent autonomes.
+				</p>
+				<p><a href="/automatisation-google-sheets/">Automatisation Google Sheets sur mesure</a></p>
+			</div>
+		</div>
+	</section>
+
+	<section class="oSection oSection--alt" aria-labelledby="fas-financement">
+		<div class="oContainer">
+			<h2 id="fas-financement" class="oTitle">Financement et modalités</h2>
+			<dl class="oInfo">
+				<div>
+					<dt>Financement</dt>
+					<dd>Finançable OPCO via notre organisme partenaire certifié Qualiopi, selon les règles de votre OPCO et la taille de votre entreprise.</dd>
+				</div>
+				<div>
+					<dt>Durée</dt>
+					<dd>2 jours (14 h), plus ½ journée optionnelle sur un cas réel.</dd>
+				</div>
+				<div>
+					<dt>Modalités</dt>
+					<dd>Intra-entreprise en présentiel dans vos locaux (Lille et Hauts-de-France) ou à distance en classe virtuelle.</dd>
+				</div>
+				<div>
+					<dt>Évaluation</dt>
+					<dd>Exercices pratiques et évaluation des acquis en fin de formation.</dd>
+				</div>
+				<div>
+					<dt>Tarifs</dt>
+					<dd>Sur devis.</dd>
+				</div>
+				<div>
+					<dt>Accessibilité</dt>
+					<dd>Contactez-nous pour étudier les adaptations possibles avec le référent handicap de l’organisme partenaire.</dd>
+				</div>
+			</dl>
+			<ul class="oLinks">
+				<li><a href="/blog/automatiser-processus-metier-google-apps-script-entreprise/">Automatiser ses processus avec Apps Script</a></li>
+				<li><a href="/formation-google-sheets/">Formations Google Sheets par niveau</a></li>
+			</ul>
+		</div>
+	</section>
+</OfferLayout>

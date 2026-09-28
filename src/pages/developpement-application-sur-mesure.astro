@@ -1,0 +1,352 @@
+---
+import OfferLayout from '../layouts/OfferLayout.astro';
+import { serviceJsonLd } from '../data/schema';
+import { testimonials } from '../data/testimonials';
+
+const title = 'Développement d’application sur mesure – freelance Lille';
+const description =
+	'Applications métier sur mesure pour remplacer vos fichiers Excel et vos ressaisies. Développeur senior, développement accéléré par l’IA. Près de Lille.';
+const h1 = 'Développement d’applications métier sur mesure, plus vite grâce à l’IA';
+const lead =
+	'Un développeur senior, en activité depuis 2002 et auteur de plus de 15 applications, qui s’appuie sur l’IA pour livrer plus vite, avec un code testé et documenté qui vous appartient. Du cadrage à la mise en production, puis la formation de vos utilisateurs.';
+
+const faq = [
+	{
+		question: 'Combien coûte une application métier sur mesure ?',
+		answer:
+			'Le tarif est sur devis : il dépend du périmètre, des intégrations et du nombre d’utilisateurs. Le cadrage permet d’estimer précisément la première version avant tout engagement.',
+	},
+	{
+		question: 'En combien de temps peut-on avoir une première version ?',
+		answer:
+			'Une automatisation Google Sheets prend de une à quatre semaines, un prototype utilisable quelques semaines. Une application métier complète demande généralement de 2 à 6 mois selon le périmètre, avec des livraisons régulières pour obtenir de la valeur rapidement.',
+	},
+	{
+		question: 'Comment l’IA réduit-elle les délais ? Mon code et mes données sont-ils en sécurité ?',
+		answer:
+			'L’IA accélère le code répétitif, les tests, les prototypes et la documentation. L’architecture, la sécurité, les règles métier et la revue de chaque ligne livrée restent faites par moi. Aucune donnée client n’est envoyée à un outil d’IA sans votre accord, et le code vous appartient.',
+	},
+	{
+		question: 'Peut-on partir de nos fichiers Excel ou Google Sheets actuels ?',
+		answer:
+			'Oui : vos fichiers décrivent déjà une bonne partie des règles métier. Ils servent de base au cadrage, et leurs données sont reprises dans l’application au moment de la mise en production.',
+	},
+	{
+		question: 'Sur mesure, no-code ou logiciel du marché : que choisir ?',
+		answer:
+			'Si un logiciel du marché couvre votre besoin, je vous le dirai. Le sur mesure se justifie quand votre processus est spécifique, stable et central pour votre activité, ou quand vous devez connecter plusieurs outils entre eux.',
+	},
+	{
+		question: 'L’application peut-elle se connecter à notre ERP, notre CRM ou notre logiciel comptable ?',
+		answer:
+			'Le plus souvent oui, via leurs API, des webhooks ou des échanges de fichiers. La faisabilité est vérifiée pendant le cadrage.',
+	},
+	{
+		question: 'Que se passe-t-il si vous n’êtes plus disponible ?',
+		answer:
+			'Le code repose sur des technologies standards (Symfony, PHP, MySQL, Vue.js), il est documenté et hébergé chez vous ou chez un hébergeur de votre choix : un autre développeur peut le reprendre.',
+	},
+];
+
+const mcbQuote = testimonials.find((t) => t.author === 'Dimitri De Cruz');
+
+const jsonLd = [
+	serviceJsonLd({
+		name: 'Développement d’application métier sur mesure',
+		path: '/developpement-application-sur-mesure/',
+		description,
+		serviceType: 'Développement d’applications web sur mesure',
+	}),
+];
+---
+
+<OfferLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	eyebrow="Offre 2 · Applications"
+	breadcrumb={[{ label: 'Applications sur mesure' }]}
+	badges={['Développeur depuis 2002', '15+ applications développées', 'Développement accéléré par l’IA', 'Code qui vous appartient']}
+	primaryCta={{ label: 'Estimer mon projet', href: '/contact/?offre=application' }}
+	secondaryCta={{ label: 'Voir les réalisations', href: '/realisations/' }}
+	faq={faq}
+	jsonLd={jsonLd}
+	current="applications"
+	ogImage="/images/og/developpement-application-sur-mesure.png"
+	finalCta={{
+		title: 'Estimer votre projet',
+		text: 'Décrivez le type d’outil, le nombre d’utilisateurs, vos outils actuels et votre échéance : je reviens vers vous avec une première estimation et les prochaines étapes.',
+		primary: { label: 'Estimer mon projet', href: '/contact/?offre=application' },
+		secondary: { label: 'Voir les réalisations', href: '/realisations/' },
+	}}
+>
+	<!-- TODO (Emmanuel) : outils d’IA utilisés, politique de confidentialité des données clients ; ne pas afficher de pourcentage de gain tant qu’il n’est pas mesuré sur 2 ou 3 projets. -->
+
+	<section class="oSection" aria-labelledby="das-symptomes">
+		<div class="oContainer oSplit">
+			<div>
+				<h2 id="das-symptomes" class="oTitle">Vos fichiers sont devenus votre logiciel ?</h2>
+				<p class="oIntro">
+					Beaucoup d’entreprises font tourner un processus central sur des fichiers Excel ou Google Sheets partagés. Ça
+					fonctionne… jusqu’au jour où ça ne suffit plus.
+				</p>
+				<ul class="oChecks oChecks--2">
+					<li>Plusieurs versions du même fichier, personne ne sait laquelle est la bonne</li>
+					<li>Les mêmes données sont ressaisies dans plusieurs outils</li>
+					<li>Des erreurs de saisie se retrouvent dans les chiffres présentés en comité</li>
+					<li>Impossible de donner des droits différents selon les rôles</li>
+					<li>Le fichier rame, les formules cassent</li>
+					<li>Tout repose sur une seule personne</li>
+				</ul>
+			</div>
+			<div class="oCard oCard--accent">
+				<span class="oCard__tag">Avant de développer</span>
+				<h3>Automatiser suffit parfois</h3>
+				<p>
+					Si vos équipes tiennent à Google Sheets, une automatisation Apps Script peut régler l’essentiel sans changer
+					d’outil.
+				</p>
+				<p><a href="/automatisation-google-sheets/">Automatisation Google Sheets</a></p>
+				<p>
+					Pour approfondir : <a href="/blog/fichiers-excel-cout-cache-entreprise/">le coût caché des fichiers Excel</a>.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="oSection oSection--alt" aria-labelledby="das-quoi">
+		<div class="oContainer">
+			<h2 id="das-quoi" class="oTitle">Ce que je développe</h2>
+			<div class="oGrid oGrid--3">
+				<div class="oCard">
+					<h3>Back-offices et outils de gestion</h3>
+					<p>Stocks, planning, interventions, commandes, suivi de dossiers : l’outil qui colle à votre processus.</p>
+				</div>
+				<div class="oCard">
+					<h3>Portails client ou partenaire</h3>
+					<p>Un espace sécurisé où vos clients, magasins ou partenaires consultent et saisissent leurs informations.</p>
+				</div>
+				<div class="oCard">
+					<h3>Tableaux de bord</h3>
+					<p>Des indicateurs fiables, calculés à partir d’une source unique, plutôt que des copier-coller mensuels.</p>
+				</div>
+				<div class="oCard">
+					<h3>API et connecteurs</h3>
+					<p>Connexion à votre ERP, votre CRM, un outil de paiement ou des webhooks, pour supprimer les ressaisies.</p>
+				</div>
+				<div class="oCard">
+					<h3>Outils Google Sheets et Apps Script</h3>
+					<p>Collecte multisite, rapports automatiques, alertes : <a href="/automatisation-google-sheets/">automatiser vos Google Sheets</a>.</p>
+				</div>
+				<div class="oCard">
+					<h3>Reprise et refonte</h3>
+					<p>Stabiliser, maintenir ou refondre une application existante : <a href="/refonte-application-web/">refonte et maintenance</a>.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="oSection" aria-labelledby="das-ia">
+		<div class="oContainer">
+			<h2 id="das-ia" class="oTitle">L’IA dans mon développement, concrètement</h2>
+			<div class="oGrid oGrid--2">
+				<div class="oCard">
+					<h3>Ce que l’IA accélère</h3>
+					<ul>
+						<li>Le code répétitif (formulaires, écrans de gestion, requêtes)</li>
+						<li>Les tests automatisés</li>
+						<li>Les prototypes, pour valider une idée avant de la construire</li>
+						<li>La documentation</li>
+						<li>Les migrations de code et de versions</li>
+					</ul>
+				</div>
+				<div class="oCard">
+					<h3>Ce qui reste humain</h3>
+					<ul>
+						<li>L’architecture et les choix techniques</li>
+						<li>La sécurité et la protection des données</li>
+						<li>La compréhension de vos règles métier</li>
+						<li>La revue de chaque ligne de code livrée</li>
+					</ul>
+				</div>
+			</div>
+			<ul class="oChecks oChecks--2" style="margin-top:20px">
+				<li>Le code vous appartient</li>
+				<li>Pas de données clients envoyées à une IA sans votre accord</li>
+				<li>Tests automatisés sur les parties critiques</li>
+				<li>Documentation livrée avec l’application</li>
+			</ul>
+		</div>
+	</section>
+
+	<section id="formules" class="oSection oSection--alt" aria-labelledby="das-formules">
+		<div class="oContainer">
+			<h2 id="das-formules" class="oTitle">Méthode et formules</h2>
+			<p class="oIntro">
+				On avance par étapes : chaque étape produit un résultat utilisable et vous permet de décider de la suite.
+			</p>
+			<!-- Tarifs : tous sur devis (confirmé par Emmanuel le 28/09/2026). TODO (Emmanuel) : délais indicatifs (cadrage, prototype, V1) à confirmer. -->
+			<div class="oTableWrap">
+				<table class="oTable">
+					<thead>
+						<tr>
+							<th scope="col">Formule</th>
+							<th scope="col">Contenu</th>
+							<th scope="col">Délai indicatif</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Cadrage / diagnostic</th>
+							<td>Ateliers avec les équipes, cartographie des processus et des données, périmètre de la première version, estimation</td>
+							<td>1 à 3 jours</td>
+						</tr>
+						<tr>
+							<th scope="row">Outil Google Sheets + Apps Script</th>
+							<td>Automatisation d’un processus existant sans changer d’outil : collecte multisite, rapports automatiques, alertes</td>
+							<td>1 à 4 semaines</td>
+						</tr>
+						<tr>
+							<th scope="row">Prototype / MVP</th>
+							<td>Écrans cliquables, puis une première version utilisable sur le cœur du métier</td>
+							<td>Quelques semaines</td>
+						</tr>
+						<tr>
+							<th scope="row">Application complète (V1)</th>
+							<td>Rôles et droits, reprise des données Excel, intégrations, déploiement, formation des utilisateurs</td>
+							<td>2 à 6 mois</td>
+						</tr>
+						<tr>
+							<th scope="row">Maintenance et évolutions</th>
+							<td>Mises à jour de sécurité, montées de version, supervision, petites évolutions</td>
+							<td>Suivi mensuel</td>
+						</tr>
+						<tr>
+							<th scope="row"><a href="/refonte-application-web/">Reprise ou refonte</a></th>
+							<td>Audit de code, stabilisation, refonte progressive d’une application existante</td>
+							<td>Sur devis</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section id="cadrage" class="oSection" aria-labelledby="das-cadrage">
+		<div class="oContainer oSplit">
+			<div>
+				<h2 id="das-cadrage" class="oTitle">Le cadrage : rendre visibles les pertes, puis décider dans le bon ordre</h2>
+				<div class="oProse">
+					<p>
+						Un cadrage n’est pas un inventaire de technologies : c’est une photographie honnête des frictions qui coûtent
+						du temps et de l’argent (doubles saisies, fichiers parallèles devenus « source de vérité », outils sans
+						documentation, droits mal définis sur les données).
+					</p>
+					<p>
+						Je commence par les personnes qui font tourner l’activité au quotidien, pour comprendre les flux utiles et les
+						contournements réels. Puis je croise avec la réalité technique et vos objectifs.
+					</p>
+					<h3>Ce que vous obtenez</h3>
+					<ul>
+						<li>Une cartographie synthétique des flux et des données</li>
+						<li>Les risques classés par impact</li>
+						<li>Des recommandations priorisées (impact, effort, urgence)</li>
+						<li>Le périmètre de la première version et son estimation</li>
+					</ul>
+					<p>
+						Parfois, la bonne réponse est une <a href="/formation-google-sheets/">formation</a> ou une automatisation
+						plutôt qu’une application : le cadrage sert aussi à éviter de lancer le mauvais chantier.
+					</p>
+				</div>
+			</div>
+			<div class="oCard">
+				<h3>Combien ça coûte ?</h3>
+				<p>
+					<strong>Tarif sur demande.</strong> Chaque projet est chiffré sur devis : le budget dépend du périmètre, des
+					intégrations et du nombre d’utilisateurs.
+				</p>
+				<p>Le cadrage fixe une estimation précise de la première version avant tout engagement sur le développement.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="oSection oSection--alt" aria-labelledby="das-cas">
+		<div class="oContainer">
+			<h2 id="das-cas" class="oTitle">Du tableur à l’application : quelques projets</h2>
+			<!-- Cas Decathlon décrits d’après les missions publiées sur le profil Malt (chiffres repris de cette source). Publication autorisée par Decathlon (28/09/2026). -->
+			<div class="oGrid oGrid--3">
+				<div class="oCard">
+					<span class="oCard__tag">Decathlon France</span>
+					<h3>Suivi de bilans en magasin</h3>
+					<p>
+						Un Google Sheets par magasin déployé par Apps Script, une consolidation centrale, des présentations Google
+						Slides générées automatiquement par magasin et par région, un tableau de bord d’avancement. Une collecte
+						de 1 à 2 journées par magasin ramenée à 5 minutes.
+					</p>
+				</div>
+				<div class="oCard">
+					<span class="oCard__tag">Decathlon United</span>
+					<h3>Prévisionnels de stock</h3>
+					<p>
+						Un outil de prévision de stock vélos pour chaque magasin européen, avec un paramétrage par pays, une gestion
+						multilingue et des tableaux de bord d’adoption.
+					</p>
+				</div>
+				<div class="oCard">
+					<span class="oCard__tag">Mon Coach Brico</span>
+					<h3>Back-office sur 3 ans</h3>
+					<p>
+						Développement du back-office et proposition d’interfaces, dans le cadre d’une collaboration de 3 ans.
+					</p>
+				</div>
+			</div>
+			{
+				mcbQuote && (
+					<figure class="oQuote" style="margin-top:20px">
+						<blockquote>« {mcbQuote.quote} »</blockquote>
+						<figcaption>
+							{mcbQuote.author}, {mcbQuote.context}
+						</figcaption>
+					</figure>
+				)
+			}
+			<p class="oNote">
+				Je conçois et développe aussi mes propres services en ligne : <a href="/realisations/#saas">Webhooky, AlertJet
+				et LnkX</a>. · <a href="/realisations/">Toutes les réalisations</a>
+			</p>
+		</div>
+	</section>
+
+	<section class="oSection" aria-labelledby="das-deconseille">
+		<div class="oContainer oGrid oGrid--2">
+			<div>
+				<h2 id="das-deconseille" class="oTitle">Quand je vous déconseille le sur mesure</h2>
+				<div class="oProse">
+					<ul>
+						<li>Un logiciel du marché couvre déjà 90 % de votre besoin</li>
+						<li>Votre processus n’est pas encore stabilisé : mieux vaut le tester quelques mois dans Google Sheets</li>
+						<li>Personne en interne ne pourra porter le projet et trancher les choix</li>
+					</ul>
+					<p>Dans ces cas, je vous le dis, et je vous oriente vers la solution la plus simple.</p>
+				</div>
+			</div>
+			<div>
+				<h2 class="oTitle">Stack technique</h2>
+				<div class="oProse">
+					<p>
+						Symfony, API Platform, PHP 8, Vue.js, MySQL, Google Apps Script, Power BI et Looker Studio. Pour les
+						agences, ESN et DSI qui cherchent un renfort : <a href="/developpeur-symfony-freelance/">développeur Symfony freelance</a>.
+					</p>
+					<p>
+						Formation des utilisateurs incluse à la mise en production, et <a href="/formation-google-sheets/">formations Google Sheets</a> pour vos équipes.
+					</p>
+				</div>
+				<ul class="oLinks">
+					<li><a href="/blog/freelance-vs-agence-vs-internalisation-projets-tech/">Freelance, agence ou interne ?</a></li>
+					<li><a href="/blog/application-web-perd-argent-signes/">Signes qu’une application coûte trop cher</a></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</OfferLayout>

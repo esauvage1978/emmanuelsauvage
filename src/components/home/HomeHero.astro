@@ -1,0 +1,577 @@
+---
+import { hero, offerCards, proofs } from '../../data/home';
+import { GOOGLE_PROFILE_URL, MALT_PROFILE_URL } from '../../config/site';
+import HomeIcon from './HomeIcon.astro';
+import '../../styles/home.css';
+
+const { photo } = hero;
+const resolveHref = (href?: string) =>
+	href === 'MALT' ? MALT_PROFILE_URL : href === 'GOOGLE' ? GOOGLE_PROFILE_URL : href;
+---
+
+<section class="homeHero homeSection" aria-label="Accroche principale">
+	<div class="homeContainer homeHero__grid">
+		<div class="homeHero__content">
+			<p class="homeHero__kicker">Du tableur à l’application</p>
+			<h1 class="homeHero__title">
+				<span class="homeHero__eyebrow">
+					{
+						hero.eyebrow.map((part, i) => (
+							<>
+								{i > 0 && ' · '}
+								<span class="homeHero__eyebrowPart">{part}</span>
+							</>
+						))
+					}
+				</span>
+				<span class="homeHero__titleMain">{hero.h1}</span>
+			</h1>
+			<p class="homeHero__lead homeHero__lead--strong">{hero.tagline}</p>
+			<p class="homeHero__lead">{hero.subtitle}</p>
+			<div class="homeHero__actions">
+				<a class="homeBtn homeBtn--primary" href={hero.primaryCta.href}>{hero.primaryCta.label}</a>
+				<a class="homeBtn homeBtn--secondary" href={hero.secondaryCta.href}>{hero.secondaryCta.label}</a>
+			</div>
+			<p class="homeHero__tertiary">
+				<a class="homeLink" href={hero.tertiaryLink.href}>
+					{hero.tertiaryLink.label}
+					<HomeIcon name="arrow" />
+				</a>
+			</p>
+		</div>
+
+		<div class="homeHero__visual">
+			<!-- TODO (Emmanuel) : photo d’illustration Unsplash, à remplacer par une vraie photo professionnelle. -->
+			<div class="homeHero__photoWrap">
+				<picture>
+					<source type="image/webp" srcset={photo.srcsetWebp} sizes={photo.sizes} />
+					<img
+						class="homeHero__photo"
+						src={photo.src}
+						srcset={photo.srcsetJpeg}
+						sizes={photo.sizes}
+						width={photo.width}
+						height={photo.height}
+						alt={photo.alt}
+						loading="eager"
+						fetchpriority="high"
+						decoding="async"
+					/>
+				</picture>
+
+				<div class="homeHero__float homeHero__float--bi" aria-hidden="true">
+					<div class="homeHero__floatHead">
+						<span></span><span></span><span></span>
+					</div>
+					<div class="homeHero__biBars">
+						<span style="height:45%"></span><span style="height:72%"></span><span style="height:58%"></span><span style="height:88%"></span>
+					</div>
+					<p>Tableau de bord</p>
+				</div>
+
+				<div class="homeHero__float homeHero__float--sheets" aria-hidden="true">
+					<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+						<rect x="3" y="3" width="18" height="18" rx="2" fill="#0F9D58" opacity="0.15" />
+						<path d="M7 8h10M7 12h10M7 16h6" stroke="#0F9D58" stroke-width="1.5" stroke-linecap="round" />
+					</svg>
+					<p>Google Sheets</p>
+				</div>
+
+				<div class="homeHero__float homeHero__float--code" aria-hidden="true">
+					<pre><code>function onEdit(e) &#123;
+  notify(e.range)
+&#125;</code></pre>
+					<p>Apps Script</p>
+				</div>
+
+				<div class="homeHero__float homeHero__float--auto" aria-hidden="true">
+					<ul>
+						<li></li><li></li><li></li>
+					</ul>
+					<p>Application</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="homeContainer">
+		<ul class="homeOffers" aria-label="Les trois offres">
+			{
+				offerCards.map((card) => (
+					<li class="homeOffers__item">
+						<a class="homeOffers__card homeCard" href={card.href}>
+							<span class="homeIcon" aria-hidden="true">
+								<HomeIcon name={card.icon} />
+							</span>
+							<span class="homeOffers__kicker">{card.kicker}</span>
+							<span class="homeOffers__title">{card.title}</span>
+							<span class="homeOffers__text">{card.text}</span>
+							<span class="homeOffers__link">
+								{card.linkLabel}
+								<HomeIcon name="arrow" />
+							</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+
+		<!-- Bandeau de preuves : TODO (Emmanuel) dates du mentorat OpenClassrooms et re-mesure des scores PageSpeed. « 300+ magasins » : source Malt. Note Google vérifiée le 28/09/2026. -->
+		<ul class="homeProofs" aria-label="Quelques repères">
+			{
+				proofs.map((p) => {
+					const href = resolveHref(p.href);
+					const inner = (
+						<>
+							<span class="homeIcon homeProofs__icon" aria-hidden="true">
+								<HomeIcon name={p.icon} />
+							</span>
+							<span>
+								<span class="homeProofs__value">{p.value}</span>
+								<span class="homeProofs__label">{p.label}</span>
+							</span>
+						</>
+					);
+					return (
+						<li>
+							{href ? (
+								<a
+									class="homeProofs__item homeProofs__item--link"
+									href={href}
+									{...(p.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+								>
+									{inner}
+								</a>
+							) : (
+								<span class="homeProofs__item">{inner}</span>
+							)}
+						</li>
+					);
+				})
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.homeHero {
+		padding-top: clamp(32px, 5vw, 56px);
+		padding-bottom: clamp(24px, 4vw, 40px);
+		background: #fff;
+	}
+
+	.homeHero__grid {
+		display: grid;
+		gap: clamp(36px, 5vw, 56px);
+		align-items: center;
+	}
+
+	@media (min-width: 960px) {
+		.homeHero__grid {
+			grid-template-columns: 1.05fr 0.95fr;
+		}
+	
+	}
+
+	.homeHero__content {
+		text-align: center;
+	}
+
+	@media (min-width: 960px) {
+		.homeHero__content {
+			text-align: left;
+		}
+	
+	}
+
+	/* Sur-titre intégré au H1 (nom, métier, ville) : rendu identique à l’ancien paragraphe. */
+	.homeHero__eyebrow {
+		/* bloc « shrink-to-fit » : évite que la hauteur de ligne du H1 n’agrandisse l’espace autour du badge */
+		display: block;
+		width: fit-content;
+		max-width: 100%;
+		box-sizing: border-box;
+		margin: 0 auto 14px;
+		padding: 5px 12px;
+		border-radius: 999px;
+		font-size: 11px;
+		font-weight: 700;
+		line-height: 1.5;
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+		color: var(--home-blue);
+		background: var(--home-blue-50);
+		border: 1px solid var(--home-blue-100);
+	}
+
+	/* Sur mobile, le sur-titre passe sur 2 lignes entre deux segments (jamais au milieu d’un segment). */
+	.homeHero__eyebrowPart {
+		white-space: nowrap;
+	}
+
+	@media (min-width: 960px) {
+		.homeHero__eyebrow {
+			margin-left: 0;
+		}
+	
+	}
+
+	@media (max-width: 719px) {
+		.homeHero__eyebrow {
+			border-radius: 14px;
+		}
+	
+	}
+
+	.homeHero__titleMain {
+		display: block;
+	}
+
+	.homeHero__title {
+		margin: 0 0 16px;
+		font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+		line-height: 1.08;
+		letter-spacing: -0.03em;
+		color: #0f172a;
+		font-weight: 800;
+	}
+
+	.homeHero__lead {
+		margin: 0 0 22px;
+		font-size: 1rem;
+		line-height: 1.6;
+		color: var(--color-muted);
+		max-width: 52ch;
+		margin-inline: auto;
+	}
+
+	@media (min-width: 960px) {
+		.homeHero__lead {
+			margin-inline: 0;
+		}
+	
+	}
+
+	.homeHero__actions {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		align-items: center;
+		margin-bottom: 24px;
+	}
+
+	@media (min-width: 520px) {
+		.homeHero__actions {
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+	
+	}
+
+	@media (min-width: 960px) {
+		.homeHero__actions {
+			justify-content: flex-start;
+		}
+	
+	}
+
+	.homeHero__visual {
+		display: flex;
+		justify-content: center;
+	}
+
+	.homeHero__photoWrap {
+		position: relative;
+		width: min(520px, 100%);
+	}
+
+	.homeHero__photo {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 20px;
+		box-shadow: var(--home-shadow-lg);
+		object-fit: cover;
+		aspect-ratio: 4 / 3;
+	}
+
+	.homeHero__float {
+		position: absolute;
+		padding: 10px 12px;
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.95);
+		border: 1px solid rgba(148, 163, 184, 0.25);
+		box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+		backdrop-filter: blur(8px);
+		font-size: 10px;
+		font-weight: 600;
+		color: var(--color-muted);
+	}
+
+	.homeHero__float p {
+		margin: 6px 0 0;
+	}
+
+	.homeHero__float--bi {
+		top: 4%;
+		left: -4%;
+		width: 46%;
+		animation: homeFloatA 6s ease-in-out infinite;
+	}
+
+	.homeHero__floatHead {
+		display: flex;
+		gap: 4px;
+		margin-bottom: 6px;
+	}
+
+	.homeHero__floatHead span {
+		width: 5px;
+		height: 5px;
+		border-radius: 50%;
+		background: #cbd5e1;
+	}
+
+	.homeHero__biBars {
+		display: flex;
+		align-items: flex-end;
+		gap: 3px;
+		height: 36px;
+	}
+
+	.homeHero__biBars span {
+		flex: 1;
+		border-radius: 2px 2px 0 0;
+		background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+	}
+
+	.homeHero__float--sheets {
+		top: 2%;
+		right: -2%;
+		animation: homeFloatB 7s ease-in-out infinite;
+	}
+
+	.homeHero__float--code {
+		top: 42%;
+		left: -6%;
+		width: 44%;
+		animation: homeFloatC 8s ease-in-out infinite;
+	}
+
+	.homeHero__float--code pre {
+		margin: 0;
+		font-size: 9px;
+		font-family: ui-monospace, monospace;
+		color: #64748b;
+		line-height: 1.4;
+	}
+
+	.homeHero__float--auto {
+		top: 55%;
+		right: -4%;
+		width: 38%;
+		animation: homeFloatB 6.5s ease-in-out infinite reverse;
+	}
+
+	.homeHero__float--auto ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 4px;
+	}
+
+	.homeHero__float--auto li {
+		height: 6px;
+		border-radius: 3px;
+		background: var(--home-blue-50);
+		border: 1px solid var(--home-blue-100);
+	}
+
+	.homeHero__float--auto li:nth-child(2) {
+		width: 80%;
+	}
+
+	@keyframes homeFloatA {
+		0%, 100% { transform: translateY(0); }
+		50% { transform: translateY(-6px); }
+	}
+
+	@keyframes homeFloatB {
+		0%, 100% { transform: translateY(0); }
+		50% { transform: translateY(-8px); }
+	}
+
+	@keyframes homeFloatC {
+		0%, 100% { transform: translateY(0); }
+		50% { transform: translateY(-5px); }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.homeHero__float {
+			animation: none;
+		}
+	
+	}
+
+	@media (max-width: 520px) {
+		.homeHero__float--bi { left: 0; }
+		.homeHero__float--code { left: 0; }
+	
+	}
+
+	.homeHero__kicker {
+		margin: 0 0 10px;
+		font-size: 13px;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: #c2410c;
+	}
+
+	.homeHero__lead--strong {
+		margin-bottom: 10px;
+		font-size: 1.0625rem;
+		font-weight: 600;
+		color: #0f172a;
+	}
+
+	.homeHero__tertiary {
+		margin: -8px 0 0;
+	}
+
+	.homeOffers {
+		display: grid;
+		gap: 16px;
+		margin: clamp(32px, 5vw, 48px) 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	@media (min-width: 820px) {
+		.homeOffers {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	
+	}
+
+	.homeOffers__card {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		box-sizing: border-box;
+		height: 100%;
+		padding: 22px;
+		text-decoration: none;
+		color: inherit;
+		border-top: 3px solid var(--home-blue);
+	}
+
+	.homeOffers__item:nth-child(2) .homeOffers__card {
+		border-top-color: #c2410c;
+	}
+
+	.homeOffers__item:nth-child(3) .homeOffers__card {
+		border-top-color: #0f9d58;
+	}
+
+	.homeOffers__card:hover {
+		transform: translateY(-2px);
+	}
+
+	.homeOffers__card .homeIcon {
+		margin-bottom: 6px;
+	}
+
+	.homeOffers__kicker {
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--color-muted);
+	}
+
+	.homeOffers__title {
+		font-size: 1.2rem;
+		font-weight: 800;
+		color: #0f172a;
+	}
+
+	.homeOffers__text {
+		flex: 1 0 auto;
+		font-size: 15px;
+		line-height: 1.55;
+		color: var(--color-muted);
+	}
+
+	.homeOffers__link {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin-top: 8px;
+		font-size: 14px;
+		font-weight: 700;
+		color: var(--home-blue);
+	}
+
+	.homeProofs {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 12px;
+		margin: 20px 0 0;
+		padding: 16px;
+		list-style: none;
+		border-radius: var(--home-radius);
+		background: var(--home-slate-100);
+		border: 1px solid #e2e8f0;
+	}
+
+	@media (min-width: 560px) {
+		.homeProofs {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	
+	}
+
+	@media (min-width: 1024px) {
+		.homeProofs {
+			grid-template-columns: repeat(5, 1fr);
+		}
+	
+	}
+
+	.homeProofs__item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.homeProofs__item--link:hover .homeProofs__label {
+		text-decoration: underline;
+	}
+
+	.homeProofs__icon {
+		width: 36px;
+		height: 36px;
+		background: #fff;
+	}
+
+	.homeProofs__value {
+		display: block;
+		font-size: 1.05rem;
+		font-weight: 800;
+		color: #0f172a;
+		line-height: 1.2;
+	}
+
+	.homeProofs__label {
+		display: block;
+		font-size: 12.5px;
+		line-height: 1.35;
+		color: var(--color-muted);
+	}
+
+</style>

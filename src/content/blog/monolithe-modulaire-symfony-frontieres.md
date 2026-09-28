@@ -1,7 +1,8 @@
 ---
 title: "Monolithe modulaire Symfony : frontières nettes sans microservices"
-shortTitle: "Monolithe modulaire Symfony : frontières"
+shortTitle: "Monolithe modulaire Symfony : découper sans microservices"
 description: "Contextes délimités, namespaces, règles de dépendance et points d’intégration explicites pour garder une base évolutive."
+metaDescription: "Structurer un monolithe modulaire Symfony : contextes délimités, namespaces, règles de dépendance et intégrations explicites. Exemples concrets."
 pubDate: 2026-03-18
 readingTimeMinutes: 11
 tags:
@@ -9,6 +10,7 @@ tags:
   - "Architecture"
   - "DDD léger"
 illustration: modules
+category: applications
 ---
 <aside class="tldr">
 <strong>En bref</strong>

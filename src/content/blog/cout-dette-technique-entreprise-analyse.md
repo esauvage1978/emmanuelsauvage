@@ -2,6 +2,7 @@
 title: "Combien coûte une dette technique à une entreprise ? (Analyse complète)"
 shortTitle: "Coût dette technique PME : méthode et tableaux"
 description: "Méthode pour chiffrer la dette technique : temps perdu, incidents, opportunité manquée et recrutement. Tableaux de coûts cachés et arbitrages pour PME et équipes produit — avant qu’il ne soit trop tard."
+metaDescription: "Méthode pour chiffrer la dette technique : temps perdu, incidents, opportunités manquées, recrutement. Tableaux de coûts cachés et arbitrages pour PME."
 pubDate: 2026-05-19
 readingTimeMinutes: 9
 tags:
@@ -9,6 +10,7 @@ tags:
   - "ROI"
   - "PME"
 illustration: refonte
+category: applications
 ---
 <aside class="tldr">
 <strong>En bref</strong>
@@ -105,7 +107,7 @@ Trois familles de réponse — souvent combinées :
 </p>
 
 <ul>
-<li><strong>Stabiliser / industrialiser</strong> : CI, tests minimaux sur parcours critiques, observabilité, cadence de release prévisible — utile quand le socle est encore « sauvable » par étapes (voir <a href="/blog/maintenance-symfony-production-indicateurs/">maintenance Symfony</a>).</li>
+<li><strong>Stabiliser / industrialiser</strong> : CI, tests minimaux sur parcours critiques, observabilité, cadence de release prévisible — utile quand le socle est encore « sauvable » par étapes (voir <a href="/refonte-application-web/#maintenance">maintenance Symfony</a>).</li>
 <li><strong>Refondre ou extraire un module</strong> : lorsque le coût marginal d’évolution sur une zone critique dépasse le coût d’une réécriture bornée — thème proche de <a href="/blog/symfony-refonte-ou-evolutions-ciblees/">refonte vs évolutions ciblées</a>.</li>
 <li><strong>Migrer la stack</strong> : lorsque la fin de support et la sécurité rendent l’inaction plus risquée qu’un chantier — cadre présenté dans le <a href="/blog/migration-symfony-guide-complet-2026/">guide migration Symfony</a>.</li>
 </ul>

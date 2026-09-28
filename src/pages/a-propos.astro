@@ -1,1295 +1,283 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import BrandLogo from '../components/BrandLogo.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import { GOOGLE_REVIEW_URL, MALT_PROFILE_URL, LINKEDIN_URL } from '../config/site';
+import OfferLayout from '../layouts/OfferLayout.astro';
+import { testimonials, maltRating, googleRating } from '../data/testimonials';
+import { GOOGLE_PROFILE_URL, GOOGLE_REVIEW_URL, LINKEDIN_URL, MALT_PROFILE_URL, SITE_ORIGIN } from '../config/site';
 
-// Communes dans un rayon d'environ 25 km autour d'Erquinghem-Lys.
-// Source: villes-voisines.fr (rayon=25, cp=59193) — liste utilisée pour le SEO.
-const interventionCities = [
-	'Erquinghem lys',
-	'Armentieres',
-	'Bois grenier',
-	'Nieppe',
-	'La chapelle d armentieres',
-	'Steenwerck',
-	'Houplines',
-	'Fleurbaix',
-	'Neuve chapelle',
-	'Laventie',
-	'Lorgies',
-	'Sailly sur la lys',
-	'Fromelles',
-	'Aubers',
-	'La gorgue',
-	'Frelinghien',
-	'Lompret',
-	'Premesques',
-	'Perenchies',
-	'Herlies',
-	'Fournes en weppes',
-	'Le maisnil',
-	'Beaucamps ligny',
-	'Wicres',
-	'Erquinghem le sec',
-	'Sequedin',
-	'Escobecques',
-	'Emmerin',
-	'Hallennes lez haubourdin',
-	'Haubourdin',
-	'Englos',
-	'Ennetieres en weppes',
-	'Radinghem en weppes',
-	'Estaires',
-	'Neuf berquin',
-	'Le doulieu',
-	'Verlinghem',
-	'Deulemont',
-	'Quesnoy sur deule',
-	'Santes',
-	'Wavrin',
-	'Richebourg',
-	'Lestrem',
-	'La couture',
-	'Vieille chapelle',
-	'La bassee',
-	'Illies',
-	'Sainghin en weppes',
-	'Lambersart',
-	'Berthen',
-	'Meteren',
-	'St jans cappel',
-	'Bailleul',
-	'Godewaersvelde',
-	'Merris',
-	'Fletre',
-	'Strazeele',
-	'Marquillies',
-	'Loos',
-	'Comines',
-	'Warneton',
-	'St andre lez lille',
-	'Wambrechies',
-	'Hantay',
-	'Salome',
-	'Capinghem',
-	'Lille',
-	'Don',
-	'Marquette lez lille',
-	'Lezennes',
-	'Houplin ancoisne',
-	'Vieux berquin',
-	'Allennes les marais',
-	'La madeleine',
-	'Haverskerque',
-	'Merville',
-	'Noyelles les seclin',
-	'Wattignies',
-	'Billy berclau',
-	'Douvrin',
-	'Haisnes',
-	'Auchy les mines',
-	'Violaines',
-	'Gondecourt',
-	'Chemy',
-	'Herrin',
-	'Carnin',
-	'Annoeullin',
-	'Boeschepe',
-	'Annequin',
-	'Cambrin',
-	'Givenchy les la bassee',
-	'Festubert',
-	'Cuinchy',
-	'Bauvin',
-	'Wervicq sud',
-	'Linselles',
-	'Provin',
-	'Marcq en baroeul',
-	'Faches thumesnil',
-	'Bondues',
-	'Beuvry',
-	'Essars',
-	'Locon',
-	'Bethune',
-	'Mons en baroeul',
-	'Ronchin',
-	'Seclin',
-	'Templemars',
-	'Vendeville',
-	'Bousbecque',
-	'Wasquehal',
-	'Hulluch',
-	'Meurchin',
-	'Benifontaine',
-	'Wingles',
-	'Annezin',
-	'Fouquieres les bethune',
-	'Fouquereuil',
-	'Vendin les bethune',
-	'Hinges',
-	'Mont bernanchon',
-	'Robecq',
-	'St floris',
-	'St venant',
-	'Busnes',
-	'Calonne sur la lys',
-	'Lesquin',
-	'Phalempin',
-	'Camphin en carembault',
-	'Mouvaux',
-	'Noyelles les vermelles',
-	'Vermelles',
-	'Roncq',
-	'Carvin',
-	'Sailly labourse',
-	'Labourse',
-	'Verquigneul',
-	'Borre',
-	'Caestre',
-	'Staple',
-	'Hazebrouck',
-	'Hondeghem',
-	'Morbecque',
-	'Wallon cappel',
-	'Pradelles',
-	'Croix',
-	'Estevelles',
-	'Vendin le vieil',
-	'Annay',
-	'Pont a vendin',
-	'Villeneuve d ascq',
-	'Oblinghem',
-	'Chocques',
-	'Gonnehem',
-	'Halluin',
-	'Tourcoing',
-	'Libercourt',
-	'St sylvestre cappel',
-	'Eecke',
-	'Steenvoorde',
-	'Terdeghem',
-	'Peronne en melantois',
-	'Fretin',
-	'Tourmignies',
-	'Attiches',
-	'Mazingarbe',
-	'Loos en gohelle',
-	'Roubaix',
-	'Drouvin le marais',
-	'Verquin',
-	'Vaudricourt',
-	'Neuville en ferrain',
-	'Ennevelin',
-	'Avelin',
-	'Merignies',
-	'Pont a marcq',
-	'Sainghin en melantois',
-	'Wahagnies',
-	'Harnes',
-	'Hem',
-	'Forest sur marque',
+const title = 'À propos – Emmanuel Sauvage, formateur et développeur';
+const description =
+	'Emmanuel Sauvage, formateur Google Sheets et développeur d’applications près de Lille : parcours, méthode, références et zone d’intervention.';
+const h1 = 'Emmanuel Sauvage, formateur Google Sheets et développeur près de Lille';
+const lead =
+	'Je forme les équipes à Google Sheets, j’automatise leurs fichiers et je développe les applications métier et les sites web dont elles ont besoin. Un seul interlocuteur, du tableur à l’application.';
+
+const profilePageJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfilePage',
+	url: `${SITE_ORIGIN}/a-propos/`,
+	name: title,
+	inLanguage: 'fr-FR',
+	mainEntity: { '@id': `${SITE_ORIGIN}/#person` },
+};
+
+const skills = [
+	'Google Sheets',
+	'Google Apps Script',
+	'Google Workspace',
+	'Looker Studio',
+	'Power BI',
+	'PHP',
+	'Symfony',
+	'API Platform',
+	'Vue.js',
+	'React',
+	'MySQL',
+	'Astro',
+	'Formation',
 ];
-
-const interventionCitiesSorted = interventionCities.slice().sort((a, b) => a.localeCompare(b, 'fr'));
-
-/** Carte (iframe) — centré sur Erquinghem-Lys, zoom adapté au périmètre d’environ 25 km. */
-const zoneMapEmbedSrc =
-	'https://maps.google.com/maps?q=Erquinghem-Lys%2C%2059193%20France&hl=fr&z=9&ie=UTF8&output=embed';
-const zoneMapExternalHref =
-	'https://www.google.com/maps/search/?api=1&query=Erquinghem-Lys+59193+France';
 ---
 
-<Layout
-	title="À propos — expert optimisation business & outils digitaux | Emmanuel SAUVAGE"
-	description="Parcours terrain (organisations complexes, exigence de fiabilité), approche ROI, pour qui j’interviens — et pour qui non. Symfony, automatisation, données, près de Lille."
+<OfferLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	eyebrow="À propos"
+	breadcrumb={[{ label: 'À propos' }]}
+	badges={['Erquinghem-Lys (59193), près de Lille', 'Développeur depuis 2002', 'Présentiel ou à distance', googleRating.label]}
+	primaryCta={{ label: 'Parler de mon projet', href: '/contact/' }}
+	secondaryCta={{ label: 'Voir les réalisations', href: '/realisations/' }}
+	jsonLd={[profilePageJsonLd]}
+	current="a-propos"
+	ogImage="/images/og/a-propos.png"
 >
-	<SiteHeader current="a-propos" />
-
-	<main>
-		<section class="hero" aria-label="Présentation">
-			<div class="heroFx" aria-hidden="true">
-				<div class="blob blob--a"></div>
-				<div class="blob blob--b"></div>
-				<div class="blob blob--c"></div>
-				<div class="blob blob--spot"></div>
-				<svg class="heroWave" viewBox="0 0 1200 500" preserveAspectRatio="none">
-					<defs>
-						<linearGradient id="aproposGrad" x1="0" y1="0" x2="1" y2="1">
-							<stop offset="0" stop-color="rgba(79,110,247,0.38)" />
-							<stop offset="0.55" stop-color="rgba(196,92,46,0.22)" />
-							<stop offset="1" stop-color="rgba(47,58,143,0.2)" />
-						</linearGradient>
-					</defs>
-					<path
-						d="M0 420C220 320 360 360 540 260C720 160 880 240 1200 120V500H0Z"
-						fill="url(#aproposGrad)"></path>
-				</svg>
-			</div>
-
-			<div class="container profileTop">
-				<div class="profileTop__grid">
-					<div class="profileCard">
-						<div class="profileCard__avatar" aria-hidden="true">
-							<BrandLogo variant="profile" class="profileCard__avatarImg" />
-						</div>
-						<div class="profileCard__main">
-							<p class="eyebrow profileEyebrow">Optimisation business · Outils digitaux &amp; processus</p>
-							<h1>Emmanuel <span class="profileH1Accent">Sauvage</span></h1>
-							<p class="profileCard__title">
-								Je réduis les pertes liées aux outils et aux processus : <strong>audit</strong>,{' '}
-								<strong>applications</strong> (Symfony, API), <strong>automatisation</strong>,{' '}
-								<strong>données</strong> (Sheets, BI) — avec une exigence de fiabilité héritée d’organisations complexes.
-							</p>
-							<ul class="profileMeta" aria-label="Informations pratiques">
-								<li><span class="profileMeta__k">Localisation</span> Erquinghem-lys · Hauts-de-France (près de Lille)</li>
-								<li><span class="profileMeta__k">Langues</span> Français · Anglais technique (lecture / échanges projet)</li>
-								<li><span class="profileMeta__k">Réactivité</span> Réponse en général sous 24 à 48 h ouvrées</li>
-								<li><span class="profileMeta__k">Modalités</span> Télétravail, hybride ou déplacements selon le besoin</li>
-							</ul>
-							<div class="profileCard__actions">
-								<a class="button button--primary" href="/contact">Me contacter</a>
-								<a class="button button--secondary" href="/services">Voir mes services</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="tags" aria-label="Expertises principales">
-					<span class="tag">PHP</span>
-					<span class="tag">Symfony</span>
-					<span class="tag">JavaScript</span>
-					<span class="tag">Vue.js</span>
-					<span class="tag">React</span>
-					<span class="tag">MySQL</span>
-					<span class="tag">API REST</span>
-					<span class="tag">HTML / CSS</span>
-					<span class="tag">Git</span>
-					<span class="tag">Google Sheets</span>
-					<span class="tag">Power BI</span>
-					<span class="tag">Looker</span>
-					<span class="tag">Automatisation</span>
-					<span class="tag">Formation</span>
+	<!-- TODO (Emmanuel) : ajouter une vraie photo professionnelle (indispensable pour la formation). La photo actuelle du site est une illustration Unsplash. -->
+	<section class="oSection" aria-labelledby="ap-quoi">
+		<div class="oContainer oSplit">
+			<div>
+				<h2 id="ap-quoi" class="oTitle">Ce que je fais</h2>
+				<div class="oProse">
+					<p>
+						Je suis <strong>formateur et développeur indépendant</strong>. Mon terrain de jeu : les entreprises dont les
+						équipes perdent du temps dans des fichiers fragiles, des ressaisies et des outils mal adaptés, ou dont le site
+						ne leur apporte aucune demande.
+					</p>
+					<ul>
+						<li><a href="/formation-google-sheets/">Former vos équipes à Google Sheets</a> et à <a href="/formation-apps-script/">Apps Script</a></li>
+						<li><a href="/automatisation-google-sheets/">Automatiser vos fichiers Google Sheets</a></li>
+						<li><a href="/developpement-application-sur-mesure/">Développer des applications métier sur mesure</a>, et <a href="/refonte-application-web/">maintenir ou refondre</a> l’existant</li>
+						<li><a href="/creation-site-internet/">Créer des sites internet</a> rapides et bien référencés</li>
+					</ul>
+					<p>
+						Ma particularité : je conçois moi-même des outils Google Sheets et Apps Script utilisés à grande échelle, ce
+						qui nourrit mes formations. Et quand un besoin dépasse le tableur, je sais construire l’application qui prend
+						le relais : plus de 15 applications développées à ce jour.
+					</p>
+					<p>
+						Je développe aussi mes propres services en ligne : <a href="/realisations/#saas">Webhooky, AlertJet et LnkX</a>.
+					</p>
 				</div>
 			</div>
-		</section>
-
-		<section class="section section--alt" aria-label="Présentation détaillée">
-			<div class="container grid2">
-				<div class="prose">
-					<h2>Ce que je fais — et pourquoi ce n’est pas une liste de compétences</h2>
-					<p>
-						Je suis <strong>consultant indépendant</strong> : je conçois, développe et fais évoluer des outils qui doivent
-						<strong>tenir en production</strong> et être <strong>adoptés</strong> par les équipes. Mon angle n’est pas «
-						faire du code » : c’est réduire les <strong>coûts cachés</strong> — temps, erreurs, risques — et rendre les
-						décisions possibles sur des bases fiables.
-					</p>
-					<p>
-						Côté technique, je travaille en <strong>fullstack</strong> : back-end <strong>PHP / Symfony</strong>,
-						bases <strong>MySQL</strong>, APIs, sécurité et performance ; front <strong>Vue.js</strong> ou
-						<strong>React</strong> pour des interfaces claires et rapides. J’interviens aussi sur la
-						<strong>data</strong> et le pilotage — tableaux de bord, <strong>Google Sheets</strong> avancé,
-						<strong>Power BI</strong>, <strong>Looker</strong> — et sur l’<strong>automatisation</strong> des flux
-						(répétitions, intégrations, synchronisations).
-					</p>
-					<p>
-						Comme sur un
-						<a href={MALT_PROFILE_URL} target="_blank" rel="noopener noreferrer">profil Malt</a>, je privilégie un
-						<strong>cadrage honnête</strong> : comprendre votre contexte, vos contraintes et vos priorités avant de
-						proposer une solution. Je peux accompagner tout le cycle — analyse, développement, mise en production,
-						<strong>formation</strong> et transfert pour des équipes plus autonomes.
-					</p>
-					<h2>Storytelling : de la complexité organisationnelle à l’exécution utile</h2>
-					<p>
-						J’ai passé une grande partie de ma carrière dans des <strong>organisations complexes</strong>, avec des
-						exigences fortes de <strong>fiabilité</strong> et de <strong>service</strong> — notamment au sein de la
-						<strong>Caisse nationale de l’assurance maladie</strong>, sur des sujets où l’erreur ne se résume pas à un
-						ticket : elle se traduit en charge pour les équipes et en risque pour les usagers. On y apprend vite la
-						différence entre une solution « présentable » et une solution <strong>tenable</strong> sur la durée.
-					</p>
-					<p>
-						Dans ces environnements, on croise aussi la culture du <strong>contrôle</strong> et de la
-						<strong>reddition de comptes</strong> — y compris dans des contextes où des institutions comme la{' '}
-						<strong>Cour des comptes</strong> éclairent l’efficacité de l’action publique. Ce n’est pas un titre à
-						afficher : c’est une <strong>habitude de preuve</strong> : qu’est-ce qui est mesurable, qu’est-ce qui est
-						documenté, qu’est-ce qui résiste au terrain ? Cette exigence guide ma façon de prioriser un audit ou une
-						refonte.
-					</p>
-					<p>
-						Avec le temps, j’ai occupé des rôles <strong>techniques</strong>, de <strong>management</strong> et de{' '}
-						<strong>formation</strong> — parfois sur des projets d’envergure (ex. déploiements d’infrastructures comme un{' '}
-						<strong>IPBX</strong> pour autant de rationaliser un service). Le fil conducteur : faire adopter un changement
-						utile, sans déconnecter le métier. Aujourd’hui, en indépendant, je mets cette combinaison « compréhension
-						système + exécution + pédagogie » au service de PME et d’organisations qui veulent des résultats, pas des
-						diapositives.
-					</p>
-					<h2>Pour qui je ne travaille pas (pour éviter les déceptions)</h2>
-					<p>
-						Je ne suis pas le bon interlocuteur si vous cherchez uniquement le <strong>prix au jour le plus bas</strong>{' '}
-						sans critère de qualité — c’est un faux économique qui se paie en incidents. Si vous voulez une{' '}
-						<strong>transformation digitale</strong> sans propriétaire métier ni capacité à trancher, je ne pourrai pas
-						miracle : je peux cadrer, mais je ne remplace pas une gouvernance. Enfin, si l’objectif est de « refaire un site
-						pour le look » sans lien avec processus ou performance, je préfère être transparent : ce n’est généralement
-						pas là que je crée le plus de valeur.
-					</p>
-					<p class="prose__note">
-						<strong>Réseaux pro :</strong>
-						<a href={MALT_PROFILE_URL} target="_blank" rel="noopener noreferrer">profil Malt</a>
-						(Malt, mise en relation entreprises · freelances IT) ·
-						<a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>.
-					</p>
-				</div>
-
-				<aside class="side">
-					<div class="card card--sticky">
-						<h3>Ce que je fais concrètement</h3>
-						<ul class="checklist">
-							<li>Applications métier et évolutions Symfony</li>
-							<li>Interfaces web (Vue.js / React) et intégration</li>
-							<li>APIs, intégrations et automatisation de workflows</li>
-							<li>Reporting, indicateurs et outillage data</li>
-							<li>Maintenance, optimisation et dépannage</li>
-							<li>Formation et documentation pour vos équipes</li>
-						</ul>
-					</div>
-					<div class="callout">
-						<h3>Comment je travaille</h3>
-						<ol class="stepsList">
-							<li><strong>Écoute</strong> — besoin, irritants, outils existants, délais.</li>
-							<li><strong>Cadrage</strong> — périmètre réaliste, risques, plan d’attaque.</li>
-							<li><strong>Réalisation</strong> — itérations courtes, visibilité sur l’avancement.</li>
-							<li><strong>Transmission</strong> — pour que vous restiez autonomes.</li>
-						</ol>
-					</div>
-				</aside>
+			<div class="oCard">
+				<h3>En pratique</h3>
+				<dl class="apMeta">
+					<div><dt>Localisation</dt><dd>Erquinghem-Lys (59193), près de Lille et d’Armentières</dd></div>
+					<div><dt>Modalités</dt><dd>En présentiel dans vos locaux (Lille et Hauts-de-France) ou à distance</dd></div>
+					<!-- TODO (Emmanuel) : confirmer ce délai de réponse. -->
+					<div><dt>Réactivité</dt><dd>Réponse en général sous 24 à 48 h ouvrées</dd></div>
+					<div><dt>Langues</dt><dd>Français · anglais technique</dd></div>
+				</dl>
+				<p>
+					<a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener noreferrer">Avis Google</a> ·
+					<a href={MALT_PROFILE_URL} target="_blank" rel="noopener noreferrer">Profil Malt</a> ·
+					<a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+				</p>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<section class="section" aria-label="Contextes d’intervention">
-			<div class="container">
-				<div class="section__head">
-					<h2>Contextes d’intervention</h2>
-					<p>Des situations fréquentes — comme sur une fiche « expériences » sur Malt, mais côté besoins métier.</p>
-				</div>
-				<div class="cards3">
-					<article class="miniCard">
-						<h3>Outils internes</h3>
-						<p>
-							Applications devenues fragiles, trop « artisanales » ou difficiles à faire évoluer : refonte progressive,
-							tests, documentation.
-						</p>
-					</article>
-					<article class="miniCard">
-						<h3>Process manuels</h3>
-						<p>
-							Copier-coller, double saisie, relances : automatisation raisonnée, sans usine à gaz — avec des garde-fous
-							métier.
-						</p>
-					</article>
-					<article class="miniCard">
-						<h3>Données &amp; décision</h3>
-						<p>
-							Données éparpillées (CRM, ERP, fichiers, SaaS) : consolidation, tableaux de bord et indicateurs fiables
-							pour piloter.
-						</p>
-					</article>
-				</div>
-			</div>
-		</section>
-
-		<section class="section section--alt" aria-label="Zone d’intervention">
-			<div class="container">
-				<div class="section__head">
-					<h2>Zone d’intervention</h2>
+	<section class="oSection oSection--alt" aria-labelledby="ap-parcours">
+		<div class="oContainer">
+			<h2 id="ap-parcours" class="oTitle">Parcours</h2>
+			<!-- Début d’activité en 2002 et 15+ applications : confirmés par Emmanuel (28/09/2026). TODO (Emmanuel) : confirmer les intitulés et les années du parcours à la CNAM ; date de début et nombre d’étudiants accompagnés comme mentor OpenClassrooms. -->
+			<ol class="apTimeline">
+				<li>
+					<p class="apTimeline__when">2002</p>
+					<h3>DUT Informatique, IUT A de Lille</h3>
+					<p>Le point de départ d’un parcours de plus de 20 ans dans l’informatique.</p>
+				</li>
+				<li>
+					<p class="apTimeline__when">Organisations complexes</p>
+					<h3>Caisse nationale de l’assurance maladie</h3>
 					<p>
-						En principe, je me déplace dans un rayon d’environ <strong>25 km</strong> autour
-						d’<strong>Erquinghem-Lys</strong> (métropole lilloise, Flandre intérieure, Artois proche). Au-delà —
-						france entière ou à l’étranger — on peut en discuter : selon la mission, je reste souvent en{' '}
-						<strong>télétravail</strong> et j’organise des déplacements <strong>sur devis</strong> quand le projet le
-						nécessite.
+						Une grande partie de ma carrière dans des environnements exigeants en fiabilité et en service, avec des rôles
+						techniques, de management et de formation. On y apprend la différence entre une solution présentable et une
+						solution qui tient dans la durée.
 					</p>
-				</div>
-
-				<div class="zoneCard card">
-					<div class="zoneCard__mapWrap">
-						<div class="zoneCard__mapFrame">
-							<iframe
-								title="Carte — Erquinghem-Lys et environs (zone d’intervention)"
-								src={zoneMapEmbedSrc}
-								loading="lazy"
-								referrerpolicy="no-referrer-when-downgrade"
-								allowfullscreen
-								class="zoneCard__mapIframe"
-							></iframe>
-						</div>
-						<a
-							class="zoneCard__mapLink"
-							href={zoneMapExternalHref}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							Ouvrir la carte dans Google Maps
-						</a>
-					</div>
-
-					<div class="zoneCard__content">
-						<h3>Carte et périmètre</h3>
-						<p class="zoneCard__lead">
-							La carte ci-contre repère Erquinghem-Lys ; le zoom donne une idée du voisinage couvert par le rayon de
-							25 km. Pour un rendez-vous ou une mission ponctuelle plus loin, indiquez-le dans votre message : on
-							ajuste en fonction du besoin.
-						</p>
-
-						<details class="zoneCard__seoDetails">
-							<summary class="zoneCard__seoSummary">
-								Communes couvertes par le rayon
-							</summary>
-							<p class="zoneCard__seoNote">
-								Liste exhaustive des communes prises en compte dans un périmètre d’environ 25 km (source : index
-								local des villes voisines). 
-							</p>
-							<ul class="zoneCard__cities" aria-label="Communes dans un rayon d’environ 25 km autour d’Erquinghem-Lys">
-								{interventionCitiesSorted.map((city) => (
-									<li key={city}>{city}</li>
-								))}
-							</ul>
-						</details>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="section section--alt" aria-label="Recommandations">
-			<div class="container">
-				<div class="section__head">
-					<h2>Recommandations</h2>
-					<p>Retours de clients — même esprit que les avis visibles sur une plateforme comme Malt.</p>
-				</div>
-				<div class="quotes">
-					<figure class="quote">
-						<blockquote>
-							« Nous avons sollicité Monsieur SAUVAGE, dans le cadre de la création de notre site WEB. Nous sommes
-							extrêmement satisfaits de ses compétences, sa réactivité, sa patience et son analyse. Il est de très
-							bon conseil. Je recommande vivement Monsieur SAUVAGE, expert dans son domaine. »
-						</blockquote>
-						<figcaption>— Maître Iwona Parafiniuk</figcaption>
-					</figure>
-					<figure class="quote">
-						<blockquote>
-							« Je collabore avec ma société Mon Coach Brico depuis 3 ans avec Emmanuel. Il a su s’intéresser au
-							projet et dépasser son rôle initial de développeur. Il construit de son côté ou avec mes collaborateurs
-							les interfaces qu’on lui donne ou qu’il nous propose. Il ne fait pas que développer : il propose des
-							interfaces visuelles et anticipe systématiquement les futurs besoins à venir. Au-delà du côté excellent
-							professionnel, c’est également une belle personne avec qui je prends plaisir à avancer. »
-						</blockquote>
-						<figcaption>— Dimitri De Cruz (Mon Coach Brico)</figcaption>
-					</figure>
-					<figure class="quote">
-						<blockquote>
-							« Emmanuel a créé de toute pièce un outil qui sert maintenant aux 300 magasins Français. Il a
-							parfaitement su retranscrire notre besoin et s'est encore une fois montré force de proposition. Ses
-							qualités de compréhension et d'adaptation sont impressionnantes. Le projet lancé en France s'exporte
-							maintenant à l'international. »
-						</blockquote>
-						<figcaption>— Yann Philippe (DECATHLON SAS — FRANCE)</figcaption>
-					</figure>
-				</div>
-
-				<div class="googleReview">
-					<p class="googleReview__text">
-						Vous souhaitez partager votre expérience publiquement ? Laissez un avis sur Google — cela m’aide et éclaire
-						les entreprises qui cherchent un profil comme le mien.
-					</p>
-					<a
-						class="button button--secondary googleReview__link"
-						href={GOOGLE_REVIEW_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Laisser un avis Google
-					</a>
-				</div>
-			</div>
-		</section>
-
-		<section class="section cta" aria-label="Appel à action">
-			<div class="container cta__inner cta__inner--accent">
-				<div>
-					<h2>Un projet, une question, un cadrage ?</h2>
+				</li>
+				<li>
+					<p class="apTimeline__when">2019</p>
+					<h3>Parcours OpenClassrooms « Développeur d’application PHP / Symfony »</h3>
+					<p>Puis mentor OpenClassrooms : accompagner des étudiants développeurs, un exercice de pédagogie au quotidien.</p>
+				</li>
+				<li>
+					<p class="apTimeline__when">Aujourd’hui</p>
+					<h3>Formateur et développeur indépendant</h3>
 					<p>
-						Expliquez votre contexte en quelques lignes : je vous réponds avec une première orientation. Pas d’engagement
-						sur ce premier échange.
+						Missions pour des entreprises de toutes tailles, dont des outils Google Sheets et Apps Script pour Decathlon,
+						un back-office pour Mon Coach Brico et des sites vitrines pour des entreprises de la métropole lilloise.
+					</p>
+				</li>
+			</ol>
+		</div>
+	</section>
+
+	<section class="oSection" aria-labelledby="ap-methode">
+		<div class="oContainer oGrid oGrid--2">
+			<div>
+				<h2 id="ap-methode" class="oTitle">Comment je travaille</h2>
+				<ol class="oSteps">
+					<li><strong>Écoute</strong>Votre besoin, vos irritants, vos outils existants et vos délais.</li>
+					<li><strong>Cadrage</strong>Un périmètre réaliste, les risques, un plan d’action.</li>
+					<li><strong>Réalisation</strong>Des itérations courtes et de la visibilité sur l’avancement.</li>
+					<li><strong>Transmission</strong>Documentation et formation, pour que vous restiez autonomes.</li>
+				</ol>
+			</div>
+			<div>
+				<h2 class="oTitle">Pour qui je ne suis pas le bon interlocuteur</h2>
+				<div class="oProse">
+					<p>
+						Si vous cherchez uniquement le prix au jour le plus bas, sans critère de qualité, nous ne serons pas alignés :
+						ce type d’économie se paie en incidents.
+					</p>
+					<p>
+						<!-- TODO (Emmanuel) : confirmer (absence de dépannage pour les particuliers). -->
+						Je ne fais pas de dépannage informatique pour les particuliers. Et si l’objectif est un site « pour le look »
+						sans lien avec vos clients ou vos demandes, je préfère être transparent : ce n’est pas là que j’apporte le plus
+						de valeur.
 					</p>
 				</div>
-				<div class="cta__actions">
-					<a class="button button--primary" href="/contact">Prendre contact</a>
-					<a class="button button--secondary" href="/services">Voir les services</a>
-				</div>
+				<ul class="oLinks" aria-label="Compétences">
+					{skills.map((s) => <li><span class="apSkill">{s}</span></li>)}
+				</ul>
 			</div>
-		</section>
-	</main>
+		</div>
+	</section>
 
-	<SiteFooter />
-</Layout>
+	<section class="oSection oSection--alt" aria-labelledby="ap-avis">
+		<div class="oContainer">
+			<h2 id="ap-avis" class="oTitle">Recommandations</h2>
+			<!-- Témoignage de Yann Philippe (Decathlon SAS) autorisé. TODO (Emmanuel) : autorisation des témoignages Mon Coach Brico et Maître Parafiniuk. Notes vérifiées le 28/09/2026. -->
+			<p class="oIntro">
+				<a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener noreferrer">{googleRating.label}</a> ·
+				<a href={MALT_PROFILE_URL} target="_blank" rel="noopener noreferrer">{maltRating.label}</a>
+			</p>
+			<div class="oGrid oGrid--3">
+				{
+					testimonials.map((t) => (
+						<figure class="oQuote">
+							<blockquote>« {t.quote} »</blockquote>
+							<figcaption>
+								{t.author}, {t.context}
+							</figcaption>
+						</figure>
+					))
+				}
+			</div>
+			<p class="oNote">
+				Vous avez travaillé avec moi ?
+				<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laissez un avis Google</a>.
+			</p>
+		</div>
+	</section>
+
+	<section class="oSection" aria-labelledby="ap-zone">
+		<div class="oContainer">
+			<h2 id="ap-zone" class="oTitle">Zone d’intervention</h2>
+			<p class="oIntro">
+				Basé à Erquinghem-Lys, j’interviens en présentiel à Lille, Armentières, dans la métropole lilloise et dans les
+				Hauts-de-France (Flandre intérieure, Artois). Formations et projets se déroulent aussi à distance, partout en
+				France.
+			</p>
+		</div>
+	</section>
+</OfferLayout>
 
 <style>
-	.container {
-		width: min(1120px, calc(100% - 32px));
-		margin: 0 auto;
-	}
-
-	@media (min-width: 521px) {
-		.container {
-			width: min(1120px, calc(100% - 48px));
-		}
-	}
-
-	main {
-		display: block;
-		min-width: 0;
-		overflow-x: clip;
-	}
-
-	.hero {
-		position: relative;
-		overflow: hidden;
-		padding: 40px 0 32px;
-		background: linear-gradient(
-			165deg,
-			#ffffff 0%,
-			rgba(247, 248, 252, 0.98) 42%,
-			color-mix(in srgb, var(--color-spot-soft) 55%, #ffffff) 100%
-		);
-		border-bottom: 1px solid color-mix(in srgb, var(--color-border) 70%, rgba(196, 92, 46, 0.12));
-	}
-
-	.heroFx {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		z-index: 0;
-	}
-
-	.blob {
-		position: absolute;
-		border-radius: 999px;
-		filter: blur(40px);
-		opacity: 0.95;
-		mix-blend-mode: multiply;
-	}
-
-	.blob--a {
-		width: 520px;
-		height: 520px;
-		top: -220px;
-		left: -180px;
-		background: radial-gradient(circle at 30% 30%, rgba(79, 110, 247, 0.55), rgba(79, 110, 247, 0) 60%),
-			radial-gradient(circle at 70% 60%, rgba(47, 58, 143, 0.35), rgba(47, 58, 143, 0) 65%);
-	}
-
-	.blob--b {
-		width: 560px;
-		height: 560px;
-		top: -260px;
-		right: -260px;
-		background: radial-gradient(circle at 40% 40%, rgba(47, 58, 143, 0.45), rgba(47, 58, 143, 0) 62%),
-			radial-gradient(circle at 70% 70%, rgba(79, 110, 247, 0.38), rgba(79, 110, 247, 0) 66%);
-	}
-
-	.blob--c {
-		width: 520px;
-		height: 520px;
-		bottom: -300px;
-		left: 36%;
-		background: radial-gradient(circle at 35% 35%, rgba(79, 110, 247, 0.32), rgba(79, 110, 247, 0) 62%),
-			radial-gradient(circle at 70% 40%, rgba(196, 92, 46, 0.18), rgba(47, 58, 143, 0) 70%);
-	}
-
-	.blob--spot {
-		width: 380px;
-		height: 380px;
-		bottom: -140px;
-		right: 8%;
-		background: radial-gradient(circle at 45% 45%, rgba(196, 92, 46, 0.42), rgba(196, 92, 46, 0) 62%);
-		mix-blend-mode: multiply;
-	}
-
-	.heroWave {
-		position: absolute;
-		inset: auto 0 0 0;
-		width: 100%;
-		height: 220px;
-		opacity: 0.9;
-	}
-
-	.profileTop {
-		position: relative;
-		z-index: 1;
-	}
-
-	.profileTop__grid {
-		margin-bottom: 22px;
-	}
-
-	.profileCard {
-		display: flex;
-		gap: 22px;
-		align-items: flex-start;
-		flex-wrap: wrap;
-		background: rgba(255, 255, 255, 0.92);
-		border: 1px solid color-mix(in srgb, var(--color-border) 82%, rgba(196, 92, 46, 0.15));
-		border-left: 4px solid var(--color-spot);
-		border-radius: 22px;
-		padding: 22px 24px;
-		box-shadow:
-			0 0 0 1px rgba(196, 92, 46, 0.06),
-			var(--shadow-md);
-		backdrop-filter: blur(8px);
-	}
-
-	.profileCard__avatar {
-		flex-shrink: 0;
-		width: 96px;
-		height: 96px;
-		border-radius: 20px;
-		background: linear-gradient(
-			145deg,
-			rgba(47, 58, 143, 0.14),
-			rgba(79, 110, 247, 0.1),
-			var(--color-spot-soft)
-		);
-		border: 1px solid color-mix(in srgb, rgba(47, 58, 143, 0.25) 70%, rgba(196, 92, 46, 0.2));
+	.apMeta {
 		display: grid;
-		place-items: center;
-		box-shadow: var(--shadow-sm);
+		gap: 10px;
+		margin: 0 0 14px;
 	}
 
-	.profileCard__avatar img {
-		width: 72px;
-		height: 72px;
-		border-radius: 14px;
-		object-fit: cover;
-	}
-
-	.profileCard__main {
-		min-width: min(100%, 280px);
-		flex: 1;
-	}
-
-	.eyebrow {
-		margin: 0 0 8px;
+	.apMeta dt {
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
 		color: var(--color-muted);
-		font-size: 13px;
+	}
+
+	.apMeta dd {
+		margin: 0;
+	}
+
+	.apTimeline {
+		display: grid;
+		gap: 16px;
+		margin: 0;
+		padding: 0 0 0 20px;
+		list-style: none;
+		border-left: 2px solid rgba(47, 58, 143, 0.18);
+	}
+
+	.apTimeline li {
+		position: relative;
+		padding: 16px 18px;
+		border-radius: 14px;
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+	}
+
+	.apTimeline li::before {
+		content: '';
+		position: absolute;
+		left: -28px;
+		top: 22px;
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: var(--color-spot);
+		box-shadow: 0 0 0 4px #fff;
+	}
+
+	.apTimeline h3 {
+		margin: 0 0 6px;
+		font-size: 1.05rem;
+		color: var(--color-primary);
+	}
+
+	.apTimeline p {
+		margin: 0;
+		line-height: 1.55;
+	}
+
+	.apTimeline__when {
+		margin-bottom: 4px !important;
+		font-size: 12px;
+		font-weight: 700;
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
+		color: var(--color-spot-hover);
 	}
 
-	.profileEyebrow {
-		position: relative;
-		padding-left: 14px;
-		color: color-mix(in srgb, var(--color-text) 70%, var(--color-spot));
-	}
-
-	.profileEyebrow::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: 0.15em;
-		bottom: 0.15em;
-		width: 3px;
-		border-radius: 2px;
-		background: linear-gradient(180deg, var(--color-spot), var(--color-primary));
-	}
-
-	h1 {
-		margin: 0 0 10px;
-		font-size: clamp(28px, 3.5vw, 40px);
-		line-height: 1.1;
-		letter-spacing: -0.03em;
-	}
-
-	.profileH1Accent {
-		background: linear-gradient(105deg, var(--color-primary) 0%, var(--color-spot) 100%);
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: transparent;
-	}
-
-	.profileCard__title {
-		margin: 0 0 16px;
-		font-size: 17px;
-		color: var(--color-muted);
-		line-height: 1.5;
-		max-width: 62ch;
-	}
-
-	.profileMeta {
-		list-style: none;
-		padding: 0;
-		margin: 0 0 18px;
-		display: grid;
-		gap: 8px;
-		font-size: 14px;
-		color: var(--color-text);
-		opacity: 0.92;
-	}
-
-	.profileMeta__k {
-		display: inline-block;
-		min-width: 7.5rem;
-		font-weight: 700;
-		color: color-mix(in srgb, var(--color-primary) 55%, var(--color-spot-hover));
-	}
-
-	.profileCard__actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 10px;
-	}
-
-	.tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 8px;
-	}
-
-	.tag {
+	.apSkill {
 		display: inline-flex;
-		align-items: center;
-		padding: 6px 12px;
+		padding: 7px 12px;
 		border-radius: 999px;
 		font-size: 13px;
 		font-weight: 600;
 		color: var(--color-primary);
-		background: rgba(47, 58, 143, 0.08);
-		border: 1px solid rgba(47, 58, 143, 0.15);
-	}
-
-	.tag:nth-child(3n + 2) {
-		color: var(--color-spot-hover);
-		background: var(--color-spot-soft);
-		border-color: rgba(196, 92, 46, 0.22);
-	}
-
-	.tag:nth-child(3n) {
-		color: var(--color-primary);
-		background: linear-gradient(135deg, rgba(47, 58, 143, 0.07), rgba(79, 110, 247, 0.1));
-		border-color: rgba(79, 110, 247, 0.2);
-	}
-
-	.section {
-		padding: 56px 0;
-	}
-
-	.section--alt {
-		background: linear-gradient(
-			180deg,
-			rgba(255, 255, 255, 0.92) 0%,
-			color-mix(in srgb, var(--color-bg) 92%, var(--color-spot-soft)) 50%,
-			rgba(255, 255, 255, 0.88) 100%
-		);
-		border-top: 1px solid color-mix(in srgb, var(--color-border) 75%, rgba(196, 92, 46, 0.1));
-		border-bottom: 1px solid color-mix(in srgb, var(--color-border) 75%, rgba(79, 110, 247, 0.08));
-	}
-
-	.section__head {
-		display: grid;
-		gap: 10px;
-		margin-bottom: 22px;
-		max-width: 65ch;
-	}
-
-	.section__head p {
-		margin: 0;
-		color: var(--color-muted);
-		opacity: 1;
-	}
-
-	h2 {
-		margin: 0;
-		font-size: clamp(24px, 2.8vw, 32px);
-		letter-spacing: -0.02em;
-		line-height: 1.15;
-		color: var(--color-primary);
-	}
-
-	.section__head h2 {
-		position: relative;
-		padding-bottom: 10px;
-	}
-
-	.section__head h2::after {
-		content: '';
-		position: absolute;
-		left: 0;
-		bottom: 0;
-		width: 48px;
-		height: 3px;
-		border-radius: 2px;
-		background: linear-gradient(90deg, var(--color-spot), var(--color-accent));
-	}
-
-	h3 {
-		margin: 0 0 10px;
-		font-size: 17px;
-		letter-spacing: -0.01em;
-		color: var(--color-primary);
-	}
-
-	.grid2 {
-		display: grid;
-		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-		gap: 28px;
-		align-items: start;
-		min-width: 0;
-	}
-
-	.prose h2 {
-		margin-bottom: 14px;
-	}
-
-	.prose p {
-		margin: 0 0 14px;
-		color: var(--color-text);
-		opacity: 0.92;
-		line-height: 1.6;
-	}
-
-	.prose a {
-		color: var(--color-spot-hover);
-		font-weight: 600;
-		text-decoration: underline;
-		text-decoration-color: rgba(196, 92, 46, 0.38);
-	}
-
-	.prose a:hover {
-		color: var(--color-spot);
-		text-decoration-color: rgba(196, 92, 46, 0.55);
-	}
-
-	.prose__note {
-		padding: 14px 16px;
-		border-radius: 14px;
-		background: linear-gradient(135deg, var(--color-spot-soft), rgba(47, 58, 143, 0.06));
-		border: 1px solid color-mix(in srgb, rgba(47, 58, 143, 0.14) 60%, rgba(196, 92, 46, 0.18));
-		font-size: 15px;
-	}
-
-	.side {
-		display: grid;
-		gap: 14px;
-	}
-
-	.card {
-		background: rgba(255, 255, 255, 0.92);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		padding: 18px;
-		box-shadow:
-			inset 0 3px 0 0 rgba(196, 92, 46, 0.26),
-			var(--shadow-sm);
-	}
-
-	.card--sticky {
-		position: sticky;
-		top: 88px;
-	}
-
-	.zoneCard {
-		display: grid;
-		grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
-		gap: 22px;
-		align-items: start;
-	}
-
-	.zoneCard__mapWrap {
-		display: grid;
-		gap: 10px;
-		min-width: 0;
-	}
-
-	.zoneCard__mapFrame {
-		position: relative;
-		aspect-ratio: 16 / 10;
-		border-radius: var(--radius);
-		overflow: hidden;
-		border: 1px solid color-mix(in srgb, var(--color-border) 85%, rgba(47, 58, 143, 0.12));
-		box-shadow: var(--shadow-sm);
-		background: color-mix(in srgb, var(--color-bg) 90%, #ffffff);
-	}
-
-	.zoneCard__mapIframe {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		border: 0;
-		display: block;
-	}
-
-	.zoneCard__mapLink {
-		font-size: 14px;
-		font-weight: 600;
-		color: var(--color-spot-hover);
-		text-decoration: underline;
-		text-decoration-color: rgba(196, 92, 46, 0.35);
-		text-underline-offset: 3px;
-		justify-self: start;
-	}
-
-	.zoneCard__mapLink:hover {
-		color: var(--color-spot);
-	}
-
-	.zoneCard__content h3 {
-		margin-bottom: 8px;
-	}
-
-	.zoneCard__lead {
-		margin: 0;
-		color: var(--color-muted);
-		opacity: 1;
-		line-height: 1.55;
-		font-size: 15px;
-	}
-
-	.zoneCard__seoDetails {
-		margin-top: 18px;
-		padding-top: 16px;
-		border-top: 1px solid color-mix(in srgb, var(--color-border) 80%, rgba(47, 58, 143, 0.08));
-	}
-
-	.zoneCard__seoSummary {
-		cursor: pointer;
-		font-size: 14px;
-		font-weight: 600;
-		color: var(--color-muted);
-		list-style: none;
-	}
-
-	.zoneCard__seoSummary::-webkit-details-marker {
-		display: none;
-	}
-
-	.zoneCard__seoDetails[open] .zoneCard__seoSummary {
-		margin-bottom: 10px;
-		color: var(--color-text);
-	}
-
-	.zoneCard__seoNote {
-		margin: 0 0 12px;
-		font-size: 13px;
-		color: var(--color-muted);
-		opacity: 0.95;
-		line-height: 1.5;
-	}
-
-	.zoneCard__cities {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 6px 14px;
-		max-height: 220px;
-		overflow: auto;
-		border-radius: 12px;
-		padding: 12px;
-		background: color-mix(in srgb, var(--color-bg) 70%, #ffffff);
-		border: 1px solid var(--color-border);
-	}
-
-	.zoneCard__cities li {
-		font-size: 13px;
-		color: var(--color-muted);
-		opacity: 0.96;
-		line-height: 1.35;
-		overflow-wrap: anywhere;
-	}
-
-	.callout {
-		background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), var(--color-spot-soft));
-		border: 1px solid color-mix(in srgb, var(--color-border) 80%, rgba(196, 92, 46, 0.15));
-		border-left: 3px solid var(--color-spot);
-		border-radius: var(--radius);
-		padding: 18px;
-		box-shadow: var(--shadow-sm);
-	}
-
-
-	.checklist {
-		margin: 0;
-		padding-left: 18px;
-		color: var(--color-muted);
-	}
-
-	.checklist li + li {
-		margin-top: 8px;
-	}
-
-	.stepsList {
-		margin: 0;
-		padding-left: 18px;
-		color: var(--color-muted);
-		line-height: 1.5;
-	}
-
-	.stepsList li + li {
-		margin-top: 10px;
-	}
-
-	.cards3 {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 14px;
-		min-width: 0;
-	}
-
-	.miniCard {
-		background: rgba(255, 255, 255, 0.92);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		padding: 18px;
-		box-shadow:
-			inset 0 3px 0 0 rgba(79, 110, 247, 0.22),
-			var(--shadow-sm);
-		transition: box-shadow 0.18s ease, transform 0.18s ease;
-	}
-
-	.miniCard:nth-child(2) {
-		box-shadow:
-			inset 0 3px 0 0 rgba(196, 92, 46, 0.32),
-			var(--shadow-sm);
-	}
-
-	.miniCard:nth-child(3) {
-		box-shadow:
-			inset 0 3px 0 0 color-mix(in srgb, var(--color-accent) 45%, var(--color-spot) 55%),
-			var(--shadow-sm);
-	}
-
-	.miniCard:hover {
-		transform: translateY(-2px);
-		box-shadow:
-			inset 0 3px 0 0 rgba(196, 92, 46, 0.38),
-			var(--shadow-md);
-	}
-
-	.miniCard h3 {
-		margin-bottom: 8px;
-	}
-
-	.miniCard p {
-		margin: 0;
-		font-size: 15px;
-		color: var(--color-muted);
-		line-height: 1.5;
-	}
-
-	.quotes {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 14px;
-		min-width: 0;
-	}
-
-	.quote {
-		margin: 0;
-		background: rgba(255, 255, 255, 0.92);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		padding: 18px;
-		box-shadow: var(--shadow-sm);
-		border-left: 4px solid var(--color-accent);
-	}
-
-	.quote:nth-child(2) {
-		border-left-color: var(--color-spot);
-	}
-
-	.quote:nth-child(3) {
-		border-left-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-spot) 60%);
-	}
-
-	.quote blockquote {
-		margin: 0 0 12px;
-		color: var(--color-text);
-		opacity: 0.92;
-		font-weight: 600;
-		letter-spacing: -0.01em;
-		font-size: 15px;
-		line-height: 1.45;
-	}
-
-	.quote figcaption {
-		color: var(--color-muted);
-		font-size: 14px;
-	}
-
-	.googleReview {
-		margin-top: 22px;
-		padding: 20px 22px;
-		border-radius: var(--radius);
-		border: 1px dashed color-mix(in srgb, rgba(47, 58, 143, 0.28) 65%, rgba(196, 92, 46, 0.35));
-		background: linear-gradient(
-			125deg,
-			rgba(47, 58, 143, 0.07),
-			var(--color-spot-soft),
-			rgba(255, 255, 255, 0.88)
-		);
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: space-between;
-		gap: 16px;
-	}
-
-	.googleReview__text {
-		margin: 0;
-		max-width: 52ch;
-		color: var(--color-muted);
-		font-size: 15px;
-		line-height: 1.45;
-	}
-
-	.googleReview__text strong {
-		color: var(--color-text);
-	}
-
-	.googleReview__link {
-		flex-shrink: 0;
-	}
-
-	.button {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		gap: 10px;
-		text-decoration: none;
-		border-radius: 14px;
-		padding: 12px 18px;
-		font-weight: 600;
-		border: 1px solid transparent;
-		transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border 0.15s ease;
-		cursor: pointer;
-		font-family: inherit;
-	}
-
-	.button--primary {
-		color: white;
-		background: var(--color-primary);
-		box-shadow: var(--shadow-sm);
-	}
-
-	.button--primary:hover {
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-md);
-	}
-
-	.button--secondary {
-		color: var(--color-text);
-		background: rgba(255, 255, 255, 0.85);
-		border-color: var(--color-border);
-	}
-
-	.button--secondary:hover {
-		background: rgba(255, 255, 255, 1);
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-sm);
-	}
-
-	.cta__inner {
-		display: grid;
-		grid-template-columns: 1.2fr 0.8fr;
-		gap: 18px;
-		align-items: center;
-		padding: 22px;
-		border-radius: 24px;
-		border: 1px solid rgba(47, 58, 143, 0.2);
-		background: linear-gradient(180deg, rgba(47, 58, 143, 0.1), rgba(255, 255, 255, 0.65));
-		box-shadow: var(--shadow-md);
-	}
-
-	.cta__inner--accent {
-		border-color: color-mix(in srgb, var(--color-spot) 32%, rgba(47, 58, 143, 0.2));
-		background: linear-gradient(
-			135deg,
-			rgba(47, 58, 143, 0.12),
-			var(--color-spot-soft),
-			rgba(79, 110, 247, 0.06)
-		);
-		box-shadow: 0 12px 40px rgba(47, 58, 143, 0.08), 0 0 0 1px rgba(196, 92, 46, 0.1);
-	}
-
-	.cta__inner--accent h2 {
-		color: var(--color-primary);
-	}
-
-	.cta__inner p {
-		margin: 0;
-		color: var(--color-muted);
-		opacity: 1;
-		max-width: 56ch;
-	}
-
-	.cta__actions {
-		display: flex;
-		justify-content: flex-end;
-		gap: 12px;
-		flex-wrap: wrap;
-	}
-
-	@media (max-width: 980px) {
-		.grid2 {
-			grid-template-columns: 1fr;
-		}
-
-		.zoneCard {
-			grid-template-columns: 1fr;
-		}
-
-		.card--sticky {
-			position: static;
-		}
-
-		.cards3,
-		.quotes {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
-		.cta__inner {
-			grid-template-columns: 1fr;
-		}
-
-		.cta__actions {
-			justify-content: flex-start;
-		}
-	}
-
-	@media (max-width: 520px) {
-		.container {
-			width: min(1120px, calc(100% - 32px));
-		}
-
-		.googleReview {
-			flex-direction: column;
-			align-items: stretch;
-			text-align: center;
-		}
-
-		.googleReview__link {
-			justify-content: center;
-		}
-
-		.cards3,
-		.quotes {
-			grid-template-columns: 1fr;
-		}
-
-		.profileMeta__k {
-			display: block;
-			margin-bottom: 2px;
-		}
+		background: #fff;
+		border: 1px solid rgba(47, 58, 143, 0.18);
 	}
 </style>

@@ -2,6 +2,7 @@
 title: "Pourquoi faire une migration Symfony ? (Guide complet 2026)"
 shortTitle: "Migration Symfony 2026 : guide et ROI"
 description: "Signaux de migration, risques de l’inaction, gains performance/sécurité/maintenabilité, coût et ROI — avec cas d’entreprise et critères de cadrage pour TPE, PME et startups."
+metaDescription: "Migration Symfony : signaux d’alerte, risques de l’inaction, gains performance et sécurité, coût et ROI, avec cas d’entreprise et critères de cadrage pour PME."
 pubDate: 2026-04-15
 readingTimeMinutes: 8
 tags:
@@ -9,6 +10,7 @@ tags:
   - "Migration"
   - "ROI"
 illustration: modules
+category: applications
 ---
 <aside class="tldr">
 <strong>En bref</strong>
@@ -51,7 +53,7 @@ J’en parle aussi dans une note sur le <a href="/blog/symfony-refonte-ou-evolut
 </ol>
 
 <p>
-Les indicateurs de <a href="/blog/maintenance-symfony-production-indicateurs/">maintenance Symfony en production</a> aident à transformer ces impressions en tableau de bord.
+Les indicateurs de <a href="/refonte-application-web/#maintenance">maintenance Symfony en production</a> aident à transformer ces impressions en tableau de bord.
 </p>
 
 <h2>Risques de ne pas migrer : tableau décisionnel</h2>

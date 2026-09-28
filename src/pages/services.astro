@@ -1,448 +1,92 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import { GOOGLE_REVIEW_URL } from '../config/site';
+import OfferLayout from '../layouts/OfferLayout.astro';
+
+const title = 'Services : formation Google Sheets, applications et sites';
+const description =
+	'Les 3 offres d’Emmanuel Sauvage : formation Google Sheets et Apps Script, automatisation et applications métier sur mesure, création de sites internet.';
+const h1 = 'Services : former, automatiser, développer';
+const lead =
+	'Trois offres complémentaires, du tableur à l’application : former vos équipes à Google Sheets, automatiser vos fichiers ou développer l’outil métier dont vous avez besoin, et créer un site qui vous amène des demandes.';
+
+const groups = [
+	{
+		tag: 'Offre 1',
+		title: 'Formation Google Sheets',
+		href: '/formation-google-sheets/',
+		text: 'Des programmes par niveau, sur vos fichiers, en présentiel dans vos locaux (Lille et Hauts-de-France) ou à distance. Finançable OPCO via notre organisme partenaire certifié Qualiopi.',
+		links: [
+			{ label: 'Formation Google Sheets (N1 à N3, Excel vers Sheets)', href: '/formation-google-sheets/' },
+			{ label: 'Formation Google Apps Script', href: '/formation-apps-script/' },
+		],
+	},
+	{
+		tag: 'Offre 2',
+		title: 'Applications sur mesure',
+		href: '/developpement-application-sur-mesure/',
+		text: 'Des applications métier développées plus vite grâce à l’IA, des automatisations Google Sheets, et la maintenance de l’existant.',
+		links: [
+			{ label: 'Développement d’application sur mesure', href: '/developpement-application-sur-mesure/' },
+			{ label: 'Automatisation Google Sheets et Apps Script', href: '/automatisation-google-sheets/' },
+			{ label: 'Refonte et maintenance d’application web', href: '/refonte-application-web/' },
+			{ label: 'Développeur Symfony freelance (agences, ESN, DSI)', href: '/developpeur-symfony-freelance/' },
+		],
+	},
+	{
+		tag: 'Offre 3',
+		title: 'Sites internet',
+		href: '/creation-site-internet/',
+		text: 'Des sites vitrines rapides et bien référencés à Lille et Armentières, avec des formulaires connectés à vos outils.',
+		links: [{ label: 'Création et refonte de site internet', href: '/creation-site-internet/' }],
+	},
+];
 ---
 
-<Layout
-	title="Services : audit, automatisation, refonte web, Sheets, Symfony | Emmanuel SAUVAGE"
-	description="Expertises pour entreprises : audit des outils digitaux, automatisation des processus, refonte d’applications web, Google Sheets professionnel, développement Symfony. ROI et priorisation."
+<OfferLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	eyebrow="Services"
+	breadcrumb={[{ label: 'Services' }]}
+	primaryCta={{ label: 'Parler de mon projet', href: '/contact/' }}
+	secondaryCta={{ label: 'Voir les réalisations', href: '/realisations/' }}
+	current="services"
 >
-	<SiteHeader current="services" />
-
-	<main class="page">
-		<header class="page__head">
-			<div class="page__headFx" aria-hidden="true">
-				<div class="page__blob page__blob--a"></div>
-				<div class="page__blob page__blob--spot"></div>
+	<section class="oSection" aria-label="Les offres">
+		<div class="oContainer">
+			<div class="oGrid oGrid--3">
+				{
+					groups.map((g) => (
+						<article class="oCard">
+							<span class="oCard__tag">{g.tag}</span>
+							<h2 class="oTitle" style="font-size:1.25rem">
+								<a href={g.href} style="color:inherit;text-decoration:none">
+									{g.title}
+								</a>
+							</h2>
+							<p>{g.text}</p>
+							<ul>
+								{g.links.map((l) => (
+									<li>
+										<a href={l.href}>{l.label}</a>
+									</li>
+								))}
+							</ul>
+						</article>
+					))
+				}
 			</div>
-			<div class="container">
-				<p class="page__eyebrow">Services</p>
-				<h1>
-					Des expertises alignées sur <span class="page__h1Accent">vos pertes et vos priorités</span>
-				</h1>
-				<p class="lead">
-					Chaque page ci-dessous répond à une intention business (refonte, automatisation, audit, Sheets, Symfony) avec
-					des critères de ROI, des cas et des appels à l’action. Commencez par le sujet qui vous coûte le plus cher
-					aujourd’hui — ou par un <a href="/audit-outils-digitaux/">diagnostic</a> si le besoin n’est pas encore cadré.
-				</p>
-			</div>
-		</header>
-
-		<section class="section">
-			<div class="container cards">
-				<article class="card card--accent">
-					<h2><a href="/audit-outils-digitaux/">Audit des outils digitaux</a></h2>
-					<p>
-						Cartographie des flux, risques, pertes cachées et plan d’action priorisé — pour décider sans jargon inutile.
-					</p>
-				</article>
-				<article class="card">
-					<h2><a href="/refonte-application-web/">Refonte d’application web</a></h2>
-					<p>
-						Dette technique, vélocité, stratégie progressive vs big bang — avec liens vers le coût de la dette et les
-						signaux d’alerte.
-					</p>
-				</article>
-				<article class="card">
-					<h2><a href="/automatisation-entreprise/">Automatisation d’entreprise</a></h2>
-					<p>
-						Processus, intégrations API, Google Workspace — industrialiser sans fragilité ni usine à gaz.
-					</p>
-				</article>
-				<article class="card">
-					<h2><a href="/expert-google-sheets-entreprise/">Expert Google Sheets (entreprise)</a></h2>
-					<p>
-						Modèles fiables, formations, limites du tableur — et passage à un outil métier quand c’est nécessaire.
-					</p>
-				</article>
-				<article class="card">
-					<h2><a href="/developpeur-symfony-freelance/">Développeur Symfony freelance</a></h2>
-					<p>
-						Applications métier, API, front Vue/React, migrations, maintenance production — qualité et continuité.
-					</p>
-				</article>
-				<article class="card card--accent">
-					<h2><a href="/creation-site-internet/">Création de site internet / optimisation</a></h2>
-					<p>
-						Sites vitrines rapides, accessibles et bien référencés — création sur mesure ou optimisation d’un site
-						existant. Voir mes <a href="/creation-site-internet/#realisations">dernières réalisations</a>.
-					</p>
-				</article>
-				<article class="card">
-					<h2>Formation &amp; accompagnement</h2>
-					<p>
-						Formations surtout sur <strong>Google Sheets</strong> et <strong>Excel</strong> — sur mesure, sur vos
-						fichiers (anonymisés si besoin). Complément : Symfony, bonnes pratiques web, documentation et transfert.
-					</p>
-				</article>
-				<article class="card">
-					<h2>Maintenance, dépannage &amp; optimisation</h2>
-					<p>
-						Performance, sécurité, évolutions progressives — pour que l’outil reste un actif, pas une charge opaque.
-					</p>
-				</article>
-			</div>
-		</section>
-
-		<!-- SEO uniquement : présent dans le HTML mais masqué visuellement -->
-		<div class="queries__seo" aria-hidden="false">
-			<h2>Requêtes courantes sur cette page</h2>
-			<p>
-				<strong>Audit outils digitaux</strong>, <strong>automatisation entreprise</strong>,{' '}
-				<strong>refonte application web</strong>, <strong>expert Google Sheets</strong>,{' '}
-				<strong>développeur Symfony freelance</strong>, <strong>optimisation processus</strong> — pages dédiées
-				ci-dessus ; articles ROI sur le <a href="/blog">blog</a>.
-			</p>
 		</div>
+	</section>
 
-		<section class="cta page__preFooter" aria-label="Contact">
-			<div class="container cta__inner cta__inner--accent">
-				<div>
-					<h2>Vous voulez clarifier vos priorités ?</h2>
-					<p>Décrivez votre contexte et vos outils : je vous propose une première orientation.</p>
-					<p class="cta__extra">
-						Déjà client ?
-						<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
-					</p>
-				</div>
-				<div class="cta__actions">
-					<a class="button button--primary" href="/contact">Prendre contact</a>
-					<a class="button button--secondary" href="/">Retour à l’accueil</a>
-				</div>
-			</div>
-		</section>
-	</main>
-
-	<SiteFooter />
-</Layout>
-
-<style>
-	/* Mobile first */
-	.container {
-		width: min(1120px, calc(100% - 32px));
-		margin: 0 auto;
-	}
-
-	@media (min-width: 521px) {
-		.container {
-			width: min(1120px, calc(100% - 48px));
-		}
-	}
-
-	.page {
-		padding-bottom: 32px;
-		min-width: 0;
-	}
-
-	.page__head {
-		position: relative;
-		overflow: hidden;
-		padding: 32px 0 20px;
-		background: #fff;
-		border-bottom: 1px solid var(--color-border);
-	}
-
-	@media (min-width: 768px) {
-		.page__head {
-			padding: 48px 0 20px;
-		}
-	}
-
-	.page__headFx {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		z-index: 0;
-	}
-
-	.page__blob {
-		position: absolute;
-		border-radius: 999px;
-		filter: blur(44px);
-		opacity: 0.85;
-		mix-blend-mode: multiply;
-	}
-
-	.page__blob--a {
-		width: 280px;
-		height: 280px;
-		top: -120px;
-		right: -80px;
-		background: radial-gradient(circle at 40% 40%, rgba(79, 110, 247, 0.4), transparent 62%);
-	}
-
-	.page__blob--spot {
-		width: 220px;
-		height: 220px;
-		bottom: -60px;
-		left: -40px;
-		background: radial-gradient(circle at 40% 40%, rgba(196, 92, 46, 0.35), transparent 62%);
-	}
-
-	.page__head .container {
-		position: relative;
-		z-index: 1;
-	}
-
-	.page__eyebrow {
-		position: relative;
-		margin: 0 0 10px;
-		padding-left: 14px;
-		font-size: 13px;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: color-mix(in srgb, var(--color-text) 72%, var(--color-spot));
-	}
-
-	.page__eyebrow::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: 0.15em;
-		bottom: 0.15em;
-		width: 3px;
-		border-radius: 2px;
-		background: linear-gradient(180deg, var(--color-spot), var(--color-primary));
-	}
-
-	h1 {
-		margin: 0 0 12px;
-		font-size: clamp(1.65rem, 5vw, 2.75rem);
-		line-height: 1.12;
-		letter-spacing: -0.03em;
-	}
-
-	.page__h1Accent {
-		background: linear-gradient(105deg, var(--color-primary) 0%, var(--color-spot) 100%);
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: transparent;
-	}
-
-	.lead {
-		margin: 0;
-		font-size: clamp(1rem, 2.8vw, 1.125rem);
-		color: var(--color-muted);
-		opacity: 1;
-		max-width: 70ch;
-		line-height: 1.55;
-	}
-
-	.section {
-		padding: 20px 0 32px;
-	}
-
-	.queries__seo {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		white-space: nowrap;
-		border: 0;
-	}
-
-	.cards {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 14px;
-	}
-
-	@media (min-width: 640px) {
-		.cards {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	.card {
-		background: rgba(255, 255, 255, 0.96);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		padding: 18px;
-		box-shadow:
-			inset 0 3px 0 0 rgba(196, 92, 46, 0.28),
-			var(--shadow-sm);
-		transition: box-shadow 0.18s ease, transform 0.18s ease;
-	}
-
-	.card:hover {
-		box-shadow:
-			inset 0 3px 0 0 rgba(196, 92, 46, 0.42),
-			var(--shadow-md);
-		transform: translateY(-2px);
-	}
-
-	h2 {
-		margin: 0 0 10px;
-		font-size: clamp(1.05rem, 2.5vw, 1.25rem);
-		letter-spacing: -0.02em;
-		color: var(--color-primary);
-	}
-
-	.card h2 a {
-		color: inherit;
-		text-decoration: none;
-	}
-
-	.card h2 a:hover {
-		text-decoration: underline;
-		text-decoration-color: rgba(196, 92, 46, 0.4);
-	}
-
-	.card--accent {
-		background: linear-gradient(135deg, var(--color-spot-soft), rgba(47, 58, 143, 0.08), rgba(255, 255, 255, 0.96));
-		border-color: color-mix(in srgb, rgba(47, 58, 143, 0.2) 55%, rgba(196, 92, 46, 0.22));
-	}
-
-	p {
-		margin: 0;
-		color: var(--color-text);
-		opacity: 0.92;
-		line-height: 1.5;
-	}
-
-	.button {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		text-decoration: none;
-		border-radius: 14px;
-		padding: 12px 16px;
-		font-weight: 600;
-		border: 1px solid transparent;
-		transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border 0.15s ease;
-	}
-
-	.button--primary {
-		color: white;
-		background: var(--color-primary);
-		box-shadow: var(--shadow-sm);
-	}
-
-	.button--primary:hover {
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-md);
-	}
-
-	.button--secondary {
-		color: var(--color-text);
-		background: rgba(255, 255, 255, 0.8);
-		border-color: var(--color-border);
-	}
-
-	.button--secondary:hover {
-		background: rgba(255, 255, 255, 1);
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-sm);
-	}
-
-	.cta {
-		padding: 8px 0;
-	}
-
-	.page__preFooter {
-		padding-bottom: 56px;
-		margin-bottom: 0;
-		background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.75) 40%, #ffffff 100%);
-		border-bottom: 1px solid rgba(47, 58, 143, 0.1);
-	}
-
-	.cta__inner {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 18px;
-		align-items: center;
-		padding: 22px;
-		border-radius: 24px;
-		border: 1px solid rgba(47, 58, 143, 0.2);
-		background: linear-gradient(180deg, rgba(47, 58, 143, 0.1), rgba(255, 255, 255, 0.65));
-		box-shadow: var(--shadow-md);
-		min-width: 0;
-		box-sizing: border-box;
-	}
-
-	/* Permet à la colonne des boutons de rétrécir sans déborder (grille CSS) */
-	.cta__inner > * {
-		min-width: 0;
-	}
-
-	.cta__inner--accent {
-		border-color: color-mix(in srgb, var(--color-spot) 32%, rgba(47, 58, 143, 0.2));
-		background: linear-gradient(
-			135deg,
-			rgba(47, 58, 143, 0.12),
-			var(--color-spot-soft),
-			rgba(79, 110, 247, 0.06)
-		);
-		box-shadow: 0 12px 40px rgba(47, 58, 143, 0.08), 0 0 0 1px rgba(196, 92, 46, 0.1);
-	}
-
-	.cta__extra {
-		margin: 14px 0 0;
-		font-size: 14px;
-		color: var(--color-muted);
-	}
-
-	.cta__extra a {
-		color: var(--color-spot-hover);
-		font-weight: 600;
-		text-decoration: underline;
-		text-decoration-color: rgba(196, 92, 46, 0.35);
-		text-underline-offset: 3px;
-	}
-
-	.cta__extra a:hover {
-		color: var(--color-spot);
-	}
-
-	.cta__actions {
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-		gap: 12px;
-		width: 100%;
-		max-width: 100%;
-		min-width: 0;
-		box-sizing: border-box;
-	}
-
-	.cta__actions .button {
-		width: 100%;
-		max-width: 100%;
-		justify-content: center;
-		box-sizing: border-box;
-		white-space: normal;
-		text-align: center;
-		line-height: 1.35;
-		padding-inline: 14px;
-		overflow-wrap: break-word;
-		hyphens: auto;
-	}
-
-	@media (min-width: 960px) {
-		.cta__inner {
-			grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.85fr);
-		}
-
-		.cta__actions {
-			flex-direction: row;
-			flex-wrap: wrap;
-			justify-content: flex-end;
-			width: 100%;
-			max-width: 100%;
-		}
-
-		.cta__actions .button {
-			flex: 0 1 auto;
-			min-width: 0;
-			max-width: 100%;
-			width: auto;
-			white-space: nowrap;
-			padding-inline: 16px;
-		}
-	}
-</style>
+	<section class="oSection oSection--alt" aria-labelledby="svc-parcours">
+		<div class="oContainer">
+			<h2 id="svc-parcours" class="oTitle">Du tableur à l’application</h2>
+			<ol class="oSteps oSteps--3">
+				<li><strong>Former</strong>Vos équipes maîtrisent Google Sheets et fiabilisent leurs fichiers.</li>
+				<li><strong>Automatiser</strong>Apps Script prend le relais des tâches répétitives.</li>
+				<li><strong>Développer</strong>Quand le tableur atteint ses limites, une application sur mesure prend le relais.</li>
+			</ol>
+		</div>
+	</section>
+</OfferLayout>

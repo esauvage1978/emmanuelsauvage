@@ -1,0 +1,349 @@
+---
+import OfferLayout from '../layouts/OfferLayout.astro';
+import { serviceJsonLd } from '../data/schema';
+import { testimonials } from '../data/testimonials';
+
+/* Formation : aucune certification éligible au Compte personnel de formation, ne jamais en parler (confirmé par Emmanuel le 28/09/2026). */
+
+const title = 'Formation Google Sheets en entreprise – Lille & à distance';
+const description =
+	'Formation Google Sheets pour vos équipes, du débutant à l’expert, sur vos fichiers. Présentiel ou à distance, finançable OPCO via un partenaire Qualiopi.';
+const h1 = 'Formation Google Sheets pour les entreprises : des équipes autonomes et des fichiers fiables';
+const lead =
+	'Par un formateur qui conçoit des outils Google Sheets utilisés dans plus de 300 magasins Decathlon. Des programmes par niveau, animés sur vos propres fichiers, en présentiel dans vos locaux (Lille et Hauts-de-France) ou à distance, pour des équipes plus rapides et des tableaux qui ne cassent plus.';
+
+const faq = [
+	{
+		question: 'La formation est-elle finançable par notre OPCO ? Comment faire la demande ?',
+		answer:
+			'Oui. Les formations sont dispensées via notre organisme partenaire certifié Qualiopi, qui établit la convention de formation. Vous transmettez le devis et le programme à votre OPCO, qui se prononce sur la prise en charge selon ses règles et la taille de votre entreprise. Je vous accompagne dans les démarches.',
+	},
+	{
+		question: 'Pouvez-vous former mes équipes sur nos propres fichiers ?',
+		answer:
+			'Oui, c’est le principe : les exercices s’appuient sur vos fichiers réels, anonymisés si nécessaire. Chacun repart avec des acquis directement applicables au quotidien.',
+	},
+	{
+		question: 'Quelle différence entre les niveaux ? Faut-il passer un test ?',
+		answer:
+			'Le niveau 1 couvre les fondamentaux, le niveau 2 la fiabilisation et l’analyse (RECHERCHEX, QUERY, IMPORTRANGE, tableaux croisés), le niveau 3 les tableaux de bord et l’automatisation sans code. Un échange de positionnement avant la formation permet d’orienter chaque participant vers le bon niveau.',
+	},
+	{
+		question: 'Intervenez-vous dans nos locaux à Lille, Roubaix, Tourcoing ou Villeneuve-d’Ascq ? Et à distance ?',
+		answer:
+			'Oui : les formations intra se déroulent dans vos locaux à Lille, dans la métropole lilloise et dans les Hauts-de-France. Elles peuvent aussi se tenir entièrement à distance, en classe virtuelle, partout en France.',
+	},
+	{
+		question: 'Proposez-vous une formation pour passer d’Excel à Google Sheets ?',
+		answer:
+			'Oui : un module dédié présente les différences, les équivalences de fonctions, la collaboration en temps réel et les pièges de conversion, y compris le passage des macros à Apps Script.',
+	},
+	{
+		question: 'Nos fichiers deviennent trop lourds : formation ou application ?',
+		answer:
+			'Les deux sont possibles. Une formation suffit quand le problème vient des pratiques. Quand les volumes, les droits par rôle ou l’historique deviennent critiques, une automatisation Apps Script ou une application sur mesure prend le relais, et je peux la développer.',
+	},
+];
+
+const decathlonQuote = testimonials.find((t) => t.author === 'Yann Philippe');
+
+const jsonLd = [
+	serviceJsonLd({
+		name: 'Formation Google Sheets en entreprise',
+		path: '/formation-google-sheets/',
+		description,
+		serviceType: 'Formation professionnelle Google Sheets',
+	}),
+];
+---
+
+<OfferLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	eyebrow="Offre 1 · Formation"
+	breadcrumb={[{ label: 'Formation Google Sheets' }]}
+	badges={[
+		'Finançable OPCO via notre organisme partenaire certifié Qualiopi',
+		'En présentiel dans vos locaux ou à distance',
+		'Sur vos propres fichiers',
+	]}
+	primaryCta={{ label: 'Recevoir un programme et un devis', href: '/contact/?offre=formation' }}
+	secondaryCta={{ label: 'Voir les programmes', href: '#programmes' }}
+	faq={faq}
+	jsonLd={jsonLd}
+	current="formation"
+	ogImage="/images/og/formation-google-sheets.png"
+	finalCta={{
+		title: 'Recevoir un programme et un devis',
+		text: 'Indiquez le nombre de participants, leur niveau, le format souhaité (présentiel ou distanciel), la période et votre OPCO si vous le connaissez : je vous envoie un programme adapté et un devis.',
+		primary: { label: 'Demander un programme', href: '/contact/?offre=formation' },
+		secondary: { label: 'Formation Apps Script', href: '/formation-apps-script/' },
+	}}
+>
+	<!-- « Plus de 300 magasins Decathlon » : source profil Malt ; citation de Decathlon autorisée (28/09/2026). -->
+	<!-- TODO (Emmanuel) : nom, lien et catégorie de certification de l’organisme partenaire Qualiopi. Formulation à utiliser ensuite : « Formation dispensée en partenariat avec [organisme], certifié Qualiopi au titre des actions de formation. » Ne pas utiliser le logo Qualiopi. -->
+	<!-- TODO (Emmanuel) : ajouter le bouton « Tester mon niveau » quand le test (ex. Google Form) existera. -->
+
+	<section class="oSection" aria-labelledby="fgs-pour-qui">
+		<div class="oContainer oSplit">
+			<div>
+				<h2 id="fgs-pour-qui" class="oTitle">Pour qui ? Pour quels problèmes ?</h2>
+				<p class="oIntro">
+					Dirigeants de PME, responsables RH et formation, contrôle de gestion, responsables des opérations, directeurs
+					de réseau ou de magasins, équipes administratives et commerciales, collectivités et associations passées à
+					Google Workspace.
+				</p>
+				<ul class="oChecks oChecks--2">
+					<li>Vos équipes « bricolent » et recopient des formules sans les comprendre</li>
+					<li>Erreurs de saisie et fichiers qui cassent au pire moment</li>
+					<li>Plusieurs versions du même fichier circulent</li>
+					<li>Le reporting mensuel prend des heures</li>
+					<li>Vous venez de passer d’Excel à Google Workspace</li>
+					<li>Tout repose sur « la personne qui sait »</li>
+					<li>Aucun tableau de bord fiable pour piloter</li>
+					<li>Des budgets formation ou OPCO à mobiliser</li>
+				</ul>
+			</div>
+			<div class="oCard oCard--accent">
+				<span class="oCard__tag">Objectif</span>
+				<h3>Des équipes autonomes, des fichiers fiables</h3>
+				<p>
+					À l’issue de la formation, vos collaborateurs structurent correctement leurs tableaux, utilisent les bonnes
+					fonctions, sécurisent les fichiers partagés et produisent des tableaux de bord lisibles.
+				</p>
+				<p>
+					Pour aller plus loin : <a href="/blog/formation-google-sheets-entreprise-levier-productivite/">pourquoi former ses équipes à Google Sheets</a>.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="programmes" class="oSection oSection--alt" aria-labelledby="fgs-programmes">
+		<div class="oContainer">
+			<h2 id="fgs-programmes" class="oTitle">Les programmes</h2>
+			<p class="oIntro">
+				Chaque module peut être suivi seul ou combiné en parcours. Les contenus sont adaptés à vos fichiers et à vos
+				métiers lors de l’analyse du besoin.
+			</p>
+			<!-- TODO (Emmanuel) : modules, durées et formats proposés à valider avec l’organisme partenaire ; préciser si des sessions inter-entreprises existent et le nombre maximal de participants. Fiches programme PDF à créer puis à lier ici. -->
+			<div class="oTableWrap">
+				<table class="oTable">
+					<thead>
+						<tr>
+							<th scope="col">Module</th>
+							<th scope="col">Public</th>
+							<th scope="col">Durée</th>
+							<th scope="col">Contenu clé</th>
+							<th scope="col">Format</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">N1. Google Sheets : les fondamentaux pro</th>
+							<td>Débutants, nouveaux utilisateurs de Workspace</td>
+							<td>1 jour (7 h) ou 2 × 3 h 30</td>
+							<td>Structurer un tableau, formules de base, SI, tri et filtres, mise en forme conditionnelle, listes déroulantes, partage et droits, historique des versions</td>
+							<td>Présentiel ou à distance</td>
+						</tr>
+						<tr>
+							<th scope="row">N2. Google Sheets avancé : fiabiliser et analyser</th>
+							<td>Utilisateurs réguliers</td>
+							<td>1 jour</td>
+							<td>RECHERCHEX, INDEX/EQUIV, SOMME.SI.ENS, FILTER, SORT, UNIQUE, QUERY, IMPORTRANGE, tableaux croisés dynamiques, validation, protections, plages nommées</td>
+							<td>Présentiel ou à distance</td>
+						</tr>
+						<tr>
+							<th scope="row">N3. Expert : tableaux de bord et automatisation sans code</th>
+							<td>Contrôle de gestion, managers, analystes</td>
+							<td>1 jour</td>
+							<td>ARRAYFORMULA, LET, LAMBDA, graphiques, tableaux de bord de pilotage, introduction à Looker Studio, modèles robustes et documentés</td>
+							<td>Présentiel ou à distance</td>
+						</tr>
+						<tr>
+							<th scope="row">Passer d’Excel à Google Sheets</th>
+							<td>Entreprises qui migrent vers Workspace</td>
+							<td>½ à 1 jour</td>
+							<td>Différences, équivalences de fonctions, collaboration, pièges de conversion, des macros à Apps Script</td>
+							<td>Intra</td>
+						</tr>
+						<tr>
+							<th scope="row"><a href="/formation-apps-script/">Apps Script : automatiser Google Sheets</a></th>
+							<td>Utilisateurs experts, référents internes</td>
+							<td>2 jours (+ ½ jour optionnel sur un cas réel)</td>
+							<td>Macros, déclencheurs, e-mails automatiques, génération de documents, Slides et PDF, formulaires, quotas, bonnes pratiques</td>
+							<td>Présentiel ou à distance</td>
+						</tr>
+						<tr>
+							<th scope="row">Atelier « sur vos fichiers »</th>
+							<td>Une équipe et ses fichiers réels</td>
+							<td>½ journée</td>
+							<td>Audit en direct et reconstruction d’un fichier critique</td>
+							<td>Intra</td>
+						</tr>
+						<tr>
+							<th scope="row">Coaching individuel</th>
+							<td>Manager, référent Sheets</td>
+							<td>Séances de 2 h</td>
+							<td>À la carte</td>
+							<td>Distanciel</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<p class="oNote">Programmes détaillés envoyés sur demande. Tarifs sur devis selon le format et le nombre de participants.</p>
+		</div>
+	</section>
+
+	<section class="oSection" aria-labelledby="fgs-difference">
+		<div class="oContainer">
+			<h2 id="fgs-difference" class="oTitle">Ce qui change avec un formateur qui est aussi développeur</h2>
+			<div class="oGrid oGrid--3">
+				<div class="oCard">
+					<h3>Un praticien, pas un formateur catalogue</h3>
+					<p>
+						Je conçois des outils Google Sheets et Apps Script utilisés en production par de grandes équipes. Les
+						exemples viennent de vrais outils, pas d’exercices génériques.
+					</p>
+				</div>
+				<div class="oCard">
+					<h3>Vos fichiers, vos cas</h3>
+					<p>
+						Les exercices partent de vos fichiers (anonymisés si besoin) : on corrige les erreurs réelles, on adopte les
+						bonnes pratiques sur ce que vous utilisez tous les jours.
+					</p>
+				</div>
+				<div class="oCard">
+					<h3>Une suite possible</h3>
+					<p>
+						Si un besoin dépasse la formation, je peux <a href="/automatisation-google-sheets/">automatiser vos fichiers</a>
+						ou <a href="/developpement-application-sur-mesure/">développer une application</a> : même interlocuteur,
+						même compréhension de votre contexte.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="oSection oSection--alt" aria-labelledby="fgs-financement">
+		<div class="oContainer oSplit">
+			<div>
+				<h2 id="fgs-financement" class="oTitle">Financement : OPCO via notre organisme partenaire</h2>
+				<p class="oIntro">
+					Formation finançable OPCO via notre organisme partenaire certifié Qualiopi, selon les règles de votre OPCO et
+					la taille de votre entreprise.
+				</p>
+				<ol class="oSteps">
+					<li><strong>Analyse du besoin et devis</strong>Nous définissons ensemble le module, le nombre de participants et le format. Vous recevez un programme et un devis.</li>
+					<li><strong>Demande de prise en charge</strong>Vous transmettez le devis et le programme à votre OPCO. L’organisme partenaire établit la convention de formation.</li>
+					<li><strong>Formation</strong>Session en présentiel dans vos locaux (Lille et Hauts-de-France) ou à distance, avec des exercices sur vos fichiers.</li>
+					<li><strong>Évaluation et attestation</strong>Évaluation des acquis en fin de formation et documents de fin de formation transmis pour le remboursement.</li>
+				</ol>
+				<!-- TODO (Emmanuel) : confirmer avec le partenaire qui facture, qui signe la convention et quels documents sont remis (attestation, feuilles d’émargement…). -->
+			</div>
+			<div class="oCard">
+				<h3>Bon à savoir</h3>
+				<ul>
+					<li>Anticipez la demande : les OPCO demandent souvent le dossier avant le début de la formation.</li>
+					<li>Les règles de prise en charge varient selon l’OPCO, la branche et l’effectif.</li>
+					<li>Je vous aide à rassembler les pièces demandées.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="oSection" aria-labelledby="fgs-infos">
+		<div class="oContainer">
+			<h2 id="fgs-infos" class="oTitle">Informations pratiques</h2>
+			<!-- Tarifs : sur devis (confirmé). TODO (Emmanuel) : compléter avec le partenaire : délais d’accès, nom du référent handicap, indicateurs de résultats (nombre de stagiaires, taux de satisfaction). Support après formation : durée à confirmer avant de l’afficher. -->
+			<dl class="oInfo">
+				<div>
+					<dt>Durées</dt>
+					<dd>De la demi-journée à 2 jours selon le module (voir le tableau des programmes).</dd>
+				</div>
+				<div>
+					<dt>Prérequis</dt>
+					<dd>N1 : savoir utiliser un navigateur web. N2 et N3 : maîtriser le niveau précédent. Apps Script : niveau N2 ou N3.</dd>
+				</div>
+				<div>
+					<dt>Modalités</dt>
+					<dd>Intra-entreprise en présentiel dans vos locaux (Lille et Hauts-de-France) ou à distance en classe virtuelle. Alternance d’apports et d’exercices sur vos fichiers.</dd>
+				</div>
+				<div>
+					<dt>Positionnement</dt>
+					<dd>Échange préalable pour recueillir les besoins et orienter chaque participant vers le bon niveau.</dd>
+				</div>
+				<div>
+					<dt>Évaluation</dt>
+					<dd>Exercices pratiques pendant la session et évaluation des acquis en fin de formation.</dd>
+				</div>
+				<div>
+					<dt>Délais d’accès</dt>
+					<dd>Définis avec vous lors de la demande, en tenant compte des délais de votre OPCO.</dd>
+				</div>
+				<div>
+					<dt>Tarifs</dt>
+					<dd>Sur devis, selon le module, le format et le nombre de participants.</dd>
+				</div>
+				<div>
+					<dt>Accessibilité</dt>
+					<dd>Personnes en situation de handicap : contactez-nous avant l’inscription pour étudier les adaptations possibles avec le référent handicap de l’organisme partenaire.</dd>
+				</div>
+				<div>
+					<dt>Matériel</dt>
+					<dd>Un ordinateur avec un navigateur récent et un compte Google par participant.</dd>
+				</div>
+			</dl>
+		</div>
+	</section>
+
+	<section class="oSection oSection--alt" aria-labelledby="fgs-cas">
+		<div class="oContainer oSplit">
+			<!-- Cas décrit d’après les missions publiées sur le profil Malt (chiffres repris de cette source). Publication autorisée par Decathlon (28/09/2026). -->
+			<div>
+				<h2 id="fgs-cas" class="oTitle">Des outils Google Sheets qui tiennent à grande échelle</h2>
+				<div class="oProse">
+					<p>
+						Pour Decathlon France, j’ai conçu un dispositif de suivi dans lequel un fichier Google Sheets par magasin est
+						déployé automatiquement par Apps Script, consolidé au niveau central, avec une présentation Google Slides
+						générée automatiquement pour chaque magasin et chaque région, et un tableau de bord d’avancement. La collecte
+						manuelle, qui prenait 1 à 2 journées par magasin, se fait désormais en 5 minutes.
+					</p>
+					<p>
+						C’est cette expérience que je transmets en formation : structurer des fichiers qui restent fiables quand des
+						dizaines de personnes les utilisent.
+					</p>
+					<p><a href="/realisations/">Voir les réalisations</a></p>
+				</div>
+			</div>
+			{
+				decathlonQuote && (
+					<figure class="oQuote">
+						<blockquote>« {decathlonQuote.quote} »</blockquote>
+						<figcaption>
+							{decathlonQuote.author}, {decathlonQuote.context}
+						</figcaption>
+					</figure>
+				)
+			}
+		</div>
+	</section>
+
+	<section class="oSection" aria-labelledby="fgs-zone">
+		<div class="oContainer">
+			<h2 id="fgs-zone" class="oTitle">Où se déroulent les formations ?</h2>
+			<p class="oIntro">
+				En présentiel dans vos locaux à Lille, dans la métropole lilloise, à Armentières et dans les Hauts-de-France.
+				À distance partout en France, en classe virtuelle.
+			</p>
+			<h3 class="oTitle" style="font-size:1.1rem">Tutoriels Google Sheets</h3>
+			<ul class="oLinks">
+				<li><a href="/blog/google-sheets-formule-si-plusieurs-conditions/">Formule SI avec plusieurs conditions</a></li>
+				<li><a href="/blog/fonction-query-google-sheets/">Fonction QUERY : guide en français</a></li>
+				<li><a href="/blog/google-sheets-vs-excel-limites-cas-usage/">Google Sheets ou Excel ?</a></li>
+				<li><a href="/blog/google-sheets-limite-outil-metier/">Limites de Google Sheets</a></li>
+			</ul>
+		</div>
+	</section>
+</OfferLayout>

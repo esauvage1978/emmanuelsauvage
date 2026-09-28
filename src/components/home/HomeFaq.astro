@@ -1,0 +1,147 @@
+---
+import { faqItems, faqSection } from '../../data/home';
+import HomeIcon from './HomeIcon.astro';
+
+const preview = faqItems.slice(0, faqSection.previewCount);
+const rest = faqItems.slice(faqSection.previewCount);
+---
+
+<section id="faq" class="homeFaq homeSection homeSection--alt" aria-labelledby="home-faq-heading">
+	<div class="homeContainer">
+		<header class="homeSection__head homeSection__head--center">
+			<h2 id="home-faq-heading" class="homeSection__title">{faqSection.title}</h2>
+		</header>
+
+		<div class="homeFaq__grid">
+			{
+				preview.map((item) => (
+					<details class="homeFaq__item homeCard">
+						<summary class="homeFaq__question">{item.question}</summary>
+						<div class="homeFaq__answer">
+							<p>{item.answer}</p>
+						</div>
+					</details>
+				))
+			}
+		</div>
+
+		{
+			rest.length > 0 && (
+				<div id="faq-all" class="homeFaq__more">
+					<details class="homeFaq__expand">
+						<summary class="homeFaq__expandBtn">
+							<span>{faqSection.allLink.label}</span>
+							<HomeIcon name="arrow" />
+						</summary>
+						<div class="homeFaq__grid homeFaq__grid--more">
+							{rest.map((item) => (
+								<details class="homeFaq__item homeCard">
+									<summary class="homeFaq__question">{item.question}</summary>
+									<div class="homeFaq__answer">
+										<p>{item.answer}</p>
+									</div>
+								</details>
+							))}
+						</div>
+					</details>
+				</div>
+			)
+		}
+	</div>
+</section>
+
+<style>
+	.homeFaq__grid {
+		display: grid;
+		gap: 12px;
+	}
+
+	@media (min-width: 768px) {
+		.homeFaq__grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.homeFaq__grid--more {
+		margin-top: 16px;
+	}
+
+	.homeFaq__item {
+		padding: 0;
+		overflow: hidden;
+	}
+
+	.homeFaq__question {
+		padding: 18px 20px;
+		font-size: 15px;
+		font-weight: 600;
+		color: var(--home-navy);
+		cursor: pointer;
+		list-style: none;
+		line-height: 1.4;
+	}
+
+	.homeFaq__question::-webkit-details-marker {
+		display: none;
+	}
+
+	.homeFaq__question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 400;
+		color: var(--home-blue);
+	}
+
+	.homeFaq__item[open] .homeFaq__question::after {
+		content: '−';
+	}
+
+	.homeFaq__answer {
+		padding: 0 20px 18px;
+		border-top: 1px solid #e2e8f0;
+	}
+
+	.homeFaq__answer p {
+		margin: 14px 0 0;
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--color-muted);
+	}
+
+	.homeFaq__more {
+		margin-top: 24px;
+		text-align: center;
+	}
+
+	.homeFaq__expand {
+		display: inline-block;
+	}
+
+	.homeFaq__expandBtn {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		list-style: none;
+		cursor: pointer;
+		font-weight: 600;
+		font-size: 14px;
+		color: var(--home-blue);
+	}
+
+	.homeFaq__expandBtn::-webkit-details-marker {
+		display: none;
+	}
+
+	.homeFaq__expandBtn:hover {
+		text-decoration: underline;
+	}
+
+	.homeFaq__expand[open] .homeFaq__expandBtn {
+		display: none;
+	}
+
+	.homeFaq__expand[open] .homeFaq__grid--more {
+		text-align: left;
+	}
+</style>

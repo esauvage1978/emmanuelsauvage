@@ -1,13 +1,15 @@
 ---
-import ServiceLandingLayout from '../layouts/ServiceLandingLayout.astro';
+import OfferLayout from '../layouts/OfferLayout.astro';
+import { serviceJsonLd } from '../data/schema';
 
 const title =
-	'Refonte application web : réduire la dette technique et les coûts cachés | Emmanuel SAUVAGE';
+	'Refonte et maintenance d’application web métier';
 const description =
-	'Refonte d’application web orientée ROI : signaux d’alerte, coût de la dette technique, stratégie refonte vs évolutions ciblées. Accompagnement Symfony et méthode terrain.';
-const h1 = 'Refonte d’application web : quand l’outil métier devient un frein à la marge';
+	'Application métier lente, fragile ou obsolète ? Diagnostic, maintenance, montée de version et refonte progressive, sans arrêter votre activité.';
+const h1 =
+	'Refonte et maintenance de votre application métier, sans tout arrêter';
 const lead =
-	'Une application vieillissante ne se traduit pas seulement par des bugs : elle ralentit les équipes, multiplie les contournements et fait exploser le coût du changement. Voici comment cadrer une refonte pour retrouver de la vélocité — sans tout jeter d’un coup.';
+	'Une application vieillissante ne se traduit pas seulement par des bugs : elle ralentit les équipes, multiplie les contournements et fait exploser le coût du changement. Maintenance, reprise ou refonte progressive : on choisit selon le risque, pas selon la mode.';
 const faq = [
 	{
 		question: 'Comment savoir si une refonte est vraiment nécessaire ?',
@@ -35,16 +37,103 @@ const faq = [
 			'On combine des indicateurs d’efficacité (temps gagné par processus, réduction d’erreurs), des indicateurs IT (déploiements, incidents, lead time) et des risques évités (conformité, sécurité). L’objectif est de rendre le gain visible pour les décideurs, pas seulement pour les développeurs.',
 	},
 ];
+
+const jsonLd = [
+	serviceJsonLd({
+		name: 'Refonte et maintenance d’application web métier',
+		path: '/refonte-application-web/',
+		description,
+		serviceType: 'Maintenance, reprise et refonte d’applications web',
+	}),
+];
 ---
 
-<ServiceLandingLayout
+<OfferLayout
 	title={title}
 	description={description}
 	h1={h1}
 	lead={lead}
-	breadcrumbLabel="Refonte application web"
+	eyebrow="Offre 2 · Applications"
+	breadcrumb={[{ label: 'Applications sur mesure', href: '/developpement-application-sur-mesure/' }, { label: 'Refonte et maintenance' }]}
+	badges={['Maintenance et montées de version', 'Reprise d’application', 'Refonte progressive']}
+	primaryCta={{ label: 'Demander un diagnostic', href: '/contact/?offre=application' }}
+	secondaryCta={{ label: 'Indicateurs de maintenance', href: '#maintenance' }}
 	faq={faq}
+	jsonLd={jsonLd}
+	current="applications"
+	ogImage="/images/og/refonte-application-web.png"
 >
+	<!-- Section « Cas type (anonymisé) » supprimée : exemple non vérifiable. TODO (Emmanuel) : la remplacer par un vrai cas client autorisé. -->
+	<section class="oSection" aria-labelledby="raw-offre">
+		<div class="oContainer">
+			<h2 id="raw-offre" class="oTitle">Maintenir, reprendre ou refondre : trois situations</h2>
+			<div class="oGrid oGrid--3">
+				<div class="oCard">
+					<h3>Maintenance et évolutions</h3>
+					<p>Mises à jour de sécurité, montées de version Symfony et PHP, supervision, correctifs et petites évolutions.</p>
+				</div>
+				<div class="oCard">
+					<h3>Reprise d’une application</h3>
+					<p>Le prestataire historique n’est plus là ? Audit de code, remise en état de l’environnement, documentation et stabilisation.</p>
+				</div>
+				<div class="oCard">
+					<h3>Refonte progressive</h3>
+					<p>Remplacer les zones les plus coûteuses par étapes, sans arrêter l’activité ni tout réécrire d’un coup.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="maintenance" class="oSection oSection--alt" aria-labelledby="raw-maintenance">
+		<div class="oContainer oSplit">
+			<div>
+				<h2 id="raw-maintenance" class="oTitle">Maintenance en production : les indicateurs utiles au-delà du « tout est vert »</h2>
+				<p class="oIntro">
+					Une page d’accueil qui répond ne suffit pas. Une maintenance utile surveille les dépendances, la base de
+					données, les erreurs applicatives et la performance, à une fréquence adaptée au risque métier.
+				</p>
+				<div class="oGrid oGrid--3">
+					<div class="oCard">
+						<h3>Dépendances et sécurité</h3>
+						<ul>
+							<li><code>composer audit</code> et correctifs mineurs réguliers</li>
+							<li>Fins de support PHP suivies, montées de version Symfony planifiées</li>
+							<li>Paquets abandonnés repérés avant qu’ils ne bloquent</li>
+						</ul>
+					</div>
+					<div class="oCard">
+						<h3>Base de données</h3>
+						<ul>
+							<li>Migrations en attente vérifiées avant chaque déploiement</li>
+							<li>Requêtes lentes, N+1 et index manquants</li>
+							<li>Sauvegardes testées, restauration documentée</li>
+						</ul>
+					</div>
+					<div class="oCard">
+						<h3>Application</h3>
+						<ul>
+							<li>Taux d’erreurs 5xx et exceptions non gérées</li>
+							<li>Files d’attente : profondeur et échecs</li>
+							<li>Tâches planifiées : alerte si une exécution manque</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="oCard oCard--accent">
+				<h3>Checklist trimestrielle</h3>
+				<ol>
+					<li>Revue des dépendances et correctifs de sécurité</li>
+					<li>Échantillon de requêtes lentes et plan d’index</li>
+					<li>Mise à jour de la documentation d’exploitation (déploiement, retour arrière, contacts)</li>
+				</ol>
+				<p>Avec peu de budget, surveillez d’abord la disponibilité des parcours critiques, les erreurs 5xx, l’espace disque et l’alignement des migrations.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="oSection" aria-label="En détail">
+		<div class="oContainer">
+			<div class="oProse">
 	<h2>Le vrai problème : une application qui « tient » mais qui coûte trop cher à faire évoluer</h2>
 	<p>
 		Dans beaucoup d’entreprises, l’outil métier historique n’est pas en panne permanente. Il tourne. Mais chaque petite demande — un champ en plus, un export, un rôle utilisateur — prend des semaines, génère des effets de bord et oblige à multiplier les validations. Ce n’est pas un problème de motivation des équipes : c’est souvent un problème d’architecture, de dette accumulée et de manque de garde-fous (tests, observabilité, documentation utile).
@@ -69,7 +158,7 @@ const faq = [
 	</p>
 	<p>
 		J’accompagne les équipes sur ce choix en le reliant à des exemples concrets : charge support, fréquence des incidents, dette de sécurité, dépendances obsolètes. La méthode est détaillée dans{' '}
-		<a href="/blog/refonte-ou-maintenance-application/">refonte ou maintenance : que choisir ?</a> et, côté Symfony, dans{' '}
+		<a href="/blog/refonte-application-web-signaux-strategie-dette-technique/">refonte d’application web : signaux et stratégie</a> et, côté Symfony, dans{' '}
 		<a href="/blog/symfony-refonte-ou-evolutions-ciblees/">refonte Symfony ou évolutions ciblées</a>.
 	</p>
 
@@ -90,23 +179,12 @@ const faq = [
 		<a href="/blog/refonte-application-web-signaux-strategie-dette-technique/">refonte web : signaux et stratégie</a> résume une grille utile en comité de direction.
 	</p>
 
-	<h2>Cas type ( anonymisé ) : d’une application « figée » à des releases régulières</h2>
-	<p>
-		Une PME industrielle utilisait un outil métier devenu incontrôlable : chaque évolution cassait un autre écran, les métiers géraient des compensations dans des tableurs. Nous avons cartographié les flux critiques, isolé un premier périmètre (saisie et validation), livré en trois mois avec tests de non-régression ciblés, puis déprécié progressivement l’ancien module. Le gain immédiat a été la réduction des erreurs de saisie ; le gain structurant, la capacité à itérer sans peur.
-	</p>
-	<p>
-		<strong>Point clé :</strong> le ROI n’est pas apparu au jour du go-live final, mais dès la première brique livrée — parce que les indicateurs avaient été définis à l’avance.
-	</p>
-	<p>
-		Ce type de situation se retrouve dans les PME comme dans des structures plus grandes : la différence n’est pas la taille du budget, mais la <strong>clarté des priorités</strong>. Quand tout est « urgent », rien ne l’est vraiment — et la refonte devient un marathon sans ligne d’arrivée. Un cadrage sérieux sert précisément à redonner une hiérarchie : risque, revenus, conformité, puis confort utilisateur. C’est aussi ce qui permet d’aligner direction, métiers et IT sur un même récit de valeur.
-	</p>
-
 	<div class="ctaInline">
 		<p>
 			<strong>Prochaine étape concrète :</strong> un diagnostic cadré (outil, équipe, risques, délais) pour décider si une refonte complète, une restructuration progressive ou des évolutions ciblées est la meilleure option financière.
 		</p>
 		<p>
-			<a href="/contact">Demander un diagnostic refonte →</a>
+			<a href="/contact/?offre=application">Demander un diagnostic refonte →</a>
 		</p>
 	</div>
 
@@ -144,4 +222,7 @@ const faq = [
 			<a href="/developpeur-symfony-freelance/">Développeur Symfony freelance</a> — continuité technique après la refonte.
 		</li>
 	</ul>
-</ServiceLandingLayout>
+			</div>
+		</div>
+	</section>
+</OfferLayout>

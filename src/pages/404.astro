@@ -1,0 +1,154 @@
+---
+/**
+ * Page d’erreur 404 (générée en `dist/404.html`).
+ * Servie par Apache grâce à `ErrorDocument 404 /404.html` (public/.htaccess).
+ * Liens absolus uniquement : la page peut être affichée depuis n’importe quelle URL.
+ */
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const links = [
+	{ href: '/services/', label: 'Services', text: 'Symfony, automatisation, Google Sheets, audit, refonte, sites web.' },
+	{ href: '/blog/', label: 'Blog', text: 'Articles techniques : Symfony, API, Google Workspace, dette technique.' },
+	{ href: '/a-propos/', label: 'À propos', text: 'Mon parcours, ma méthode et ma zone d’intervention autour de Lille.' },
+	{ href: '/contact/', label: 'Contact', text: 'Un projet, une question ? Écrivez-moi, réponse en général sous 24 à 48 h ouvrées.' },
+];
+---
+
+<Layout
+	title="Page introuvable (erreur 404) | Emmanuel Sauvage"
+	description="Cette page n’existe pas ou a été déplacée. Retrouvez les services, le blog et le contact d’Emmanuel Sauvage, développeur Symfony près de Lille."
+	noindex
+>
+	<SiteHeader />
+	<main class="notFound">
+		<div class="notFound__container">
+			<p class="notFound__code" aria-hidden="true">404</p>
+			<h1>Cette page est introuvable</h1>
+			<p class="notFound__lead">
+				L’adresse demandée n’existe pas ou a été déplacée. Vérifiez l’URL, ou repartez de l’une des pages ci-dessous.
+			</p>
+			<div class="notFound__actions">
+				<a class="button button--primary" href="/">Retour à l’accueil</a>
+				<a class="button button--secondary" href="/contact/">Me contacter</a>
+			</div>
+			<ul class="notFound__grid">
+				{
+					links.map((l) => (
+						<li>
+							<a class="notFound__card" href={l.href}>
+								<strong>{l.label}</strong>
+								<span>{l.text}</span>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</main>
+	<SiteFooter />
+</Layout>
+
+<style>
+	.notFound {
+		background: var(--color-bg);
+	}
+
+	.notFound__container {
+		width: min(880px, calc(100% - 32px));
+		margin: 0 auto;
+		padding: 64px 0 72px;
+		text-align: center;
+	}
+
+	.notFound__code {
+		margin: 0;
+		font-size: clamp(64px, 14vw, 120px);
+		font-weight: 800;
+		line-height: 1;
+		letter-spacing: -0.04em;
+		background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-spot) 75%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	h1 {
+		margin: 12px 0 10px;
+		font-size: clamp(26px, 4vw, 38px);
+		letter-spacing: -0.03em;
+		color: var(--color-primary);
+	}
+
+	.notFound__lead {
+		margin: 0 auto;
+		max-width: 60ch;
+		color: var(--color-muted);
+		font-size: 17px;
+	}
+
+	.notFound__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 12px;
+		margin: 28px 0 40px;
+	}
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 12px 18px;
+		border-radius: 12px;
+		font-weight: 700;
+		text-decoration: none;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.button--secondary {
+		background: var(--color-surface);
+		color: var(--color-primary);
+		border: 1px solid var(--color-border);
+	}
+
+	.notFound__grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+		gap: 14px;
+		text-align: left;
+	}
+
+	.notFound__card {
+		display: grid;
+		align-content: start;
+		gap: 6px;
+		height: 100%;
+		box-sizing: border-box;
+		padding: 18px;
+		border-radius: var(--radius);
+		border: 1px solid var(--color-border);
+		background: var(--color-surface);
+		box-shadow: var(--shadow-sm);
+		text-decoration: none;
+		transition: transform 0.15s ease, box-shadow 0.15s ease;
+	}
+
+	.notFound__card:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.notFound__card strong {
+		color: var(--color-primary);
+	}
+
+	.notFound__card span {
+		color: var(--color-muted);
+		font-size: 14px;
+	}
+</style>

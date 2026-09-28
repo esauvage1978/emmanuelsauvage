@@ -1,0 +1,223 @@
+---
+import OfferLayout from '../layouts/OfferLayout.astro';
+import { serviceJsonLd } from '../data/schema';
+
+const title = 'Automatisation Google Sheets & Apps Script sur mesure';
+const description =
+	'Automatisez vos Google Sheets avec Apps Script : collecte multisite, rapports automatiques, alertes, connexion à vos outils. Développeur près de Lille.';
+const h1 = 'Automatisation Google Sheets et Apps Script : vos fichiers travaillent pour vous';
+const lead =
+	'Vos équipes tiennent à Google Sheets, mais passent des heures à copier, consolider et relancer ? J’automatise ces tâches avec Apps Script, sans changer d’outil, avec des scripts documentés que vos référents peuvent reprendre.';
+
+const faq = [
+	{
+		question: 'Google Sheets peut-il remplacer un ERP ou une base de données ?',
+		answer:
+			'Pour du pilotage, de la simulation et du reporting agile, souvent oui, dans une limite de volume et de complexité. Quand les écritures simultanées, les droits fins et l’historique deviennent critiques, il faut une application adaptée, parfois en complément de Sheets.',
+	},
+	{
+		question: 'Comment fiabiliser des fichiers « hérités » ?',
+		answer:
+			'On identifie la source de vérité, on protège les plages critiques, on ajoute des validations et on documente les formules importantes. Ensuite seulement on automatise ce qui est répétitif.',
+	},
+	{
+		question: 'Comment éviter les automatisations fragiles ?',
+		answer:
+			'Avec des journaux d’exécution, des alertes en cas d’échec, une gestion des quotas Apps Script, une documentation de reprise et des droits partagés : l’automatisation ne doit pas dépendre d’une seule personne.',
+	},
+	{
+		question: 'Mes données restent-elles dans notre Google Workspace ?',
+		answer:
+			'Oui : les scripts s’exécutent dans votre environnement Google Workspace, avec les droits que vous définissez. Les connexions à des services externes sont décidées avec vous.',
+	},
+	{
+		question: 'Pouvez-vous former nos équipes pour qu’elles maintiennent les scripts ?',
+		answer:
+			'Oui : chaque automatisation est livrée documentée, et je propose une formation Apps Script pour vos référents internes.',
+	},
+];
+
+const jsonLd = [
+	serviceJsonLd({
+		name: 'Automatisation Google Sheets et Apps Script',
+		path: '/automatisation-google-sheets/',
+		description,
+		serviceType: 'Automatisation de processus avec Google Apps Script',
+	}),
+];
+---
+
+<OfferLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	eyebrow="Offre 2 · Applications"
+	breadcrumb={[
+		{ label: 'Applications sur mesure', href: '/developpement-application-sur-mesure/' },
+		{ label: 'Automatisation Google Sheets' },
+	]}
+	badges={['Sans changer d’outil', 'Scripts documentés', 'Formation des référents possible']}
+	primaryCta={{ label: 'Parler de mon fichier', href: '/contact/?offre=application' }}
+	secondaryCta={{ label: 'Voir les cas types', href: '#cas-types' }}
+	faq={faq}
+	jsonLd={jsonLd}
+	current="applications"
+	ogImage="/images/og/automatisation-google-sheets.png"
+	finalCta={{
+		title: 'Un fichier à automatiser ?',
+		text: 'Décrivez le processus (qui saisit quoi, à quelle fréquence, ce qui prend du temps) : je vous dis ce qui peut être automatisé et en combien de temps.',
+		primary: { label: 'Parler de mon fichier', href: '/contact/?offre=application' },
+		secondary: { label: 'Formation Apps Script', href: '/formation-apps-script/' },
+	}}
+>
+	<section id="cas-types" class="oSection" aria-labelledby="ags-cas-types">
+		<div class="oContainer">
+			<h2 id="ags-cas-types" class="oTitle">Ce que l’on peut automatiser</h2>
+			<div class="oGrid oGrid--3">
+				<div class="oCard">
+					<h3>Un fichier par site, déployé automatiquement</h3>
+					<p>Un modèle dupliqué pour chaque magasin, agence ou client, partagé avec les bonnes personnes et mis à jour d’un clic.</p>
+				</div>
+				<div class="oCard">
+					<h3>Consolidation centrale</h3>
+					<p>Les données de tous les fichiers remontent dans un fichier de synthèse, sans copier-coller.</p>
+				</div>
+				<div class="oCard">
+					<h3>Rapports, Slides et PDF générés</h3>
+					<p>Une présentation Google Slides ou un PDF produit automatiquement pour chaque site, chaque région ou chaque client.</p>
+				</div>
+				<div class="oCard">
+					<h3>E-mails et relances</h3>
+					<p>Envoi automatique des rapports, relances quand une saisie manque, alertes quand un seuil est dépassé.</p>
+				</div>
+				<div class="oCard">
+					<h3>Contrôles et validations</h3>
+					<p>Listes déroulantes, règles de cohérence, plages protégées et contrôles d’écart pour fiabiliser les saisies.</p>
+				</div>
+				<div class="oCard">
+					<h3>Connexion à vos outils</h3>
+					<p>Import ou envoi de données vers une API, un CRM, un formulaire ou une autre application.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="oSection oSection--alt" aria-labelledby="ags-cas">
+		<div class="oContainer oSplit">
+			<!-- Cas décrit d’après la mission « Suivi Bilan SST » publiée sur le profil Malt (chiffres repris de cette source). Publication autorisée par Decathlon (28/09/2026). -->
+			<div>
+				<h2 id="ags-cas" class="oTitle">Étude de cas : le suivi de bilans des magasins Decathlon</h2>
+				<div class="oProse">
+					<p>
+						Chaque magasin devait remplir un bilan, puis les résultats étaient collectés et mis en forme à la main.
+					</p>
+					<ul>
+						<li>Un Google Sheets par magasin, déployé automatiquement par Apps Script</li>
+						<li>Une consolidation centrale des réponses</li>
+						<li>Une présentation Google Slides générée automatiquement pour chaque magasin et chaque région</li>
+						<li>Un tableau de bord pour suivre l’avancement</li>
+					</ul>
+					<p><strong>Résultat :</strong> la collecte manuelle prenait 1 à 2 journées par magasin ; elle se fait désormais en 5 minutes, avec un suivi en temps réel.</p>
+					<p><a href="/realisations/">Voir les autres réalisations</a></p>
+				</div>
+			</div>
+			<div class="oCard oCard--accent">
+				<h3>Le bon couplage : automatiser et former</h3>
+				<p>
+					Une automatisation est utile si elle reste compréhensible dans six mois. Je livre des scripts commentés et
+					documentés, et je peux former vos référents.
+				</p>
+				<p><a href="/formation-apps-script/">Formation Google Apps Script</a></p>
+			</div>
+		</div>
+	</section>
+
+	<section class="oSection" aria-labelledby="ags-methode">
+		<div class="oContainer">
+			<h2 id="ags-methode" class="oTitle">Une automatisation qui tient en production</h2>
+			<div class="oGrid oGrid--3">
+				<div class="oCard">
+					<h3>Une source de vérité</h3>
+					<p>
+						On sépare les données brutes, les calculs et la restitution, et on décide où vit la donnée de référence.
+						Sinon, on automatise des erreurs plus vite.
+					</p>
+				</div>
+				<div class="oCard">
+					<h3>Des règles métier explicites</h3>
+					<p>Qui saisit quoi, qui valide, et quand : ces règles sont écrites avant d’être codées.</p>
+				</div>
+				<div class="oCard">
+					<h3>De l’observabilité</h3>
+					<p>
+						Journaux d’exécution, alertes en cas d’échec, suivi des quotas : vous savez qu’un flux a échoué avant que vos
+						équipes ne le découvrent.
+					</p>
+				</div>
+			</div>
+			<ol class="oSteps oSteps--4" style="margin-top:24px">
+				<li><strong>Analyse</strong>Le processus, les fichiers, les irritants et les volumes.</li>
+				<li><strong>Fiabilisation</strong>Structure, validations et protections du fichier existant.</li>
+				<li><strong>Automatisation</strong>Scripts, déclencheurs, rapports, tests sur des données réelles.</li>
+				<li><strong>Transmission</strong>Documentation, prise en main et formation des référents.</li>
+			</ol>
+			<!-- TODO (Emmanuel) : délai indicatif « 1 à 4 semaines » (repris de la stratégie) à confirmer. Tarif : sur devis (confirmé). -->
+			<p class="oNote">Délai indicatif : de 1 à 4 semaines selon le processus. Tarif sur devis.</p>
+		</div>
+	</section>
+
+	<section class="oSection oSection--alt" aria-labelledby="ags-limites">
+		<div class="oContainer oSplit">
+			<div>
+				<h2 id="ags-limites" class="oTitle">Quand passer de Google Sheets à une application</h2>
+				<div class="oProse">
+					<p>
+						Si vos enjeux sont l’historique fin, les droits par rôle, l’intégration en temps réel avec plusieurs systèmes,
+						ou des volumes qui font ramer le navigateur, il est temps d’envisager une application dédiée, souvent en
+						gardant Sheets pour le reporting.
+					</p>
+					<p>
+						Le piège est de vouloir « un ERP » sans avoir clarifié le processus. D’où l’intérêt d’un cadrage, puis d’une
+						<a href="/developpement-application-sur-mesure/">application sur mesure</a> si le besoin est confirmé.
+					</p>
+				</div>
+			</div>
+			<div class="oCard">
+				<h3>Signaux d’alerte</h3>
+				<ul>
+					<li>Plusieurs versions « officielles » du même fichier</li>
+					<li>Des chiffres contestés en réunion</li>
+					<li>Plus de temps à vérifier qu’à analyser</li>
+					<li>Une clôture bloquée quand « la personne tableur » est absente</li>
+				</ul>
+				<p><a href="/blog/google-sheets-limite-outil-metier/">Les limites de Google Sheets comme outil métier</a></p>
+			</div>
+		</div>
+	</section>
+
+	<section class="oSection" aria-labelledby="ags-pieges">
+		<div class="oContainer">
+			<h2 id="ags-pieges" class="oTitle">Pièges fréquents (et comment les éviter)</h2>
+			<div class="oGrid oGrid--3">
+				<div class="oCard">
+					<h3>Des scripts opaques</h3>
+					<p>Une automatisation que personne ne comprend devient un risque. Mieux vaut moins de scripts, mais documentés.</p>
+				</div>
+				<div class="oCard">
+					<h3>Partage ≠ contrôle d’accès</h3>
+					<p>Partager un lien ne règle pas la gouvernance : il faut des rôles clairs et une procédure quand quelqu’un part.</p>
+				</div>
+				<div class="oCard">
+					<h3>Une seule personne qui sait</h3>
+					<p>Si une absence bloque tout, c’est un risque opérationnel : documentation et droits partagés sont indispensables.</p>
+				</div>
+			</div>
+			<ul class="oLinks">
+				<li><a href="/blog/automatiser-processus-metier-google-apps-script-entreprise/">Automatiser ses processus avec Apps Script</a></li>
+				<li><a href="/blog/automatiser-entreprise-google-workspace-gains-cas/">Automatiser avec Google Workspace</a></li>
+				<li><a href="/blog/google-sheets-vs-excel-limites-cas-usage/">Google Sheets ou Excel ?</a></li>
+			</ul>
+		</div>
+	</section>
+</OfferLayout>

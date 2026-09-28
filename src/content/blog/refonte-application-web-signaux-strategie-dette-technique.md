@@ -2,13 +2,16 @@
 title: "Quand et pourquoi refondre une application web ? Signaux et stratégie"
 shortTitle: "Refonte web : signaux, dette et stratégie"
 description: "Dette technique expliquée, symptômes d’obsolescence, coûts cachés et stratégie de refonte (progressive vs big-bang) pour décideurs et équipes produit — avec critères opposables."
+metaDescription: "Dette technique, symptômes d’obsolescence, coûts cachés et stratégie de refonte (progressive ou big-bang) pour décideurs et équipes produit, critères à l’appui."
 pubDate: 2026-04-12
 readingTimeMinutes: 8
 tags:
   - "Refonte"
   - "Dette technique"
   - "Stratégie"
+updatedDate: 2026-09-28
 illustration: refonte
+category: applications
 ---
 <aside class="tldr">
 <strong>En bref</strong>
@@ -168,7 +171,7 @@ Les refontes échouent souvent sur la <strong>donnée</strong> : formats histori
 </p>
 
 <p>
-Pour les API exposées à des partenaires, la refonte est aussi l’occasion de clarifier <strong>versionnement</strong> et compatibilité — thème proche de ce que j’aborde sur les <a href="/blog/versionner-api-rest-symfony/">API versionnées</a> et les <a href="/blog/openapi-contrat-api-equipes/">contrats OpenAPI</a> : moins de friction entre équipes, moins d’incidents d’intégration.
+Pour les API exposées à des partenaires, la refonte est aussi l’occasion de clarifier <strong>versionnement</strong> et compatibilité — thème proche de ce que j’aborde sur les <a href="/blog/versionner-api-rest-symfony/">API versionnées</a> et les <a href="/blog/versionner-api-rest-symfony/#openapi">contrats OpenAPI</a> : moins de friction entre équipes, moins d’incidents d’intégration.
 </p>
 
 <h2>Ce que je n’optimise pas : le storytelling sans métriques</h2>
@@ -203,6 +206,50 @@ Enfin, anticipez la communication interne : une refonte perturbe les habitudes, 
 
 <p>
 Du point de vue budget, séparez explicitement <strong>run</strong> et <strong>change</strong> : l’exploitation courante ne doit pas être financée par des lignes « projet » éphémères, sinon la dette revient par la fenêtre dès la fin du chantier.
+</p>
+
+<h2 id="refonte-ou-maintenance">Refonte ou maintenance : comment trancher</h2>
+
+<p>
+Avant de lancer une refonte, posez la question inverse : une <strong>maintenance sérieuse</strong> suffirait-elle ? Le
+critère n’est pas l’âge du code, mais le risque métier, le coût marginal d’une évolution, la fin de support des
+versions et la capacité de l’équipe.
+</p>
+
+<h3>Solutions possibles : un spectre, pas un switch</h3>
+
+<p>
+La bonne réponse est souvent <strong>hybride</strong> : industrialiser la maintenance sur 70 % du système, et refondre/extraire 30 % qui concentrent 80 % du risque (souvent facturation, droits, intégrations critiques). C’est le cœur du pattern strangler : livrer de la valeur sans couper le flux.
+</p>
+
+<ul>
+<li><strong>Maintenance « digne de ce nom »</strong> : dépendances à jour, <code>composer audit</code> traité, CI minimale, alertes sur erreurs — voir <a href="/refonte-application-web/#maintenance">indicateurs de maintenance en production</a>.</li>
+<li><strong>Refonte ciblée</strong> : module borné, contrats testables, bascule progressive.</li>
+<li><strong>Migration de stack</strong> quand la fin de support rend l’inaction plus risquée — <a href="/blog/migration-symfony-guide-complet-2026/">guide migration Symfony</a>.</li>
+</ul>
+
+<h3>Maintenance « sérieuse » : à quoi ça ressemble</h3>
+
+<p>
+Une maintenance crédible, ce n’est pas « corriger quand ça casse » : c’est une <strong>cadence</strong> — revue des dépendances, correctifs de sécurité, tests sur les chemins critiques, monitoring qui alerte avant les clients, et releases documentées. C’est aussi une <strong>politique de version</strong> : vous savez quelle branche PHP/Symfony (ou autre) vous visez, et quand. C’est ce qui permet de repousser une refonte quand le risque métier ne le permet pas encore — sans pour autant mentir sur la dette.
+</p>
+
+<p>
+Si votre équipe ne peut pas produire un changelog clair ou un rollback en moins d’une heure sur un périmètre borné, vous n’êtes pas en maintenance : vous êtes en <strong>gestion d’incendie permanente</strong>. Dans ce cas, la question « refonte ou maintenance » se tranche souvent par : d’abord <strong>stabiliser</strong> l’existant assez pour mesurer, puis décider.
+</p>
+
+<p>
+Dernier point : la maintenance suppose aussi une <strong>politique de données</strong> — sauvegardes testées, migrations réversibles, et clarté sur les environnements. Une refonte qui « oublie » la donnée est une refonte qui coûte trois fois le budget annoncé, même si le front est magnifique.
+</p>
+
+<h3>Quand la « maintenance » est un leurre</h3>
+
+<p>
+Si vos dépendances sont hors support, si vous ne pouvez plus appliquer les correctifs de sécurité sans casse, et si chaque montée mineure est un projet — vous n’êtes plus en maintenance au sens « entretien courant ». Vous êtes en <strong>survie</strong>. À ce stade, la décision n’est plus esthétique : c’est du risque cyber et opérationnel. Dans ce cas, reliez-vous aux signaux financiers (<a href="/blog/application-web-perd-argent-signes/">perte d’argent</a>) et au <a href="/blog/cout-dette-technique-entreprise-analyse/">coût de la dette</a> pour obtenir un mandat de traitement.
+</p>
+
+<p>
+Dans tous les cas, évitez la dichotomie artificielle « on fait du neuf » vs « on répare » : la voie professionnelle est presque toujours <strong>itérative</strong>, avec des critères de succès et des points de non-retour explicités. C’est ainsi qu’on protège le chiffre d’affaires pendant que l’on réduit la dette — pas en arrêtant le monde pendant neuf mois.
 </p>
 
 <section class="faq" aria-label="Questions fréquentes">

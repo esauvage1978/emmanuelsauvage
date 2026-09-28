@@ -1,0 +1,84 @@
+---
+import { testimonials, maltRating, googleRating } from '../../data/testimonials';
+import { GOOGLE_PROFILE_URL, GOOGLE_REVIEW_URL, MALT_PROFILE_URL } from '../../config/site';
+---
+
+<!-- Témoignage Decathlon autorisé. TODO (Emmanuel) : autorisation des témoignages Mon Coach Brico et Maître Parafiniuk. Notes Google et Malt vérifiées le 28/09/2026. -->
+<section class="homeQuotes homeSection homeSection--alt" aria-labelledby="home-quotes-heading">
+	<div class="homeContainer">
+		<header class="homeSection__head homeSection__head--center">
+			<h2 id="home-quotes-heading" class="homeSection__title">Ce qu’en disent mes clients</h2>
+			<p class="homeSection__lede">
+				<a class="homeLink" href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener noreferrer">{googleRating.label}</a>
+				<span aria-hidden="true"> · </span>
+				<a class="homeLink" href={MALT_PROFILE_URL} target="_blank" rel="noopener noreferrer">{maltRating.label}</a>
+			</p>
+		</header>
+
+		<div class="homeQuotes__grid">
+			{
+				testimonials.map((t) => (
+					<figure class="homeQuotes__card homeCard">
+						<blockquote>« {t.quote} »</blockquote>
+						<figcaption>
+							<strong>{t.author}</strong>
+							<span>{t.context}</span>
+						</figcaption>
+					</figure>
+				))
+			}
+		</div>
+
+		<p class="homeSection__footer">
+			<a class="homeLink" href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
+		</p>
+	</div>
+</section>
+
+<style>
+	.homeQuotes .homeSection__lede {
+		font-weight: 600;
+	}
+
+	.homeQuotes__grid {
+		display: grid;
+		gap: 16px;
+	}
+
+	@media (min-width: 900px) {
+		.homeQuotes__grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.homeQuotes__card {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 16px;
+		margin: 0;
+		padding: 24px 22px;
+		background: var(--home-slate-50);
+	}
+
+	.homeQuotes__card blockquote {
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.6;
+		color: #334155;
+	}
+
+	.homeQuotes__card figcaption {
+		display: grid;
+		gap: 2px;
+		font-size: 14px;
+	}
+
+	.homeQuotes__card figcaption strong {
+		color: var(--home-navy);
+	}
+
+	.homeQuotes__card figcaption span {
+		color: var(--color-muted);
+	}
+</style>

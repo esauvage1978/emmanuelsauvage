@@ -2,6 +2,7 @@
 title: "Pourquoi vos fichiers Excel vous coûtent plus cher que vous ne le pensez"
 shortTitle: "Excel en entreprise : coût caché des fichiers"
 description: "Coûts cachés des tableurs anarchiques : ressaisies, erreurs, audits, délais décisionnels. Comparatif Google Sheets / Excel et leviers d’industrialisation pour PME orientées ROI."
+metaDescription: "Coûts cachés des tableurs anarchiques : ressaisies, erreurs, audits, délais. Comparatif Google Sheets / Excel et leviers d’industrialisation pour PME."
 pubDate: 2026-05-16
 readingTimeMinutes: 9
 tags:
@@ -9,6 +10,7 @@ tags:
   - "Google Sheets"
   - "Productivité"
 illustration: sheets
+category: applications
 ---
 <aside class="tldr">
 <strong>En bref</strong>

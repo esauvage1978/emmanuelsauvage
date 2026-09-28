@@ -1,0 +1,285 @@
+---
+import OfferLayout from '../layouts/OfferLayout.astro';
+import { testimonials } from '../data/testimonials';
+import { SITE_ORIGIN } from '../config/site';
+
+const title = 'Réalisations : outils Google Sheets, applications et sites';
+const description =
+	'Études de cas : outils Google Sheets pour Decathlon, back-office sur mesure, sites vitrines rapides à Lille et Armentières, et mes produits SaaS.';
+const h1 = 'Réalisations : du tableur à l’application, et des sites qui performent';
+const lead =
+	'Quelques projets menés pour des entreprises de toutes tailles : des outils Google Sheets déployés dans plus de 300 magasins Decathlon, un back-office développé sur plusieurs années, des sites vitrines rapides pour des entreprises locales, et mes propres produits SaaS.';
+
+const sites = [
+	{
+		name: 'HFE Énergie',
+		url: 'https://hfe-energie.fr/',
+		image: '/images/realisations/hfe-energie.png',
+		text: 'Site vitrine d’un installateur de pompes à chaleur RGE QualiPAC à Lille : pages de service, zone d’intervention, avis Google, FAQ et formulaire de devis.',
+	},
+	{
+		name: 'Cabinet Beligat',
+		url: 'https://podologue-beligat.fr/',
+		image: '/images/realisations/podologue-beligat.png',
+		text: 'Site d’un cabinet de pédicures-podologues à Armentières : services, équipe, semelles sur mesure et prise de rendez-vous Doctolib.',
+	},
+	{
+		name: 'EDAME',
+		url: 'https://edame.fr/',
+		image: '/images/realisations/edame.png',
+		text: 'Site d’une éducatrice spécialisée : présentation de l’offre, blog, FAQ et formulaire de premier contact.',
+	},
+];
+
+/*
+ * Produits SaaS d’Emmanuel (confirmé par Emmanuel le 28/09/2026). Descriptions reprises de leurs propres sites (28/09/2026).
+ * Webhooky : mentions légales de webhooky.fr au nom d’Emmanuel SAUVAGE (vitrine webhooky.fr, application webhooky.builders).
+ * TODO (Emmanuel) : compléter les mentions légales d’alertjet.fr (champs entre crochets encore non renseignés) ;
+ * aucune mention d’éditeur vérifiable sur lnkx.link.
+ */
+const saas = [
+	{
+		name: 'Webhooky',
+		url: 'https://webhooky.fr/',
+		urlLabel: 'webhooky.fr',
+		app: { url: 'https://webhooky.builders/', label: 'webhooky.builders' },
+		tag: 'Webhooks et automatisation',
+		text: 'Plateforme française pour recevoir des webhooks, orchestrer e-mails, SMS, notifications et appels HTTP, et superviser chaque exécution.',
+		extra: 'Le formulaire de contact de ce site passe d’ailleurs par Webhooky.',
+	},
+	{
+		name: 'AlertJet',
+		url: 'https://alertjet.fr/',
+		urlLabel: 'alertjet.fr',
+		tag: 'Incidents et interventions',
+		text: 'Gestion des incidents et des interventions pour petites équipes : incidents, interventions et suivi d’équipe centralisés, sans outil d’entreprise surdimensionné.',
+	},
+	{
+		name: 'LnkX',
+		url: 'https://lnkx.link/',
+		urlLabel: 'lnkx.link',
+		tag: 'Liens courts et QR codes',
+		text: 'Liens courts, pages « link-in-bio » et QR codes dynamiques, créés, partagés et mesurés depuis un seul tableau de bord.',
+	},
+];
+
+const quote = (author: string) => testimonials.find((t) => t.author === author);
+const yann = quote('Yann Philippe');
+const dimitri = quote('Dimitri De Cruz');
+const iwona = quote('Maître Iwona Parafiniuk');
+
+const itemListJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: title,
+	url: `${SITE_ORIGIN}/realisations/`,
+	description,
+	inLanguage: 'fr-FR',
+	isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
+};
+---
+
+<OfferLayout
+	title={title}
+	description={description}
+	h1={h1}
+	lead={lead}
+	eyebrow="Études de cas"
+	breadcrumb={[{ label: 'Réalisations' }]}
+	primaryCta={{ label: 'Parler de mon projet', href: '/contact/' }}
+	secondaryCta={{ label: 'Voir les offres', href: '/services/' }}
+	jsonLd={[itemListJsonLd]}
+	current="realisations"
+	ogImage="/images/og/realisations.png"
+>
+	<!--
+		Cas Decathlon : publication autorisée par Decathlon (nom, cas, témoignage de Yann Philippe, logo) le 28/09/2026.
+		Contenu et chiffres repris des descriptions de missions publiées sur le profil Malt d’Emmanuel
+		(« Suivi Bilan SST », novembre 2025 à aujourd’hui ; « Size Management », Decathlon United, juillet à décembre 2025).
+	-->
+	<section id="decathlon" class="oSection" aria-labelledby="real-decathlon">
+		<div class="oContainer">
+			<img
+				class="realLogo"
+				src="/images/partners/decathlon.svg"
+				alt="Decathlon"
+				width="188"
+				height="28"
+				loading="lazy"
+				decoding="async"
+			/>
+			<p class="oCard__tag">Outils Google Sheets & Apps Script</p>
+			<h2 id="real-decathlon" class="oTitle">Decathlon : des outils Google Sheets à l’échelle d’un réseau de magasins</h2>
+			<p class="oIntro">
+				Pour le groupe Decathlon (France et Europe), j’ai conçu et déployé plusieurs dispositifs qui diffusent et pilotent
+				des outils Google Sheets auprès de plus de 300 magasins.
+			</p>
+			<div class="oGrid oGrid--2">
+				<article class="oCard">
+					<span class="oCard__tag">Decathlon France · depuis novembre 2025</span>
+					<h3>Suivi des bilans en magasin</h3>
+					<p><strong>Le besoin :</strong> collecter un bilan dans chaque magasin, puis consolider et diffuser les résultats, jusque-là de façon manuelle.</p>
+					<ul>
+						<li>Un fichier Google Sheets par magasin, déployé automatiquement par Apps Script</li>
+						<li>Une consolidation centrale des données</li>
+						<li>Une présentation Google Slides générée automatiquement pour chaque magasin et chaque région</li>
+						<li>Un tableau de bord de suivi de l’avancement</li>
+					</ul>
+					<p>
+						<strong>Le résultat :</strong> la collecte manuelle, qui prenait 1 à 2 journées par magasin, se réalise
+						désormais en 5 minutes, avec un suivi de l’avancement en temps réel.
+					</p>
+				</article>
+				<article class="oCard">
+					<span class="oCard__tag">Decathlon United · juillet à décembre 2025</span>
+					<h3>Prévisionnels de stock vélos</h3>
+					<p><strong>Le besoin :</strong> produire des prévisionnels de stock vélos pour chaque magasin européen.</p>
+					<ul>
+						<li>Un outil de prévision déployé pour chaque magasin européen</li>
+						<li>Un paramétrage par pays</li>
+						<li>Une gestion multilingue</li>
+						<li>Des tableaux de bord de suivi de l’adoption</li>
+					</ul>
+				</article>
+			</div>
+			{
+				yann && (
+					<figure class="oQuote" style="margin-top:20px">
+						<blockquote>« {yann.quote} »</blockquote>
+						<figcaption>
+							{yann.author}, {yann.context}
+						</figcaption>
+					</figure>
+				)
+			}
+			<ul class="oLinks">
+				<li><a href="/automatisation-google-sheets/">Automatisation Google Sheets</a></li>
+				<li><a href="/formation-google-sheets/">Formation Google Sheets</a></li>
+			</ul>
+		</div>
+	</section>
+
+	<section id="mon-coach-brico" class="oSection oSection--alt" aria-labelledby="real-mcb">
+		<div class="oContainer oSplit">
+			<!-- TODO (Emmanuel) : captures d’écran, périmètre et chiffres du back-office Mon Coach Brico à obtenir (avec accord du client). -->
+			<div>
+				<p class="oCard__tag">Application métier</p>
+				<h2 id="real-mcb" class="oTitle">Mon Coach Brico : un back-office construit sur 3 ans</h2>
+				<div class="oProse">
+					<p>
+						Développement du back-office et d’interfaces pour Mon Coach Brico, en lien avec les équipes du client :
+						construction des écrans demandés, propositions d’interfaces, anticipation des besoins à venir.
+					</p>
+					<p><a href="/developpement-application-sur-mesure/">Développement d’application sur mesure</a></p>
+				</div>
+			</div>
+			{
+				dimitri && (
+					<figure class="oQuote">
+						<blockquote>« {dimitri.quote} »</blockquote>
+						<figcaption>
+							{dimitri.author}, {dimitri.context}
+						</figcaption>
+					</figure>
+				)
+			}
+		</div>
+	</section>
+
+	<!-- TODO (Emmanuel) : YEED Group (migration Microsoft 365, décembre 2025 à février 2026, d’après Malt) non présenté ici : offre hors des 3 axes, à garder ou non ; accord du client à obtenir. -->
+
+	<section id="saas" class="oSection" aria-labelledby="real-saas">
+		<div class="oContainer">
+			<p class="oCard__tag">Mes produits</p>
+			<h2 id="real-saas" class="oTitle">Mes propres services en ligne</h2>
+			<p class="oIntro">
+				En parallèle de mes missions, je conçois et développe mes propres produits SaaS : les mêmes exigences de
+				fiabilité, de sécurité et d’automatisation que pour les applications de mes clients.
+			</p>
+			<div class="oGrid oGrid--3">
+				{
+					saas.map((p) => (
+						<article class="oCard">
+							<span class="oCard__tag">{p.tag}</span>
+							<h3>
+								<a href={p.url} target="_blank" rel="noopener noreferrer">
+									{p.name}
+								</a>
+							</h3>
+							<p>{p.text}</p>
+							{p.extra && <p>{p.extra}</p>}
+							<p>
+								<a href={p.url} target="_blank" rel="noopener noreferrer">
+									{p.urlLabel}
+								</a>
+								{p.app && (
+									<>
+										{' '}
+										· application :{' '}
+										<a href={p.app.url} target="_blank" rel="noopener noreferrer">
+											{p.app.label}
+										</a>
+									</>
+								)}
+							</p>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section id="sites" class="oSection oSection--alt" aria-labelledby="real-sites">
+		<div class="oContainer">
+			<p class="oCard__tag">Sites internet</p>
+			<h2 id="real-sites" class="oTitle">Sites vitrines rapides pour des entreprises locales</h2>
+			<!-- TODO (Emmanuel) : accord des clients (HFE, Beligat, EDAME, cabinet Parafiniuk) et scores PageSpeed à re-mesurer avant publication. -->
+			<div class="oGrid oGrid--3">
+				{
+					sites.map((s) => (
+						<article class="oCard">
+							<a class="oMedia" href={s.url} target="_blank" rel="noopener noreferrer" style="margin-bottom:12px;display:block">
+								<img src={s.image} alt={`Aperçu du site ${s.name}`} loading="lazy" decoding="async" width="1024" height="700" />
+							</a>
+							<h3>
+								<a href={s.url} target="_blank" rel="noopener noreferrer">
+									{s.name}
+								</a>
+							</h3>
+							<p>{s.text}</p>
+						</article>
+					))
+				}
+			</div>
+			<div class="oSplit" style="margin-top:24px">
+				<div class="oProse">
+					<h3>Cabinet Parafiniuk</h3>
+					<p>Création du site internet du cabinet Parafiniuk-Leroy.</p>
+					<p>
+						<a href="/creation-site-internet/#performance">Voir les rapports PageSpeed</a> ·{' '}
+						<a href="/creation-site-internet/">Création de site internet</a>
+					</p>
+				</div>
+				{
+					iwona && (
+						<figure class="oQuote">
+							<blockquote>« {iwona.quote} »</blockquote>
+							<figcaption>
+								{iwona.author}, {iwona.context}
+							</figcaption>
+						</figure>
+					)
+				}
+			</div>
+		</div>
+	</section>
+</OfferLayout>
+
+<style>
+	.realLogo {
+		display: block;
+		height: 22px;
+		width: auto;
+		margin: 0 0 14px;
+	}
+</style>

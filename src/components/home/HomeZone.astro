@@ -1,0 +1,59 @@
+---
+import { zone } from '../../data/home';
+import HomeIcon from './HomeIcon.astro';
+---
+
+<section class="homeZone homeSection" aria-labelledby="home-zone-heading">
+	<div class="homeContainer homeZone__inner">
+		<div class="homeIcon homeZone__icon" aria-hidden="true">
+			<HomeIcon name="pin" />
+		</div>
+		<div>
+			<h2 id="home-zone-heading" class="homeSection__title">{zone.title}</h2>
+			<p class="homeSection__lede">{zone.text}</p>
+			<ul class="homeZone__places" aria-label="Zone d’intervention">
+				{zone.places.map((p) => <li>{p}</li>)}
+			</ul>
+		</div>
+	</div>
+</section>
+
+<style>
+	.homeZone__inner {
+		display: grid;
+		gap: 18px;
+		align-items: start;
+	}
+
+	@media (min-width: 720px) {
+		.homeZone__inner {
+			grid-template-columns: auto 1fr;
+			gap: 24px;
+		}
+	}
+
+	.homeZone__icon {
+		width: 56px;
+		height: 56px;
+		border-radius: 16px;
+	}
+
+	.homeZone__places {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin: 18px 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.homeZone__places li {
+		padding: 6px 12px;
+		border-radius: 999px;
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--home-navy);
+		background: #fff;
+		border: 1px solid #e2e8f0;
+	}
+</style>

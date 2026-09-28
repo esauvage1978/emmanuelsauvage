@@ -1,0 +1,201 @@
+---
+import { portfolio } from '../../data/home';
+import HomeIcon from './HomeIcon.astro';
+---
+
+<!-- Logo Decathlon : usage autorisé (28/09/2026). -->
+<section id="realisations" class="homePortfolio homeSection" aria-labelledby="home-portfolio-heading">
+	<div class="homeContainer">
+		<header class="homeSection__head homeSection__head--center">
+			<h2 id="home-portfolio-heading" class="homeSection__title">{portfolio.title}</h2>
+		</header>
+
+		<div class="homePortfolio__wrap">
+			<button type="button" class="homePortfolio__nav homePortfolio__nav--prev" data-portfolio-prev aria-label="Réalisation précédente">
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+					<polyline points="15 18 9 12 15 6" />
+				</svg>
+			</button>
+
+			<div class="homePortfolio__track" data-portfolio-track tabindex="0" role="region" aria-label="Réalisations clients">
+				{
+					portfolio.items.map((item) => (
+						<article class="homePortfolio__card homeCard">
+							<div class="homePortfolio__logoWrap">
+								{item.logo ? (
+									<img
+										class:list={['homePortfolio__logo', { 'is-square': item.square }]}
+										src={item.logo}
+										alt={`Logo ${item.name}`}
+										width="120"
+										height="40"
+										loading="lazy"
+										decoding="async"
+									/>
+								) : (
+									<span class="homePortfolio__monogram" aria-hidden="true">
+										{item.name}
+									</span>
+								)}
+							</div>
+							<span class="homePortfolio__tag">{item.tag}</span>
+							<h3 class="homePortfolio__name">{item.name}</h3>
+							<p class="homePortfolio__desc">{item.description}</p>
+						</article>
+					))
+				}
+			</div>
+
+			<button type="button" class="homePortfolio__nav homePortfolio__nav--next" data-portfolio-next aria-label="Réalisation suivante">
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+					<polyline points="9 18 15 12 9 6" />
+				</svg>
+			</button>
+		</div>
+
+		<p class="homeSection__footer">
+			<a class="homeLink" href={portfolio.allLink.href}>
+				{portfolio.allLink.label}
+				<HomeIcon name="arrow" />
+			</a>
+		</p>
+	</div>
+</section>
+
+<script is:inline>
+	(function () {
+		function init() {
+			var track = document.querySelector('[data-portfolio-track]');
+			var prev = document.querySelector('[data-portfolio-prev]');
+			var next = document.querySelector('[data-portfolio-next]');
+			if (!track || !prev || !next) return;
+
+			function scrollByDir(dir) {
+				var card = track.querySelector('.homePortfolio__card');
+				var gap = 16;
+				var amount = card ? card.offsetWidth + gap : 320;
+				track.scrollBy({ left: dir * amount, behavior: 'smooth' });
+			}
+
+			prev.addEventListener('click', function () { scrollByDir(-1); });
+			next.addEventListener('click', function () { scrollByDir(1); });
+		}
+		if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+		else init();
+	})();
+</script>
+
+<style>
+	.homePortfolio__wrap {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		gap: 12px;
+		align-items: center;
+	}
+
+	.homePortfolio__nav {
+		display: none;
+		place-items: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		border: 1px solid #e2e8f0;
+		background: #fff;
+		color: var(--home-navy);
+		cursor: pointer;
+		box-shadow: var(--home-shadow);
+		transition: border-color 0.15s ease, background 0.15s ease;
+		flex-shrink: 0;
+	}
+
+	@media (min-width: 768px) {
+		.homePortfolio__nav {
+			display: grid;
+		}
+	}
+
+	.homePortfolio__nav:hover {
+		border-color: var(--home-blue);
+		color: var(--home-blue);
+	}
+
+	.homePortfolio__track {
+		display: flex;
+		gap: 16px;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scroll-behavior: smooth;
+		padding-block: 4px;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+	}
+
+	.homePortfolio__track::-webkit-scrollbar {
+		display: none;
+	}
+
+	.homePortfolio__card {
+		flex: 0 0 min(100%, 340px);
+		padding: 24px 22px;
+		scroll-snap-align: start;
+	}
+
+	@media (min-width: 768px) {
+		.homePortfolio__card {
+			flex-basis: calc(33.333% - 11px);
+		}
+	}
+
+	.homePortfolio__logoWrap {
+		display: flex;
+		align-items: center;
+		height: 48px;
+		margin-bottom: 10px;
+	}
+
+	.homePortfolio__logo {
+		max-width: 130px;
+		max-height: 36px;
+		width: auto;
+		height: auto;
+		object-fit: contain;
+	}
+
+	.homePortfolio__monogram {
+		font-size: 18px;
+		font-weight: 800;
+		letter-spacing: -0.01em;
+		color: var(--home-navy);
+	}
+
+	.homePortfolio__logo.is-square {
+		max-height: 48px;
+	}
+
+	.homePortfolio__tag {
+		display: inline-block;
+		padding: 3px 10px;
+		border-radius: 999px;
+		font-size: 10px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--home-blue);
+		background: var(--home-blue-50);
+		margin-bottom: 10px;
+	}
+
+	.homePortfolio__name {
+		margin: 0 0 8px;
+		font-size: 17px;
+		font-weight: 700;
+		color: var(--home-navy);
+	}
+
+	.homePortfolio__desc {
+		margin: 0;
+		font-size: 14px;
+		line-height: 1.5;
+		color: var(--color-muted);
+	}
+</style>

@@ -1,0 +1,67 @@
+---
+import { situations } from '../../data/home';
+import HomeIcon from './HomeIcon.astro';
+---
+
+<section class="homeProblems homeSection" aria-labelledby="home-situations-heading">
+	<div class="homeContainer">
+		<header class="homeSection__head homeSection__head--center">
+			<h2 id="home-situations-heading" class="homeSection__title">{situations.title}</h2>
+			<p class="homeSection__lede">{situations.lede}</p>
+		</header>
+
+		<div class="homeProblems__grid">
+			{
+				situations.items.map((item) => (
+					<article class="homeProblems__card homeCard">
+						<div class="homeIcon" aria-hidden="true">
+							<HomeIcon name={item.icon as 'train' | 'app' | 'website'} />
+						</div>
+						<h3 class="homeProblems__title">{item.title}</h3>
+						<p class="homeProblems__text">{item.text}</p>
+						<a class="homeLink" href={item.href}>
+							{item.answer}
+							<HomeIcon name="arrow" />
+						</a>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.homeProblems__grid {
+		display: grid;
+		gap: 16px;
+	}
+
+	@media (min-width: 820px) {
+		.homeProblems__grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.homeProblems__card {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding: 24px 22px;
+	}
+
+	.homeProblems__title {
+		margin: 4px 0 0;
+		font-size: 1.08rem;
+		line-height: 1.3;
+		font-weight: 700;
+		color: var(--home-navy);
+	}
+
+	.homeProblems__text {
+		flex: 1 0 auto;
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.55;
+		color: var(--color-muted);
+	}
+</style>

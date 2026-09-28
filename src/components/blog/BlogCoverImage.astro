@@ -1,0 +1,64 @@
+---
+import BlogIllustration from './BlogIllustration.astro';
+import { getBlogCover } from '../../data/blog-covers';
+
+type Illustration =
+	| 'refonte'
+	| 'api'
+	| 'validation'
+	| 'sheets'
+	| 'webhook'
+	| 'problem'
+	| 'openapi'
+	| 'modules'
+	| 'ops'
+	| 'privacy'
+	| 'vitrine';
+
+type Props = {
+	slug: string;
+	illustration: Illustration;
+	class?: string;
+	loading?: 'lazy' | 'eager';
+};
+
+const { slug, illustration, class: className = '', loading = 'lazy' } = Astro.props;
+const cover = getBlogCover(slug);
+const base = cover?.src.replace(/\.webp$/, '') ?? '';
+---
+
+{
+	cover ? (
+		<picture class:list={['blogCover', className]}>
+			<source type="image/webp" srcset={`${base}.webp`} />
+			<img
+				class="blogCover__img"
+				src={`${base}.jpg`}
+				alt={cover.alt}
+				width="640"
+				height="400"
+				loading={loading}
+				decoding="async"
+			/>
+		</picture>
+	) : (
+		<BlogIllustration variant={illustration} class={className} />
+	)
+}
+
+<style>
+	.blogCover {
+		display: block;
+		overflow: hidden;
+		border-radius: inherit;
+		line-height: 0;
+		background: #f1f5f9;
+	}
+
+	.blogCover__img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+</style>

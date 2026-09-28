@@ -2,6 +2,7 @@
 title: "Votre application web vous fait-elle perdre de l’argent ? Les signes à détecter"
 shortTitle: "App web : signaux qui font perdre de l’argent"
 description: "Signaux financiers et opérationnels d’une application web toxique : paniers, SLA, support, cloud, recrutement. Tableau de diagnostic et premiers arbitrages pour PME et équipes produit."
+metaDescription: "Signaux financiers et opérationnels d’une application web toxique : paniers, SLA, support, cloud, recrutement. Diagnostic et premiers arbitrages pour PME."
 pubDate: 2026-05-18
 readingTimeMinutes: 9
 tags:
@@ -9,6 +10,7 @@ tags:
   - "ROI"
   - "Diagnostic"
 illustration: ops
+category: applications
 ---
 <aside class="tldr">
 <strong>En bref</strong>
@@ -99,7 +101,7 @@ Impossible de lancer une offre, un partenaire API, un nouveau pays tant que le s
 <ul>
 <li><strong>Mesurer avant de refaire</strong> : traces, logs structurés, SLO sur parcours argent — souvent le premier levier à ROI rapide.</li>
 <li><strong>Stabiliser par vagues</strong> : tests ciblés, feature flags, monitoring — réduit le risque sans promettre une refonte totale.</li>
-<li><strong>Refonte / extraction</strong> lorsque le plafond est structurel — voir <a href="/blog/refonte-ou-maintenance-application/">refonte ou maintenance</a> et <a href="/blog/refonte-application-web-signaux-strategie-dette-technique/">signaux de refonte</a>.</li>
+<li><strong>Refonte / extraction</strong> lorsque le plafond est structurel — voir <a href="/blog/refonte-application-web-signaux-strategie-dette-technique/#refonte-ou-maintenance">refonte ou maintenance</a> et <a href="/blog/refonte-application-web-signaux-strategie-dette-technique/">signaux de refonte</a>.</li>
 </ul>
 
 <p>
@@ -109,7 +111,7 @@ Comparer « tout refaire » vs « sécuriser le critique » sans tableau de coû
 <h2>Priorisation : le carré impact / effort</h2>
 
 <p>
-Toutes les équipes manquent de temps : la question est de savoir quoi traiter en premier. Un simple classement « impact business » × « coût de correction » évite les débats stériles. Les quick wins sont souvent <strong>observabilité + correctifs ciblés</strong> sur un endpoint critique — pas une refonte complète. Les gros chantiers se justifient quand le plafond structurel est atteint : à ce moment, reliez-vous à <a href="/blog/refonte-ou-maintenance-application/">refonte ou maintenance</a> et <a href="/blog/refonte-application-web-signaux-strategie-dette-technique/">signaux de refonte</a>.
+Toutes les équipes manquent de temps : la question est de savoir quoi traiter en premier. Un simple classement « impact business » × « coût de correction » évite les débats stériles. Les quick wins sont souvent <strong>observabilité + correctifs ciblés</strong> sur un endpoint critique — pas une refonte complète. Les gros chantiers se justifient quand le plafond structurel est atteint : à ce moment, reliez-vous à <a href="/blog/refonte-application-web-signaux-strategie-dette-technique/#refonte-ou-maintenance">refonte ou maintenance</a> et <a href="/blog/refonte-application-web-signaux-strategie-dette-technique/">signaux de refonte</a>.
 </p>
 
 <p>
@@ -190,7 +192,7 @@ Quand les ventes accusent l’outil et l’IT accuse le métier, personne ne gag
 </p>
 
 <p>
-Si vous êtes en phase d’arbitrage plus large (stabiliser vs refondre), la suite logique est la note <a href="/blog/refonte-ou-maintenance-application/">refonte ou maintenance</a> : les mêmes métriques servent à décider si vous devez payer la dette par incréments ou par extraction.
+Si vous êtes en phase d’arbitrage plus large (stabiliser vs refondre), la suite logique est la note <a href="/blog/refonte-application-web-signaux-strategie-dette-technique/#refonte-ou-maintenance">refonte ou maintenance</a> : les mêmes métriques servent à décider si vous devez payer la dette par incréments ou par extraction.
 </p>
 
 <p>
