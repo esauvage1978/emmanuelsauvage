@@ -1,0 +1,306 @@
+---
+/*
+ * Bandeau de preuves de l'accueil (sous les 3 offres du hero).
+ * Données : proofs (src/data/home.ts). Icônes SVG inline, décoratives (aria-hidden), sans JS ni image : aucun impact CLS.
+ */
+import { proofs } from '../../data/home';
+import { GOOGLE_PROFILE_URL, MALT_PROFILE_URL } from '../../config/site';
+
+const resolveHref = (href?: string) =>
+	href === 'MALT' ? MALT_PROFILE_URL : href === 'GOOGLE' ? GOOGLE_PROFILE_URL : href;
+
+const STAR = 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z';
+---
+
+<ul class="homeProofs" aria-label="Quelques repères">
+	{
+		proofs.map((p) => {
+			const href = resolveHref(p.href);
+			const inner = (
+				<>
+					{p.icon === 'rating' ? (
+						<span class="homeProofs__icon homeProofs__icon--stars" aria-hidden="true">
+							<svg width="84" height="16" viewBox="0 0 126 24" fill="currentColor" aria-hidden="true">
+								{[0, 1, 2, 3, 4].map((i) => (
+									<path d={STAR} transform={`translate(${i * 25.5} 0)`} />
+								))}
+							</svg>
+						</span>
+					) : (
+						<span class="homeProofs__icon" aria-hidden="true">
+							<svg
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
+							>
+								{p.icon === 'stores' && (
+									<>
+										<path d="M4 3h16l1.6 5.4a3 3 0 0 1-5.6 1.6 3 3 0 0 1-8 0 3 3 0 0 1-5.6-1.6z" />
+										<path d="M5 11.5V21h14v-9.5" />
+										<path d="M10 21v-5h4v5" />
+									</>
+								)}
+								{p.icon === 'code' && (
+									<>
+										<polyline points="16 18 22 12 16 6" />
+										<polyline points="8 6 2 12 8 18" />
+										<line x1="14" y1="4" x2="10" y2="20" />
+									</>
+								)}
+								{p.icon === 'gauge' && (
+									<>
+										<path d="M3.34 19a10 10 0 1 1 17.32 0" />
+										<path d="m12 14 4-4" />
+										<circle cx="12" cy="14" r="1.2" fill="currentColor" />
+									</>
+								)}
+								{p.icon === 'mentor' && (
+									<>
+										<path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z" />
+										<path d="M22 10v6" />
+										<path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+									</>
+								)}
+							</svg>
+						</span>
+					)}
+					<span class="homeProofs__value">{p.value}{p.suffix && <span class="homeProofs__suffix">{p.suffix}</span>}</span>
+					<span class="homeProofs__label">
+						{p.label}{p.srDetail && <span class="srOnly">{p.srDetail}</span>}{p.external && (
+							<svg class="homeProofs__ext" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M7 17 17 7M8 7h9v9" />
+							</svg>
+						)}
+					</span>
+				</>
+			);
+			return (
+				<li class={`homeProofs__cell homeProofs__cell--${p.icon}`}>
+					{href ? (
+						<a
+							class="homeProofs__item homeProofs__item--link"
+							href={href}
+							{...(p.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+						>
+							{inner}
+						</a>
+					) : (
+						<span class="homeProofs__item">{inner}</span>
+					)}
+				</li>
+			);
+		})
+	}
+</ul>
+
+<style>
+	/*
+	 * Carte blanche découpée en cellules : le fond de la liste (1px de gap) dessine les séparateurs.
+	 * Mobile : 2 colonnes (la 5e cellule sur toute la largeur) ; tablette : 3 + 2 ; bureau : 5 colonnes.
+	 */
+	.homeProofs {
+		position: relative;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1px;
+		margin: 20px 0 0;
+		padding: 0;
+		list-style: none;
+		background: #e2e8f0;
+		border: 1px solid #e2e8f0;
+		border-radius: 16px;
+		overflow: hidden;
+		box-shadow: var(--home-shadow);
+	}
+
+	/* Liseré d'accent : dégradé bleu → violet → orange (couleurs d'accent du site). */
+	.homeProofs::before {
+		content: '';
+		position: absolute;
+		inset: 0 0 auto;
+		height: 3px;
+		background: linear-gradient(90deg, var(--home-blue), #7c3aed 50%, #c2410c);
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	.homeProofs__cell {
+		display: flex;
+		min-width: 0;
+		background: #fff;
+		--tone: var(--home-blue);
+		--tone-bg: var(--home-blue-50);
+	}
+
+	.homeProofs__cell:last-child {
+		grid-column: 1 / -1;
+	}
+
+	.homeProofs__cell--code {
+		--tone: #c2410c;
+		--tone-bg: #fff7ed;
+	}
+
+	.homeProofs__cell--rating {
+		--tone: #f59e0b;
+		--tone-bg: #fffbeb;
+	}
+
+	.homeProofs__cell--gauge {
+		--tone: #0b8a4c;
+		--tone-bg: #ecfdf5;
+	}
+
+	.homeProofs__cell--mentor {
+		--tone: #6d28d9;
+		--tone-bg: #f5f3ff;
+	}
+
+	/* Mobile : la 5e cellule (pleine largeur) passe en ligne, icône à gauche, pour limiter la hauteur. */
+	@media (max-width: 639px) {
+		.homeProofs__cell:last-child .homeProofs__item {
+			display: grid;
+			grid-template-columns: auto auto;
+			justify-content: center;
+			align-items: center;
+			column-gap: 12px;
+			padding-block: 16px;
+			text-align: left;
+		}
+
+		.homeProofs__cell:last-child .homeProofs__icon {
+			grid-row: span 2;
+			margin-bottom: 0;
+		}
+
+		.homeProofs__cell:last-child .homeProofs__value {
+			align-self: end;
+		}
+
+		.homeProofs__cell:last-child .homeProofs__label {
+			align-self: start;
+		}
+	}
+
+	@media (min-width: 640px) {
+		.homeProofs {
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+		}
+
+		.homeProofs__cell {
+			grid-column: span 2;
+		}
+
+		.homeProofs__cell:nth-child(n + 4) {
+			grid-column: span 3;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.homeProofs {
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+		}
+
+		.homeProofs__cell,
+		.homeProofs__cell:nth-child(n + 4) {
+			grid-column: auto;
+		}
+	}
+
+	.homeProofs__item {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 2px;
+		min-width: 0;
+		padding: 22px 12px 20px;
+		text-align: center;
+		text-decoration: none;
+		color: inherit;
+		transition: background-color 0.18s ease;
+	}
+
+	.homeProofs__icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 40px;
+		height: 40px;
+		margin-bottom: 8px;
+		border-radius: 10px;
+		color: var(--tone);
+		background: var(--tone-bg);
+	}
+
+	.homeProofs__icon--stars {
+		padding-inline: 10px;
+	}
+
+	.homeProofs__icon svg {
+		display: block;
+	}
+
+	.homeProofs__value {
+		font-size: clamp(1.375rem, 2.2vw, 1.625rem);
+		font-weight: 800;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		color: var(--home-navy);
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+	}
+
+	.homeProofs__suffix {
+		font-size: 0.62em;
+		font-weight: 700;
+		letter-spacing: 0;
+		color: #64748b;
+	}
+
+	.homeProofs__label {
+		font-size: 13px;
+		line-height: 1.4;
+		color: #475569;
+		text-wrap: balance;
+	}
+
+	.homeProofs__ext {
+		display: inline-block;
+		margin-left: 3px;
+		vertical-align: -1px;
+	}
+
+	.homeProofs__item--link .homeProofs__label {
+		color: var(--home-blue-dark);
+		font-weight: 600;
+	}
+
+	.homeProofs__item--link:hover {
+		background: var(--home-slate-50);
+	}
+
+	.homeProofs__item--link:hover .homeProofs__label {
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	.homeProofs__item--link:focus-visible {
+		outline: 2px solid var(--home-blue);
+		outline-offset: -4px;
+		border-radius: 12px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.homeProofs__item {
+			transition: none;
+		}
+	}
+</style>

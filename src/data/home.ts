@@ -1,9 +1,17 @@
 /** Données réutilisables de la page d'accueil. */
 
+import { googleRating } from './testimonials';
+
 export type HomeProof = {
+	/** Chiffre (ou mot) mis en avant. */
 	value: string;
+	/** Complément affiché plus petit juste après la valeur (« ans », « /5 »…). */
+	suffix?: string;
+	/** Légende courte, d'une longueur comparable pour tous les éléments. */
 	label: string;
-	icon: 'experience' | 'stores' | 'apps' | 'pagespeed' | 'train' | 'star';
+	/** Précision lue uniquement par les lecteurs d'écran, à la suite de la légende. */
+	srDetail?: string;
+	icon: 'stores' | 'code' | 'rating' | 'gauge' | 'mentor';
 	href?: string;
 	external?: boolean;
 };
@@ -123,16 +131,38 @@ export const offerCards: HomeOfferCard[] = [
 
 /*
  * Bandeau de preuves : uniquement des éléments vérifiables ou déjà publiés.
+ * Légendes courtes et de longueur comparable (la précision complète est dans srDetail, lue par les lecteurs d'écran).
  * « Plus de 300 magasins » : profil Malt (Decathlon France et Europe), autorisation Decathlon obtenue (28/09/2026).
- * Note Google (5,0/5, 7 avis) vérifiée le 28/09/2026 : à tenir à jour.
+ * « 20+ ans » : développeur depuis 2002.
+ * Note Google (5,0/5, 7 avis) : valeurs reprises de googleRating (testimonials.ts), vérifiées le 28/09/2026, à tenir à jour.
  * TODO (Emmanuel) : date de début du mentorat OpenClassrooms ; re-mesurer les scores PageSpeed avant publication.
  */
 export const proofs: HomeProof[] = [
-	{ value: '300+', label: 'magasins Decathlon (France et Europe) équipés de mes outils Google Sheets', icon: 'stores' },
-	{ value: 'Depuis 2002', label: 'dans le développement', icon: 'experience' },
-	{ value: '5,0/5', label: 'sur Google (7 avis)', icon: 'star', href: 'GOOGLE', external: true },
-	{ value: '100/100', label: 'PageSpeed mesuré sur des sites livrés', icon: 'pagespeed', href: '/creation-site-internet/#performance' },
-	{ value: 'Mentor', label: 'OpenClassrooms', icon: 'train' },
+	{
+		value: '300+',
+		label: 'magasins Decathlon équipés',
+		srDetail: ' de mes outils Google Sheets, en France et en Europe',
+		icon: 'stores',
+	},
+	{ value: '20+', suffix: ' ans', label: 'de développement, depuis 2002', icon: 'code' },
+	{
+		value: googleRating.value.replace(/\/5$/, ''),
+		suffix: '/5',
+		label: `${googleRating.count} Google`,
+		srDetail: ' : voir les avis (nouvel onglet)',
+		icon: 'rating',
+		href: 'GOOGLE',
+		external: true,
+	},
+	{
+		value: '100',
+		suffix: '/100',
+		label: 'PageSpeed sur des sites livrés',
+		srDetail: ' : voir les mesures',
+		icon: 'gauge',
+		href: '/creation-site-internet/#performance',
+	},
+	{ value: 'Mentor', label: 'OpenClassrooms', icon: 'mentor' },
 ];
 
 export const clientLogoStrip: HomeClientLogo[] = [

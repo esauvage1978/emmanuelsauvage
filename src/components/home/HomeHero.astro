@@ -1,12 +1,10 @@
 ---
-import { hero, offerCards, proofs } from '../../data/home';
-import { GOOGLE_PROFILE_URL, MALT_PROFILE_URL } from '../../config/site';
+import { hero, offerCards } from '../../data/home';
 import HomeIcon from './HomeIcon.astro';
+import HomeProofs from './HomeProofs.astro';
 import '../../styles/home.css';
 
 const { photo } = hero;
-const resolveHref = (href?: string) =>
-	href === 'MALT' ? MALT_PROFILE_URL : href === 'GOOGLE' ? GOOGLE_PROFILE_URL : href;
 ---
 
 <section class="homeHero homeSection" aria-label="Accroche principale">
@@ -117,39 +115,7 @@ const resolveHref = (href?: string) =>
 		</ul>
 
 		<!-- Bandeau de preuves : TODO (Emmanuel) dates du mentorat OpenClassrooms et re-mesure des scores PageSpeed. « 300+ magasins » : source Malt. Note Google vérifiée le 28/09/2026. -->
-		<ul class="homeProofs" aria-label="Quelques repères">
-			{
-				proofs.map((p) => {
-					const href = resolveHref(p.href);
-					const inner = (
-						<>
-							<span class="homeIcon homeProofs__icon" aria-hidden="true">
-								<HomeIcon name={p.icon} />
-							</span>
-							<span>
-								<span class="homeProofs__value">{p.value}</span>
-								<span class="homeProofs__label">{p.label}</span>
-							</span>
-						</>
-					);
-					return (
-						<li>
-							{href ? (
-								<a
-									class="homeProofs__item homeProofs__item--link"
-									href={href}
-									{...(p.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-								>
-									{inner}
-								</a>
-							) : (
-								<span class="homeProofs__item">{inner}</span>
-							)}
-						</li>
-					);
-				})
-			}
-		</ul>
+		<HomeProofs />
 	</div>
 </section>
 
@@ -513,65 +479,6 @@ const resolveHref = (href?: string) =>
 		font-size: 14px;
 		font-weight: 700;
 		color: var(--home-blue);
-	}
-
-	.homeProofs {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 12px;
-		margin: 20px 0 0;
-		padding: 16px;
-		list-style: none;
-		border-radius: var(--home-radius);
-		background: var(--home-slate-100);
-		border: 1px solid #e2e8f0;
-	}
-
-	@media (min-width: 560px) {
-		.homeProofs {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	
-	}
-
-	@media (min-width: 1024px) {
-		.homeProofs {
-			grid-template-columns: repeat(5, 1fr);
-		}
-	
-	}
-
-	.homeProofs__item {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		text-decoration: none;
-		color: inherit;
-	}
-
-	.homeProofs__item--link:hover .homeProofs__label {
-		text-decoration: underline;
-	}
-
-	.homeProofs__icon {
-		width: 36px;
-		height: 36px;
-		background: #fff;
-	}
-
-	.homeProofs__value {
-		display: block;
-		font-size: 1.05rem;
-		font-weight: 800;
-		color: #0f172a;
-		line-height: 1.2;
-	}
-
-	.homeProofs__label {
-		display: block;
-		font-size: 12.5px;
-		line-height: 1.35;
-		color: var(--color-muted);
 	}
 
 </style>
