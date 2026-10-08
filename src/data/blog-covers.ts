@@ -1,4 +1,7 @@
-/** Vignettes blog — photos Unsplash (licence Unsplash). Téléchargées via `node scripts/download-blog-covers.mjs`. */
+/**
+ * Vignettes blog — photos Unsplash (licence Unsplash), téléchargées via `node scripts/download-blog-covers.mjs`,
+ * sauf les tutoriels Google Sheets : vignettes générées aux couleurs du site via `node scripts/generate-tutorial-covers.mjs`.
+ */
 
 export type BlogCover = {
 	alt: string;
@@ -89,6 +92,26 @@ export const blogCovers: Record<string, BlogCover> = {
 		alt: 'Développeur au travail sur ordinateur portable',
 		credit: 'Austin Distel / Unsplash',
 		src: '/images/blog/versionner-api-rest-symfony.webp',
+	},
+	'google-sheets-formule-si-plusieurs-conditions': {
+		alt: 'Tableau Google Sheets avec une formule SI et ET',
+		credit: 'Illustration Emmanuel Sauvage',
+		src: '/images/blog/google-sheets-formule-si-plusieurs-conditions.webp',
+	},
+	'fonction-query-google-sheets': {
+		alt: 'Tableau Google Sheets avec une formule QUERY',
+		credit: 'Illustration Emmanuel Sauvage',
+		src: '/images/blog/fonction-query-google-sheets.webp',
+	},
+	'recherchev-recherchex-google-sheets': {
+		alt: 'Tableau Google Sheets avec une formule RECHERCHEX',
+		credit: 'Illustration Emmanuel Sauvage',
+		src: '/images/blog/recherchev-recherchex-google-sheets.webp',
+	},
+	'arrayformula-map-makearray-google-sheets': {
+		alt: 'Tableau Google Sheets avec une formule ARRAYFORMULA',
+		credit: 'Illustration Emmanuel Sauvage',
+		src: '/images/blog/arrayformula-map-makearray-google-sheets.webp',
 	},
 };
 

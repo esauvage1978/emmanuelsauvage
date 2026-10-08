@@ -1,10 +1,11 @@
 ---
-title: "Fonction QUERY de Google Sheets : guide en français avec exemples (GROUP BY, ORDER BY, LABEL)"
-shortTitle: "Fonction QUERY Google Sheets : guide et exemples"
-description: "Filtrer, trier, regrouper et totaliser vos données avec une seule formule : la syntaxe de QUERY, les clauses SELECT, WHERE, GROUP BY, PIVOT, ORDER BY, LIMIT et LABEL, et les pièges à éviter, avec des exemples prêts à copier."
-metaDescription: "Syntaxe de QUERY dans Google Sheets, SELECT, WHERE, GROUP BY, ORDER BY, LABEL, PIVOT, dates et pièges fréquents : le guide en français, avec exemples."
+title: "Fonction QUERY de Google Sheets : guide en français avec exemples à copier (WHERE, GROUP BY, PIVOT)"
+shortTitle: "Fonction QUERY Google Sheets : guide + exemples à copier"
+description: "Filtrer, trier, regrouper et totaliser vos données avec une seule formule : la syntaxe de QUERY, les clauses SELECT, WHERE, GROUP BY, PIVOT, ORDER BY, LIMIT et LABEL, un aide-mémoire des requêtes les plus utiles et les pièges à éviter, avec des exemples prêts à copier."
+metaDescription: "Filtrer, trier et totaliser en une seule formule : QUERY dans Google Sheets (SELECT, WHERE, GROUP BY, PIVOT, dates) expliquée avec exemples à copier."
 pubDate: 2026-09-28
-readingTimeMinutes: 11
+updatedDate: 2026-10-08
+readingTimeMinutes: 12
 tags:
   - "Google Sheets"
   - "QUERY"
@@ -164,6 +165,20 @@ Dans un fichier réglé sur la France, les plages empilées dans les accolades s
 barre oblique inversée <code>\</code> les juxtapose côte à côte).
 </p>
 
+<h2>Aide-mémoire : les requêtes les plus utiles</h2>
+<p>Toutes s’appuient sur le tableau <em>Ventes</em> ci-dessus ; il suffit d’adapter les lettres de colonnes.</p>
+<table>
+<thead><tr><th>Besoin</th><th>Formule</th></tr></thead>
+<tbody>
+<tr><td>Ventes payées de plus de 1 000 €</td><td><code>=QUERY(Ventes!A1:E; "select * where D = 'Payé' and E &gt; 1000"; 1)</code></td></tr>
+<tr><td>Total par région, du plus grand au plus petit</td><td><code>=QUERY(Ventes!A1:E; "select C, sum(E) where C is not null group by C order by sum(E) desc"; 1)</code></td></tr>
+<tr><td>Nombre de ventes par statut</td><td><code>=QUERY(Ventes!A1:E; "select D, count(A) where D is not null group by D"; 1)</code></td></tr>
+<tr><td>Les 5 plus grosses ventes</td><td><code>=QUERY(Ventes!A1:E; "select A, B, E where E is not null order by E desc limit 5"; 1)</code></td></tr>
+<tr><td>Ventes depuis le 1<sup>er</sup> février 2026</td><td><code>=QUERY(Ventes!A1:E; "select * where A &gt;= date '2026-02-01'"; 1)</code></td></tr>
+<tr><td>Total par commercial et par région</td><td><code>=QUERY(Ventes!A1:E; "select B, sum(E) where B is not null group by B pivot C"; 1)</code></td></tr>
+</tbody>
+</table>
+
 <h2>Les pièges les plus fréquents</h2>
 <ul>
 <li>
@@ -195,6 +210,15 @@ débutant. Dès qu’il faut regrouper, totaliser, trier et renommer en même te
 </p>
 </details>
 <details>
+<summary>QUERY ou RECHERCHEV : lequel choisir ?</summary>
+<p>
+<code>RECHERCHEV</code> (ou mieux, <code>RECHERCHEX</code>) va chercher <strong>une</strong> valeur dans une autre
+table, par exemple le prix d’une référence. QUERY renvoie <strong>toutes</strong> les lignes qui correspondent, et
+peut les totaliser. Les différences sont détaillées dans le
+<a href="/blog/recherchev-recherchex-google-sheets/">guide RECHERCHEV, RECHERCHEH et RECHERCHEX</a>.
+</p>
+</details>
+<details>
 <summary>QUERY est-il sensible à la casse ?</summary>
 <p>
 Oui pour les comparaisons de texte (<code>=</code>, <code>contains</code>, <code>starts with</code>). Pour ignorer
@@ -214,5 +238,7 @@ Power Query pour les transformations plus lourdes.
 QUERY est au programme du niveau N2 « Google Sheets avancé » de la
 <a href="/formation-google-sheets/">formation Google Sheets</a>, avec les tableaux croisés dynamiques et
 IMPORTRANGE. Pour les formules conditionnelles, voir aussi
-<a href="/blog/google-sheets-formule-si-plusieurs-conditions/">la formule SI avec plusieurs conditions</a>.
+<a href="/blog/google-sheets-formule-si-plusieurs-conditions/">la formule SI avec plusieurs conditions</a>, et pour
+calculer toute une colonne avec une seule formule,
+<a href="/blog/arrayformula-map-makearray-google-sheets/">ARRAYFORMULA, MAP et MAKEARRAY</a>.
 </p>

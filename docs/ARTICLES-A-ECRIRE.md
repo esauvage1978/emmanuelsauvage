@@ -1,6 +1,9 @@
 # Articles prévus (stratégie §8.4), non rédigés
 
 Rythme conseillé : 2 articles par mois, sans publication en rafale. Déjà publiés : n° 1 (formule SI) et n° 3 (QUERY).
+Publiés hors liste (8 octobre 2026) : RECHERCHEV / RECHERCHEH / RECHERCHEX (`recherchev-recherchex-google-sheets`) et
+ARRAYFORMULA / MAP / MAKEARRAY (`arrayformula-map-makearray-google-sheets`). Titres et descriptions des articles SI et
+QUERY réécrits le même jour pour le taux de clic (413 et 70 impressions, 1 et 0 clic du 28/09 au 06/10).
 Chaque tutoriel Google Sheets reçoit automatiquement l’encart « Former votre équipe » (`category: google-sheets`).
 
 ## Google Sheets
