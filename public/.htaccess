@@ -35,37 +35,42 @@ AddDefaultCharset UTF-8
 </IfModule>
 
 # -----------------------------------------------------------------------------
-# Cache navigateur — HTML court ; assets statiques longs (images, /_astro/*.css|js)
+# Cache navigateur + HSTS (bloc TRUITE)
 # -----------------------------------------------------------------------------
-<IfModule mod_expires.c>
-	ExpiresActive On
-	ExpiresDefault "access plus 1 hour"
-	ExpiresByType text/html "access plus 0 seconds"
-	ExpiresByType image/png "access plus 1 year"
-	ExpiresByType image/jpeg "access plus 1 year"
-	ExpiresByType image/webp "access plus 1 year"
-	ExpiresByType image/svg+xml "access plus 1 year"
-	ExpiresByType image/x-icon "access plus 1 year"
-	ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
-	ExpiresByType font/woff2 "access plus 1 year"
-	ExpiresByType text/css "access plus 1 year"
-	ExpiresByType application/javascript "access plus 1 year"
-	ExpiresByType text/javascript "access plus 1 year"
+# BEGIN TRUITE cache-hsts (géré par TRUITE, à garder dans public/.htaccess)
+<IfModule mod_headers.c>
+  # HSTS 1 an, sans includeSubDomains ni preload
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header unset ETag
 </IfModule>
+FileETag None
+<IfModule mod_expires.c>
+  # On supprime les Expires pour éviter les contradictions avec Cache-Control
+  ExpiresActive Off
+</IfModule>
+<IfModule mod_headers.c>
+  Header unset Expires
+  # HTML : toujours revalidé
+  <FilesMatch "\.(html?|xml|txt|json|webmanifest)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  # Images et polices non versionnées : 30 jours
+  <FilesMatch "\.(jpe?g|png|gif|webp|avif|svg|ico|woff2?|ttf|otf)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  # Fichiers versionnés (/_astro/ hashés) : 1 an immutable
+  <If "%{REQUEST_URI} =~ m#^/_astro/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+</IfModule>
+# END TRUITE cache-hsts
+
 
 <IfModule mod_headers.c>
-	# HTML : cache court + revalidation
-	<FilesMatch "\.(html)$">
-		Header set Cache-Control "public, max-age=3600, must-revalidate"
-	</FilesMatch>
 	# Sécurité de base (ajustez X-Frame-Options si vous devez embedder le site ailleurs)
 	Header set X-Content-Type-Options "nosniff"
 	Header set X-Frame-Options "SAMEORIGIN"
 	Header set Referrer-Policy "strict-origin-when-cross-origin"
-	# HSTS : le navigateur ne passe plus que par HTTPS (1 an). Volontairement SANS includeSubDomains ni preload,
-	# pour ne pas bloquer d'éventuels sous-domaines (webmail, mail…) sans certificat valide.
-	# (Les navigateurs ignorent cet en-tête sur les réponses en HTTP simple : sans risque.)
-	Header set Strict-Transport-Security "max-age=31536000"
 </IfModule>
 
 # -----------------------------------------------------------------------------
