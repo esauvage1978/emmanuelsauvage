@@ -1,0 +1,53 @@
+# Emmanuel Sauvage – formateur Google Sheets et développeur d'applications (Lille)
+
+> Emmanuel Sauvage est consultant indépendant à Erquinghem-Lys, près de Lille et Armentières. Il développe des applications depuis 2002. Il propose trois offres :
+> - des formations Google Sheets et Apps Script pour les entreprises, en présentiel ou à distance, finançables par l'OPCO via un organisme partenaire certifié Qualiopi ;
+> - des applications métier sur mesure (Symfony), dont le développement est accéléré par l'IA ;
+> - des sites internet rapides et bien référencés.
+>
+> Références : des outils Google Sheets déployés dans plus de 300 magasins Decathlon, du mentorat OpenClassrooms, et ses propres SaaS Webhooky, lnkx et AlertJet. Tarifs sur devis. Contact : contact@emmanuelsauvage.fr.
+
+## Offres
+- [Formation Google Sheets en entreprise](https://emmanuelsauvage.fr/formation-google-sheets/): du débutant à l'expert, sur vos fichiers, présentiel ou à distance, finançable OPCO via un partenaire Qualiopi.
+- [Formation Google Apps Script](https://emmanuelsauvage.fr/formation-apps-script/): automatiser Google Sheets (e-mails, documents, déclencheurs).
+- [Automatisation Google Sheets et Apps Script](https://emmanuelsauvage.fr/automatisation-google-sheets/): collecte multisite, rapports automatiques, alertes, connexion à vos outils.
+- [Développement d'application sur mesure](https://emmanuelsauvage.fr/developpement-application-sur-mesure/): applications métier pour remplacer fichiers Excel et ressaisies.
+- [Refonte et maintenance d'application web](https://emmanuelsauvage.fr/refonte-application-web/): diagnostic, montée de version, refonte progressive.
+- [Développeur Symfony freelance](https://emmanuelsauvage.fr/developpeur-symfony-freelance/): prestataire Symfony senior pour agences, ESN et DSI.
+- [Création de site internet](https://emmanuelsauvage.fr/creation-site-internet/): sites vitrines rapides (100/100 PageSpeed) et bien référencés, Lille et Armentières.
+
+## À propos
+- [À propos](https://emmanuelsauvage.fr/a-propos/): parcours, méthode, références, zone d'intervention.
+- [Réalisations](https://emmanuelsauvage.fr/realisations/): études de cas (Decathlon, back-office sur mesure, sites vitrines, SaaS).
+- [Services](https://emmanuelsauvage.fr/services/): les trois offres résumées.
+- [Contact](https://emmanuelsauvage.fr/contact/): formulaire de demande.
+
+## Tutoriels Google Sheets
+- [Fonction QUERY Google Sheets](https://emmanuelsauvage.fr/blog/fonction-query-google-sheets/): SELECT, WHERE, GROUP BY, PIVOT, dates, avec exemples à copier.
+- [SI avec plusieurs conditions](https://emmanuelsauvage.fr/blog/google-sheets-formule-si-plusieurs-conditions/): SI + ET, SI + OU, SI.CONDITIONS, SOMME.SI.ENS.
+- [RECHERCHEV, RECHERCHEH, RECHERCHEX](https://emmanuelsauvage.fr/blog/recherchev-recherchex-google-sheets/): VLOOKUP, XLOOKUP, erreur #N/A, INDEX/EQUIV.
+- [ARRAYFORMULA, MAP, MAKEARRAY](https://emmanuelsauvage.fr/blog/arrayformula-map-makearray-google-sheets/): une formule pour toute la colonne, LAMBDA.
+- [Google Sheets vs Excel](https://emmanuelsauvage.fr/blog/google-sheets-vs-excel-limites-cas-usage/): limites et cas d'usage.
+- [Quand Google Sheets ne suffit plus](https://emmanuelsauvage.fr/blog/google-sheets-limite-outil-metier/): seuils avant un back-office.
+- [Formation Google Sheets : ROI](https://emmanuelsauvage.fr/blog/formation-google-sheets-entreprise-levier-productivite/)
+
+## Automatisation et applications
+- [Automatiser les processus métier avec Apps Script](https://emmanuelsauvage.fr/blog/automatiser-processus-metier-google-apps-script-entreprise/)
+- [Automatisation Google Workspace : gains réels](https://emmanuelsauvage.fr/blog/automatiser-entreprise-google-workspace-gains-cas/)
+- [Coût caché des fichiers Excel](https://emmanuelsauvage.fr/blog/fichiers-excel-cout-cache-entreprise/)
+- [Coût de la dette technique](https://emmanuelsauvage.fr/blog/cout-dette-technique-entreprise-analyse/)
+- [Application web : signaux qui font perdre de l'argent](https://emmanuelsauvage.fr/blog/application-web-perd-argent-signes/)
+- [Refonte d'application web : stratégie](https://emmanuelsauvage.fr/blog/refonte-application-web-signaux-strategie-dette-technique/)
+- [Freelance, agence ou interne](https://emmanuelsauvage.fr/blog/freelance-vs-agence-vs-internalisation-projets-tech/)
+
+## Symfony
+- [Migration Symfony : guide](https://emmanuelsauvage.fr/blog/migration-symfony-guide-complet-2026/)
+- [Refonte Symfony ou évolutions ciblées](https://emmanuelsauvage.fr/blog/symfony-refonte-ou-evolutions-ciblees/)
+- [Monolithe modulaire Symfony](https://emmanuelsauvage.fr/blog/monolithe-modulaire-symfony-frontieres/)
+- [API REST Symfony : versions, OpenAPI, erreurs](https://emmanuelsauvage.fr/blog/versionner-api-rest-symfony/)
+- [Symfony Validator pour une API](https://emmanuelsauvage.fr/blog/validation-api-symfony-contraintes-reelles/)
+
+## Optional
+- [Blog](https://emmanuelsauvage.fr/blog/)
+- [Stack de ce site : Astro, Zapier, Mailjet](https://emmanuelsauvage.fr/blog/site-vitrine-astro-zapier-mailjet/)
+- [Mentions légales](https://emmanuelsauvage.fr/mentions-legales/)
