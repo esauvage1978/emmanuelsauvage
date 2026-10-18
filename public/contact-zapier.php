@@ -62,6 +62,30 @@ if ($projectTypeLabel === '') {
 	$projectTypeLabel = $projectType;
 }
 
+/* --- Anti-spam (sans captcha) : honeypot, délai minimal, charabia --- */
+function es_spam_reject(string $why): void {
+	error_log('[contact-antispam] ' . $why);
+	http_response_code(200); // faux succès : le robot ne sait pas qu'il est filtré
+	echo json_encode(['ok' => true]);
+	exit;
+}
+function es_looks_gibberish(string $s): bool {
+	$s = trim($s);
+	if ($s === '' || preg_match('/\s/u', $s)) return false; // texte humain = espaces
+	if (mb_strlen($s) < 12) return false;
+	if (!preg_match('/^[A-Za-z]+$/', $s)) return false;
+	$caseChanges = preg_match_all('/[a-z][A-Z]|[A-Z][a-z]/', $s);
+	return $caseChanges >= (int) (mb_strlen($s) / 4); // ex. rPEZEZMpmNDnWYMRUOjUv
+}
+$honeypot = isset($data['website']) ? trim((string) $data['website']) : '';
+if ($honeypot !== '') es_spam_reject('honeypot');
+$formTs = isset($data['form_ts']) ? (int) $data['form_ts'] : 0;
+$fillMs = isset($data['fill_ms']) ? (int) $data['fill_ms'] : 0;
+if ($formTs <= 0) es_spam_reject('no form_ts (POST direct)');
+if ($fillMs < 3000) es_spam_reject('too fast: ' . $fillMs . 'ms');
+if (es_looks_gibberish($name) || es_looks_gibberish($message)) es_spam_reject('gibberish name/message');
+if (preg_match('/^(.+?)@/', $email, $em) && substr_count($em[1], '.') >= 3) es_spam_reject('dotted email local part');
+
 if ($name === '' || $email === '' || $objet === '' || $message === '') {
 	http_response_code(400);
 	echo json_encode(['ok' => false, 'error' => 'Missing required fields']);

@@ -77,6 +77,11 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 				<div class="grid2">
 					<form id="contact-form" class="form card" method="post" action="#" novalidate>
 						<input type="hidden" name="source" value="emmanuelsauvage" />
+						<input type="hidden" name="form_ts" id="form-ts" value="" />
+						<div class="hp-field" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+							<label for="website">Ne pas remplir ce champ</label>
+							<input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+						</div>
 						<div class="field">
 							<label for="name">Nom</label>
 							<input id="name" name="name" autocomplete="name" required />
@@ -246,6 +251,8 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 			const SUBMIT_LABEL_LOADING = 'Envoi en cours…';
 
 			const form = document.getElementById('contact-form');
+			const formTsInput = document.getElementById('form-ts');
+			if (formTsInput) formTsInput.value = String(Date.now());
 			const statusEl = document.getElementById('form-status');
 			const submitBtn = document.getElementById('contact-submit');
 			if (!form || !statusEl || !submitBtn) return;
@@ -300,6 +307,8 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 				}
 
 				const nowIso = new Date().toISOString();
+				const honeypot = document.getElementById('website')?.value ?? '';
+				const formTs = Number(document.getElementById('form-ts')?.value || 0);
 				const name = document.getElementById('name')?.value?.trim() ?? '';
 				const company = document.getElementById('company')?.value?.trim() ?? '';
 				const email = document.getElementById('email')?.value?.trim() ?? '';
@@ -362,6 +371,9 @@ const contactSubmitUrl = import.meta.env.DEV ? '/api/zapier-contact' : '/contact
 					privacy_policy_accepted: true,
 					privacy_policy_accepted_at: nowIso,
 					submitted_at: nowIso,
+					website: honeypot,
+					form_ts: formTs,
+					fill_ms: formTs ? Date.now() - formTs : 0,
 				};
 
 				const CONTACT_FETCH_TIMEOUT_MS = 45000;
