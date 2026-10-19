@@ -72,7 +72,7 @@ export type HomeFaqItem = {
 export const homeMeta = {
 	title: 'Emmanuel Sauvage – Formation Google Sheets & dev, Lille',
 	description:
-		'Formation Google Sheets en entreprise (finançable OPCO), applications métier sur mesure et sites web rapides. Formateur-développeur près de Lille.',
+		'Emmanuel Sauvage, formateur et développeur depuis 2002 près de Lille : formation Google Sheets (OPCO), applications métier sur mesure et sites web.',
 };
 
 export const hero = {
