@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # lighthouse reports (local)
 lh-home
+
+contact-journal/
+public/_contact-journal/
